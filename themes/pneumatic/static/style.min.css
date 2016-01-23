@@ -259,10 +259,12 @@ nav {
 }
 .title {
     float: left;
+    max-width: 80%;
 }
 .date {
     float: right;
     display: block;
+    clear: right;
 }
 .content {
     clear: both;

@@ -1,4 +1,4 @@
-# marcsleegers.com <img align="right" width=75 height= 75 src="content/images/icons/avatar.png?raw=true"/>
+# marcsleegers.com <img alt="A Wild Pumpkin" align="right" width=75 height= 75 src="content/images/icons/avatar.png?raw=true"/>
 
 This repository contains both the static files and the source files used to generate [marcsleegers.com]. 
 It is generated with [Pelican], tested and deployed with Travis CI and open sourced right here.
