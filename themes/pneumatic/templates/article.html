@@ -19,13 +19,14 @@
 
 {% block content %}
 	<h1 class="title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
-	<!--<time class="date" datetime="{{ article.date }}">{{ article.locale_date }}</time>-->
-    {% if article.modified %}
-    <p class="date">
-        Modified: <time datetime="{{ article.modified }}">{{ article.modified|strftime('%B %d, %Y') }}</time> | Original: <time datetime="{{ article.date }}">{{ article.locale_date }}</time>
+
+	<p class="date">
+        <span title="Published" class="icon fa fa-clock-o"></span> <time datetime="{{ article.date }}">{{ article.locale_date }}</time>
     </p>
-    {% else %}
-    <time class="date" datetime="{{ article.date }}">{{ article.locale_date }}</time>
+    {% if article.modified and not article.modified == article.date %}
+	<p class="date">
+		<span title="Modified" class="icon fa fa-pencil"></span> <time datetime="{{ article.modified }}">{{ article.modified|strftime('%B %d, %Y') }}</time>
+	</p>
     {% endif %}
 	<div class="content">
 		{{ article.content }}

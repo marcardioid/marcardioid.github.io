@@ -92,4 +92,6 @@ extras = ['favicon.ico', 'robots.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['neighbors', 'render_math']
+PLUGINS = ['always_modified', 'neighbors', 'render_math']
+
+ALWAYS_MODIFIED = True
