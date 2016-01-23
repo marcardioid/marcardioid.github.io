@@ -38,8 +38,8 @@ SOCIAL_ICONS = [
 THEME_COLOR = '#FF8000'
 
 # Pelican settings
-RELATIVE_URLS = True
-SITEURL = 'http://localhost'
+RELATIVE_URLS = False
+SITEURL = 'http://localhost:8000'
 TIMEZONE = 'Europe/Amsterdam'
 DEFAULT_DATE = 'fs'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
@@ -48,22 +48,25 @@ SUMMARY_MAX_LENGTH = 50
 
 THEME = 'themes/pneumatic'
 
-ARTICLE_URL = 'blog/{date:%Y}/{date:%m}/{slug}/'
+# Relocate blog directory
+BLOG_URL = 'blog/'
+
+ARTICLE_URL = BLOG_URL + '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
 
-DRAFT_URL = 'blog/drafts/{date:%Y}/{date:%m}/{slug}/'
+DRAFT_URL = BLOG_URL + 'drafts/{date:%Y}/{date:%m}/{slug}/'
 DRAFT_SAVE_AS = DRAFT_URL + 'index.html'
 
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = PAGE_URL + 'index.html'
 
-ARCHIVES_SAVE_AS = 'blog/archive/index.html'
-YEAR_ARCHIVE_SAVE_AS = 'blog/{date:%Y}/index.html'
-MONTH_ARCHIVE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/index.html'
+ARCHIVES_SAVE_AS = BLOG_URL + 'archive/index.html'
+YEAR_ARCHIVE_SAVE_AS = BLOG_URL + '{date:%Y}/index.html'
+MONTH_ARCHIVE_SAVE_AS = BLOG_URL + '{date:%Y}/{date:%m}/index.html'
 
 # Disable authors, categories, tags, and category pages
 DIRECT_TEMPLATES = ['index', 'archives']
-INDEX_SAVE_AS = 'blog/index.html'
+INDEX_SAVE_AS = BLOG_URL + 'index.html'
 CATEGORY_SAVE_AS = ''
 
 # Disable Atom feed generation

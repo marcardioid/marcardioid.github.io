@@ -9,15 +9,15 @@
 	{% for year, _ in dates | groupby('date.year') %}
 		{% for month, articles in dates | groupby('date.month') %}
 			{% if not period[1] %}
-			<h2><a href="/blog/{{ articles[0].date.strftime('%Y/%m') }}/">{{ articles[0].date.strftime('%B') }}</a></h2>
+			<h2><a href="{{ SITEURL }}/{{ BLOG_URL }}{{ articles[0].date.strftime('%Y/%m') }}/">{{ articles[0].date.strftime('%B') }}</a></h2>
 			{% endif %}
 			<ul>
 				{% for article in articles | sort(attribute='date') %}
-				<li><a href="/{{ article.url }}">{{ article.title }}</a> &raquo; {{ article.locale_date }}</li>
+				<li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a> &raquo; {{ article.locale_date }}</li>
 				{% endfor %}
 			</ul>
 		{% endfor %}
 	{% endfor %}
 	</div>
-	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
+	<div id="back-to-home"><a href="{{ SITEURL }}">&laquo; Back to Home</a></div>
 {% endblock %}

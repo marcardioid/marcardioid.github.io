@@ -3,16 +3,16 @@
 {% block title %}Archive | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-	<h1 class="title"><a href="/blog/archive/">Archive</a></h1>
+	<h1 class="title"><a href="{{ SITEURL }}/{{ BLOG_URL }}archive/">Archive</a></h1>
 	<div class="content">
 		{% for year, articles in dates | groupby('date.year') | sort(reverse=True) %}
-		<h2><a href="/blog/{{ year }}/">{{ year }}</a></h2>
+		<h2><a href="{{ SITEURL }}/{{ BLOG_URL }}{{ year }}/">{{ year }}</a></h2>
 		<ul>
 			{% for article in articles | sort(attribute='date', reverse=True) %}
-			<li><a href="/{{ article.url }}">{{ article.title }}</a> &raquo; {{ article.locale_date }}</li>
+			<li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a> &raquo; {{ article.locale_date }}</li>
 			{% endfor %}
 		</ul>
 		{% endfor %}
 	</div>
-	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
+	<div id="back-to-home"><a href="{{ SITEURL }}">&laquo; Back to Home</a></div>
 {% endblock %}

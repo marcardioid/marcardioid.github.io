@@ -23,13 +23,13 @@
 	{% endif %}
 
 	<!-- Favicons -->
-	<link rel="apple-touch-icon" href="/{{ ICONS_PATH }}/apple-touch-icon.png">
+	<link rel="apple-touch-icon" href="{{ SITEURL }}/{{ ICONS_PATH }}/apple-touch-icon.png">
 	{% for size in (57, 60, 72, 76, 114, 120, 144, 152, 180) %}
-	<link rel="apple-touch-icon" sizes="{{ size }}x{{ size }}" href="/{{ ICONS_PATH }}/apple-touch-icon-{{ size }}x{{ size }}.png">
+	<link rel="apple-touch-icon" sizes="{{ size }}x{{ size }}" href="{{ SITEURL }}/{{ ICONS_PATH }}/apple-touch-icon-{{ size }}x{{ size }}.png">
 	{% endfor %}
 
 	{% for size in (16, 32, 96, 160, 196) %}
-	<link rel="icon" type="image/png" href="/{{ ICONS_PATH }}/favicon-{{ size }}x{{ size }}.png" sizes="{{ size }}x{{ size }}">
+	<link rel="icon" type="image/png" href="{{ SITEURL }}/{{ ICONS_PATH }}/favicon-{{ size }}x{{ size }}.png" sizes="{{ size }}x{{ size }}">
 	{% endfor %}
 
 	<meta name="theme-color" content="{{ THEME_COLOR }}">
@@ -38,23 +38,23 @@
 	<meta name="msapplication-TileImage" content="/{{ ICONS_PATH }}/mstile-144x144.png">
 
 	<!--[if lt IE 9]>
-	<script src="/theme/js/html5shiv.min.js"></script>
-	<script src="/theme/js/respond.min.js"></script>
+	<script src="{{ SITEURL }}/theme/js/html5shiv.min.js"></script>
+	<script src="{{ SITEURL }}/theme/js/respond.min.js"></script>
 	<![endif]-->
 </head>
 
 <body>
 	<div class="container">
 		<aside>
-			<a href="/"><img id="avatar" alt="Site Avatar" src="/{{ ICONS_PATH }}/avatar.png"></a>
-			<div id="name"><a href="/">{{ SITENAME }}</a></div>
+			<a href="{{ SITEURL }}"><img id="avatar" alt="Site Avatar" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.png"></a>
+			<div id="name"><a href="{{ SITEURL }}">{{ SITENAME }}</a></div>
 			<div id="bio">{{ BIO_TEXT }}</div>
 
 			{% if NAVIGATION_ITEMS %}
             {% set active_page = active_page|default('index') %}
 			<nav>
                 {% for href, id, caption in NAVIGATION_ITEMS %}
-                <a href="{{ href|e }}"{% if id == active_page %} style="text-decoration: underline;"{% endif %}>{{ caption|e }}</a>
+                <a href="{{ SITEURL }}{{ href|e }}"{% if id == active_page %} style="text-decoration: underline;"{% endif %}>{{ caption|e }}</a>
                 {% if not loop.last %}
                     &nbsp;|&nbsp;
                 {% endif %}
@@ -71,7 +71,7 @@
 			{% endif %}
             
             <div>
-                <a href="/files/CV_Marc-Sleegers_2015_EN_WEB.pdf" target="_blank">Download resume</a>
+                <a href="{{ SITEURL }}/files/CV_Marc-Sleegers_2015_EN_WEB.pdf" target="_blank">Download resume</a>
             </div>
 
 			<hr id="sidebar-divider">

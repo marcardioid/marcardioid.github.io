@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block content %}
-	<h1 class="title"><a href="/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
+	<h1 class="title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
 	<!--<time class="date" datetime="{{ article.date }}">{{ article.locale_date }}</time>-->
     {% if article.modified %}
     <p class="date">
@@ -34,10 +34,10 @@
 	{% if article.next_article or article.prev_article %}
 	<div id="related-articles">
         {% if article.prev_article %}
-		<a href="/{{ article.prev_article.url}}" id="prev-neighbour">&laquo; {{ article.prev_article.title | striptags }}</a>
+		<a href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">&laquo; {{ article.prev_article.title | striptags }}</a>
 		{% endif %}
 		{% if article.next_article %}
-		<a href="/{{ article.next_article.url}}" id="next-neighbour">{{ article.next_article.title | striptags }} &raquo;</a>
+		<a href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">{{ article.next_article.title | striptags }} &raquo;</a>
 		{% endif %}
 	</div>
 	{% endif %}

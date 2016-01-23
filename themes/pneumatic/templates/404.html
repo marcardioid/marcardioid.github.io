@@ -6,7 +6,7 @@
 {% block content %}
 	<h1 class="title">Page Not Found</h1>
 	<div class="content">
-		<p>The requested page could not be found. Perhaps try looking through the <a href="/blog/archive/">post archive</a>?</p>
+		<p>The requested page could not be found. Perhaps try looking through the <a href="{{ SITEURL }}/{{ BLOG_URL }}archive/">post archive</a>?</p>
 	</div>
-	<!--<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>-->
+	<!--<div id="back-to-home"><a href="{{ SITEURL }}">&laquo; Back to Home</a></div>-->
 {% endblock %}
