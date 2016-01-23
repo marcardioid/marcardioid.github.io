@@ -76,7 +76,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 TYPOGRIFY = True
-MD_EXTENSIONS = ['admonition', 'codehilite(linenums=True)', 'extra']
+MD_EXTENSIONS = ['admonition', 'codehilite(linenums=True)', 'extra', 'toc(anchorlink=True)']
 
 CACHE_CONTENT = False
 DELETE_OUTPUT_DIRECTORY = False
@@ -92,6 +92,4 @@ extras = ['favicon.ico', 'robots.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['always_modified', 'neighbors', 'render_math']
-
-ALWAYS_MODIFIED = True
+PLUGINS = ['neighbors', 'render_math']
