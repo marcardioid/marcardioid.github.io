@@ -2,3 +2,4 @@
 	path = plugins
 	url = git://github.com/getpelican/pelican-plugins.git
 	fetchRecurseSubmodules = true
+	branch = src
