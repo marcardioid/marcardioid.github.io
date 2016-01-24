@@ -76,7 +76,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 TYPOGRIFY = True
-MD_EXTENSIONS = ['admonition', 'codehilite(linenums=True)', 'extra', 'toc(anchorlink=True)']
+MD_EXTENSIONS = ['admonition', 'codehilite(linenums=True)', 'extra', 'toc(anchorlink=True)', 'footnotes']
 
 CACHE_CONTENT = False
 DELETE_OUTPUT_DIRECTORY = False

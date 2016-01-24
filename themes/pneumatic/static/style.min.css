@@ -156,7 +156,7 @@ abbr, acronym, .abbr {
     cursor: help;
     border-bottom: 1px dashed #444;
 }
-.footnote-ref {
+.footnote-ref, .footnote {
     padding-left: 1px;
     font-size: .7em;
     line-height: .5em;
@@ -272,8 +272,8 @@ nav {
     clear: both;
     overflow: hidden;
 }
-.content hr {
-    margin: 25px 10px;
+.footnote hr {
+    margin: 25px 0;
 }
 .summary p {
     margin-bottom: 6px;
