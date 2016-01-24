@@ -47,32 +47,34 @@
 	<div class="container">
 		<aside>
 			<a href="{{ SITEURL }}"><img id="avatar" alt="Site Avatar" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.png"></a>
-			<div id="name"><a href="{{ SITEURL }}">{{ SITENAME }}</a></div>
-			<div id="bio">{{ BIO_TEXT }}</div>
+			<div id="aside-content">
+				<div id="name"><a href="{{ SITEURL }}">{{ SITENAME }}</a></div>
+				<div id="bio">{{ BIO_TEXT }}</div>
 
-			{% if NAVIGATION_ITEMS %}
-            {% set active_page = active_page|default('index') %}
-			<nav>
-                {% for href, id, caption in NAVIGATION_ITEMS %}
-                <a href="{{ SITEURL }}{{ href|e }}"{% if id == active_page %} style="text-decoration: underline;"{% endif %}>{{ caption|e }}</a>
-                {% if not loop.last %}
-                    &nbsp;|&nbsp;
-                {% endif %}
-                {% endfor %}
-			</nav>
-			{% endif %}
+				{% if NAVIGATION_ITEMS %}
+				{% set active_page = active_page|default('index') %}
+				<nav>
+					{% for href, id, caption in NAVIGATION_ITEMS %}
+					<a href="{{ SITEURL }}{{ href|e }}"{% if id == active_page %} style="text-decoration: underline;"{% endif %}>{{ caption|e }}</a>
+					{% if not loop.last %}
+						&nbsp;|&nbsp;
+					{% endif %}
+					{% endfor %}
+				</nav>
+				{% endif %}
 
-			{% if SOCIAL_ICONS %}
-			<div id="social">
-				{% for link, title, icon in SOCIAL_ICONS %}
-				<a href="{{ link }}" title="{{ title }}" class="icon fa {{ icon }}" target="_blank"></a>
-				{% endfor %}
+				{% if SOCIAL_ICONS %}
+				<div id="social">
+					{% for link, title, icon in SOCIAL_ICONS %}
+					<a href="{{ link }}" title="{{ title }}" class="icon fa {{ icon }}" target="_blank"></a>
+					{% endfor %}
+				</div>
+				{% endif %}
+
+				<!--<div>
+					<a href="{{ SITEURL }}/files/CV_Marc-Sleegers_2015_EN_WEB.pdf" target="_blank">Download resume</a>
+				</div>-->
 			</div>
-			{% endif %}
-            
-            <div>
-                <a href="{{ SITEURL }}/files/CV_Marc-Sleegers_2015_EN_WEB.pdf" target="_blank">Download resume</a>
-            </div>
 
 			<hr id="sidebar-divider">
 		</aside>

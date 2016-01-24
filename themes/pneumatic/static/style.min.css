@@ -31,7 +31,9 @@ body {
     font: 14px/23px "Raleway", sans-serif;
     color: #222;
     -webkit-font-smoothing: antialiased;
-    -webkit-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%;
+    font-smoothing: antialiased;
+    text-size-adjust: 100%;
 }
 article p {
     font-size: 1.1em;
@@ -315,16 +317,31 @@ nav {
         max-width: 100%;
         margin: 0 auto;
         padding-top: 5px;
-        vertical-align: middle;
-    }
-    aside div {
-        margin: 5px 0;
+        vertical-align: center;
     }
     #avatar {
         width: 100px;
+        float: left;
+    }
+    aside div, nav {
+        margin: 5px 0;
+        float: left;
+    }
+    #name, #bio {
+        margin: 0;
+        text-align: left;
+    }
+    aside div div, aside div nav {
+        clear: left;
+    }
+    #social {
+        padding: 0 0 0 10px;
+        float: right;
+        clear: none;
     }
     #social .icon {
         padding: 0 1px;
+        margin: 8px 0;
     }
     article {
         margin-top: 14px;
@@ -337,9 +354,23 @@ nav {
     .title, .date {
         float: none;
         line-height: 1.25;
+        max-width: 100%;
     }
     #sidebar-divider {
         display: block;
+    }
+}
+@media only screen and (max-width:450px) {
+    #avatar {
+        width: 60px;
+        -webkit-transition: width 0s;
+        transition: width 0s;
+    }
+}
+@media only screen and (max-width:350px) {
+    #avatar {
+        width: 32px;
+        margin: 5px 0;
     }
 }
 @media only print {
