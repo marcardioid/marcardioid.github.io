@@ -89,10 +89,12 @@ a {
     text-decoration: none;
     font-weight: bold;
     outline: 0;
+    -webkit-transition: color .25s ease;
+    transition: color .25s ease;
 }
-a:hover, a:focus {
+a:hover {
     color: #f06f17;
-    text-decoration: underline;
+    text-decoration: none;
 }
 a.icon {
     padding: 0 2px;

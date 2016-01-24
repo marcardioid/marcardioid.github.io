@@ -2,7 +2,7 @@
 
 This repository contains both the static files and the source files used to generate [marcsleegers.com]. 
 It is generated with [Pelican], tested and deployed with Travis CI and open sourced right here.
-The site's theme is a modified version of the beautiful [Pneumatic].
+The site's theme is a heavily modified version of the beautiful [Pneumatic].
 
 The repository contains two distinct branches: the [`src`] branch contains the source files that Pelican uses to generate the static files which are automatically pushed to the [`master`] branch by Travis CI.
 
