@@ -89,12 +89,13 @@ templates = ['404.html']
 TEMPLATE_PAGES = {page: page for page in templates}
 
 STATIC_PATHS = ['images', 'uploads', 'extra']
+IGNORE_FILES = ['style.css']
 
 extras = ['favicon.ico', 'robots.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['neighbors', 'render_math', 'sitemap-generator']
+PLUGINS = ['neighbors', 'render_math', 'sitemap-generator', 'assets']
 
 SITEMAP = {
     'format': 'xml',
@@ -109,3 +110,10 @@ SITEMAP = {
         'pages': 'monthly'
     }
 }
+
+ASSET_CONFIG = [
+    ('cache', False),
+    ('manifest', False),
+    ('url_expire', False),
+    ('versions', False),
+]
