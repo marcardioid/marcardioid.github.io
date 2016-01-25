@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block description %}Blog archive for {{ period | reverse | join(', ') }}. Read all posts by Marc Sleegers.{% endblock %}
+{% block description %}Blog archive for {{ period | reverse | join(', ') }}. Read all blog posts by Marc Sleegers.{% endblock %}
 {% block keywords %}Archive, {{ period | reverse | join(', ') }}, {{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
 {% block title %}Archive for {{ period | reverse | join(' ') }} | {{ SITENAME }}{% endblock %}
 {% block meta %}

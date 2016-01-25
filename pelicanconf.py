@@ -50,6 +50,7 @@ THEME = 'themes/pneumatic'
 
 # Relocate blog directory
 BLOG_URL = 'blog/'
+BLOG_DESCRIPTION = 'Infrequent ramblings of a freelance astronaut. Read all blog posts by Marc Sleegers about his life in the world of technology.'
 
 ARTICLE_URL = BLOG_URL + '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
@@ -61,6 +62,7 @@ PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = PAGE_URL + 'index.html'
 
 ARCHIVES_SAVE_AS = BLOG_URL + 'archive/index.html'
+ARCHIVES_DESCRIPTION = 'Blog archive. Read all blog posts by Marc Sleegers about his life in the world of technology.'
 YEAR_ARCHIVE_SAVE_AS = BLOG_URL + '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = BLOG_URL + '{date:%Y}/{date:%m}/index.html'
 
