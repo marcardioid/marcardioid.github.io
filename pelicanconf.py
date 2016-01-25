@@ -7,7 +7,7 @@ FOOTER_TEXT = '&copy; 2016 Marc Sleegers. All rights reserved.'
 SITE_AUTHOR = 'Marc Sleegers'
 TWITTER_USERNAME = '@marcardioid'
 GOOGLE_PLUS_URL = 'https://plus.google.com/u/0/104866793932400539266'
-INDEX_DESCRIPTION = 'Software engineer from The Netherlands. I love automating my daily tasks with Python and blogging about technology. These contains my infrequent ramblings.'
+INDEX_DESCRIPTION = 'I\'m a software engineer from The Netherlands. I love automating my daily tasks with Python and writing about technology. These are my infrequent ramblings.'
 INDEX_KEYWORDS = [
     'Marc', 'Sleegers', 'About', 'Blog', 'Resume', 'Portfolio',
     'Marcardioid', 'Pumpkinsoup', 'AWildPumpkin',
