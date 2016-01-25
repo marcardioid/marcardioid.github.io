@@ -23,6 +23,9 @@
         	<span title="Published" class="icon fa fa-clock-o"></span> <time datetime="{{ article.date }}">{{ article.locale_date }}</time>
     	</p>
 		<div class="content summary">
+			{% if  article.image %}
+			<img src="{{ article.image }}" />
+			{% endif %}
 			<p>{{ article.summary | striptags }}</p>
 		</div>
 		{% if not loop.last %}<br>{% endif %}

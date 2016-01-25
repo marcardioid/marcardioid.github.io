@@ -277,6 +277,16 @@ nav {
 .footnote hr {
     margin: 25px 0;
 }
+.summary {
+    width: 100%;
+    clear: none;
+}
+.summary img {
+    float: left;
+    max-height: 100px;
+    max-width: 100px;
+    margin: 20px 0 0 0;
+}
 .summary p {
     margin-bottom: 6px;
 }
@@ -365,6 +375,9 @@ nav {
         width: 60px;
         -webkit-transition: width 0s;
         transition: width 0s;
+    }
+    .summary img {
+        display: none!important;
     }
 }
 @media only screen and (max-width:350px) {
