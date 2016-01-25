@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block description %}Blog archive. Read all posts by Marc Sleegers.{% endblock %}
+{% block keywords %}Archive, {{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ SITEURL }}/{{ BLOG_URL }}archive/"/>
+{% endblock %}
 {% block title %}Archive | {{ SITENAME }}{% endblock %}
 
 {% block content %}

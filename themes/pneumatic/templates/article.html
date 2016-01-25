@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
 {% block description %}{{ article.summary | striptags }}{% endblock %}
 {% block keywords %}{% if article.keywords %}{{ article.keywords }}, {% endif %}{{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ SITEURL }}/{{ article.url }}"/>
+{% endblock %}
+{% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
 
 {% block meta %}
 	<!-- Twitter Cards and Open Graph -->

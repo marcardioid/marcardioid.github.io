@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Blog | {{ SITENAME }}{% endblock %}
 {% block description %}{{ INDEX_DESCRIPTION }}{% endblock %}
 {% block keywords %}{{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ SITEURL }}/{{ BLOG_URL }}"/>
+{% endblock %}
+{% block title %}Blog | {{ SITENAME }}{% endblock %}
 
 {% block meta %}
 	<!-- Open Graph -->
@@ -10,7 +13,7 @@
 	<meta property="og:description" content="{{ INDEX_DESCRIPTION }}">
 	<meta property="og:image" content="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.png">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="{{ SITEURL }}">
+	<meta property="og:url" content="{{ SITEURL }}/{{ BLOG_URL }}">
 {% endblock %}
 
 {% block content %}

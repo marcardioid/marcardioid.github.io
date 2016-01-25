@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}{% if page.slug == 'home' %}{{ SITENAME }}{% else %}{{ page.title | striptags }} | {{ SITENAME }}{% endif %}{% endblock %}
 {% block description %}{% if page.slug == 'home' %}{{ INDEX_DESCRIPTION }}{% else %}{{ page.summary | striptags }}{% endif %}{% endblock %}
 {% block keywords %}{% if page.keywords %}{{ page.keywords }}, {% endif %}{{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ SITEURL }}/{{ page.url }}"/>
+{% endblock %}
+{% block title %}{% if page.slug == 'home' %}{{ SITENAME }}{% else %}{{ page.title | striptags }} | {{ SITENAME }}{% endif %}{% endblock %}
 
 {% block meta %}
 	<!-- Twitter Cards and Open Graph -->
