@@ -7,7 +7,7 @@ FOOTER_TEXT = '&copy; 2016 Marc Sleegers. All rights reserved.'
 SITE_AUTHOR = 'Marc Sleegers'
 TWITTER_USERNAME = '@marcardioid'
 GOOGLE_PLUS_URL = 'https://plus.google.com/u/0/104866793932400539266'
-INDEX_DESCRIPTION = 'I am a 4.0 GPA Computer Science student. I love automating my daily tasks with Python and building my own games with a healthy mix of different technologies.'
+INDEX_DESCRIPTION = 'I\'m a software engineer from The Netherlands. I love automating my daily tasks with Python and writing about technology. These are my infrequent ramblings.'
 INDEX_KEYWORDS = [
     'Marc', 'Sleegers', 'About', 'Blog', 'Resume', 'Portfolio',
     'Marcardioid', 'Pumpkinsoup', 'AWildPumpkin',
@@ -50,7 +50,7 @@ THEME = 'themes/pneumatic'
 
 # Relocate blog directory
 BLOG_URL = 'blog/'
-BLOG_DESCRIPTION = 'Infrequent ramblings of a freelance astronaut. Read all blog posts by Marc Sleegers about his life in the world of technology.'
+BLOG_DESCRIPTION = 'These are my infrequent ramblings. Read all blog posts by Marc Sleegers about his life in the world of technology.'
 
 ARTICLE_URL = BLOG_URL + '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
@@ -94,4 +94,18 @@ extras = ['favicon.ico', 'robots.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['neighbors', 'render_math']
+PLUGINS = ['neighbors', 'render_math', 'sitemap-generator']
+
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.5,
+        'indexes': 0.5,
+        'pages': 0.5
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'weekly',
+        'pages': 'monthly'
+    }
+}
