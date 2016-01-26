@@ -91,7 +91,7 @@ TEMPLATE_PAGES = {page: page for page in templates}
 STATIC_PATHS = ['images', 'uploads', 'extra']
 IGNORE_FILES = ['style.css']
 
-extras = ['favicon.ico', 'robots.txt']
+extras = ['favicon.ico', 'robots.txt', 'humans.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
