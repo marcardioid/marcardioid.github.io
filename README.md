@@ -6,7 +6,7 @@ The site's theme is a heavily modified version of the beautiful [Pneumatic].
 
 The repository contains two distinct branches: the [`src`] branch contains the source files that Pelican uses to generate the static files which are automatically pushed to the [`master`] branch by Travis CI.
 
-Code is licensed under the [MIT License], and articles under a [Creative Commons Attribution 4.0 International License].
+Code is licensed under the [MIT License] and articles under a [Creative Commons Attribution 4.0 International License].
 
 [marcsleegers.com]: http://marcsleegers.com
 [Pelican]: http://getpelican.com
