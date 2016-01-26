@@ -31,7 +31,7 @@ SOCIAL_ICONS = [
     ('https://facebook.com/marc.sleegers', 'Facebook', 'fa-facebook-square'),
     ('https://twitter.com/marcardioid', 'Twitter', 'fa-twitter-square'),
     ('https://github.com/marcardioid', 'GitHub', 'fa-github-square'),
-    ('/files/CV_Marc-Sleegers_2015_EN_WEB.pdf', 'Resume', 'fa-pencil-square'),
+    ('/files/CV_Marc-Sleegers_2015_EN_WEB.pdf', 'Resume', 'fa-check-square'),
     ('/atom.xml', 'RSS (Atom Feed)', 'fa-rss-square'),
 ]
 
