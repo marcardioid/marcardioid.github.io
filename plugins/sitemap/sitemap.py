@@ -3,7 +3,7 @@
 Sitemap
 -------
 
-The sitemap-static plugin generates plain-text or XML sitemaps.
+The sitemap plugin generates plain-text or XML sitemaps.
 '''
 
 from __future__ import unicode_literals
@@ -28,8 +28,8 @@ TXT_HEADER = """{0}/index.html
 
 XML_HEADER = """<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap-static/0.9 http://www.sitemaps.org/schemas/sitemap-static/0.9/sitemap-static.xsd"
-xmlns="http://www.sitemaps.org/schemas/sitemap-static/0.9">
+xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 """
 
 XML_URL = """
@@ -88,7 +88,7 @@ class SitemapGenerator(object):
         config = settings.get('SITEMAP', {})
 
         if not isinstance(config, dict):
-            warning("sitemap-static plugin: the SITEMAP setting must be a dict")
+            warning("sitemap plugin: the SITEMAP setting must be a dict")
         else:
             fmt = config.get('format')
             pris = config.get('priorities')
@@ -96,8 +96,8 @@ class SitemapGenerator(object):
             self.sitemapExclude = config.get('exclude', [])
 
             if fmt not in ('xml', 'txt'):
-                warning("sitemap-static plugin: SITEMAP['format'] must be `txt' or `xml'")
-                warning("sitemap-static plugin: Setting SITEMAP['format'] on `xml'")
+                warning("sitemap plugin: SITEMAP['format'] must be `txt' or `xml'")
+                warning("sitemap plugin: Setting SITEMAP['format'] on `xml'")
             elif fmt == 'txt':
                 self.format = fmt
                 return
@@ -111,28 +111,28 @@ class SitemapGenerator(object):
                 for k, v in pris.items():
                     if k in valid_keys and not isinstance(v, (int, float)):
                         default = self.priorities[k]
-                        warning("sitemap-static plugin: priorities must be numbers")
-                        warning("sitemap-static plugin: setting SITEMAP['priorities']"
+                        warning("sitemap plugin: priorities must be numbers")
+                        warning("sitemap plugin: setting SITEMAP['priorities']"
                                 "['{0}'] on {1}".format(k, default))
                         pris[k] = default
                 self.priorities.update(pris)
             elif pris is not None:
-                warning("sitemap-static plugin: SITEMAP['priorities'] must be a dict")
-                warning("sitemap-static plugin: using the default values")
+                warning("sitemap plugin: SITEMAP['priorities'] must be a dict")
+                warning("sitemap plugin: using the default values")
 
             if isinstance(chfreqs, dict):
                 # .items() for py3k compat.
                 for k, v in chfreqs.items():
                     if k in valid_keys and v not in valid_chfreqs:
                         default = self.changefreqs[k]
-                        warning("sitemap-static plugin: invalid changefreq `{0}'".format(v))
-                        warning("sitemap-static plugin: setting SITEMAP['changefreqs']"
+                        warning("sitemap plugin: invalid changefreq `{0}'".format(v))
+                        warning("sitemap plugin: setting SITEMAP['changefreqs']"
                                 "['{0}'] on '{1}'".format(k, default))
                         chfreqs[k] = default
                 self.changefreqs.update(chfreqs)
             elif chfreqs is not None:
-                warning("sitemap-static plugin: SITEMAP['changefreqs'] must be a dict")
-                warning("sitemap-static plugin: using the default values")
+                warning("sitemap plugin: SITEMAP['changefreqs'] must be a dict")
+                warning("sitemap plugin: using the default values")
 
     def write_url(self, page, fd):
 
@@ -151,8 +151,8 @@ class SitemapGenerator(object):
         try:
             lastdate = self.get_date_modified(page, lastdate)
         except ValueError:
-            warning("sitemap-static plugin: " + page.save_as + " has invalid modification date,")
-            warning("sitemap-static plugin: using date value as lastmod.")
+            warning("sitemap plugin: " + page.save_as + " has invalid modification date,")
+            warning("sitemap plugin: using date value as lastmod.")
         lastmod = format_date(lastdate)
 
         if isinstance(page, contents.Article):
@@ -171,7 +171,7 @@ class SitemapGenerator(object):
 
         pageurl = '' if page.url == 'index.html' else page.url
         
-        #Exclude URLs from the sitemap-static:
+        #Exclude URLs from the sitemap:
         if self.format == 'xml':
             flag = False
             for regstr in self.sitemapExclude:
@@ -205,7 +205,7 @@ class SitemapGenerator(object):
             setattr(wrapper, 'modified', str(lastmod))
 
     def generate_output(self, writer):
-        path = os.path.join(self.output_path, 'sitemap-static.{0}'.format(self.format))
+        path = os.path.join(self.output_path, 'sitemap.{0}'.format(self.format))
 
         pages = self.context['pages'] + self.context['articles'] \
                 + [ c for (c, a) in self.context['categories']] \
@@ -236,6 +236,7 @@ class SitemapGenerator(object):
 
             for page in pages:
                 if page.save_as == 'index.html':
+                    page.date = self.now
                     self.write_url(page, fd)
                     break;
 

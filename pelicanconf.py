@@ -95,7 +95,7 @@ extras = ['favicon.ico', 'robots.txt']
 EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['neighbors', 'render_math', 'sitemap-static', 'assets']
+PLUGINS = ['neighbors', 'render_math', 'sitemap', 'assets']
 
 SITEMAP = {
     'format': 'xml',
