@@ -124,6 +124,12 @@ a.icon:hover.fa-google-plus-square {
 a.icon:hover.fa-github, a.icon:hover.fa-github-square {
     color: #9c27b0;
 }
+a.icon:hover.fa-reddit, a.icon:hover.fa-reddit-square {
+    color: #336699;
+}
+a.icon:hover.fa-hacker-news {
+    color: #ff6600;
+}
 a.icon:hover.fa-soundcloud {
     color: #f70;
 }
