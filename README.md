@@ -6,7 +6,7 @@ The site's theme is a heavily modified version of the beautiful [Pneumatic].
 
 The repository contains two distinct branches: the [`src`] branch contains the source files that Pelican uses to generate the static files which are automatically pushed to the [`master`] branch by Travis CI.
 
-Most plugins in the [plugins] directory are heavily modified adaptations of the original plugins found on the [Pelican Plugins] repository.
+Most plugins in the [plugins] directory are heavily modified adaptations of the originals found in the [Pelican Plugins] repository.
 
 Code is licensed under the [MIT License] and articles under a [Creative Commons Attribution 4.0 International License].
 
