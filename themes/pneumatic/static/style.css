@@ -393,7 +393,7 @@ nav {
     }
 }
 @media only print {
-    footer, aside, #disqus_thread, #related-articles, #back-to-home {
+    footer, aside, #disqus_thread, #related-articles, #back-to-home, .toc, #share, #series {
         display: none!important;
     }
     .container {
@@ -403,6 +403,14 @@ nav {
         content: " [" attr(href) "]"}
     .linenos {
         border-right: none;
+    }
+    .footnote hr {
+        display: block;
+        height: 1px;
+        background: transparent;
+        width: 100%;
+        border: none;
+        border-top: solid 1px #ebebeb;
     }
 }
 .codehilitetable, .linenos {
