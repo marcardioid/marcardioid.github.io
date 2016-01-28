@@ -104,6 +104,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-develop/
+drafts/
 output/
 TODO.txt

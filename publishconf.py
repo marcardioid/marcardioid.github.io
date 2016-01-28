@@ -5,4 +5,4 @@ from pelicanconf import *
 
 SITEURL = 'http://marcsleegers.com'
 RELATIVE_URLS = False
-OUTPUT_PATH = 'output/'
+OUTPUT_PATH = 'output/publish/'

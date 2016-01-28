@@ -31,7 +31,7 @@ SOCIAL_ICONS = [
     ('https://facebook.com/marc.sleegers', 'Facebook', 'fa-facebook-square'),
     ('https://twitter.com/marcardioid', 'Twitter', 'fa-twitter-square'),
     ('https://github.com/marcardioid', 'GitHub', 'fa-github-square'),
-    ('/files/CV_Marc-Sleegers_2015_EN_WEB.pdf', 'Resume', 'fa-check-square'),
+    # ('/files/CV_Marc-Sleegers_2015_EN_WEB.pdf', 'Resume', 'fa-check-square'),
     ('/atom.xml', 'RSS (Atom Feed)', 'fa-rss-square'),
 ]
 
@@ -82,7 +82,7 @@ MD_EXTENSIONS = ['admonition', 'codehilite(linenums=True)', 'extra', 'toc(anchor
 
 CACHE_CONTENT = False
 DELETE_OUTPUT_DIRECTORY = False
-OUTPUT_PATH = 'develop'
+OUTPUT_PATH = 'output/develop/'
 PATH = 'content'
 
 templates = ['404.html']

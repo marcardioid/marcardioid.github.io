@@ -300,6 +300,9 @@ nav {
     overflow: auto;
     text-align: right;
 }
+#share {
+    text-align: center;
+}
 #back-to-home, #related-articles {
     overflow: auto;
     margin-top: 20px;
