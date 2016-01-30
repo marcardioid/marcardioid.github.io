@@ -1,4 +1,4 @@
-# marcsleegers.com [![1]][2] <img align="right" width=75 height= 75 src="content/images/icons/avatar.png?raw=true"/>
+# marcsleegers.com <img align="right" width=75 height= 75 src="content/images/icons/avatar.png?raw=true"/>
 
 This repository contains both the static files and the source files used to generate [marcsleegers.com]. 
 It is generated with [Pelican], tested and deployed with Travis CI and open sourced right here.
@@ -9,9 +9,6 @@ The repository contains two distinct branches: the [`src`] branch contains the s
 Most plugins in the [plugins] directory are heavily modified adaptations of the originals found in the [Pelican Plugins] repository.
 
 Code is licensed under the [MIT License] and articles under a [Creative Commons Attribution 4.0 International License].
-
-[1]: https://img.shields.io/travis/marcardioid/marcsleegers.com/src.svg?style=flat
-[2]: https://travis-ci.org/marcardioid/marcsleegers.com
 
 [marcsleegers.com]: http://marcsleegers.com
 [Pelican]: http://getpelican.com
