@@ -7,7 +7,7 @@ Commands:
   diff       Compare locally generated site to live site
   serve      Generate and serve site (auto-reloads on changes)"
 
-TARGET_REPO="marcardioid/marcsleegers.com"/
+TARGET_REPO="marcardioid/marcsleegers.com"
 GH_PAGES_BRANCH="master"
 
 DEVELOP_CONF="pelicanconf.py"
