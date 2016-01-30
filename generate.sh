@@ -14,7 +14,7 @@ DEVELOP_CONF="pelicanconf.py"
 PUBLISH_CONF="publishconf.py"
 
 OUTPUT_DIR="output"
-REMOTE_DIR="origin"
+REMOTE_DIR="remote"
 
 PY_CMD="python3"
 SERVER="http.server"
