@@ -1,0 +1,10 @@
+branches:
+    only: src
+language: python
+python: "3.4"
+sudo: false
+env:
+    global:
+        secure: xx
+script: pelican -s publishconf.py
+after_success: ./generate.sh deploy
