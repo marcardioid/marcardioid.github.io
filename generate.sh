@@ -50,7 +50,7 @@ generate_site() {
   pushd $REMOTE_DIR > /dev/null
 
   git add -A
-  git status -s
+  # git status -s
 
   $1  # execute the function that was passed as an argument
 
