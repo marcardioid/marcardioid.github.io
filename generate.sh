@@ -13,7 +13,7 @@ GH_PAGES_BRANCH="master"
 DEVELOP_CONF="pelicanconf.py"
 PUBLISH_CONF="publishconf.py"
 
-OUTPUT_DIR="output"
+OUTPUT_DIR="output/publish"
 REMOTE_DIR="remote"
 
 PY_CMD="python3"
