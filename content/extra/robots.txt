@@ -1,0 +1,4 @@
+User-agent: *
+Disallaw: /cgi-bin/
+Disallow: /blog/drafts/
+Disallow: /splash/
