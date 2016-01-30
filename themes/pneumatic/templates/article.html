@@ -37,8 +37,8 @@
 	</div>
 	{% if article.share_post and article.status != 'draft' %}
 	<div id="share">
-		<a href="{{article.share_post['twitter']}}" title="Share on Twitter" class="icon fa fa-twitter-square" target="_blank"></a>
 		<a href="{{article.share_post['facebook']}}" title="Share on Facebook" class="icon fa fa-facebook-square" target="_blank"></a>
+		<a href="{{article.share_post['twitter']}}" title="Share on Twitter" class="icon fa fa-twitter-square" target="_blank"></a>
 		<a href="{{article.share_post['google-plus']}}" title="Share on Google+" class="icon fa fa-google-plus-square" target="_blank"></a>
 		<a href="{{article.share_post['reddit']}}" title="Share on reddit" class="icon fa fa-reddit-square" target="_blank"></a>
 		<a href="{{article.share_post['hacker-news']}}" title="Share on Hacker News" class="icon fa fa-hacker-news" target="_blank"></a>
