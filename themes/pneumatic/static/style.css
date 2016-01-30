@@ -84,7 +84,7 @@ hr {
     border: none;
     height: 1px;
     background-color: #ebebeb;
-    margin: 10px 5px;
+    margin: 10px 0;
 }
 a {
     color: #333;
@@ -231,6 +231,10 @@ article img {
     max-width: 95%;
     margin: 0 auto;
     display: block;
+}
+article img.img-size-medium {
+    width: 95%;
+    max-width: 200px;
 }
 footer p {
     margin: 12px 0;

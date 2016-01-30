@@ -2,7 +2,7 @@
 SITENAME = 'Marc Sleegers'
 DOMAIN = 'marcsleegers.com'
 BIO_TEXT = 'Infrequent ramblings of a freelance astronaut.'
-FOOTER_TEXT = '&copy; 2016 Marc Sleegers. Articles are licensed <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
+FOOTER_TEXT = '&copy; 2016 Marc Sleegers. Licensed <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = 'Marc Sleegers'
 TWITTER_USERNAME = '@marcardioid'
