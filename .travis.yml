@@ -1,10 +1,10 @@
 branches:
-    only: src
+  only: src
 language: python
-python: "3.4"
+python: '3.4'
 sudo: false
 env:
-    global:
-        secure: xx
+  global:
+    secure: tLcQ8+EoVHdFSEskoxqp+80UFyrJ+dWECiNqKc55OClQaEbuewabndYLyKzKZM+OrV53U6vJGc6OYgl+NJNinnm5mpOjaTt1nckh3i5gca+iffp7bnLdoAwmJ38Y6Lh670zqG7t1LY6iMdfDrNterZdQYoGttaTLvMYUv1aa+bKoPzXptVadI2isw8Xe1my6H5+VsvlqJb4SAVMVmHRKr25He3VmT6e0uQfjelzTptCCRLAEKT8rfFZmN2kSLe7ssE4x239y2j7+2G7wdZ/OUxKU8EtetOUp6Gt8UgsjYBZ3/XlYlBma3RTTsb7PaTIkLv6G6HoRbWE5BesHdazGV9aBRYloe965jVgZiCDnu0e1A0OYa/rFMWFvtuEqvphiNn941wu3hDJe9fTgMwccc+pZSEl1F0GQV/1WbbFEfGA28GPdejmjJnPHDE5VOwRHtB7L3OXFwMg+uW4pnrKu6eniMMrJmdEgzun2H+7KE0HYxHZaQ2NOHajqYgsPpAuHe0xt1RW5Ic5oPnT4KViRs4AvTIWqzeIJxYCoR6fD+3zH8p3b6vHB542WzDxKbI1PftisVWAXp9nAkEVfmdexQTGAv4xQZSJjdW6Zu+LsJzklsMF0n0Bhp9wmpN4YbU0S2+fYxz2oINe2LDXuuHdfNePbqPNXqsGk6r4OeT/nmXI=
 script: pelican -s publishconf.py
-after_success: ./generate.sh deploy
+after_success: "./generate.sh deploy"
