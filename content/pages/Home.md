@@ -5,7 +5,7 @@ save_as: index.html
 
 I'm a software developer currently located in The Netherlands. Most places online I can be found as Pumpkinsoup or AWildPumpkin. (Hence the pumpkin.) What can I say? I love pumpkins.
 
-This website is generated with [Pelican](http://getpelican.com), deployed with [Travis CI](https://travis-ci.org) and [open sourced](https://github.com/marcardioid) on GitHub. The site's theme is a heavily modified version of the beautiful [Pneumatic](https://github.com/iKevinY/pneumatic).
+This website is generated with [Pelican](http://getpelican.com), deployed with [Travis CI](https://travis-ci.org) and [open sourced](https://github.com/marcardioid/marcsleegers.com) on GitHub. The site's theme is a heavily modified version of the beautiful [Pneumatic](https://github.com/iKevinY/pneumatic).
 
 I'm currently a computer science intern at [Avanade](http://avanade.com), a joint venture of [Microsoft](http://microsoft.com) and [Accenture](http://accenture.com), where I'm researching Machine Learning. I also work as a freelance director and video editor. Favourite clients include Comedy Central's [Gamekings](http://gamekings.tv) and [Firstlook Festival](http://firstlookfestival.nl).
 
