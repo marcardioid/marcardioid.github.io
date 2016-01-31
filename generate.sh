@@ -44,7 +44,7 @@ generate_site() {
   commitMessage=$(git log -1 --pretty=%B)
 
   # Clone the GitHub Pages branch and rsync it with the newly generated files
-  GITHUB_REPO=https://${GH_TOKEN:-git}@github.com/${TARGET_REPO}.git
+  GITHUB_REPO=https://${GH_TOKEN}@github.com/${TARGET_REPO}.git
   git clone --quiet --branch $GH_PAGES_BRANCH --depth 1 "$GITHUB_REPO" $REMOTE_DIR > /dev/null
   rsync -r --exclude=.git --delete $OUTPUT_DIR/ $REMOTE_DIR/
   pushd $REMOTE_DIR > /dev/null
