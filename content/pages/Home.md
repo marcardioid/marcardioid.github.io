@@ -9,7 +9,7 @@ This website is generated with [Pelican](http://getpelican.com), deployed with [
 
 I'm currently a computer science intern at [Avanade](http://avanade.com), a joint venture of [Microsoft](http://microsoft.com) and [Accenture](http://accenture.com), where I'm researching Machine Learning. I also work as a freelance director and video editor. Favourite clients include Comedy Central's [Gamekings](http://gamekings.tv) and [Firstlook Festival](http://firstlookfestival.nl).
 
-In my spare time I love [writing about technology](http://marcsleegers.com/blog/), automating my daily tasks with Python (3!), creating pixel art and developing my own video games. I'm also quite the film geek.
+In my spare time I love [writing about technology](http://marcsleegers.com/blog/), automating my daily tasks with Python (3!), creating pixel art and [developing my own video games](http://marcsleegers.com/splash/). I'm also quite the film geek.
 
 These are some of the projects I'm actively working on right now:
 
