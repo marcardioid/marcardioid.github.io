@@ -97,6 +97,8 @@ EXTRA_PATH_METADATA = {'extra/%s' % file: {'path': file} for file in extras}
 PLUGIN_PATHS = ['plugins']
 PLUGINS = ['neighbors', 'render_math', 'sitemap', 'assets', 'share_post', 'series']
 
+GOOGLE_ANALYTICS = 'UA-72969416-1'
+
 SITEMAP = {
     'format': 'xml',
     'priorities': {
