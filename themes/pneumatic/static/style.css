@@ -250,8 +250,6 @@ aside nav, aside div {
     display: block;
     width: 150px;
     border-radius: 15px;
-    -webkit-transition: width 0.5s ease;
-    transition: width 0.5s ease;
 }
 #name {
     font-size: 1.7em;
@@ -386,8 +384,6 @@ nav {
 @media only screen and (max-width:450px) {
     #avatar {
         width: 60px;
-        -webkit-transition: width 0s;
-        transition: width 0s;
     }
     .summary img {
         display: none!important;
