@@ -1,4 +1,4 @@
 @ECHO OFF
-TITLE Generating DEVELOP
+TITLE Generating PUBLISH
 pelican -s publishconf.py
 pause
