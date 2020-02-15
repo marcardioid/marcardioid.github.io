@@ -14,10 +14,11 @@ INDEX_KEYWORDS = [
     'Computer', 'Science', 'Developer', 'Programmer', 'Software', 'Data', 'Engineer', 'Technology',
 ]
 
-NAVIGATION_ITEMS = [
-    ('/blog/', 'blog', 'Blog'),
-    ('/blog/archive/', 'archive', 'Archive'),
-]
+# NAVIGATION_ITEMS = [
+#     ('/blog/', 'blog', 'Blog'),
+#     ('/blog/archive/', 'archive', 'Archive'),
+# ]
+NAVIGATION_ITEMS = []
 
 ICONS_PATH = 'images/icons'
 
