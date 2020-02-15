@@ -1,17 +1,17 @@
 # Theme-specific settings
 SITENAME = 'Marc Sleegers'
 DOMAIN = 'marcsleegers.com'
-BIO_TEXT = 'Infrequent ramblings of a freelance astronaut.'
-FOOTER_TEXT = '&copy; 2016 Marc Sleegers. Licensed <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
+BIO_TEXT = 'Infrequent ramblings.'
+FOOTER_TEXT = '&copy; 2020 Marc Sleegers. Licensed <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = 'Marc Sleegers'
 TWITTER_USERNAME = '@marcardioid'
-GOOGLE_PLUS_URL = 'https://plus.google.com/u/0/104866793932400539266'
-INDEX_DESCRIPTION = 'Software engineer from The Netherlands. I love automating my daily tasks with Python and blogging about technology. These are my infrequent ramblings.'
+GOOGLE_PLUS_URL = ''
+INDEX_DESCRIPTION = 'Senior data engineer at Nike. I love automating my daily tasks with Python and blogging about technology. These are my infrequent ramblings.'
 INDEX_KEYWORDS = [
     'Marc', 'Sleegers', 'About', 'Blog', 'Resume', 'Portfolio',
     'Marcardioid', 'Pumpkinsoup', 'AWildPumpkin',
-    'Computer', 'Science', 'Developer', 'Programmer', 'Software', 'Engineer', 'Technology',
+    'Computer', 'Science', 'Developer', 'Programmer', 'Software', 'Data', 'Engineer', 'Technology',
 ]
 
 NAVIGATION_ITEMS = [
@@ -50,7 +50,7 @@ THEME = 'themes/pneumatic'
 
 # Relocate blog directory
 BLOG_URL = 'blog/'
-BLOG_DESCRIPTION = 'These are my infrequent ramblings. Read all blog posts by Marc Sleegers about his life in the world of technology.'
+BLOG_DESCRIPTION = 'These are my infrequent ramblings.'
 
 ARTICLE_URL = BLOG_URL + '{date:%Y}/{date:%m}/{slug}/'
 ARTICLE_SAVE_AS = ARTICLE_URL + 'index.html'
@@ -62,7 +62,7 @@ PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = PAGE_URL + 'index.html'
 
 ARCHIVES_SAVE_AS = BLOG_URL + 'archive/index.html'
-ARCHIVES_DESCRIPTION = 'Blog archive. Read all blog posts by Marc Sleegers about his life in the world of technology.'
+ARCHIVES_DESCRIPTION = 'These are the archives of my infrequent ramblings.'
 YEAR_ARCHIVE_SAVE_AS = BLOG_URL + '{date:%Y}/index.html'
 MONTH_ARCHIVE_SAVE_AS = BLOG_URL + '{date:%Y}/{date:%m}/index.html'
 
