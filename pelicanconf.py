@@ -40,7 +40,7 @@ THEME_COLOR = '#FF8000'
 
 # Pelican settings
 RELATIVE_URLS = False
-SITEURL = 'http://localhost:8000'
+SITEURL = 'https://localhost:8000'
 TIMEZONE = 'Europe/Amsterdam'
 DEFAULT_DATE = 'fs'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
