@@ -2,7 +2,7 @@
 SITENAME = 'Marc Sleegers'
 DOMAIN = 'marcsleegers.com'
 BIO_TEXT = 'Infrequent ramblings.'
-FOOTER_TEXT = '&copy; 2020 Marc Sleegers. Licensed <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
+FOOTER_TEXT = '&copy; 2021 Marc Sleegers. Licensed <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = 'Marc Sleegers'
 TWITTER_USERNAME = '@marcardioid'
@@ -29,14 +29,15 @@ GOOGLE_FONTS = [
 
 SOCIAL_ICONS = [
     ('mailto:mail@marcsleegers.com', 'Contact (mail@marcsleegers.com)', 'fa-envelope-square'),
-    ('https://facebook.com/marc.sleegers', 'Facebook', 'fa-facebook-square'),
-    ('https://twitter.com/marcardioid', 'Twitter', 'fa-twitter-square'),
+    # ('https://facebook.com/marc.sleegers', 'Facebook', 'fa-facebook-square'),
+    # ('https://twitter.com/marcardioid', 'Twitter', 'fa-twitter-square'),
     ('https://github.com/marcardioid', 'GitHub', 'fa-github-square'),
     # ('/files/CV_Marc-Sleegers_2015_EN_WEB.pdf', 'Resume', 'fa-check-square'),
     ('/atom.xml', 'RSS (Atom Feed)', 'fa-rss-square'),
 ]
 
 THEME_COLOR = '#FF8000'
+ASSET_URL = '/theme/style.min.css'
 
 # Pelican settings
 RELATIVE_URLS = False

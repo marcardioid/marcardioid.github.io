@@ -16,7 +16,7 @@
 
 	<!-- Stylesheets and Web Fonts -->
 	{% assets filters="cssmin", output="style.min.css", "style.css" %}
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/style.min.css">
 	{% endassets %}
 	{% if GOOGLE_FONTS %}
 	<link href="https://fonts.googleapis.com/css?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}" rel="stylesheet" type="text/css">
@@ -49,7 +49,7 @@
 <body>
 	<div class="container">
 		<aside>
-			<a href="{{ SITEURL }}"><img id="avatar" alt="Site Avatar" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.png"></a>
+			<a href="{{ SITEURL }}"><img id="avatar" alt="Site Avatar" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg"></a>
 			<div id="aside-content">
 				<div id="name"><a href="{{ SITEURL }}">{{ SITENAME }}</a></div>
 				<!--<div id="bio">{{ BIO_TEXT }}</div>-->
@@ -80,11 +80,10 @@
 
 		<article>
 			{% block content %}{% endblock %}
-			<hr>
 		</article>
 
 		<footer>
-			<p>{{ FOOTER_TEXT }}</p>
+            {% block footer %}{% endblock %}
 		</footer>
 	</div>
 	{% if GOOGLE_ANALYTICS %}
