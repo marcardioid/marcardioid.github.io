@@ -1,4 +1,4 @@
-# marcsleegers.com [![🚀 Deploy to FTP](https://github.com/marcardioid/marcsleegers.com/actions/workflows/deploy_to_ftp.yml/badge.svg?branch=src)](https://github.com/marcardioid/marcsleegers.com/actions/workflows/deploy_to_ftp.yml)
+# marcsleegers.com [![Build](https://github.com/marcardioid/marcsleegers.com/actions/workflows/deploy_to_ftp.yml/badge.svg?branch=src)](https://github.com/marcardioid/marcsleegers.com/actions/workflows/deploy_to_ftp.yml)
 
 This repository contains both the static files and the source files used to generate [marcsleegers.com]. 
 It is generated with [Pelican], tested and deployed with Travis CI and open sourced right here.
