@@ -91,23 +91,26 @@ a {
     text-decoration: none;
     font-weight: bold;
     outline: 0;
-    -webkit-transition: color .25s ease;
-    transition: color .25s ease;
+    /*-webkit-transition: color .25s ease;
+    transition: color .25s ease;*/
 }
 a:hover {
-    color: #f06f17;
+    color: #FFF;
+    background-color: #052;
     text-decoration: none;
 }
 a.icon {
     padding: 0 2px;
-    font-size: 20px;
+    font-size: 25px;
     color: #555;
-    -webkit-transition: color .25s ease;
-    transition: color .25s ease;
+    background-color: transparent;
+    /*-webkit-transition: color .25s ease;
+    transition: color .25s ease;*/
 }
 a.icon:hover, a.icon:active, a.icon:focus {
     text-decoration: none;
     color: #222;
+    background-color: transparent;
 }
 a.icon:hover.fa-envelope, a.icon:hover.fa-envelope-square {
     color: #222;
@@ -183,7 +186,7 @@ code {
     font: .85em/1.5 "Source Code Pro", monospace;
     overflow-x: auto;
     display: block;
-    border-left: 3px solid #f06f17;
+    border-left: 3px solid #052;
     border-radius: 2px;
     padding: .8em 0;
 }
@@ -255,6 +258,10 @@ aside nav, aside div {
     font-size: 1.7em;
     line-height: 1.35;
     letter-spacing: -0.5px;
+    background-color: #052; 
+}
+#name a {
+    color: #FFF;
 }
 #name a:hover {
     text-decoration: none;
@@ -343,13 +350,15 @@ nav {
     #avatar {
         width: 100px;
         float: left;
+        margin-bottom: 10px;
     }
     aside div, nav {
         margin: 5px 0;
         float: left;
     }
     #name, #bio {
-        margin: 0;
+        margin: 0 0 0 10px;
+        padding: 0 10px 0 10px;
         text-align: left;
     }
     aside div div, aside div nav {
@@ -357,8 +366,8 @@ nav {
     }
     #social {
         padding: 0 0 0 10px;
-        float: right;
-        clear: none;
+        float: left;
+        clear: left;
     }
     #social .icon {
         padding: 0 1px;

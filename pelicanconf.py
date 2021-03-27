@@ -14,11 +14,11 @@ INDEX_KEYWORDS = [
     'Computer', 'Science', 'Developer', 'Programmer', 'Software', 'Data', 'Engineer', 'Technology',
 ]
 
+NAVIGATION_ITEMS = []
 # NAVIGATION_ITEMS = [
 #     ('/blog/', 'blog', 'Blog'),
 #     ('/blog/archive/', 'archive', 'Archive'),
 # ]
-NAVIGATION_ITEMS = []
 
 ICONS_PATH = 'images/icons'
 
@@ -36,7 +36,7 @@ SOCIAL_ICONS = [
     ('/atom.xml', 'RSS (Atom Feed)', 'fa-rss-square'),
 ]
 
-THEME_COLOR = '#FF8000'
+THEME_COLOR = '#052'
 ASSET_URL = '/theme/style.min.css'
 
 # Pelican settings

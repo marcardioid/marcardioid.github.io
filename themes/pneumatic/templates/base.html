@@ -27,18 +27,15 @@
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="{{ SITEURL }}/{{ ICONS_PATH }}/apple-touch-icon.png">
-	{% for size in (57, 60, 72, 76, 114, 120, 144, 152, 180) %}
-	<link rel="apple-touch-icon" sizes="{{ size }}x{{ size }}" href="{{ SITEURL }}/{{ ICONS_PATH }}/apple-touch-icon-{{ size }}x{{ size }}.png">
-	{% endfor %}
 
-	{% for size in (16, 32, 96, 160, 196) %}
+	{% for size in (16, 32) %}
 	<link rel="icon" type="image/png" href="{{ SITEURL }}/{{ ICONS_PATH }}/favicon-{{ size }}x{{ size }}.png" sizes="{{ size }}x{{ size }}">
 	{% endfor %}
 
 	<meta name="theme-color" content="{{ THEME_COLOR }}">
 
 	<meta name="msapplication-TileColor" content="{{ THEME_COLOR }}">
-	<meta name="msapplication-TileImage" content="{{ SITEURL }}/{{ ICONS_PATH }}/mstile-144x144.png">
+	<meta name="msapplication-TileImage" content="{{ SITEURL }}/{{ ICONS_PATH }}/android-chrome-192x192.png">
 
 	<!--[if lt IE 9]>
 	<script src="{{ SITEURL }}/theme/js/html5shiv.min.js"></script>
