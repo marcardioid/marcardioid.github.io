@@ -1,4 +1,4 @@
-# marcsleegers.com [![Build](https://github.com/marcardioid/marcsleegers.com/actions/workflows/deploy_to_ftp.yml/badge.svg?branch=src)](https://github.com/marcardioid/marcsleegers.com/actions/workflows/deploy_to_ftp.yml)
+# marcsleegers.com
 
 This repository contains both the static files and the source files used to generate [marcsleegers.com]. 
 It is generated with [Pelican], and tested and deployed with GitHub Actions.
