@@ -31,5 +31,5 @@ jobs:
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         local-dir: ./output/publish/
-        server-dir: ./deploy_to_fpt_test/
+        server-dir: ./public_html/deploy_to_ftp_test/
         dry-run: true
