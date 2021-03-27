@@ -118,8 +118,8 @@ a.icon:hover.fa-twitter, a.icon:hover.fa-twitter-square {
 a.icon:hover.fa-facebook, a.icon:hover.fa-facebook-square {
     color: #3b5998;
 }
-a.icon:hover.fa-google-plus-square {
-    color: #dd4b39;
+a.icon:hover.fa-linkedin, a.icon:hover.fa-linkedin-square {
+    color: #2867b2;
 }
 a.icon:hover.fa-github, a.icon:hover.fa-github-square {
     color: #9c27b0;
