@@ -41,7 +41,7 @@ ASSET_URL = '/theme/style.min.css'
 
 # Pelican settings
 RELATIVE_URLS = False
-SITEURL = 'https://localhost:8000'
+SITEURL = 'http://localhost:8000'
 TIMEZONE = 'Europe/Amsterdam'
 DEFAULT_DATE = 'fs'
 DEFAULT_DATE_FORMAT = '%B %d, %Y'
