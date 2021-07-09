@@ -31,7 +31,7 @@ jobs:
       run: poetry install
 
     - name: Generate static output
-      run: poetry run pelican -s publishconf.py
+      run: poetry run pelican content -s publishconf.py
 
     - name: Deploy website to FTP
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
