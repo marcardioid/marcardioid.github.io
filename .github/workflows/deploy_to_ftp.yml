@@ -3,6 +3,7 @@ name: 🚀 Deploy to FTP
 on:
   push:
     branches: [ src ]
+  workflow_dispatch
 
 jobs:
 
