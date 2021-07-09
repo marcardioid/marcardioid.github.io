@@ -182,27 +182,24 @@ abbr, acronym, .abbr {
 code {
     font-size: .85em;
     font-family: "Source Code Pro", monospace;
-    background: #f5f5f5;
-    padding: .1em .3em;
     border-radius: 3px;
 }
 .codehilitetable {
-    font: .85em/1.5 "Source Code Pro", monospace;
-    overflow-x: auto;
+    font-family: "Source Code Pro", monospace;
+    font-size: 12px;
+    overflow: auto;
     display: block;
-    border-left: 3px solid var(--primary-theme-color);
-    border-radius: 2px;
-    padding: .8em 0;
+    border: solid 1px #d9d9d9;
+    border-radius: 3px;
 }
+
 .codehilitetable tbody tr {
     display: block;
 }
 .linenos {
-    border-right: 1px solid #3d3d3d;
-    padding: 0 .7em;
-    width: 1.2em;
-    text-align: right;
-    position: relative;
+    border-right: 1px solid #d9d9d9;
+    background: #eee;
+    padding: 0.5em 0.8em;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -210,7 +207,7 @@ code {
     user-select: none;
 }
 .codehilite {
-    margin: 0 1em 0 0.5em;
+    margin: 0 1em;
 }
 .admonition {
     background: #fafafa;

@@ -6,13 +6,20 @@ authors = ["Marc Sleegers"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = ">=3.6,<4"
-pelican = "3.6.3"
-Markdown = "2.6.11"
+python = ">=3.6.2,<4"
+pelican = "4.6.0"
+Markdown = "3.2.1"
 typogrify = "2.0.7"
-webassets = "0.11.1"
-beautifulsoup4 = "4.4.0"
+webassets = "2.0.0"
+beautifulsoup4 = "4.9.3"
 cssmin = "0.2.0"
+pelican-webassets = "2.0.0"
+pelican-neighbors = "1.2.0"
+pelican-sitemap = "1.0.2"
+pelican-series = "2.1.0"
+pelican-render-math = "1.0.3"
+pelican-share-post = "1.0.0"
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

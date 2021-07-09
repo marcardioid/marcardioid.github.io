@@ -2,7 +2,7 @@
 SITENAME = "Marc Sleegers"
 DOMAIN = "marcsleegers.com"
 BIO_TEXT = "Infrequent ramblings."
-FOOTER_TEXT = '&copy; 2021 Marc Sleegers. Licensed <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
+FOOTER_TEXT = '&copy; 2021 Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = "Marc Sleegers"
 TWITTER_USERNAME = "@marcardioid"
@@ -98,13 +98,18 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 TYPOGRIFY = True
-MD_EXTENSIONS = [
-    "admonition",
-    "codehilite(linenums=True)",
-    "extra",
-    "toc(anchorlink=True)",
-    "footnotes",
-]
+MARKDOWN = {
+    "extension_configs": {
+        "markdown.extensions.codehilite": {"linenums": "True"},
+        "markdown.extensions.admonition": {},
+        "markdown.extensions.extra": {},
+        "markdown.extensions.toc": {"anchorlink": "True"},
+        "markdown.extensions.footnotes": {},
+        "markdown.extensions.meta": {},
+    },
+    "output_format": "html5",
+}
+JINJA_ENVIRONMENT = {"trim_blocks": True, "lstrip_blocks": True}
 
 CACHE_CONTENT = False
 DELETE_OUTPUT_DIRECTORY = False
@@ -114,14 +119,13 @@ PATH = "content"
 templates = ["404.html"]
 TEMPLATE_PAGES = {page: page for page in templates}
 
-STATIC_PATHS = ["images", "uploads", "extra"]
+STATIC_PATHS = ["images", "extra"]
 IGNORE_FILES = ["style.css"]
 
 extras = ["favicon.ico", "robots.txt", "humans.txt"]
 EXTRA_PATH_METADATA = {"extra/%s" % file: {"path": file} for file in extras}
 
-PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["neighbors", "render_math", "sitemap", "assets", "share_post", "series"]
+PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series"]
 
 GOOGLE_ANALYTICS = "UA-72969416-1"
 
@@ -131,7 +135,7 @@ SITEMAP = {
     "changefreqs": {"articles": "monthly", "indexes": "weekly", "pages": "monthly"},
 }
 
-ASSET_CONFIG = [
+WEBASSETS_CONFIG = [
     ("cache", False),
     ("manifest", False),
     ("url_expire", False),
