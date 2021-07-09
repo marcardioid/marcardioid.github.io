@@ -8,8 +8,8 @@ The repository contains two distinct branches: the [`src`] branch contains the s
 
 Code is licensed under the [MIT License] and articles under a [Creative Commons Attribution 4.0 International License].
 
-[marcsleegers.com]: http://marcsleegers.com
-[Pelican]: http://getpelican.com
+[marcsleegers.com]: https://marcsleegers.com
+[Pelican]: https://getpelican.com
 [Pneumatic]: https://github.com/iKevinY/pneumatic
 [`src`]: https://github.com/marcardioid/marcsleegers.com/tree/src
 [`master`]: https://github.com/marcardioid/marcsleegers.com/tree/master
