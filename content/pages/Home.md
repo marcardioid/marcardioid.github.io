@@ -9,4 +9,4 @@ I am a published author, [a hobbyist game developer](https://marcsleegers.com/sp
 
 My [PGP fingerprint](https://keybase.io/marcardioid){:target="_blank"} is ```C952 3D26 0BE7 69FA 0217 579C 977B E742 7927 7172```.
 
-Let's [get in touch](mailto:mail@marcsleegers.com)!
+Let's [get in touch](mailto:mail@marcsleegers.com?subject=Hello)!
