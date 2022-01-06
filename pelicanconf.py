@@ -37,7 +37,7 @@ NAVIGATION_ITEMS = []
 ICONS_PATH = "images/icons"
 
 GOOGLE_FONTS = [
-    "Raleway:400,600",
+    "Inter",
     "Source Code Pro",
 ]
 
