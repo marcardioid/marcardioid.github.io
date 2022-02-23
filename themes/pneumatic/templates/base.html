@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+	{% if GOOGLE_ANALYTICS %}
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', '{{ GOOGLE_ANALYTICS }}');
+	</script>
+	{% endif %}
+
 	<!-- Basic Metas -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
 	<meta name="description" content="{% block description %}{% endblock %}">
-    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+	<meta name="keywords" content="{% block keywords %}{% endblock %}">
 	<meta name="author" content="{{ SITE_AUTHOR }}">
-	<link rel="author" href="{{ GOOGLE_PLUS_URL }}"/>
+	<link rel="author" href="{{ GOOGLE_PLUS_URL }}" />
 	{% block canonical %}{% endblock %}
-    <title>{% block title %}{% endblock %}</title>
+	<title>{% block title %}{% endblock %}</title>
 
 	{% block meta %}{% endblock %}
 
 	<!-- Stylesheets and Web Fonts -->
 	{% assets filters="cssmin", output="style.min.css", "style.css" %}
-    <link rel="stylesheet" href="{{ SITEURL }}/theme/style.min.css">
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/style.min.css">
 	{% endassets %}
 	{% if GOOGLE_FONTS %}
-	<link href="https://fonts.googleapis.com/css?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}"
+		rel="stylesheet" type="text/css">
 	{% endif %}
 	{% if SOCIAL_ICONS %}
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
@@ -29,7 +43,8 @@
 	<link rel="apple-touch-icon" href="{{ SITEURL }}/{{ ICONS_PATH }}/apple-touch-icon.png">
 
 	{% for size in (16, 32) %}
-	<link rel="icon" type="image/png" href="{{ SITEURL }}/{{ ICONS_PATH }}/favicon-{{ size }}x{{ size }}.png" sizes="{{ size }}x{{ size }}">
+	<link rel="icon" type="image/png" href="{{ SITEURL }}/{{ ICONS_PATH }}/favicon-{{ size }}x{{ size }}.png"
+		sizes="{{ size }}x{{ size }}">
 	{% endfor %}
 
 	<meta name="theme-color" content="{{ THEME_COLOR }}">
@@ -46,7 +61,8 @@
 <body>
 	<div class="container">
 		<aside>
-			<a href="{{ SITEURL }}"><img id="avatar" alt="Site Avatar" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg"></a>
+			<a href="{{ SITEURL }}"><img id="avatar" alt="Site Avatar"
+					src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg"></a>
 			<div id="aside-content">
 				<div id="name"><a href="{{ SITEURL }}">{{ SITENAME }}</a></div>
 				<!--<div id="bio">{{ BIO_TEXT }}</div>-->
@@ -55,9 +71,10 @@
 				{% set active_page = active_page|default('index') %}
 				<nav>
 					{% for href, id, caption in NAVIGATION_ITEMS %}
-					<a href="{{ SITEURL }}{{ href|e }}"{% if id == active_page %} style="text-decoration: underline;"{% endif %}>{{ caption|e }}</a>
+					<a href="{{ SITEURL }}{{ href|e }}" {% if id==active_page %} style="text-decoration: underline;" {%
+						endif %}>{{ caption|e }}</a>
 					{% if not loop.last %}
-						&nbsp;|&nbsp;
+					&nbsp;|&nbsp;
 					{% endif %}
 					{% endfor %}
 				</nav>
@@ -80,30 +97,18 @@
 		</article>
 
 		<footer>
-            {% block footer %}{% endblock %}
+			{% block footer %}{% endblock %}
 		</footer>
 	</div>
-	{% if GOOGLE_ANALYTICS %}
-	<!-- Google Analytics -->
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-		ga('create', '{{ GOOGLE_ANALYTICS }}', 'auto');
-		ga('send', 'pageview');
-	</script>
-	{% endif %}
 	{% if GAUGES_ID %}
 	<!-- Gauges -->
 	<script type="text/javascript">
 		var _gauges = _gauges || [];
-		(function() {
-			var t   = document.createElement('script');
-			t.type  = 'text/javascript';
+		(function () {
+			var t = document.createElement('script');
+			t.type = 'text/javascript';
 			t.async = true;
-			t.id    = 'gauges-tracker';
+			t.id = 'gauges-tracker';
 			t.setAttribute('data-site-id', '{{ GAUGES_ID }}');
 			t.src = '//secure.gaug.es/track.js';
 			var s = document.getElementsByTagName('script')[0];
@@ -112,4 +117,5 @@
 	</script>
 	{% endif %}
 </body>
+
 </html>
