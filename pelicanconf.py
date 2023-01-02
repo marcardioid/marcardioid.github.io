@@ -2,7 +2,7 @@
 SITENAME = "Marc Sleegers"
 DOMAIN = "marcsleegers.com"
 BIO_TEXT = "Infrequent ramblings."
-FOOTER_TEXT = '&copy; 2022 Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
+FOOTER_TEXT = '&copy; 2023 Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = "Marc Sleegers"
 TWITTER_USERNAME = "@marcardioid"
