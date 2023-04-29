@@ -1,0 +1,43 @@
+name: 🚀 Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ src ]
+    
+  workflow_dispatch:
+  
+permissions:
+  contents: write
+
+jobs:
+  
+  build:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.6
+
+      - name: Set up Poetry
+        uses: abatilo/actions-poetry@v2.1.2
+        with:
+          poetry-version: 1.1.7
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Generate static output
+        run: poetry run pelican content -s publishconf.py
+        
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: github.ref == 'refs/heads/src' && github.event_name != 'pull_request'
+        with:
+          folder: ./output/publish/
