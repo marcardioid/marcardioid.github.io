@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-72969416-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-72969416-1');
+	</script>
+
+	<!-- Basic Metas -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="UTF-8">
+	<meta name="description" content="Recently, I’ve been working with Azure Machine Learning a lot. It’s fantastic! When the interface works. Unfortunately, It doesn’t always. So, I created a Python package so I could start managing Azure Machine Learning endpoints programmatically.">
+	<meta name="keywords" content="Microsoft, Azure, Machine, Learning, Python, Webservice, Endpoint, API, Wrapper, Binding, Fix, Marc, Sleegers, About, Blog, Resume, CV, Portfolio, Marcardioid, Pumpkinsoup, AWildPumpkin, Computer, Science, Developer, Programmer, Software, Data, Engineer, Technology">
+	<meta name="author" content="Marc Sleegers">
+	<link rel="author" href="" />
+<link rel="canonical" href="https://marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/" />
+	<title>Managing Azure Machine Learning endpoints | Marc Sleegers</title>
+
+<!-- Twitter Cards and Open Graph -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@marcardioid">
+<meta name="twitter:domain" content="marcsleegers.com">
+<meta name="twitter:site" content="@marcardioid">
+<meta property="og:title" content="Managing Azure Machine Learning endpoints">
+<meta property="og:description" content="Recently, I’ve been working with Azure Machine Learning a lot. It’s fantastic! When the interface works. Unfortunately, It doesn’t always. So, I created a Python package so I could start managing Azure Machine Learning endpoints programmatically.">
+<meta property="og:image"
+	content="https://marcsleegers.com/images/icons/avatar.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/">
+
+	<!-- Stylesheets and Web Fonts -->
+	<link rel="stylesheet" href="https://marcsleegers.com/theme/style.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Inter|Source+Code+Pro"
+		rel="stylesheet" type="text/css">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" href="https://marcsleegers.com/images/icons/apple-touch-icon.png">
+
+	<link rel="icon" type="image/png" href="https://marcsleegers.com/images/icons/favicon-16x16.png"
+		sizes="16x16">
+	<link rel="icon" type="image/png" href="https://marcsleegers.com/images/icons/favicon-32x32.png"
+		sizes="32x32">
+
+	<meta name="theme-color" content="#052">
+
+	<meta name="msapplication-TileColor" content="#052">
+	<meta name="msapplication-TileImage" content="https://marcsleegers.com/images/icons/android-chrome-192x192.png">
+
+	<!--[if lt IE 9]>
+	<script src="https://marcsleegers.com/theme/js/html5shiv.min.js"></script>
+	<script src="https://marcsleegers.com/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside>
+			<a href="https://marcsleegers.com"><img id="avatar" alt="Site Avatar"
+					src="https://marcsleegers.com/images/icons/avatar.jpg"></a>
+			<div id="aside-content">
+				<div id="name"><a href="https://marcsleegers.com">Marc Sleegers</a></div>
+				<!--<div id="bio">Infrequent ramblings.</div>-->
+
+
+			</div>
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article>
+<h1 class="title"><a href="https://marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/" title="Permalink to Managing Azure Machine Learning endpoints">Managing Azure Machine Learning&nbsp;endpoints</a></h1>
+
+<p class="date">
+	<span title="Published" class="icon fa fa-clock-o"></span> <time datetime="2016-02-25 20:30:00+01:00">February 25, 2016</time>
+</p>
+
+<div class="content">
+	<p>Recently, I&#8217;ve been working with Azure Machine Learning a lot. It&#8217;s fantastic! When the interface works. Unfortunately, It doesn&#8217;t always.
+So, I created a <a href="https://pypi.python.org/pypi/PyZureML">Python package</a> so I could start managing Azure Machine Learning endpoints&nbsp;programmatically.</p>
+<p>One of Azure&#8217;s features I was - am - most excited about is the ability to easily deploy a trained machine learning model as a webservice. 
+This works great, until you programmatically want to <a href="">retrain a model</a> with new data. You see, in order to retrain a trained model through a webservice you need to create and update a new endpoint. 
+Unfortunately, managing endpoints through the <a href="https://manage.windowsazure.com/">user interface</a> is totally impossible at the moment. Additionally, the <span class="caps">API</span> documentation is nothing to write home&nbsp;about.</p>
+<p>This is where the good news starts. Azure automatically generates some <span class="caps">API</span> documentation specific to every webservice and every endpoint you create through the machine learning portal.
+The best part about this is that Azure supplies a basic <a href="https://swagger.io">Swagger</a> <span class="caps">JSON</span> file as part of this documentation. This file basically describes most of the generated endpoint <span class="caps">API</span> and removes most of the guesswork.
+After some scripting I figured out all the calls you need to create, delete, get and update a webservice&#8217;s endpoints without ever needing the web user&nbsp;interface.</p>
+<p>The reactions I got at work and on the Microsoft forums were great. Apparently, there were quite a few people waiting on Microsoft to fix the interface bugs.
+I bundled my solution as a Python package, gave it a <em>super clever</em> name and made it <a href="https://pypi.python.org/pypi/PyZureML">available for download</a> on PyPI. (Which was a whole new experience by itself, but that&#8217;s a story for another time!)
+To install it via pip, just&nbsp;type:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install PyZureML
+</code></pre></div></td></tr></table></div>
+
+
+<p>If you&#8217;re not into that kind of thing, you could also clone the source directly through&nbsp;git:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>git clone git://github.com/marcardioid/PyZureML.git
+cd ./PyZureML
+python setup.py install
+</code></pre></div></td></tr></table></div>
+
+
+<p>If you decide to do it this way, it&#8217;s also super easy to <a href="https://github.com/marcardioid/PyZureML">contribute</a> to the source code. (Hint hint!)
+To use PyZureML - I admit I thought about using AzurePyML as a name - you need Python 3.x and the Requests module.
+When you have both installed, using PyZureML is super easy. For example, this is how you create and delete an&nbsp;endpoint.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span> <span class="nn">PyZureML</span> <span class="kn">import</span> <span class="n">endpoints</span>
+<span class="n">endpoints</span><span class="o">.</span><span class="n">create_endpoint</span><span class="p">(</span><span class="o">&lt;</span><span class="n">locale</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">workspace_id</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">api_token</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">webservice_id</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">endpoint_name</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">description</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">endpoints</span><span class="o">.</span><span class="n">delete_endpoint</span><span class="p">(</span><span class="o">&lt;</span><span class="n">locale</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">workspace_id</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">api_token</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">webservice_id</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">endpoint_name</span><span class="o">&gt;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+
+<p>That&#8217;s all for now! I hope you have as much fun teaching computers to do stuff as I&#8217;m&nbsp;having.</p>
+</div>
+<div id="share">
+	<!-- <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/" title="Share on Facebook" class="icon fa fa-facebook-square" target="_blank"></a> -->
+	<a href="https://twitter.com/intent/tweet?text=Managing%20Azure%20Machine%20Learning%C2%A0endpoints&url=https%3A//marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/&via=@marcardioid" title="Share on Twitter" class="icon fa fa-twitter-square"
+		target="_blank"></a>
+	<a href="https://www.reddit.com/submit?url=https%3A//marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/&title=Managing%20Azure%20Machine%20Learning%C2%A0endpoints" title="Share on Reddit" class="icon fa fa-reddit-square"
+		target="_blank"></a>
+	<a href="https://news.ycombinator.com/submitlink?t=Managing%20Azure%20Machine%20Learning%C2%A0endpoints&u=https%3A//marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/" title="Share on Hacker News" class="icon fa fa-hacker-news"
+		target="_blank"></a>
+	<a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/&title=Managing%20Azure%20Machine%20Learning%C2%A0endpoints&summary=Recently%2C%20I%E2%80%99ve%20been%20working%20with%20Azure%20Machine%20Learning%20a%20lot.%20It%E2%80%99s%20fantastic%21%20When%20the%20interface%20works.%20Unfortunately%2C%20It%20doesn%E2%80%99t%20always.%20So%2C%20I%20created%20a%20Python%20package%20so%20I%20could%20start%20managing%20Azure%20Machine%20Learning%20endpoints%C2%A0programmatically.&source=https%3A//marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/" title="Share on LinkedIn" class="icon fa fa-linkedin-square"
+		target="_blank"></a>
+	<a href="mailto:?subject=Managing%20Azure%20Machine%20Learning%C2%A0endpoints&amp;body=https%3A//marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/" title="Share via Email" class="icon fa fa-envelope-square"
+		target="_blank"></a>
+</div>
+<div id="related-articles">
+	<a href="https://marcsleegers.com/blog/2016/01/taking-the-daily-out-of-daily-programmer/" id="prev-neighbour">&laquo; Taking the ‘Daily’ out of ‘Daily Programmer’</a>
+</div>
+		</article>
+
+		<footer>
+<hr>
+<p>&copy; 2023 Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>		</footer>
+	</div>
+</body>
+
+</html>
