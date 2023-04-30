@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/marcardioid
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://marcsleegers.com
+  * I am marcardioid (https://keybase.io/marcardioid) on keybase.
+  * I have a public key with fingerprint C952 3D26 0BE7 69FA 0217  579C 977B E742 7927 7172
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012028193d8ee6d1fe9b0a8b481118e285378437dfb6d3d71d54939005a6753ae65a0a",
+      "fingerprint": "c9523d260be769fa0217579c977be74279277172",
+      "host": "keybase.io",
+      "key_id": "977be74279277172",
+      "kid": "01013bb14886f9330ea1e06977c72df12868d0d5a2e16a53c0832de160d52347b02d0a",
+      "uid": "b341076acda9e9956403d84c09cff319",
+      "username": "marcardioid"
+    },
+    "service": {
+      "hostname": "marcsleegers.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1506614405,
+  "expire_in": 157680000,
+  "prev": "5b094b42ff82e166f4a35ef706eb44e7a39ffb996f2c1c3cd36111398b72951e",
+  "seqno": 12,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.74
+Comment: https://keybase.io/crypto
+
+yMNzAnicbVJ9TJVVHL4X0CYmF6RENiF8WcMR0nve75epgGsmNpImjY+Qy/txXnj5
+uB/v/YAb3OGChhe1uxChfxINcYluFbpFIiNIchWgJFQkGgwiUCmQZilanZfl1h+d
+f845v/M8z3l+zzmX1wUago3Nlb/s9MTZNeM3vS0uQ87gprcrMdEqe7CkSqwErkyw
+VIYOp7lElbEkDAcETnCAJ2UOQkYGCuRFXOBEigMAcJDgaJLlKJKVFZGRSZkFMk3x
+JI/jtMCwNClAhhZwAUvAFNVSCDWbplqcSFbiaYKUCQYXIcvwioATgKVZXuJZFlUo
+guUJlgUsgYhFVofOQOZEwQETVSuqoY15xd7/4J/4xgEpioDiOEbhSRKHAoA4g/AS
+S8gKIDiGk3GZFggIGIEmJZwjCRmtUY0gKVbECXnFt2tFTiQpgLOMIMkCD3meZigc
+JUJJOC8pCgl4HeiAmkUogwhdJmiSoMmqFXG9CRg6cKsS1LPVm/kPyFEKIUrFkShZ
+y5CETbM6rZK1FJ0WOZ02R5LOdnpsOrwciuZ/hcyiapFRnIjhRmTVasGSAEJKTlVX
+BjTOMICicDoBgxU2VYNmVUfQLMPhaOj3QDeSpEWcp0SKUBROT4FRKIGkocLiDBQp
+CrICySuKyPOMQkhAIiWZZNCjkzwnsgRPA4jprdktVqRNIJ9CIdJ0qIUWwenSIObt
+680LMhiDDatXBej/zBC8JvTJ7xv+wPS3uCoIXIve0Om/6s9+6brbHcLtjdEmXy2p
+7J3PSp1oW9oUvu/Tm/3HssKiltYlvxlZlfPD+iB/ldk3tt3UFRa+f3wu9szncRf7
+Ak6nTHWOTgQUG2/+HBg6Wn0k76Bl+NKfctwXm0OLPY7pqXjWVPtGa01X3Qxx+VTZ
+0L27ia68a9nh0Z5coiK+aTD54823ljvAgKVHe21x8Z32Uk/OIXd+yBXvwftNk7ue
+u3TO1Gv7kB+bvdD8Wz1duKO2f/bLbe1/dKffjWrqXru3B5tYfuvltJbE+eeL0qvP
+5MbO5VpDfC8enhmyF1yYTnvBhV9/Vy4Kblz89Q47fpzasvBwnE3LtpuUsL6PHnyd
+uP2U7dkBZvArDXgKhkDTwqOT7vzYzBzTuczo9v46bxrL993un78ScOPWxtmwus62
+OksEttbccv/EsYXjwScW/evTqRsNGXEDbZNTM6/7l7bGNHzmXbNtQ8VTj7pnSveM
+dngKhOSpzsaEiI7qs1fN76X4mzJTz9oTFi76fnT47qUcfVz+OMLl/ckpxw1n1ZQd
+GNqYcTrS1prfY/suhhsJCnx68sj3B/YvH8YtnxiPHjq5xLxii8h8YAhv3R1fX9PV
+cr5+pDylYXpf3jMjSWlzW/9K943Np65ebNwTWUw8fN9X4Pl2V0ZV1MLo7bCJ8yO7
+f1+6Y7TStSE7Ou1bmncmM/8AUorBWw==
+=JTW4
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/marcardioid
+
+==================================================================

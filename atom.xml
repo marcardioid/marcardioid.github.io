@@ -1,5 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Marc Sleegers</title><link href="https://marcsleegers.com/" rel="alternate"></link><link href="https://marcsleegers.com/atom.xml" rel="self"></link><id>https://marcsleegers.com/</id><updated>2016-02-25T20:30:00+01:00</updated><entry><title>Managing Azure Machine Learning endpoints</title><link href="https://marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/" rel="alternate"></link><published>2016-02-25T20:30:00+01:00</published><updated>2016-02-25T20:30:00+01:00</updated><author><name></name></author><id>tag:marcsleegers.com,2016-02-25:/blog/2016/02/managing-azure-machine-learning-endpoints/</id><summary type="html">&lt;p&gt;Recently, I&amp;#8217;ve been working with Azure Machine Learning a lot. It&amp;#8217;s fantastic! When the interface works. Unfortunately, It doesn&amp;#8217;t always. So, I created a &lt;a href="https://pypi.python.org/pypi/PyZureML"&gt;Python package&lt;/a&gt; so I could start managing Azure Machine Learning endpoints&amp;nbsp;programmatically.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I&amp;#8217;ve been working with Azure Machine Learning a lot. It&amp;#8217;s fantastic! When the interface works. Unfortunately, It doesn&amp;#8217;t always.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Marc Sleegers</title><link href="https://marcsleegers.com/" rel="alternate"></link><link href="https://marcsleegers.com/atom.xml" rel="self"></link><id>https://marcsleegers.com/</id><updated>2023-04-30T13:12:26+02:00</updated><entry><title>Splash | Marc Sleegers</title><link href="https://marcsleegers.com/blog/2023/04/splash-marc-sleegers/" rel="alternate"></link><published>2023-04-30T13:12:26+02:00</published><updated>2023-04-30T13:12:26+02:00</updated><author><name></name></author><id>tag:marcsleegers.com,2023-04-30:/blog/2023/04/splash-marc-sleegers/</id><content type="html">
+    &lt;!--&lt;div class="container"&gt;
+            &lt;h1 class="name"&gt;
+                &lt;span class="text-uppercase"&gt;Marc&amp;nbsp;Sleegers&lt;/span&gt;
+            &lt;/h1&gt;
+            &lt;ul&gt;
+                &lt;li id="tag"&gt;
+                    &lt;i class="fa fa-lg fa-heart"&gt;&lt;/i&gt;
+                    &lt;span id="title"&gt;Studying Computer&amp;nbsp;Science&lt;/span&gt;
+                &lt;/li&gt;
+                &lt;li id="contact"&gt;
+                    &lt;i class="fa fa-lg fa-envelope"&gt;&lt;/i&gt;
+                    &lt;a href="mailto:mail@marcsleegers.com"&gt;Contact&amp;nbsp;me&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id="facebook"&gt;
+                    &lt;i class="fa fa-lg fa-facebook-square"&gt;&lt;/i&gt;
+                    &lt;a href="https://facebook.com/marc.sleegers" target="_blank"&gt;Be my friend on&amp;nbsp;Facebook&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id="twitter"&gt;
+                    &lt;i class="fa fa-lg fa-twitter-square"&gt;&lt;/i&gt;
+                    &lt;a href="https://twitter.com/marcardioid" target="_blank"&gt;Follow me on&amp;nbsp;Twitter&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id="linkedin"&gt;
+                    &lt;i class="fa fa-lg fa-linkedin-square"&gt;&lt;/i&gt;
+                    &lt;a href="https://linkedin.com/in/#" target="_blank"&gt;Join my LinkedIn&amp;nbsp;network&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id="github"&gt;
+                    &lt;i class="fa fa-lg fa-github-square"&gt;&lt;/i&gt;
+                    &lt;a href="https://github.com/marcardioid" target="_blank"&gt;Collaborate on&amp;nbsp;GitHub&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id="cv"&gt;
+                    &lt;i class="fa fa-lg fa-download"&gt;&lt;/i&gt;
+                    &lt;a href="../files/CV_Marc-Sleegers_2015_EN_WEB.pdf" target="_blank"&gt;Download my&amp;nbsp;resume&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;--&gt;
+    &lt;!--[if lt IE 9]&gt;
+        &lt;script&gt;
+            document.createElement('video');
+        &lt;/script&gt;
+        &lt;![endif]--&gt;
+    &lt;video autoplay loop muted preload="auto" poster="assets/img/splash.jpg" id="bgvid"&gt;
+        &lt;source src="assets/vid/splash.webm" type="video/webm"&gt;
+        &lt;source src="assets/vid/splash.mp4" type="video/mp4"&gt;
+    &lt;/video&gt;
+    &lt;button id="bgvid-button-toggle"&gt;
+        Play
+    &lt;/button&gt;
+    &lt;script type="text/javascript" src="assets/js/iosvideocontroller.js"&gt;&lt;/script&gt;
+</content><category term="splash"></category><category term="Marc"></category><category term="Sleegers"></category><category term="marcardioid"></category><category term="About"></category><category term="Computer"></category><category term="Science"></category><category term="Developer"></category><category term="Programmer"></category><category term="Software"></category><category term="Engineer"></category></entry><entry><title>Rock Paper Scissors Lizard Spock</title><link href="https://marcsleegers.com/blog/2023/04/rock-paper-scissors-lizard-spock/" rel="alternate"></link><published>2023-04-30T13:12:26+02:00</published><updated>2023-04-30T13:12:26+02:00</updated><author><name></name></author><id>tag:marcsleegers.com,2023-04-30:/blog/2023/04/rock-paper-scissors-lizard-spock/</id><summary type="html">
+	&lt;a href="https://github.com/marcardioid/DailyProgrammer/tree/master/solutions/159_Hard" target="_blank"&gt;&lt;img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"&gt;&lt;/a&gt;
+
+	&lt;div class="container"&gt;
+		&lt;div class="page-header"&gt;
+            &lt;h2&gt;&lt;a href="http://www.reddit.com/r/dailyprogrammer/comments/23yinj/4252014_challenge_159_hard_rock_paper_scissors/" target="_blank"&gt;Challenge #159 [Hard] Rock Paper Scissors Lizard&amp;nbsp;Spock&lt;/a&gt;&lt;/h2&gt;
+		&lt;/div&gt;
+		
+        &lt;div class="row"&gt;
+			&lt;div class="col-md-10"&gt;
+				&lt;h4&gt;Let&amp;#8217;s play Rock, Paper, Scissors, Lizard, Spock! The rules are&amp;nbsp;easy: &lt;/h4&gt;
+                &lt;h5&gt;Scissors cuts Paper, Paper Covers Rock, Rock crushes Lizard, Lizard poisons Spock, Spock smashes Scissors, Scissors decapitates Lizard, Lizard eats Paper, Paper disproves Spock, Spock vaporizes Rock and - as it …&lt;/h5&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">
+	&lt;a href="https://github.com/marcardioid/DailyProgrammer/tree/master/solutions/159_Hard" target="_blank"&gt;&lt;img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"&gt;&lt;/a&gt;
+
+	&lt;div class="container"&gt;
+		&lt;div class="page-header"&gt;
+            &lt;h2&gt;&lt;a href="http://www.reddit.com/r/dailyprogrammer/comments/23yinj/4252014_challenge_159_hard_rock_paper_scissors/" target="_blank"&gt;Challenge #159 [Hard] Rock Paper Scissors Lizard&amp;nbsp;Spock&lt;/a&gt;&lt;/h2&gt;
+		&lt;/div&gt;
+		
+        &lt;div class="row"&gt;
+			&lt;div class="col-md-10"&gt;
+				&lt;h4&gt;Let&amp;#8217;s play Rock, Paper, Scissors, Lizard, Spock! The rules are&amp;nbsp;easy: &lt;/h4&gt;
+                &lt;h5&gt;Scissors cuts Paper, Paper Covers Rock, Rock crushes Lizard, Lizard poisons Spock, Spock smashes Scissors, Scissors decapitates Lizard, Lizard eats Paper, Paper disproves Spock, Spock vaporizes Rock and - as it always has - Rock crushes Scissors. Check out this really cool&amp;nbsp;flowchart:&lt;/h5&gt;
+            &lt;/div&gt;
+            &lt;div class="col-md-2"&gt;
+                &lt;a href="img/rules.png" target="_blank"&gt;&lt;img id="img-rules" src="img/rules.png"&gt;&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;hr&gt;
+        
+		&lt;div class="row"&gt;
+			&lt;div class="col-md-8"&gt;
+				&lt;h4&gt;You &lt;small&gt;Choose your next move.&lt;/small&gt;&lt;/h4&gt;
+				&lt;div id="player-buttons"&gt;
+					&lt;button id="rock" class="btn btn-primary"&gt;Rock&lt;/button&gt;
+					&lt;button id="paper" class="btn btn-primary"&gt;Paper&lt;/button&gt;
+					&lt;button id="scissors" class="btn btn-primary"&gt;Scissors&lt;/button&gt;
+					&lt;button id="lizard" class="btn btn-primary"&gt;Lizard&lt;/button&gt;
+					&lt;button id="spock" class="btn btn-primary"&gt;Spock&lt;/button&gt;
+                    &lt;button id="random" class="btn btn-primary"&gt;Random&lt;/button&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class="col-md-4"&gt;
+				&lt;h4&gt;&lt;span class="caps"&gt;AI&lt;/span&gt; &lt;small&gt;Changing the difficulty will reset your stats.&lt;/small&gt;&lt;/h4&gt;
+				&lt;select id="ai-difficulty" class="form-control" default="2"&gt;
+					&lt;option value="easy"&gt;Easy (random pick)&lt;/option&gt;
+					&lt;option value="intermediate" selected&gt;Intermediate (top pick)&lt;/option&gt;
+                    &lt;option value="hard"&gt;Hard (unfair pick)&lt;/option&gt;
+				&lt;/select&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+        
+		&lt;br&gt;
+        
+		&lt;div class="row"&gt;
+			&lt;div class="col-sm-8 col-md-8"&gt;
+				&lt;table id="results" class="table"&gt;
+                    &lt;th class="col-md-6"&gt;You&lt;/th&gt;
+                    &lt;th class="col-md-6" id="results-ai"&gt;&lt;span class="caps"&gt;AI&lt;/span&gt; (intermediate)&lt;/th&gt;
+				&lt;/table&gt;
+			&lt;/div&gt;
+			&lt;div class="col-sm-4 col-md-4"&gt;
+				&lt;div class="panel panel-default" id="stats"&gt;
+					&lt;div class="panel-body"&gt;
+						&lt;p&gt;Games: &lt;span id="games"&gt;0&lt;/span&gt;&lt;/p&gt;
+						&lt;p&gt;Player wins: &lt;span id="player-wins"&gt;0&lt;/span&gt;&lt;/p&gt;
+						&lt;p&gt;&lt;span class="caps"&gt;AI&lt;/span&gt; wins: &lt;span id="ai-wins"&gt;0&lt;/span&gt;&lt;/p&gt;
+						&lt;p&gt;Ties: &lt;span id="ties"&gt;0&lt;/span&gt;&lt;/p&gt;
+                        &lt;hr&gt;
+					&lt;/div&gt;
+                    &lt;div id="canvas-holder"&gt;
+			             &lt;canvas id="chart-area" width="300" height="300" /&gt;
+                    &lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;hr&gt;
+	&lt;/div&gt;
+</content><category term="rpsls"></category></entry><entry><title>Managing Azure Machine Learning endpoints</title><link href="https://marcsleegers.com/blog/2016/02/managing-azure-machine-learning-endpoints/" rel="alternate"></link><published>2016-02-25T20:30:00+01:00</published><updated>2016-02-25T20:30:00+01:00</updated><author><name></name></author><id>tag:marcsleegers.com,2016-02-25:/blog/2016/02/managing-azure-machine-learning-endpoints/</id><summary type="html">&lt;p&gt;Recently, I&amp;#8217;ve been working with Azure Machine Learning a lot. It&amp;#8217;s fantastic! When the interface works. Unfortunately, It doesn&amp;#8217;t always. So, I created a &lt;a href="https://pypi.python.org/pypi/PyZureML"&gt;Python package&lt;/a&gt; so I could start managing Azure Machine Learning endpoints&amp;nbsp;programmatically.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently, I&amp;#8217;ve been working with Azure Machine Learning a lot. It&amp;#8217;s fantastic! When the interface works. Unfortunately, It doesn&amp;#8217;t always.
 So, I created a &lt;a href="https://pypi.python.org/pypi/PyZureML"&gt;Python package&lt;/a&gt; so I could start managing Azure Machine Learning endpoints&amp;nbsp;programmatically.&lt;/p&gt;
 &lt;p&gt;One of Azure&amp;#8217;s features I was - am - most excited about is the ability to easily deploy a trained machine learning model as a webservice. 
 This works great, until you programmatically want to &lt;a href=""&gt;retrain a model&lt;/a&gt; with new data. You see, in order to retrain a trained model through a webservice you need to create and update a new endpoint. 
