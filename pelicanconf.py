@@ -7,7 +7,7 @@ FOOTER_TEXT = '&copy; 2023 Marc Sleegers. Licensed <a href="https://creativecomm
 SITE_AUTHOR = "Marc Sleegers"
 TWITTER_USERNAME = "@marcardioid"
 GOOGLE_PLUS_URL = ""
-INDEX_DESCRIPTION = "Lead Data Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
+INDEX_DESCRIPTION = "Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
 INDEX_KEYWORDS = [
     "Marc",
     "Sleegers",
