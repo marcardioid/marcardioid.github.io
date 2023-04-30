@@ -125,7 +125,7 @@ templates = ["404.html"]
 TEMPLATE_PAGES = {page: page for page in templates}
 
 STATIC_PATHS = ["images", "extra"]
-IGNORE_FILES = ["style.css"]
+IGNORE_FILES = []
 
 EXTRA_PATH_METADATA = {
     os.path.join("extra", file): {"path": file}
