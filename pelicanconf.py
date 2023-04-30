@@ -93,6 +93,8 @@ MONTH_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/{date:%m}/index.html"
 DIRECT_TEMPLATES = ["index", "archives"]
 INDEX_SAVE_AS = BLOG_URL + "index.html"
 CATEGORY_SAVE_AS = ""
+TAG_SAVE_AS = ""
+TAGS_URL = ""
 
 # Disable Atom feed generation
 FEED_ATOM = "atom.xml"
@@ -133,6 +135,8 @@ EXTRA_PATH_METADATA = {
         for file in files
     ]
 }
+PAGE_EXCLUDES = ["extra"]
+ARTICLE_EXCLUDES = ["extra"]
 
 PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series"]
 
