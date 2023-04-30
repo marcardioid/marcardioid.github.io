@@ -123,7 +123,15 @@ TEMPLATE_PAGES = {page: page for page in templates}
 STATIC_PATHS = ["images", "extra"]
 IGNORE_FILES = ["style.css"]
 
-extras = ["favicon.ico", "robots.txt", "humans.txt"]
+extras = [
+    "CNAME",
+    "robots.txt",
+    "humans.txt",
+    "googled78a3b7b216c678e.html",
+    "keybase.txt",
+    "rpsls",
+    "splash",
+]
 EXTRA_PATH_METADATA = {"extra/%s" % file: {"path": file} for file in extras}
 
 PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series"]
