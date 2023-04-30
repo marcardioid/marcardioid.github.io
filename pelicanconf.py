@@ -1,3 +1,5 @@
+import os
+
 # Theme-specific settings
 SITENAME = "Marc Sleegers"
 DOMAIN = "marcsleegers.com"
@@ -123,16 +125,14 @@ TEMPLATE_PAGES = {page: page for page in templates}
 STATIC_PATHS = ["images", "extra"]
 IGNORE_FILES = ["style.css"]
 
-extras = [
-    "CNAME",
-    "robots.txt",
-    "humans.txt",
-    "googled78a3b7b216c678e.html",
-    "keybase.txt",
-    "rpsls",
-    "splash",
-]
-EXTRA_PATH_METADATA = {"extra/%s" % file: {"path": file} for file in extras}
+EXTRA_PATH_METADATA = {
+    os.path.join("extra", file): {"path": file}
+    for file in [
+        os.path.relpath(os.path.join(root, file), "content/extra/")
+        for root, _, files in os.walk("content/extra/")
+        for file in files
+    ]
+}
 
 PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series"]
 
