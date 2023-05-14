@@ -140,7 +140,7 @@ ARTICLE_EXCLUDES = ["extra"]
 
 PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series"]
 
-GOOGLE_ANALYTICS = "UA-72969416-1"
+GOOGLE_ANALYTICS = "G-16VCVC4J5J"
 
 SITEMAP = {
     "format": "xml",
