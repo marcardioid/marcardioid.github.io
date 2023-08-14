@@ -13,6 +13,7 @@ To install it via pip, just&amp;nbsp;type:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install PyZureML
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 
+
 &lt;p&gt;If you&amp;#8217;re not into that kind of thing, you could also clone the source directly through&amp;nbsp;git:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
@@ -20,6 +21,7 @@ To install it via pip, just&amp;nbsp;type:&lt;/p&gt;
 cd ./PyZureML
 python setup.py install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
 
 &lt;p&gt;If you decide to do it this way, it&amp;#8217;s also super easy to &lt;a href="https://github.com/marcardioid/PyZureML"&gt;contribute&lt;/a&gt; to the source code. (Hint hint!)
 To use PyZureML - I admit I thought about using AzurePyML as a name - you need Python 3.x and the Requests module.
@@ -30,6 +32,7 @@ When you have both installed, using PyZureML is super easy. For example, this is
 &lt;span class="n"&gt;endpoints&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create_endpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;locale&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;workspace_id&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;api_token&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;webservice_id&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;endpoint_name&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;endpoints&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;delete_endpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;locale&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;workspace_id&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;api_token&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;webservice_id&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;endpoint_name&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
 
 &lt;p&gt;That&amp;#8217;s all for now! I hope you have as much fun teaching computers to do stuff as I&amp;#8217;m&amp;nbsp;having.&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Taking the ‘Daily’ out of ‘Daily Programmer’</title><link href="https://marcsleegers.com/blog/2016/01/taking-the-daily-out-of-daily-programmer/" rel="alternate"></link><published>2016-01-30T20:00:00+01:00</published><updated>2016-01-30T20:00:00+01:00</updated><author><name></name></author><id>tag:marcsleegers.com,2016-01-30:/blog/2016/01/taking-the-daily-out-of-daily-programmer/</id><summary type="html">&lt;p&gt;The past year, I&amp;#8217;ve been actively participating in reddit&amp;#8217;s &lt;a href="https://www.reddit.com/r/dailyprogrammer"&gt;r/dailyprogrammer&lt;/a&gt; subreddit. According to GitHub, I made 155 contributions. It is now time to reflect on what I&amp;#8217;ve learned, take a small step back and take the &amp;#8216;Daily&amp;#8217; out of &amp;#8216;Daily&amp;nbsp;Programmer&amp;#8217;.&lt;/p&gt;</summary><content type="html">&lt;p&gt;The past year, I&amp;#8217;ve been actively participating in reddit&amp;#8217;s &lt;a href="https://www.reddit.com/r/dailyprogrammer"&gt;r/dailyprogrammer&lt;/a&gt; subreddit. According to GitHub, I made 155 contributions.
 It is now time to reflect on what I&amp;#8217;ve learned, take a small step back and take the &amp;#8216;Daily&amp;#8217; out of &amp;#8216;Daily&amp;nbsp;Programmer&amp;#8217;.&lt;/p&gt;
@@ -58,6 +61,7 @@ Not to show off, but to showcase different coding paradigms. Okay, maybe to show
 &lt;span class="nv"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;---&lt;/span&gt;&lt;span class="k"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;+++&lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;---&lt;/span&gt;&lt;span class="k"&gt;]&lt;/span&gt;&lt;span class="nb"&gt;+++&lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;&lt;span class="k"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;-&lt;/span&gt;&lt;span class="k"&gt;]&lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;----------&lt;/span&gt;&lt;span class="k"&gt;]&lt;/span&gt;&lt;span class="nb"&gt;++++++++++&lt;/span&gt;&lt;span class="nt"&gt;.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 
+
 &lt;p&gt;If this is gibberish to you too, consider looking at my more human-readable solution in&amp;nbsp;Python.&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
@@ -75,6 +79,7 @@ Not to show off, but to showcase different coding paradigms. Okay, maybe to show
             &lt;span class="n"&gt;sentence_encoded&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;o&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sentence_encoded&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
 
 &lt;p&gt;The challenge was simple: encode to and decode from the &lt;span class="caps"&gt;SUPER&lt;/span&gt;-&lt;span class="caps"&gt;SECRET&lt;/span&gt; &lt;em&gt;Rövarspråket&lt;/em&gt;. This Swedish phrase roughly translates to &lt;em&gt;Robber&amp;#8217;s Language&lt;/em&gt;.
 In this spy language the sentence &amp;#8216;Jag talar Rövarspråket!&amp;#8217; translates to &amp;#8216;Jojagog totalolaror Rorövovarorsospoproråkoketot!&amp;#8217;, for example.
