@@ -1,4 +1,4 @@
-Title: Hiya!
+Title: Hiya! 👋
 Slug: home
 URL:
 save_as: index.html
