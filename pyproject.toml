@@ -5,6 +5,10 @@ description = "This module contains both the static files and the source files u
 authors = ["Marc Sleegers"]
 license = "MIT"
 
+[tool.poetry.source]
+name = "pypi-public"
+url = "https://pypi.org/simple/"
+
 [tool.poetry.dependencies]
 python = ">=3.6.2,<4"
 pelican = "4.8.0"
