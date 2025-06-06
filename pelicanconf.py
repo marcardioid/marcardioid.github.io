@@ -1,5 +1,12 @@
 import os
 
+try:
+    import markdown  # noqa: F401
+except ImportError as exc:  # pragma: no cover
+    raise RuntimeError(
+        "The 'markdown' package is required to build the site"
+    ) from exc
+
 # Theme-specific settings
 SITENAME = "Marc Sleegers"
 DOMAIN = "marcsleegers.com"
