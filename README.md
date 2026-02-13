@@ -23,6 +23,12 @@ For a production-style build:
 make build-prod
 ```
 
+## CI and Deploy Flow
+
+- Pull requests targeting `src` run the `✅ Validate` workflow.
+- Pushes to `src` run the `🚀 Deploy to GitHub Pages` workflow.
+
+
 [marcsleegers.com]: https://marcsleegers.com
 [Pelican]: https://getpelican.com
 [Pneumatic]: https://github.com/iKevinY/pneumatic

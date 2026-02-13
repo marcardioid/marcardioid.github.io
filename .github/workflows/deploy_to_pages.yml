@@ -5,6 +5,10 @@ on:
     branches: [ src ]
     
   workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
   
 permissions:
   contents: write
@@ -14,6 +18,7 @@ jobs:
   build:
     name: Build & Deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
     
@@ -41,3 +46,14 @@ jobs:
         if: github.ref == 'refs/heads/src' && github.event_name != 'pull_request'
         with:
           folder: ./output/publish/
+
+      - name: Deployment summary
+        if: always()
+        run: |
+          {
+            echo "## Deployment Summary"
+            echo ""
+            echo "- Branch: \`${GITHUB_REF_NAME}\`"
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- Published folder: \`output/publish/\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
