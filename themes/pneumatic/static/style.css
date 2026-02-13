@@ -92,8 +92,8 @@ hr {
 }
 a {
     color: #333;
-    text-decoration: none;
-    font-weight: bold;
+    text-decoration: underline;
+    font-weight: normal;
     outline: 0;
     /*-webkit-transition: color .25s ease;
     transition: color .25s ease;*/
@@ -102,6 +102,13 @@ a:hover {
     color: #FFF;
     background-color: var(--primary-theme-color);
     text-decoration: none;
+}
+a:focus-visible {
+    color: #FFF;
+    background-color: var(--primary-theme-color);
+    text-decoration: none;
+    outline: 2px solid #222;
+    outline-offset: 2px;
 }
 a.icon {
     padding: 0 2px;
@@ -115,6 +122,12 @@ a.icon:hover, a.icon:active, a.icon:focus {
     text-decoration: none;
     color: #222;
     background-color: transparent;
+}
+a.icon:focus-visible {
+    color: #222;
+    background-color: transparent;
+    outline: 2px solid #222;
+    outline-offset: 2px;
 }
 a.icon:hover.fa-envelope, a.icon:hover.fa-envelope-square {
     color: var(--primary-theme-color);
@@ -236,6 +249,9 @@ article img {
     margin: 0 auto;
     display: block;
 }
+article {
+    max-width: 72ch;
+}
 article img.img-size-medium {
     width: 95%;
     max-width: 200px;
@@ -263,6 +279,8 @@ aside nav, aside div {
 }
 #name a {
     color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
 }
 #name a:hover {
     text-decoration: none;
@@ -281,6 +299,10 @@ nav {
     float: left;
     max-width: 80%;
 }
+.title a {
+    text-decoration: none;
+    font-weight: bold;
+}
 .date {
     float: right;
     display: block;
@@ -289,6 +311,7 @@ nav {
 .content {
     clear: both;
     overflow: hidden;
+    margin-top: 10px;
 }
 .footnote hr {
     margin: 25px 0;
