@@ -3,11 +3,8 @@ Slug: home
 URL:
 save_as: index.html
 
-I am a Principal Software Engineer at [Nike](https://nike.com){:target="_blank"}, where I ship scalable data-intensive applications. 
-I work with most of the Apache big data stack on a daily basis and I am well-versed in Python, for which I am [available as a tutor](mailto:mail@marcsleegers.com?subject=Python tutoring).
+I am a Principal Software Engineer at [Nike](https://nike.com){:target="_blank"} specializing in scalable data-intensive platforms. I lead teams and cross-functional initiatives turning complex data landscapes into actionable insights with real decision-making impact. I have deep expertise in Python and PySpark across modern analytics and data engineering stacks.
 
-I am a published author, [a hobbyist game developer](https://marcsleegers.com/splash/){:target="_blank"} and quite the film geek. To wind down I love reading fantasy novels, automating my home and running long distances.
-
-My [PGP fingerprint](https://keybase.io/marcardioid){:target="_blank"} is ```C952 3D26 0BE7 69FA 0217 579C 977B E742 7927 7172```.
+I am a published author, [a hobbyist game developer](https://marcsleegers.com/splash/){:target="_blank"}, and a certified PADI Rescue Diver. To wind down I love reading fantasy novels, automating my home and running long distances.
 
 Let's [get in touch](mailto:mail@marcsleegers.com?subject=Hello)!
