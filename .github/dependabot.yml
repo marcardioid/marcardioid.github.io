@@ -3,8 +3,12 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
+    reviewers:
+      - "marcardioid"
   - package-ecosystem: "pip"
     directory: "/" # Location of package manifests
     schedule:
-      interval: "monthly"
+      interval: "weekly"
+    reviewers:
+      - "marcardioid"
