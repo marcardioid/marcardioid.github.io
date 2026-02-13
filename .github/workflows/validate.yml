@@ -5,6 +5,10 @@ on:
     branches: [ src ]
   workflow_dispatch:
 
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -12,6 +16,7 @@ jobs:
   validate:
     name: Build & Validate
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -36,4 +41,15 @@ jobs:
       - name: Check internal links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --offline --no-progress output/publish
+          args: --offline --no-progress --max-retries 2 --timeout 20 output/publish
+
+      - name: Validation summary
+        if: always()
+        run: |
+          {
+            echo "## Validation Summary"
+            echo ""
+            echo "- Branch: \`${GITHUB_REF_NAME}\`"
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- Artifact path: \`output/publish/\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
