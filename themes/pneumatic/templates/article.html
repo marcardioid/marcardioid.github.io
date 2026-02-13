@@ -17,7 +17,7 @@ endblock %}
 <meta property="og:title" content="{{ article.title|striptags }}">
 <meta property="og:description" content="{{ article.summary|striptags }}">
 <meta property="og:image"
-	content="{% if  article.image %}{{ article.image }}{% else %}{{ SITEURL }}/{{ ICONS_PATH }}/avatar.png{% endif %}">
+	content="{% if  article.image %}{{ article.image }}{% else %}{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg{% endif %}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
 {% endblock %}

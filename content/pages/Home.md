@@ -3,8 +3,12 @@ Slug: home
 URL:
 save_as: index.html
 
-I am a Principal Software Engineer at [Nike](https://nike.com){:target="_blank"} specializing in scalable data-intensive platforms. I lead teams and cross-functional initiatives turning complex data landscapes into actionable insights with real decision-making impact. I have deep expertise in Python and PySpark across modern analytics and data engineering stacks.
+I am a Principal Software Engineer at [Nike](https://nike.com){:target="_blank"}, building scalable data-intensive platforms that help teams turn complex data landscapes into actionable insights. I lead engineers and cross-functional initiatives from architecture through delivery.
 
-I am a published author, [a hobbyist game developer](https://marcsleegers.com/splash/){:target="_blank"}, and a certified PADI Rescue Diver. To wind down I love reading fantasy novels, automating my home and running long distances.
+Recent work has focused on improving data freshness, reducing compute cost, and increasing platform reliability and adoption across teams.
 
-Let's [get in touch](mailto:mail@marcsleegers.com?subject=Hello)!
+With over a decade of experience across modern analytics and data engineering stacks, I set technical direction for platform reliability and delivery while mentoring engineers and engineering managers to reach.
+
+Outside of work, I am a published author, [a hobbyist game developer](https://marcsleegers.com/splash/){:target="_blank"}, and a certified PADI Rescue Diver. To wind down I love reading fantasy novels, home automation, and long-distance running.
+
+If you'd like to chat, let's [get in touch](mailto:mail@marcsleegers.com?subject=Hello).
