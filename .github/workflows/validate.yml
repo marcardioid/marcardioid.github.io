@@ -1,29 +1,26 @@
-name: 🚀 Deploy to GitHub Pages
+name: ✅ Validate
 
 on:
-  push:
+  pull_request:
     branches: [ src ]
-    
   workflow_dispatch:
-  
+
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  
-  build:
-    name: Build & Deploy
+  validate:
+    name: Build & Validate
     runs-on: ubuntu-latest
 
     steps:
-    
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.14'
+          python-version: "3.14"
 
       - name: Set up uv
         uses: astral-sh/setup-uv@v5
@@ -33,11 +30,10 @@ jobs:
       - name: Install dependencies
         run: make sync
 
-      - name: Generate static output
+      - name: Build production output
         run: make build-prod
-        
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        if: github.ref == 'refs/heads/src' && github.event_name != 'pull_request'
+
+      - name: Check internal links
+        uses: lycheeverse/lychee-action@v2
         with:
-          folder: ./output/publish/
+          args: --offline --no-progress output/publish

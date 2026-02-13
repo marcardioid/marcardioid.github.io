@@ -1,30 +1,26 @@
-[tool.poetry]
+[project]
 name = "marcsleegers.com"
 version = "1.0"
 description = "This module contains both the static files and the source files used to generate marcsleegers.com"
-authors = ["Marc Sleegers"]
+readme = "README.md"
+requires-python = "==3.14.*"
+authors = [{ name = "Marc Sleegers" }]
 license = "MIT"
-
-[[tool.poetry.source]]
-name = "pypi-public"
-url = "https://pypi.org/simple/"
-
-[tool.poetry.dependencies]
-python = ">=3.6.2,<4"
-pelican = "4.8.0"
-Markdown = "3.3.7"
-typogrify = "2.0.7"
-webassets = "2.0.0"
-beautifulsoup4 = "4.12.3"
-cssmin = "0.2.0"
-pelican-webassets = "2.0.0"
-pelican-neighbors = "1.2.0"
-pelican-sitemap = "1.0.2"
-pelican-series = "2.1.0"
-pelican-render-math = "1.0.3"
-pelican-share-post = "1.0.0"
-
+dependencies = [
+    "pelican",
+    "markdown",
+    "typogrify",
+    "webassets",
+    "beautifulsoup4",
+    "cssmin",
+    "pelican-webassets",
+    "pelican-neighbors",
+    "pelican-sitemap",
+    "pelican-series",
+    "pelican-render-math",
+    "pelican-share-post",
+]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
