@@ -27,6 +27,29 @@
 
 	{% block meta %}{% endblock %}
 
+	<script>
+		(function () {
+			var storageKey = 'site-theme';
+			var root = document.documentElement;
+			var storedTheme = null;
+
+			try {
+				storedTheme = window.localStorage.getItem(storageKey);
+			} catch (error) {
+				storedTheme = null;
+			}
+
+			var hasStoredTheme = storedTheme === 'light' || storedTheme === 'dark';
+			var preferredTheme = 'light';
+			
+			// if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			// 	preferredTheme = 'dark';
+			// }
+
+			root.setAttribute('data-theme', hasStoredTheme ? storedTheme : preferredTheme);
+		})();
+	</script>
+
 	<!-- Stylesheets and Web Fonts -->
 	{% assets filters="cssmin", output="style.min.css", "style.css" %}
 	<link rel="stylesheet" href="{{ SITEURL }}/theme/style.min.css">
@@ -47,7 +70,7 @@
 		sizes="{{ size }}x{{ size }}">
 	{% endfor %}
 
-	<meta name="theme-color" content="{{ THEME_COLOR }}">
+	<meta id="meta-theme-color" name="theme-color" content="{{ THEME_COLOR }}">
 
 	<meta name="msapplication-TileColor" content="{{ THEME_COLOR }}">
 	<meta name="msapplication-TileImage" content="{{ SITEURL }}/{{ ICONS_PATH }}/android-chrome-192x192.png">
@@ -63,16 +86,32 @@
 		<header class="site-header">
 			{% if NAVIGATION_ITEMS %}
 			{% set current_page = active_page|default('') %}
-			<nav class="site-nav" aria-label="Primary">
-				<!-- <a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar-small.png"></a> -->
-				<a href="/"><p id="nav-name">{{ SITENAME }}</p></a>
-				{% for href, id, caption in NAVIGATION_ITEMS %}
-				<a href="{{ SITEURL }}{{ href|e }}"{% if id == current_page %} class="is-active"{% endif %}>{{ caption|e }}</a>
-				{% endfor %}
-			</nav>
-			<hr>
-			{% endif %}
-		</header>
+				<nav class="site-nav" aria-label="Primary">
+					<!-- <a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar-small.png"></a> -->
+					<a href="/"><p id="nav-name">{{ SITENAME }}</p></a>
+					{% for href, id, caption in NAVIGATION_ITEMS %}
+					<a href="{{ SITEURL }}{{ href|e }}"{% if id == current_page %} class="is-active"{% endif %}>{{ caption|e }}</a>
+					{% endfor %}
+						<button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+							<svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<path d="M20.26 14.01A8.49 8.49 0 0 1 9.99 3.74a.75.75 0 0 0-.85-.96A9.75 9.75 0 1 0 21.22 14.86a.75.75 0 0 0-.96-.85z" />
+							</svg>
+							<svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<circle cx="12" cy="12" r="4.25" />
+								<line x1="12" y1="1.5" x2="12" y2="4.25" />
+								<line x1="12" y1="19.75" x2="12" y2="22.5" />
+								<line x1="1.5" y1="12" x2="4.25" y2="12" />
+								<line x1="19.75" y1="12" x2="22.5" y2="12" />
+								<line x1="4.57" y1="4.57" x2="6.52" y2="6.52" />
+								<line x1="17.48" y1="17.48" x2="19.43" y2="19.43" />
+								<line x1="4.57" y1="19.43" x2="6.52" y2="17.48" />
+								<line x1="17.48" y1="6.52" x2="19.43" y2="4.57" />
+							</svg>
+						</button>
+					</nav>
+				<hr>
+				{% endif %}
+			</header>
 
 		<main>
 			<article>
@@ -83,7 +122,143 @@
 		<footer>
 			{% block footer %}{% endblock %}
 		</footer>
-	</div>
+		</div>
+		{% if NAVIGATION_ITEMS %}
+		<script>
+			(function () {
+				var storageKey = 'site-theme';
+				var root = document.documentElement;
+				var toggle = document.getElementById('theme-toggle');
+				var metaThemeColor = document.getElementById('meta-theme-color');
+				var fallbackThemeColors = { light: '#ffffff', dark: '#121212' };
+
+				if (!root || !toggle) {
+					return;
+				}
+
+				function getStoredTheme() {
+					try {
+						return window.localStorage.getItem(storageKey);
+					} catch (error) {
+						return null;
+					}
+				}
+
+					function isThemeValue(value) {
+						return value === 'light' || value === 'dark';
+					}
+
+					function getPreferredThemeFromSystem() {
+						if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+							return 'dark';
+						}
+						return 'light';
+					}
+
+					function resolveThemeFromStorageOrSystem() {
+						var storedTheme = getStoredTheme();
+						if (isThemeValue(storedTheme)) {
+							return storedTheme;
+						}
+
+						return getPreferredThemeFromSystem();
+					}
+
+					function getActiveTheme() {
+						var currentTheme = root.getAttribute('data-theme');
+						if (isThemeValue(currentTheme)) {
+							return currentTheme;
+						}
+
+						return resolveThemeFromStorageOrSystem();
+					}
+
+				function updateToggle(theme) {
+					var isDark = theme === 'dark';
+					var nextTheme = isDark ? 'light' : 'dark';
+
+					toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+					toggle.setAttribute('aria-label', 'Switch to ' + nextTheme + ' mode');
+					toggle.setAttribute('title', 'Switch to ' + nextTheme + ' mode');
+				}
+
+					function updateThemeColor(theme) {
+						if (!metaThemeColor) {
+							return;
+						}
+
+					var themeColor = '';
+					if (window.getComputedStyle) {
+						themeColor = window.getComputedStyle(root).getPropertyValue('--theme-color').trim();
+					}
+
+						metaThemeColor.setAttribute('content', themeColor || fallbackThemeColors[theme] || fallbackThemeColors.light);
+					}
+
+					function setTheme(theme, persistTheme) {
+							root.setAttribute('data-theme', theme);
+							updateToggle(theme);
+							updateThemeColor(theme);
+
+					if (!persistTheme) {
+						return;
+					}
+
+					try {
+						window.localStorage.setItem(storageKey, theme);
+					} catch (error) {
+							// Ignore write errors (private mode or disabled storage).
+						}
+					}
+
+					function syncThemeFromState() {
+						setTheme(resolveThemeFromStorageOrSystem(), false);
+					}
+
+					toggle.addEventListener('click', function () {
+						var currentTheme = getActiveTheme();
+						setTheme(currentTheme === 'dark' ? 'light' : 'dark', true);
+					});
+
+					// Re-sync theme when navigating with browser history (including bfcache restores).
+					window.addEventListener('pageshow', function () {
+						syncThemeFromState();
+					});
+
+					window.addEventListener('storage', function (event) {
+						if (event.key !== storageKey) {
+							return;
+						}
+
+						if (isThemeValue(event.newValue)) {
+							setTheme(event.newValue, false);
+							return;
+						}
+
+						syncThemeFromState();
+					});
+
+					if (window.matchMedia) {
+						var mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+						var onSystemThemeChange = function (event) {
+							if (isThemeValue(getStoredTheme())) {
+								return;
+						}
+
+						setTheme(event.matches ? 'dark' : 'light', false);
+					};
+
+					if (mediaQueryList.addEventListener) {
+						mediaQueryList.addEventListener('change', onSystemThemeChange);
+					} else if (mediaQueryList.addListener) {
+						mediaQueryList.addListener(onSystemThemeChange);
+						}
+					}
+
+					syncThemeFromState();
+				})();
+		</script>
+		{% endif %}
 </body>
 
 </html>
