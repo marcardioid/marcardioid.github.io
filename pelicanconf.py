@@ -1,10 +1,11 @@
 import os
+from datetime import datetime
 
 # Theme-specific settings
 SITENAME = "Marc Sleegers"
 DOMAIN = "marcsleegers.com"
 BIO_TEXT = "Infrequent ramblings."
-FOOTER_TEXT = '&copy; 2023 Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
+FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = "Marc Sleegers"
 TWITTER_USERNAME = "@marcardioid"
@@ -31,11 +32,14 @@ INDEX_KEYWORDS = [
     "Technology",
 ]
 
-NAVIGATION_ITEMS = []
-# NAVIGATION_ITEMS = [
-#     ('/blog/', 'blog', 'Blog'),
-#     ('/blog/archive/', 'archive', 'Archive'),
-# ]
+NAVIGATION_ITEMS = [
+    ("/", "home", "Home"),
+    ("/writing/", "writing", "Writing"),
+    # ("/talks/", "talks", "Talks"),
+    # ("/research/", "research", "Research"),
+    # ("/uses/", "uses", "Uses"),
+    # ("/now/", "now", "Now"),
+]
 
 ICONS_PATH = "images/icons"
 
@@ -71,8 +75,8 @@ SUMMARY_MAX_LENGTH = 50
 
 THEME = "themes/pneumatic"
 
-# Relocate blog directory
-BLOG_URL = "blog/"
+# Relocate writing directory
+BLOG_URL = "writing/"
 BLOG_DESCRIPTION = INDEX_DESCRIPTION
 
 ARTICLE_URL = BLOG_URL + "{date:%Y}/{date:%m}/{slug}/"
@@ -84,13 +88,13 @@ DRAFT_SAVE_AS = DRAFT_URL + "index.html"
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = PAGE_URL + "index.html"
 
-ARCHIVES_SAVE_AS = BLOG_URL + "archive/index.html"
+ARCHIVES_SAVE_AS = ""
 ARCHIVES_DESCRIPTION = INDEX_DESCRIPTION
 YEAR_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/index.html"
 MONTH_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/{date:%m}/index.html"
 
 # Disable authors, categories, tags, and category pages
-DIRECT_TEMPLATES = ["index", "archives"]
+DIRECT_TEMPLATES = ["index"]
 INDEX_SAVE_AS = BLOG_URL + "index.html"
 CATEGORY_SAVE_AS = ""
 TAG_SAVE_AS = ""
@@ -138,14 +142,14 @@ EXTRA_PATH_METADATA = {
 PAGE_EXCLUDES = ["extra"]
 ARTICLE_EXCLUDES = ["extra"]
 
-PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series"]
+PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime"]
 
 GOOGLE_ANALYTICS = "G-16VCVC4J5J"
 
 SITEMAP = {
     "format": "xml",
     "priorities": {"articles": 0.5, "indexes": 0.5, "pages": 0.5},
-    "changefreqs": {"articles": "monthly", "indexes": "weekly", "pages": "monthly"},
+    "changefreqs": {"articles": "weekly", "indexes": "weekly", "pages": "monthly"},
 }
 
 WEBASSETS_CONFIG = [
