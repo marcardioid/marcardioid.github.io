@@ -115,19 +115,30 @@ article p {
     line-height: 1.7;
     margin: 1.25em 0;
 }
-h1, h2, .admonition-title, h3 {
+h1, h2, h3, h4, .admonition-title {
     font-weight: bold;
+    text-decoration: none;
 }
 h1 {
     font-size: 1.7em;
-    margin-bottom: 4px;
+    margin-bottom: 0;
 }
 h2, .admonition-title {
     font-size: 1.4em;
-    margin-top: 30px;
+    margin-top: 34px;
+    margin-bottom: -0.5em;
 }
 h3 {
     font-size: 1.2em;
+    margin-bottom: -0.8em;
+}
+h4 {
+    font-size: 1.0em;
+    margin-bottom: -1em;
+}
+:is(h1, h2, h3, h4, h5, h6) a {
+    font-weight: bold;
+    text-decoration: none;
 }
 em {
     font-style: italic;
@@ -240,6 +251,29 @@ ul {
 ol {
     list-style: decimal;
 }
+.toc {
+    margin: 22px 0 28px 0;
+    padding: 0;
+}
+.toc .toctitle {
+    display: block;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.toc ul, .toc ol {
+    margin: 0.65em 0 0 0;
+    padding-left: 1.15em;
+    list-style: none;
+}
+.toc li {
+    list-style: none;
+    margin: 0.35em 0;
+}
+.toc ul ul, .toc ul ol, .toc ol ul, .toc ol ol {
+    margin-top: 0.35em;
+    padding-left: 1.15em;
+    list-style: none;
+}
 table:not(.codehilitetable) th, table:not(.codehilitetable) td {
     padding: 12px 15px;
     text-align: left;
@@ -342,6 +376,7 @@ footer p {
     flex-wrap: wrap;
     gap: 16px;
     align-items: center;
+    justify-content: center;
     margin: 0 0 30px 0;
     padding: 0;
 }

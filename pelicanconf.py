@@ -112,7 +112,9 @@ MARKDOWN = {
         "markdown.extensions.codehilite": {"linenums": "True"},
         "markdown.extensions.admonition": {},
         "markdown.extensions.extra": {},
-        "markdown.extensions.toc": {"anchorlink": "True"},
+        "markdown.extensions.toc": {
+            "title": "On this page", 
+            "anchorlink": "True"},
         "markdown.extensions.footnotes": {},
         "markdown.extensions.meta": {},
     },
