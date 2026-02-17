@@ -1,20 +1,30 @@
 {% extends 'base.html' %}
 {% set active_page = 'writing' %}
+{% set writing_url = SITEURL ~ '/' ~ BLOG_URL %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
 
 {% block description %}{{ BLOG_DESCRIPTION }}{% endblock %}
 {% block keywords %}{{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
 {% block canonical %}
-	<link rel="canonical" href="{{ SITEURL }}/{{ BLOG_URL }}"/>
+	<link rel="canonical" href="{{ writing_url }}"/>
 {% endblock %}
 {% block title %}Writing | {{ SITENAME }}{% endblock %}
 
 {% block meta %}
-	<!-- Open Graph -->
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:domain" content="{{ DOMAIN }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="Writing | {{ SITENAME }}">
+	<meta name="twitter:description" content="{{ INDEX_DESCRIPTION }}">
+	<meta name="twitter:image" content="{{ social_image }}">
 	<meta property="og:title" content="{{ SITENAME }}">
 	<meta property="og:description" content="{{ INDEX_DESCRIPTION }}">
-	<meta property="og:image" content="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
+	<meta property="og:image" content="{{ social_image }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="{{ SITEURL }}/{{ BLOG_URL }}">
+	<meta property="og:url" content="{{ writing_url }}">
 {% endblock %}
 
 {% block content %}

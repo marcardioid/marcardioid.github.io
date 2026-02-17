@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% set active_page = 'home' %}
 {% block body_class %} class="home-page"{% endblock %}
+{% set home_url = SITEURL ~ '/' ~ page.url %}
+{% set profile_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
 
 {% block description %}{{ INDEX_DESCRIPTION }}{% endblock %}
 {% block keywords %}{{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
 {% block canonical %}
-	<link rel="canonical" href="{{ SITEURL }}/{{ page.url }}"/>
+	<link rel="canonical" href="{{ home_url }}"/>
 {% endblock %}
 {% block title %}{{ SITENAME }}{% endblock %}
 
@@ -15,11 +17,29 @@
 	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
 	<meta name="twitter:domain" content="{{ DOMAIN }}">
 	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ SITENAME }}">
+	<meta name="twitter:description" content="{{ INDEX_DESCRIPTION }}">
+	<meta name="twitter:image" content="{{ profile_image }}">
 	<meta property="og:title" content="{{ SITENAME }}">
 	<meta property="og:description" content="{{ INDEX_DESCRIPTION }}">
-	<meta property="og:image" content="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
+	<meta property="og:image" content="{{ profile_image }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="{{ SITEURL }}/{{ page.url }}">
+	<meta property="og:url" content="{{ home_url }}">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": {{ SITE_AUTHOR | tojson }},
+		"url": {{ home_url | tojson }},
+		"jobTitle": {{ SITE_AUTHOR_TITLE | tojson }},
+		"image": {{ profile_image | tojson }},
+		"sameAs": [
+			"https://twitter.com/marcardioid",
+			"https://github.com/marcardioid"
+		]
+	}
+	</script>
 {% endblock %}
 
 {% block content %}

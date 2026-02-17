@@ -2,8 +2,10 @@ SHELL := /bin/bash
 
 UV ?= uv
 PELICAN := $(UV) run --no-project pelican
+PYTHON ?= python3
+SEO_CHECK := scripts/check_seo_output.py
 
-.PHONY: help sync sync-upgrade lock build build-prod serve check clean
+.PHONY: help sync sync-upgrade lock build build-prod serve check seo-check clean
 
 help:
 	@echo "Available targets:"
@@ -35,7 +37,10 @@ build-prod:
 serve:
 	$(PELICAN) content --listen --autoreload
 
-check: sync build-prod
+seo-check:
+	$(PYTHON) $(SEO_CHECK) output/publish
 
 clean:
 	rm -rf output/develop output/publish
+
+check: sync clean build-prod seo-check
