@@ -588,7 +588,7 @@ a:has(#avatar) #avatar:focus-visible {
     margin-top: 10px;
 }
 .footnote hr {
-    margin: 25px 0;
+    margin: 50px 0 0 0;
 }
 .summary {
     width: 100%;
@@ -620,6 +620,11 @@ a:has(#avatar) #avatar:focus-visible {
 #prev-neighbour {
     float: left;
 }
+#series {
+    overflow: auto;
+    margin-top: 0;
+}
+
 #reading-progress {
     position: fixed;
     top: 0;
