@@ -21,11 +21,20 @@
 	<meta name="description" content="{% block description %}{% endblock %}">
 	<meta name="keywords" content="{% block keywords %}{% endblock %}">
 	<meta name="author" content="{{ SITE_AUTHOR }}">
-	<link rel="author" href="{{ GOOGLE_PLUS_URL }}" />
+	<link rel="author" href="{{ SITEURL }}" />
 	{% block canonical %}{% endblock %}
 	<title>{% block title %}{% endblock %}</title>
 
 	{% block meta %}{% endblock %}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": {{ SITENAME | tojson }},
+		"url": {{ (SITEURL ~ '/') | tojson }},
+		"description": {{ INDEX_DESCRIPTION | striptags | tojson }}
+	}
+	</script>
 
 	<script>
 		(function () {

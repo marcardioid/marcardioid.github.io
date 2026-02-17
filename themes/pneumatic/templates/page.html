@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% set active_page = page.slug %}
+{% set page_url = SITEURL ~ '/' ~ page.url %}
+{% set page_description = INDEX_DESCRIPTION if page.slug == 'home' else (page.summary | default(INDEX_DESCRIPTION) | striptags) %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
 
-{% block description %}{% if page.slug == 'home' %}{{ INDEX_DESCRIPTION }}{% else %}{{ page.summary | striptags }}{% endif %}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
 {% block keywords %}{% if page.keywords %}{{ page.keywords }}, {% endif %}{{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
 {% block canonical %}
-	<link rel="canonical" href="{{ SITEURL }}/{{ page.url }}"/>
+	<link rel="canonical" href="{{ page_url }}"/>
 {% endblock %}
 {% block title %}{{ page.title | striptags }} | {{ SITENAME }}{% endblock %}
 
@@ -14,11 +17,15 @@
 	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
 	<meta name="twitter:domain" content="{{ DOMAIN }}">
 	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ page.title | striptags }}">
+	<meta name="twitter:description" content="{{ page_description }}">
+	<meta name="twitter:image" content="{{ social_image }}">
 	<meta property="og:title" content="{{ page.title | striptags }}">
-	<meta property="og:description" content="{{ page.summary | striptags }}">
-	<meta property="og:image" content="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
+	<meta property="og:description" content="{{ page_description }}">
+	<meta property="og:image" content="{{ social_image }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="{{ SITEURL }}/{{ page.url }}">
+	<meta property="og:url" content="{{ page_url }}">
 {% endblock %}
 
 {% block content %}

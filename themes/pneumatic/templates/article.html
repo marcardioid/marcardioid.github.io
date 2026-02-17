@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% set active_page = 'writing' %}
+{% set article_description = (article.summary or INDEX_DESCRIPTION) | striptags %}
+{% set article_image = article.image if article.image else SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set article_url = SITEURL ~ '/' ~ article.url %}
+{% set article_modified = article.modified if article.modified else article.date %}
 
-{% block description %}{{ article.summary | striptags }}{% endblock %}
+{% block description %}{{ article_description }}{% endblock %}
 {% block keywords %}{% if article.keywords %}{{ article.keywords }}, {% endif %}{{ INDEX_KEYWORDS|join(', ') }}{%
 endblock %}
 {% block canonical %}
-<link rel="canonical" href="{{ SITEURL }}/{{ article.url }}" />
+<link rel="canonical" href="{{ article_url }}" />
 {% endblock %}
 {% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
 
@@ -15,12 +19,38 @@ endblock %}
 <meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
 <meta name="twitter:domain" content="{{ DOMAIN }}">
 <meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+<meta name="twitter:title" content="{{ article.title | striptags }}">
+<meta name="twitter:description" content="{{ article_description }}">
+<meta name="twitter:image" content="{{ article_image }}">
 <meta property="og:title" content="{{ article.title|striptags }}">
-<meta property="og:description" content="{{ article.summary|striptags }}">
-<meta property="og:image"
-	content="{% if  article.image %}{{ article.image }}{% else %}{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg{% endif %}">
+<meta property="og:description" content="{{ article_description }}">
+<meta property="og:image" content="{{ article_image }}">
+<meta property="og:site_name" content="{{ SITENAME }}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
+<meta property="og:url" content="{{ article_url }}">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	"headline": {{ article.title | striptags | tojson }},
+	"description": {{ article_description | tojson }},
+	"datePublished": {{ article.date.isoformat() | tojson }},
+	"dateModified": {{ article_modified.isoformat() | tojson }},
+	"author": {
+		"@type": "Person",
+		"name": {{ SITE_AUTHOR | tojson }}
+	},
+	"publisher": {
+		"@type": "Person",
+		"name": {{ SITE_AUTHOR | tojson }}
+	},
+	"image": {{ article_image | tojson }},
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": {{ article_url | tojson }}
+	}
+}
+</script>
 {% endblock %}
 
 {% block content %}

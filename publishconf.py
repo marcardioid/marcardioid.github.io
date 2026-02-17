@@ -6,3 +6,4 @@ from pelicanconf import *
 SITEURL = 'https://marcsleegers.com'
 RELATIVE_URLS = False
 OUTPUT_PATH = 'output/publish/'
+WITH_DRAFTS = False

@@ -17,6 +17,7 @@ Primary workflow uses source content/config, not hand-editing files in `output/`
 - `make build`: Build a development site into `output/develop/`.
 - `make build-prod`: Build production output into `output/publish/` (same command CI uses).
 - `make serve`: Run local dev server with live rebuilds.
+- `make seo-check`: Run generated-output SEO validation checks.
 - `make check`: Run the local pre-PR validation flow.
 
 ## Coding Style & Naming Conventions
@@ -24,6 +25,14 @@ Primary workflow uses source content/config, not hand-editing files in `output/`
 - Content files use Pelican metadata headers (`Title`, `Date`, `Summary`, etc.) at the top of Markdown files.
 - Keep theme edits localized: templates in `themes/pneumatic/templates/`, styling in `themes/pneumatic/static/style.css`.
 - Prefer descriptive, human-readable article filenames; keep page slugs stable once published.
+
+## Pelican-First Rule
+- Prefer built-in functionality from Pelican core, Pelican plugins, Markdown, Markdown extensions, and Pelican templating logic before adding custom scripts or glue code.
+- Use custom code only when native functionality is insufficient for the requirement.
+- References:
+  - https://getpelican.com/
+  - https://docs.getpelican.com/en/latest/
+  - https://github.com/getpelican/pelican
 
 ## Testing Guidelines
 There is no separate unit test suite in this repo. Validation is build-based:

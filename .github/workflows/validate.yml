@@ -43,6 +43,9 @@ jobs:
         with:
           args: --offline --no-progress --max-retries 2 --timeout 20 output/publish
 
+      - name: Run SEO checks
+        run: make seo-check
+
       - name: Validation summary
         if: always()
         run: |

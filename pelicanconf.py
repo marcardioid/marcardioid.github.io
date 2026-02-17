@@ -8,8 +8,9 @@ BIO_TEXT = "Infrequent ramblings."
 FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = "Marc Sleegers"
+SITE_AUTHOR_TITLE = "Principal Software Engineer"
+AUTHOR = SITE_AUTHOR
 TWITTER_USERNAME = "@marcardioid"
-GOOGLE_PLUS_URL = ""
 INDEX_DESCRIPTION = "Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
 INDEX_KEYWORDS = [
     "Marc",
@@ -54,10 +55,8 @@ SOCIAL_ICONS = [
     #     "Contact (mail@marcsleegers.com)",
     #     "fa-envelope-square",
     # ),
-    # ('https://facebook.com/marc.sleegers', 'Facebook', 'fa-facebook-square'),
     # ('https://twitter.com/marcardioid', 'Twitter', 'fa-twitter-square'),
     # ("https://github.com/marcardioid", "GitHub", "fa-github-square"),
-    # ('/files/CV_Marc-Sleegers_2015_EN_WEB.pdf', 'Resume', 'fa-check-square'),
     # ("/atom.xml", "RSS (Atom Feed)", "fa-rss-square"),
 ]
 
@@ -84,6 +83,7 @@ ARTICLE_SAVE_AS = ARTICLE_URL + "index.html"
 
 DRAFT_URL = BLOG_URL + "drafts/{date:%Y}/{date:%m}/{slug}/"
 DRAFT_SAVE_AS = DRAFT_URL + "index.html"
+WITH_DRAFTS = True
 
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = PAGE_URL + "index.html"
@@ -93,14 +93,16 @@ ARCHIVES_DESCRIPTION = INDEX_DESCRIPTION
 YEAR_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/index.html"
 MONTH_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/{date:%m}/index.html"
 
-# Disable authors, categories, tags, and category pages
+# Direct templates
 DIRECT_TEMPLATES = ["index"]
 INDEX_SAVE_AS = BLOG_URL + "index.html"
+AUTHOR_SAVE_AS = ""
+AUTHORS_SAVE_AS = ""
 CATEGORY_SAVE_AS = ""
 TAG_SAVE_AS = ""
 TAGS_URL = ""
 
-# Disable Atom feed generation
+# Feed generation
 FEED_ATOM = "atom.xml"
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -150,8 +152,16 @@ GOOGLE_ANALYTICS = "G-16VCVC4J5J"
 
 SITEMAP = {
     "format": "xml",
-    "priorities": {"articles": 0.5, "indexes": 0.5, "pages": 0.5},
-    "changefreqs": {"articles": "weekly", "indexes": "weekly", "pages": "monthly"},
+    "exclude": [
+        r"^404\.html$",
+        r"^writing/\d{4}/$",
+        r"^writing/\d{4}/\d{2}/$",
+        r"^splash/$",
+        r"^rpsls/$",
+        r"^blog/$",
+    ],
+    "priorities": {"articles": 0.8, "indexes": 0.6, "pages": 0.5},
+    "changefreqs": {"articles": "monthly", "indexes": "weekly", "pages": "monthly"},
 }
 
 WEBASSETS_CONFIG = [
