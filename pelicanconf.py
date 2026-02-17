@@ -11,26 +11,23 @@ SITE_AUTHOR = "Marc Sleegers"
 SITE_AUTHOR_TITLE = "Principal Software Engineer"
 AUTHOR = SITE_AUTHOR
 TWITTER_USERNAME = "@marcardioid"
+SOCIAL_PROFILE_URLS = [
+    "https://twitter.com/marcardioid",
+    "https://github.com/marcardioid",
+]
 INDEX_DESCRIPTION = "Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
 INDEX_KEYWORDS = [
-    "Marc",
-    "Sleegers",
-    "About",
-    "Blog",
-    "Resume",
-    "CV",
-    "Portfolio",
-    "Marcardioid",
-    "Pumpkinsoup",
-    "AWildPumpkin",
-    "Computer",
-    "Science",
-    "Developer",
-    "Programmer",
-    "Software",
-    "Data",
-    "Engineer",
-    "Technology",
+    "Marc Sleegers",
+    "Marc Sleegers blog",
+    "Marc Sleegers writing",
+    "Principal Software Engineer",
+    "Data Engineering",
+    "Data Platform Engineering",
+    "Analytics Engineering",
+    "Software Architecture",
+    "Engineering Leadership",
+    "Technical Writing",
+    "Python",
 ]
 
 NAVIGATION_ITEMS = [
@@ -48,6 +45,7 @@ GOOGLE_FONTS = [
     "Inter",
     "Source Code Pro",
 ]
+GOOGLE_FONTS_BASE_URL = "https://fonts.googleapis.com/css"
 
 SOCIAL_ICONS = [
     # (
@@ -59,8 +57,11 @@ SOCIAL_ICONS = [
     # ("https://github.com/marcardioid", "GitHub", "fa-github-square"),
     # ("/atom.xml", "RSS (Atom Feed)", "fa-rss-square"),
 ]
+FONT_AWESOME_CSS_URL = "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
 
 THEME_COLOR = "#052"
+THEME_TOGGLE_LABEL_DARK = "Switch to dark mode"
+THEME_TOGGLE_LABEL_LIGHT = "Switch to light mode"
 ASSET_URL = "/theme/style.min.css"
 
 # Pelican settings
@@ -76,7 +77,10 @@ THEME = "themes/pneumatic"
 
 # Relocate writing directory
 BLOG_URL = "writing/"
+BLOG_TITLE = "Writing"
 BLOG_DESCRIPTION = INDEX_DESCRIPTION
+LEGACY_BLOG_PREFIX = "/blog"
+LEGACY_BLOG_TARGET = f"/{BLOG_URL.rstrip('/')}"
 
 ARTICLE_URL = BLOG_URL + "{date:%Y}/{date:%m}/{slug}/"
 ARTICLE_SAVE_AS = ARTICLE_URL + "index.html"

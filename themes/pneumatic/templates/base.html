@@ -44,11 +44,11 @@
 	<link rel="stylesheet" href="{{ SITEURL }}/theme/style.min.css">
 	{% endassets %}
 	{% if GOOGLE_FONTS %}
-	<link href="https://fonts.googleapis.com/css?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}"
+	<link href="{{ GOOGLE_FONTS_BASE_URL }}?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}"
 		rel="stylesheet" type="text/css">
 	{% endif %}
 	{% if SOCIAL_ICONS %}
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="{{ FONT_AWESOME_CSS_URL }}" rel="stylesheet">
 	{% endif %}
 
 	<!-- Favicons -->
@@ -81,7 +81,7 @@
 					{% for href, id, caption in NAVIGATION_ITEMS %}
 					<a href="{{ SITEURL }}{{ href|e }}"{% if id == current_page %} class="is-active"{% endif %}>{{ caption|e }}</a>
 					{% endfor %}
-						<button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+						<button id="theme-toggle" type="button" aria-pressed="false" aria-label="{{ THEME_TOGGLE_LABEL_DARK }}" title="{{ THEME_TOGGLE_LABEL_DARK }}" data-label-dark="{{ THEME_TOGGLE_LABEL_DARK }}" data-label-light="{{ THEME_TOGGLE_LABEL_LIGHT }}">
 							<svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 								<path d="M20.26 14.01A8.49 8.49 0 0 1 9.99 3.74a.75.75 0 0 0-.85-.96A9.75 9.75 0 1 0 21.22 14.86a.75.75 0 0 0-.96-.85z" />
 							</svg>
