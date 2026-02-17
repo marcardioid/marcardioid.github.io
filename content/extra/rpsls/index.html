@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex,follow">
+	<link rel="canonical" href="/rpsls/">
+	<meta name="description" content="Interactive Rock Paper Scissors Lizard Spock demo game.">
 	<title>Rock Paper Scissors Lizard Spock</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.5.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="js/chart.js"></script>
-    <script type="text/javascript" src="js/gamelogic.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/rpsls/css/bootstrap-3.3.5.min.css">
+    <link rel="stylesheet" type="text/css" href="/rpsls/css/style.css">
+	<script type="text/javascript" src="/rpsls/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/rpsls/js/chart.js"></script>
+    <script type="text/javascript" src="/rpsls/js/gamelogic.js"></script>
+    <script type="text/javascript" src="/rpsls/js/script.js"></script>
 </head>
 <body>
-	<a href="https://github.com/marcardioid/DailyProgrammer/tree/master/solutions/159_Hard" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+	<a href="https://github.com/marcardioid/DailyProgrammer/tree/master/solutions/159_Hard" target="_blank" rel="noopener noreferrer"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 
 	<div class="container">
 		<div class="page-header">
-            <h2><a href="http://www.reddit.com/r/dailyprogrammer/comments/23yinj/4252014_challenge_159_hard_rock_paper_scissors/" target="_blank">Challenge #159 [Hard] Rock Paper Scissors Lizard Spock</a></h2>
+            <h2><a href="http://www.reddit.com/r/dailyprogrammer/comments/23yinj/4252014_challenge_159_hard_rock_paper_scissors/" target="_blank" rel="noopener noreferrer">Challenge #159 [Hard] Rock Paper Scissors Lizard Spock</a></h2>
 		</div>
 		
         <div class="row">
@@ -23,7 +28,7 @@
                 <h5>Scissors cuts Paper, Paper Covers Rock, Rock crushes Lizard, Lizard poisons Spock, Spock smashes Scissors, Scissors decapitates Lizard, Lizard eats Paper, Paper disproves Spock, Spock vaporizes Rock and - as it always has - Rock crushes Scissors. Check out this really cool flowchart:</h5>
             </div>
             <div class="col-md-2">
-                <a href="img/rules.png" target="_blank"><img id="img-rules" src="img/rules.png"></a>
+                <a href="/rpsls/img/rules.png" target="_blank" rel="noopener noreferrer"><img id="img-rules" src="/rpsls/img/rules.png" alt="Rock Paper Scissors Lizard Spock rules chart"></a>
             </div>
         </div>
         
@@ -70,7 +75,7 @@
                         <hr>
 					</div>
                     <div id="canvas-holder">
-			             <canvas id="chart-area" width="300" height="300"/>
+			             <canvas id="chart-area" width="300" height="300"></canvas>
                     </div>
 				</div>
 			</div>
