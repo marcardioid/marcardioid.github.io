@@ -6,6 +6,16 @@
 {% endblock %}
 
 {% block content %}
+	<script>
+		(function () {
+			var path = window.location.pathname || "";
+			if (path === "/blog" || path.indexOf("/blog/") === 0) {
+				var targetPath = "/writing" + path.slice("/blog".length);
+				var target = targetPath + window.location.search + window.location.hash;
+				window.location.replace(target);
+			}
+		})();
+	</script>
 	<h1 class="title">Page Not Found</h1>
 	<div class="content">
 		<p>The requested page could not be found. Perhaps try looking through the <a href="{{ SITEURL }}/{{ BLOG_URL }}">writing archive</a>?</p>
