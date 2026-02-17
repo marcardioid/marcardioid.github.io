@@ -295,7 +295,7 @@ abbr, acronym, .abbr {
     line-height: .5em;
     vertical-align: baseline;
     position: relative;
-    top: -0.7em;
+    top: -0.5em;
 }
 code {
     font-size: .85em;
