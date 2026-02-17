@@ -28,26 +28,26 @@
 {% endblock %}
 
 {% block content %}
-	<h1 class="title"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a></h1>
-	<div class="content">
-		<ul class="archive-list">
-			{% for article in articles %}
-			{% set teaser = article.metadata.get('summary') %}
-			<li class="archive-item">
-				<div class="archive-heading">
-					<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
-				</div>
-				<div class="archive-metadata">
-					<span><time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time></span>
-					<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{article.readtime}} min read{% endif %}</span>
-				</div>
-				{% if teaser %}
-				<p class="archive-subtitle">{{ teaser | striptags }}</p>
-				{% endif %}
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
+			<h1 class="title"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a></h1>
+			<div class="content">
+				<ul class="archive-list">
+					{% for article in articles %}
+					{% set teaser = article.metadata.get('summary') %}
+					<li class="archive-item">
+						<div class="archive-heading">
+							<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
+						</div>
+						<div class="archive-metadata">
+							<span><time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time></span>
+							<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{article.readtime}} min read{% endif %}</span>
+						</div>
+						{% if teaser %}
+						<p class="archive-subtitle">{{ teaser | striptags }}</p>
+						{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
 {% endblock %}
 
 {% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}

@@ -9,106 +9,105 @@
 {% block keywords %}{% if article.keywords %}{{ article.keywords }}, {% endif %}{{ INDEX_KEYWORDS|join(', ') }}{%
 endblock %}
 {% block canonical %}
-<link rel="canonical" href="{{ article_url }}" />
+	<link rel="canonical" href="{{ article_url }}" />
 {% endblock %}
 {% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
 
 {% block meta %}
-<!-- Twitter Cards and Open Graph -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
-<meta name="twitter:domain" content="{{ DOMAIN }}">
-<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
-<meta name="twitter:title" content="{{ article.title | striptags }}">
-<meta name="twitter:description" content="{{ article_description }}">
-<meta name="twitter:image" content="{{ article_image }}">
-<meta property="og:title" content="{{ article.title|striptags }}">
-<meta property="og:description" content="{{ article_description }}">
-<meta property="og:image" content="{{ article_image }}">
-<meta property="og:site_name" content="{{ SITENAME }}">
-<meta property="og:type" content="article">
-<meta property="og:url" content="{{ article_url }}">
-<script type="application/ld+json">
-{
-	"@context": "https://schema.org",
-	"@type": "BlogPosting",
-	"headline": {{ article.title | striptags | tojson }},
-	"description": {{ article_description | tojson }},
-	"datePublished": {{ article.date.isoformat() | tojson }},
-	"dateModified": {{ article_modified.isoformat() | tojson }},
-	"author": {
-		"@type": "Person",
-		"name": {{ SITE_AUTHOR | tojson }}
-	},
-	"publisher": {
-		"@type": "Person",
-		"name": {{ SITE_AUTHOR | tojson }}
-	},
-	"image": {{ article_image | tojson }},
-	"mainEntityOfPage": {
-		"@type": "WebPage",
-		"@id": {{ article_url | tojson }}
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:domain" content="{{ DOMAIN }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ article.title | striptags }}">
+	<meta name="twitter:description" content="{{ article_description }}">
+	<meta name="twitter:image" content="{{ article_image }}">
+	<meta property="og:title" content="{{ article.title|striptags }}">
+	<meta property="og:description" content="{{ article_description }}">
+	<meta property="og:image" content="{{ article_image }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="{{ article_url }}">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": {{ article.title | striptags | tojson }},
+		"description": {{ article_description | tojson }},
+		"datePublished": {{ article.date.isoformat() | tojson }},
+		"dateModified": {{ article_modified.isoformat() | tojson }},
+		"author": {
+			"@type": "Person",
+			"name": {{ SITE_AUTHOR | tojson }}
+		},
+		"publisher": {
+			"@type": "Person",
+			"name": {{ SITE_AUTHOR | tojson }}
+		},
+		"image": {{ article_image | tojson }},
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": {{ article_url | tojson }}
+		}
 	}
-}
-</script>
+	</script>
 {% endblock %}
 
 {% block content %}
-<div id="reading-progress" aria-hidden="true">
-	<div id="reading-progress-fill"></div>
-</div>
+				<div id="reading-progress" aria-hidden="true">
+					<div id="reading-progress-fill"></div>
+				</div>
 
-<h1 class="title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{
-			article.title }}</a></h1>
+				<h1 class="title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
 
-<p class="article-meta">
-	<span><time datetime="{{ article.date }}">{{ article.locale_date }}</time></span>
-	{% if article.modified and not article.modified == article.date %} (updated <time datetime="{{ article.modified }}">{{article.modified|strftime('%B %d, %Y') }}</time>){% endif %}
-	<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{article.readtime}} min read{% endif %}</span>
-</p>
+				<p class="article-meta">
+					<span><time datetime="{{ article.date }}">{{ article.locale_date }}</time></span>
+					{% if article.modified and not article.modified == article.date %} (updated <time datetime="{{ article.modified }}">{{article.modified|strftime('%B %d, %Y') }}</time>){% endif %}
+					<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{article.readtime}} min read{% endif %}</span>
+				</p>
 
-<div class="content">
-	{{ article.content }}
-</div>
-{% if article.series %}
-<div id="series">
-	<p>This post is part {{ article.series.index }} of the '{{ article.series.name }}' series:</p>
-	<ol>
-		{% for part_article in article.series.all %}
-		<li {% if part_article==article %}class="active" {% endif %}>
-			<a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
-		</li>
-		{% endfor %}
-	</ol>
-</div>
-{% endif %}
-{% if article.next_article or article.prev_article %}
-<div id="related-articles">
-	{% if article.prev_article %}
-	<a href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">&laquo; {{ article.prev_article.title |
-		striptags }}</a>
-	{% endif %}
-	{% if article.next_article %}
-	<a href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">{{ article.next_article.title | striptags
-		}} &raquo;</a>
-	{% endif %}
-</div>
-{% endif %}
-{% if DISQUS_SITENAME and article.status != "draft" %}
-<hr>
+				<div class="content">
+					{{ article.content | indent("\t\t\t\t\t")}}
+				</div>
+				{% if article.series %}
+				<div id="series">
+					<p>This post is part {{ article.series.index }} of the '{{ article.series.name }}' series:</p>
+					<ol>
+						{% for part_article in article.series.all %}
+						<li {% if part_article==article %}class="active" {% endif %}>
+							<a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
+						</li>
+						{% endfor %}
+					</ol>
+				</div>
+				{% endif %}
+				{% if article.next_article or article.prev_article %}
+				<div id="related-articles">
+					{% if article.prev_article %}
+					<a href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">&laquo; {{ article.prev_article.title |
+						striptags }}</a>
+					{% endif %}
+					{% if article.next_article %}
+					<a href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">{{ article.next_article.title | striptags
+						}} &raquo;</a>
+					{% endif %}
+				</div>
+				{% endif %}
+				{% if DISQUS_SITENAME and article.status != "draft" %}
+				<hr>
 
-<!-- Disqus -->
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-	var disqus_shortname = '{{ DISQUS_SITENAME }}';
-	(function () {
-		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	})();
-	</script>
-{% endif %}
-<script src="{{ SITEURL }}/theme/js/reading-progress.js" defer></script>
+				<!-- Disqus -->
+				<div id="disqus_thread"></div>
+				<script type="text/javascript">
+					var disqus_shortname = '{{ DISQUS_SITENAME }}';
+					(function () {
+						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+						dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					})();
+					</script>
+				{% endif %}
+				<script src="{{ SITEURL }}/theme/js/reading-progress.js" defer></script>
 {% endblock %}
 
 {% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}

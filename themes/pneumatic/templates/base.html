@@ -22,6 +22,7 @@
 	<meta name="author" content="{{ SITE_AUTHOR }}">
 	<link rel="author" href="{{ SITEURL }}" />
 	{% block canonical %}{% endblock %}
+
 	<title>{% block title %}{% endblock %}</title>
 
 	{% block meta %}{% endblock %}
@@ -43,8 +44,7 @@
 	<link rel="stylesheet" href="{{ SITEURL }}/theme/style.min.css">
 	{% endassets %}
 	{% if GOOGLE_FONTS %}
-	<link href="{{ GOOGLE_FONTS_BASE_URL }}?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}"
-		rel="stylesheet" type="text/css">
+	<link href="{{ GOOGLE_FONTS_BASE_URL }}?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}" rel="stylesheet" type="text/css">
 	{% endif %}
 	{% if SOCIAL_ICONS %}
 	<link href="{{ FONT_AWESOME_CSS_URL }}" rel="stylesheet">
@@ -54,8 +54,7 @@
 	<link rel="apple-touch-icon" href="{{ SITEURL }}/{{ ICONS_PATH }}/apple-touch-icon.png">
 
 	{% for size in (16, 32) %}
-	<link rel="icon" type="image/png" href="{{ SITEURL }}/{{ ICONS_PATH }}/favicon-{{ size }}x{{ size }}.png"
-		sizes="{{ size }}x{{ size }}">
+	<link rel="icon" type="image/png" href="{{ SITEURL }}/{{ ICONS_PATH }}/favicon-{{ size }}x{{ size }}.png" sizes="{{ size }}x{{ size }}">
 	{% endfor %}
 
 	<meta id="meta-theme-color" name="theme-color" content="{{ THEME_COLOR }}">
@@ -107,9 +106,7 @@
 			</article>
 		</main>
 
-		<footer>
-			{% block footer %}{% endblock %}
-		</footer>
+		<footer>{% block footer %}{% endblock %}</footer>
 		</div>
 </body>
 
