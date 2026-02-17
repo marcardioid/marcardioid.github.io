@@ -50,11 +50,13 @@
 		}
 
 		var isDark = theme === 'dark';
-		var nextTheme = isDark ? 'light' : 'dark';
+		var darkLabel = toggle.getAttribute('data-label-dark') || 'Switch to dark mode';
+		var lightLabel = toggle.getAttribute('data-label-light') || 'Switch to light mode';
+		var nextLabel = isDark ? lightLabel : darkLabel;
 
 		toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-		toggle.setAttribute('aria-label', 'Switch to ' + nextTheme + ' mode');
-		toggle.setAttribute('title', 'Switch to ' + nextTheme + ' mode');
+		toggle.setAttribute('aria-label', nextLabel);
+		toggle.setAttribute('title', nextLabel);
 	}
 
 	function updateThemeColor(metaThemeColor, theme) {

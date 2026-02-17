@@ -8,7 +8,7 @@
 {% block canonical %}
 	<link rel="canonical" href="{{ writing_url }}"/>
 {% endblock %}
-{% block title %}Writing | {{ SITENAME }}{% endblock %}
+{% block title %}{{ BLOG_TITLE }} | {{ SITENAME }}{% endblock %}
 
 {% block meta %}
 	<!-- Twitter Cards and Open Graph -->
@@ -16,7 +16,7 @@
 	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
 	<meta name="twitter:domain" content="{{ DOMAIN }}">
 	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
-	<meta name="twitter:title" content="Writing | {{ SITENAME }}">
+	<meta name="twitter:title" content="{{ BLOG_TITLE }} | {{ SITENAME }}">
 	<meta name="twitter:description" content="{{ INDEX_DESCRIPTION }}">
 	<meta name="twitter:image" content="{{ social_image }}">
 	<meta property="og:title" content="{{ SITENAME }}">
@@ -28,7 +28,7 @@
 {% endblock %}
 
 {% block content %}
-	<h1 class="title"><a href="{{ SITEURL }}/{{ BLOG_URL }}">Writing</a></h1>
+	<h1 class="title"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a></h1>
 	<div class="content">
 		<ul class="archive-list">
 			{% for article in articles %}
