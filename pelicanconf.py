@@ -9,7 +9,7 @@ FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="ht
 
 SITE_AUTHOR = "Marc Sleegers"
 SITE_AUTHOR_TITLE = "Principal Software Engineer"
-AUTHOR = SITE_AUTHOR
+
 TWITTER_USERNAME = "@marcardioid"
 SOCIAL_PROFILE_URLS = [
     "https://twitter.com/marcardioid",

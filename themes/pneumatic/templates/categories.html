@@ -3,33 +3,37 @@
 
 {% block description %}Browse all {{ CATEGORY_TITLE | lower }}.{% endblock %}
 {% block keywords %}Categories, {{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
-{% block canonical %}<link rel="canonical" href="{{ SITEURL }}/{{ CATEGORIES_URL }}"/>{% endblock %}
-{% block meta %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ SITEURL }}/{{ CATEGORIES_URL }}"/>
+{% endblock %}
+{% block meta %}
+	<meta name="robots" content="noindex,follow">
+{% endblock %}
 {% block title %}Topics | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-	<h1 class="title">{{ CATEGORY_TITLE }}</h1>
-	<div class="content">
-		{% if categories %}
-		<ul class="archive-list">
-			{% for category, category_articles in categories | sort(attribute='0') %}
-			<li class="archive-item">
-				<div class="archive-heading">
-					<a class="archive-link" href="{{ SITEURL }}/{{ category.url }}" title="{{ BLOG_TITLE }} on {{ category }}">{{ category }}</a>
+				<h1 class="title">{{ CATEGORY_TITLE }}</h1>
+				<div class="content">
+					{% if categories %}
+					<ul class="archive-list">
+						{% for category, category_articles in categories | sort(attribute='0') %}
+						<li class="archive-item">
+							<div class="archive-heading">
+								<a class="archive-link" href="{{ SITEURL }}/{{ category.url }}" title="{{ BLOG_TITLE }} on {{ category }}">{{ category }}</a>
+							</div>
+							<div class="archive-metadata">
+								<span>{{ category_articles | count }} post{% if category_articles | count != 1 %}s{% endif %}</span>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+					{% else %}
+					<p>No {{ CATEGORY_TITLE | lower }} yet.</p>
+					{% endif %}
 				</div>
-				<div class="archive-metadata">
-					<span>{{ category_articles | count }} post{% if category_articles | count != 1 %}s{% endif %}</span>
+				<div id="related-articles">
+					<a id="prev-neighbour" href="{{ SITEURL }}/{{ BLOG_URL }}">Browse all writing</a>
 				</div>
-			</li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		<p>No {{ CATEGORY_TITLE | lower }} yet.</p>
-		{% endif %}
-	</div>
-	<div id="related-articles">
-		<a id="prev-neighbour" href="{{ SITEURL }}/{{ BLOG_URL }}">Browse all writing</a>
-	</div>
 {% endblock %}
 
 {% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}

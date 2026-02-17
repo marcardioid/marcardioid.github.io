@@ -12,31 +12,35 @@
 
 {% block description %}{{ BLOG_TITLE }} archive for {{ period | reverse | join(', ') }}. Read all {{ BLOG_TITLE | lower }} by {{ SITE_AUTHOR }}.{% endblock %}
 {% block keywords %}Archive, {{ period | reverse | join(', ') }}, {{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
-{% block canonical %}<link rel="canonical" href="{{ SITEURL }}/{{ archive_path }}"/>{% endblock %}
-{% block meta %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ SITEURL }}/{{ archive_path }}"/>
+{% endblock %}
+{% block meta %}
+	<meta name="robots" content="noindex,follow">
+	{% endblock %}
 {% block title %}{{ BLOG_TITLE }} for {{ period | reverse | join(' ') }} | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-	<h1 class="title">{{ BLOG_TITLE }} for {{ period | reverse | join(' ') }}</h1>
-	<div class="content">
-		<ul class="archive-list">
-			{% for article in dates | sort(attribute='date', reverse=True) %}
-			{% set teaser = article.metadata.get('summary') %}
-			<li class="archive-item">
-				<div class="archive-heading">
-					<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
+				<h1 class="title">{{ BLOG_TITLE }} for {{ period | reverse | join(' ') }}</h1>
+				<div class="content">
+					<ul class="archive-list">
+						{% for article in dates | sort(attribute='date', reverse=True) %}
+						{% set teaser = article.metadata.get('summary') %}
+						<li class="archive-item">
+							<div class="archive-heading">
+								<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
+							</div>
+							<div class="archive-metadata">
+								<span><time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time></span>
+								<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{article.readtime}} min read{% endif %}</span>
+							</div>
+							{% if teaser %}
+							<p class="archive-subtitle">{{ teaser | striptags }}</p>
+							{% endif %}
+						</li>
+						{% endfor %}
+					</ul>
 				</div>
-				<div class="archive-metadata">
-					<span><time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time></span>
-					<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{article.readtime}} min read{% endif %}</span>
-				</div>
-				{% if teaser %}
-				<p class="archive-subtitle">{{ teaser | striptags }}</p>
-				{% endif %}
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
 {% endblock %}
 
 {% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}

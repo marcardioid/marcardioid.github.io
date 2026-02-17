@@ -40,16 +40,16 @@
 {% endblock %}
 
 {% block content %}
-			<section class="home-layout">
-				<div class="home-identity">
-					<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
-					<p class="home-name">{{ SITENAME }}</p>
-				</div>
-				<div class="home-copy">
-					<h1 class="home-heading">{{ page.title }}</h1>
-					{{ page.content }}
-				</div>
-			</section>
+				<section class="home-layout">
+					<div class="home-identity">
+						<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
+						<p class="home-name">{{ SITENAME }}</p>
+					</div>
+					<div class="home-copy">
+						<h1 class="home-heading">{{ page.title }}</h1>
+						{{ page.content | indent("\t\t\t\t\t\t\t") }}
+					</div>
+				</section>
 {% endblock %}
 
 {% block footer %}{% endblock %}

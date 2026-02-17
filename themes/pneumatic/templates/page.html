@@ -31,7 +31,7 @@
 {% block content %}
 				<h1 class="title"><a href="{{ SITEURL }}/{{ page.url }}" title="{{ page.title | striptags }}">{{ page.title }}</a></h1>
 				<div class="content">
-					{{ page.content }}
+					{{ page.content | indent("\t\t\t\t\t")}}
 				</div>
 {% endblock %}
 
