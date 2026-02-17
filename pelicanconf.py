@@ -75,7 +75,6 @@ SUMMARY_MAX_LENGTH = 50
 
 THEME = "themes/pneumatic"
 
-# Relocate writing directory
 BLOG_URL = "writing/"
 BLOG_TITLE = "Writing"
 BLOG_DESCRIPTION = INDEX_DESCRIPTION
@@ -92,19 +91,32 @@ WITH_DRAFTS = True
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = PAGE_URL + "index.html"
 
+# Direct templates
+DIRECT_TEMPLATES = ["index", "tags", "categories"]
+INDEX_SAVE_AS = BLOG_URL + "index.html"
 ARCHIVES_SAVE_AS = ""
 ARCHIVES_DESCRIPTION = INDEX_DESCRIPTION
 YEAR_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/index.html"
 MONTH_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/{date:%m}/index.html"
-
-# Direct templates
-DIRECT_TEMPLATES = ["index"]
-INDEX_SAVE_AS = BLOG_URL + "index.html"
 AUTHOR_SAVE_AS = ""
 AUTHORS_SAVE_AS = ""
-CATEGORY_SAVE_AS = ""
-TAG_SAVE_AS = ""
-TAGS_URL = ""
+TAG_URL = BLOG_URL + "tags/{slug}/"
+TAG_SAVE_AS = BLOG_URL + "tags/{slug}/index.html"
+TAGS_URL = BLOG_URL + "tags/"
+TAGS_SAVE_AS = BLOG_URL + "tags/index.html"
+CATEGORY_URL = BLOG_URL + "categories/{slug}/"
+CATEGORY_SAVE_AS = BLOG_URL + "categories/{slug}/index.html"
+CATEGORIES_URL = BLOG_URL + "categories/"
+CATEGORIES_SAVE_AS = BLOG_URL + "categories/index.html"
+USE_FOLDER_AS_CATEGORY = True
+DEFAULT_CATEGORY = "Uncategorized"
+CATEGORY_TITLE = "Topics"
+CATEGORY_DESCRIPTIONS = {
+    "engineering": "Articles on systems design, architecture, and large-scale data platforms.",
+    "leadership": "Thoughts on technical leadership, team design, and engineering culture.",
+    "architecture": "Exploring software architecture, trade-offs, and platform thinking."
+}
+
 
 # Feed generation
 FEED_ATOM = "atom.xml"
@@ -160,11 +172,13 @@ SITEMAP = {
         r"^404\.html$",
         r"^writing/\d{4}/$",
         r"^writing/\d{4}/\d{2}/$",
+        r"writing/tags",
+        r"writing/categories",
         r"^splash/$",
         r"^rpsls/$",
         r"^blog/$",
     ],
-    "priorities": {"articles": 0.8, "indexes": 0.6, "pages": 0.5},
+    "priorities": {"articles": 0.8, "indexes": 0.5, "pages": 1.0},
     "changefreqs": {"articles": "monthly", "indexes": "weekly", "pages": "monthly"},
 }
 
