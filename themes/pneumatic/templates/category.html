@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% set active_page = 'writing' %}
+{% set category_url = SITEURL ~ '/' ~ category.url %}
+
+{% if category == DEFAULT_CATEGORY %}
+	{% set category_title = category %}
+{% else %}
+	{% set category_title = BLOG_TITLE ~ " on " ~ category %}
+{% endif %}
+
+{% block description %}{{ category_title}}{% endblock %}
+{% block keywords %}Category, {{ category }}, {{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block canonical %}<link rel="canonical" href="{{ category_url }}"/>{% endblock %}
+{% block meta %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% block title %}{{ category_title }} | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+	<h1 class="title">{{ category_title }}</h1>
+	{% if CATEGORY_DESCRIPTIONS and category.slug in CATEGORY_DESCRIPTIONS %}
+	<p class="archive-description">
+		{{ CATEGORY_DESCRIPTIONS[category.slug] }}
+	</p>
+	{% endif %}
+	<div class="content">
+		{% if articles %}
+		<ul class="archive-list">
+			{% for article in articles | sort(attribute='date', reverse=True) %}
+			{% set teaser = article.metadata.get('summary') %}
+			<li class="archive-item">
+				<div class="archive-heading">
+					<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
+				</div>
+				<div class="archive-metadata">
+					<span><time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time></span>
+					<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{ article.readtime }} min read{% endif %}</span>
+				</div>
+				{% if teaser %}
+				<p class="archive-subtitle">{{ teaser | striptags }}</p>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No writing found for this category.</p>
+		{% endif %}
+	</div>
+	<div id="related-articles">
+		<a id="prev-neighbour" href="{{ SITEURL }}/{{ BLOG_URL }}">Browse all writing</a>
+	</div>
+{% endblock %}
+
+{% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}
