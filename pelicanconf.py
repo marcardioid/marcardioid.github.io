@@ -115,7 +115,7 @@ MARKDOWN = {
         "markdown.extensions.toc": {
             "title": "On this page", 
             "anchorlink": "True"},
-        "markdown.extensions.footnotes": {},
+        "markdown.extensions.footnotes": {"SEPARATOR": "-"},
         "markdown.extensions.meta": {},
     },
     "output_format": "html5",
