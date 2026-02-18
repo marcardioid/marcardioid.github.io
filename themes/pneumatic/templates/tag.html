@@ -1,14 +1,30 @@
 {% extends 'base.html' %}
 {% set active_page = 'writing' %}
 {% set tag_url = SITEURL ~ '/' ~ tag.url %}
+{% set tag_description = BLOG_TITLE ~ " tagged '" ~ tag ~ "'." %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
-{% block description %}{{ BLOG_TITLE }} tagged '{{ tag }}'.{% endblock %}
-{% block keywords %}Tag, {{ tag }}, {{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block description %}{{ tag_description }}{% endblock %}
 {% block canonical %}
 	<link rel="canonical" href="{{ tag_url }}"/>
 {% endblock %}
+{% block robots %}{{ ROBOTS_NOINDEX_DEFAULT | default('noindex,follow') }}{% endblock %}
 {% block meta %}
-	<meta name="robots" content="noindex,follow">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ BLOG_TITLE }} tagged '{{ tag }}' | {{ SITENAME }}">
+	<meta name="twitter:description" content="{{ tag_description }}">
+	<meta name="twitter:image" content="{{ social_image }}">
+	<meta name="twitter:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:title" content="{{ BLOG_TITLE }} tagged '{{ tag }}' | {{ SITENAME }}">
+	<meta property="og:description" content="{{ tag_description }}">
+	<meta property="og:image" content="{{ social_image }}">
+	<meta property="og:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ tag_url }}">
 {% endblock %}
 {% block title %}{{ BLOG_TITLE }} tagged '{{ tag }}' | {{ SITENAME }}{% endblock %}
 

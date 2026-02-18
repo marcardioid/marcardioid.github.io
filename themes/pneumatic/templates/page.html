@@ -3,9 +3,9 @@
 {% set page_url = SITEURL ~ '/' ~ page.url %}
 {% set page_description = INDEX_DESCRIPTION if page.slug == 'home' else (page.summary | default(INDEX_DESCRIPTION) | striptags) %}
 {% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
 {% block description %}{{ page_description }}{% endblock %}
-{% block keywords %}{% if page.keywords %}{{ page.keywords }}, {% endif %}{{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
 {% block canonical %}
 	<link rel="canonical" href="{{ page_url }}"/>
 {% endblock %}
@@ -15,14 +15,15 @@
 	<!-- Twitter Cards and Open Graph -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
-	<meta name="twitter:domain" content="{{ DOMAIN }}">
 	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
 	<meta name="twitter:title" content="{{ page.title | striptags }}">
 	<meta name="twitter:description" content="{{ page_description }}">
 	<meta name="twitter:image" content="{{ social_image }}">
+	<meta name="twitter:image:alt" content="{{ social_image_alt }}">
 	<meta property="og:title" content="{{ page.title | striptags }}">
 	<meta property="og:description" content="{{ page_description }}">
 	<meta property="og:image" content="{{ social_image }}">
+	<meta property="og:image:alt" content="{{ social_image_alt }}">
 	<meta property="og:site_name" content="{{ SITENAME }}">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="{{ page_url }}">

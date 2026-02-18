@@ -9,19 +9,37 @@
 {% else %}
 {% set archive_path = BLOG_URL %}
 {% endif %}
+{% set archive_url = SITEURL ~ '/' ~ archive_path %}
+{% set archive_title = BLOG_TITLE ~ " for " ~ (period | reverse | join(' ')) %}
+{% set archive_description = BLOG_TITLE ~ " archive for " ~ (period | reverse | join(', ')) ~ ". Read all " ~ (BLOG_TITLE | lower) ~ " by " ~ SITE_AUTHOR ~ "." %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
-{% block description %}{{ BLOG_TITLE }} archive for {{ period | reverse | join(', ') }}. Read all {{ BLOG_TITLE | lower }} by {{ SITE_AUTHOR }}.{% endblock %}
-{% block keywords %}Archive, {{ period | reverse | join(', ') }}, {{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block description %}{{ archive_description }}{% endblock %}
 {% block canonical %}
-	<link rel="canonical" href="{{ SITEURL }}/{{ archive_path }}"/>
+	<link rel="canonical" href="{{ archive_url }}"/>
 {% endblock %}
+{% block robots %}{{ ROBOTS_NOINDEX_DEFAULT | default('noindex,follow') }}{% endblock %}
 {% block meta %}
-	<meta name="robots" content="noindex,follow">
-	{% endblock %}
-{% block title %}{{ BLOG_TITLE }} for {{ period | reverse | join(' ') }} | {{ SITENAME }}{% endblock %}
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ archive_title }} | {{ SITENAME }}">
+	<meta name="twitter:description" content="{{ archive_description }}">
+	<meta name="twitter:image" content="{{ social_image }}">
+	<meta name="twitter:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:title" content="{{ archive_title }} | {{ SITENAME }}">
+	<meta property="og:description" content="{{ archive_description }}">
+	<meta property="og:image" content="{{ social_image }}">
+	<meta property="og:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ archive_url }}">
+{% endblock %}
+{% block title %}{{ archive_title }} | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-				<h1 class="title">{{ BLOG_TITLE }} for {{ period | reverse | join(' ') }}</h1>
+				<h1 class="title">{{ archive_title }}</h1>
 				<div class="content">
 					<ul class="archive-list">
 						{% for article in dates | sort(attribute='date', reverse=True) %}

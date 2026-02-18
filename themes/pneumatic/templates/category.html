@@ -7,14 +7,30 @@
 {% else %}
 	{% set category_title = BLOG_TITLE ~ " on " ~ category %}
 {% endif %}
+{% set category_description = category_title %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
-{% block description %}{{ category_title}}{% endblock %}
-{% block keywords %}Category, {{ category }}, {{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block description %}{{ category_description }}{% endblock %}
 {% block canonical %}
 	<link rel="canonical" href="{{ category_url }}"/>
 {% endblock %}
+{% block robots %}{{ ROBOTS_NOINDEX_DEFAULT | default('noindex,follow') }}{% endblock %}
 {% block meta %}
-	<meta name="robots" content="noindex,follow">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ category_title }} | {{ SITENAME }}">
+	<meta name="twitter:description" content="{{ category_description }}">
+	<meta name="twitter:image" content="{{ social_image }}">
+	<meta name="twitter:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:title" content="{{ category_title }} | {{ SITENAME }}">
+	<meta property="og:description" content="{{ category_description }}">
+	<meta property="og:image" content="{{ social_image }}">
+	<meta property="og:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ category_url }}">
 {% endblock %}
 {% block title %}{{ category_title }} | {{ SITENAME }}{% endblock %}
 

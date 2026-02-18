@@ -9,6 +9,9 @@ FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="ht
 
 SITE_AUTHOR = "Marc Sleegers"
 SITE_AUTHOR_TITLE = "Principal Software Engineer"
+SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
+ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
+ROBOTS_NOINDEX_DEFAULT = "noindex,follow"
 
 TWITTER_USERNAME = "@marcardioid"
 SOCIAL_PROFILE_URLS = [
@@ -77,7 +80,6 @@ THEME = "themes/pneumatic"
 
 BLOG_URL = "writing/"
 BLOG_TITLE = "Writing"
-BLOG_DESCRIPTION = INDEX_DESCRIPTION
 LEGACY_BLOG_PREFIX = "/blog"
 LEGACY_BLOG_TARGET = f"/{BLOG_URL.rstrip('/')}"
 
@@ -95,7 +97,6 @@ PAGE_SAVE_AS = PAGE_URL + "index.html"
 DIRECT_TEMPLATES = ["index", "tags", "categories"]
 INDEX_SAVE_AS = BLOG_URL + "index.html"
 ARCHIVES_SAVE_AS = ""
-ARCHIVES_DESCRIPTION = INDEX_DESCRIPTION
 YEAR_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/index.html"
 MONTH_ARCHIVE_SAVE_AS = BLOG_URL + "{date:%Y}/{date:%m}/index.html"
 AUTHOR_SAVE_AS = ""
