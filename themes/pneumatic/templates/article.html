@@ -109,7 +109,9 @@
 					})();
 					</script>
 				{% endif %}
-				<script src="{{ SITEURL }}/theme/js/reading-progress.js" defer></script>
+				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/reading-progress.js" %}
+				<script src="{{ ASSET_URL }}" defer></script>
+				{% endassets %}
 {% endblock %}
 
 {% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}

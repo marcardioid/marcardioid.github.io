@@ -4,7 +4,7 @@ from datetime import datetime
 # Theme-specific settings
 SITENAME = "Marc Sleegers"
 DOMAIN = "marcsleegers.com"
-BIO_TEXT = "Infrequent ramblings."
+
 FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = "Marc Sleegers"
@@ -19,19 +19,6 @@ SOCIAL_PROFILE_URLS = [
     "https://github.com/marcardioid",
 ]
 INDEX_DESCRIPTION = "Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
-INDEX_KEYWORDS = [
-    "Marc Sleegers",
-    "Marc Sleegers blog",
-    "Marc Sleegers writing",
-    "Principal Software Engineer",
-    "Data Engineering",
-    "Data Platform Engineering",
-    "Analytics Engineering",
-    "Software Architecture",
-    "Engineering Leadership",
-    "Technical Writing",
-    "Python",
-]
 
 NAVIGATION_ITEMS = [
     ("/", "home", "Home"),
@@ -65,7 +52,6 @@ FONT_AWESOME_CSS_URL = "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/f
 THEME_COLOR = "#052"
 THEME_TOGGLE_LABEL_DARK = "Switch to dark mode"
 THEME_TOGGLE_LABEL_LIGHT = "Switch to light mode"
-ASSET_URL = "/theme/style.min.css"
 
 # Pelican settings
 RELATIVE_URLS = False
@@ -77,6 +63,7 @@ DEFAULT_PAGINATION = False
 SUMMARY_MAX_LENGTH = 50
 
 THEME = "themes/pneumatic"
+THEME_STATIC_PATHS = []
 
 BLOG_URL = "writing/"
 BLOG_TITLE = "Writing"
@@ -189,3 +176,5 @@ WEBASSETS_CONFIG = [
     ("url_expire", False),
     ("versions", False),
 ]
+WEBASSETS_SOURCE_PATHS = ["assets"]
+WEBASSETS_DEBUG = False

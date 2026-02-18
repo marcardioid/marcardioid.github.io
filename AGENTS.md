@@ -19,6 +19,7 @@ Primary workflow uses source content/config, not hand-editing files in `output/`
 - `make serve`: Run local dev server with live rebuilds.
 - `make seo-check`: Run generated-output SEO validation checks.
 - `make check`: Run the local pre-PR validation flow.
+- `make clean`: Clean the local output/ directory.
 
 ## Coding Style & Naming Conventions
 - Python config files follow PEP 8 style: 4-space indentation, `UPPER_CASE` config constants.
