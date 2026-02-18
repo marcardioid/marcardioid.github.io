@@ -32,7 +32,6 @@ REQUIRED_ARTICLE_METADATA = (
     ("title", "Title"),
     ("date", "Date"),
     ("summary", "Summary"),
-    ("keywords", "Keywords"),
 )
 
 
