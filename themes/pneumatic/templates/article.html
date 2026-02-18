@@ -2,12 +2,11 @@
 {% set active_page = 'writing' %}
 {% set article_description = (article.summary or INDEX_DESCRIPTION) | striptags %}
 {% set article_image = article.image if article.image else SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set article_image_alt = article.image_alt | default('Cover image for ' ~ (article.title | striptags), true) %}
 {% set article_url = SITEURL ~ '/' ~ article.url %}
 {% set article_modified = article.modified if article.modified else article.date %}
 
 {% block description %}{{ article_description }}{% endblock %}
-{% block keywords %}{% if article.keywords %}{{ article.keywords }}, {% endif %}{{ INDEX_KEYWORDS|join(', ') }}{%
-endblock %}
 {% block canonical %}
 	<link rel="canonical" href="{{ article_url }}" />
 {% endblock %}
@@ -17,17 +16,20 @@ endblock %}
 	<!-- Twitter Cards and Open Graph -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
-	<meta name="twitter:domain" content="{{ DOMAIN }}">
 	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
 	<meta name="twitter:title" content="{{ article.title | striptags }}">
 	<meta name="twitter:description" content="{{ article_description }}">
 	<meta name="twitter:image" content="{{ article_image }}">
+	<meta name="twitter:image:alt" content="{{ article_image_alt }}">
 	<meta property="og:title" content="{{ article.title|striptags }}">
 	<meta property="og:description" content="{{ article_description }}">
 	<meta property="og:image" content="{{ article_image }}">
+	<meta property="og:image:alt" content="{{ article_image_alt }}">
 	<meta property="og:site_name" content="{{ SITENAME }}">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="{{ article_url }}">
+	<meta property="article:published_time" content="{{ article.date.isoformat() }}">
+	<meta property="article:modified_time" content="{{ article_modified.isoformat() }}">
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",

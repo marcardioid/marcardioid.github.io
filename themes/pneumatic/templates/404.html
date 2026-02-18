@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
+{% set not_found_url = SITEURL ~ '/404.html' %}
 
-{% block title %}Page Not Found | {{ SITENAME }}{% endblock %}
-{% block meta %}
-	<meta name="robots" content="noindex">
+{% block description %}The requested page could not be found.{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ not_found_url }}"/>
 {% endblock %}
+{% block title %}Page Not Found | {{ SITENAME }}{% endblock %}
+{% block robots %}{{ ROBOTS_NOINDEX_DEFAULT | default('noindex,follow') }}{% endblock %}
 
 {% block content %}
 				<script>
