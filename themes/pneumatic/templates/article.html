@@ -69,7 +69,7 @@
 				</p>
 
 				<div class="content">
-					{{ article.content | indent("\t\t\t\t\t")}}
+					{{ article.content }}
 				</div>
 				{% if article.series %}
 				<div id="series">
@@ -110,7 +110,7 @@
 					</script>
 				{% endif %}
 				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/reading-progress.js" %}
-				<script src="{{ ASSET_URL }}" defer></script>
+				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}
 {% endblock %}
 

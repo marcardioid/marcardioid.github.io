@@ -35,13 +35,13 @@
 	</script>
 	{% if NAVIGATION_ITEMS %}
 	{% assets filters="rjsmin", output="js/theme-toggle.min.js", "js/theme-toggle.js" %}
-	<script src="{{ ASSET_URL }}"></script>
+	<script src="{{ SITEURL }}/{{ ASSET_URL }}"></script>
 	{% endassets %}
 	{% endif %}
 
 	<!-- Stylesheets and Web Fonts -->
 	{% assets filters="cssmin", output="style.min.css", "style.css" %}
-	<link rel="stylesheet" href="{{ ASSET_URL }}">
+	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
 	{% endassets %}
 	{% if GOOGLE_FONTS %}
 	<link href="{{ GOOGLE_FONTS_BASE_URL }}?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}" rel="stylesheet" type="text/css">
