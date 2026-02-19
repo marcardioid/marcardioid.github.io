@@ -21,8 +21,8 @@ SOCIAL_PROFILE_URLS = [
 INDEX_DESCRIPTION = "Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
 
 NAVIGATION_ITEMS = [
-    ("/", "home", "Home"),
-    ("/writing/", "writing", "Writing"),
+    # ("/", "home", "Home"),
+    # ("/writing/", "writing", "Writing"),
     # ("/talks/", "talks", "Talks"),
     # ("/research/", "research", "Research"),
     # ("/uses/", "uses", "Uses"),
@@ -32,8 +32,13 @@ NAVIGATION_ITEMS = [
 ICONS_PATH = "images/icons"
 
 GOOGLE_FONTS = [
-    "Inter",
+    "Bricolage Grotesque",
+    "Manrope",
+    "Public Sans",
+    "IBM Plex Mono",
     "Source Code Pro",
+    "Fraunces:200,300,400,500,600,700,800,900",
+    "IBM Plex Mono:400,500,700",
 ]
 GOOGLE_FONTS_BASE_URL = "https://fonts.googleapis.com/css"
 
@@ -47,7 +52,6 @@ SOCIAL_ICONS = [
     # ("https://github.com/marcardioid", "GitHub", "fa-github-square"),
     # ("/atom.xml", "RSS (Atom Feed)", "fa-rss-square"),
 ]
-FONT_AWESOME_CSS_URL = "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
 
 THEME_COLOR = "#052"
 THEME_TOGGLE_LABEL_DARK = "Switch to dark mode"
@@ -61,12 +65,14 @@ DEFAULT_DATE = "fs"
 DEFAULT_DATE_FORMAT = "%B %d, %Y"
 DEFAULT_PAGINATION = False
 SUMMARY_MAX_LENGTH = 50
+ARTICLE_LISTING_SUMMARY_TRUNCATE = 250
 
 THEME = "themes/pneumatic"
 THEME_STATIC_PATHS = []
 
 BLOG_URL = "writing/"
 BLOG_TITLE = "Writing"
+BLOG_DESCRIPTION = "Long-form notes on architecture, engineering leadership, and building reliable data platforms."
 LEGACY_BLOG_PREFIX = "/blog"
 LEGACY_BLOG_TARGET = f"/{BLOG_URL.rstrip('/')}"
 

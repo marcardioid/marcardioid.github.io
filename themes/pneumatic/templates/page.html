@@ -30,7 +30,9 @@
 {% endblock %}
 
 {% block content %}
-				<h1 class="title"><a href="{{ SITEURL }}/{{ page.url }}" title="{{ page.title | striptags }}">{{ page.title }}</a></h1>
+				<header class="page-intro">
+				<h1 class="title page-title"><a href="{{ SITEURL }}/{{ page.url }}" title="{{ page.title | striptags }}">{{ page.title }}</a></h1>
+				</header>
 				<div class="content">
 					{{ page.content }}
 				</div>

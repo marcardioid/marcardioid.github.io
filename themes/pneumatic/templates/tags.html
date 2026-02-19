@@ -29,18 +29,20 @@
 {% block title %}Tags | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-				<h1 class="title">Tags</h1>
-				<div class="content">
+				<header class="page-intro">
+				<h1 class="title page-title">Tags</h1>
+				</header>
+				<div class="content content--archive">
 					{% if tags %}
 					<ul class="archive-list">
 						{% for tag, tagged_articles in tags | sort(attribute='0') %}
 						<li class="archive-item">
-							<div class="archive-heading">
+							<h2 class="archive-heading">
 								<a class="archive-link" href="{{ SITEURL }}/{{ tag.url }}" title="{{ BLOG_TITLE }} tagged '{{ tag }}'">{{ tag }}</a>
-							</div>
-							<div class="archive-metadata">
-								<span>{{ tagged_articles | count }} post{% if tagged_articles | count != 1 %}s{% endif %}</span>
-							</div>
+							</h2>
+							<p class="archive-metadata">
+								{{ tagged_articles | count }} post{% if tagged_articles | count != 1 %}s{% endif %}
+							</p>
 						</li>
 						{% endfor %}
 					</ul>

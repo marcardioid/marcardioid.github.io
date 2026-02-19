@@ -29,22 +29,27 @@
 {% endblock %}
 
 {% block content %}
-			<h1 class="title"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a></h1>
-			<div class="content">
+				<header class="page-intro">
+				<h1 class="title page-title"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a></h1>
+				{% if BLOG_DESCRIPTION %}
+				<p class="writing-intro">{{ BLOG_DESCRIPTION }}</p>
+				{% endif %}
+				</header>
+				<div class="content content--archive">
 				{% if articles %}
 				<ul class="archive-list">
 					{% for article in articles %}
-					{% set teaser = article.metadata.get('summary') %}
+					{% set teaser = article.summary | default('', true) | striptags | trim %}
 					<li class="archive-item">
-						<div class="archive-heading">
+						<h2 class="archive-heading">
 							<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
-						</div>
-						<div class="archive-metadata">
-							<span><time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time></span>
-							<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{article.readtime}} min read{% endif %}</span>
-						</div>
+						</h2>
+						<p class="archive-metadata">
+							<time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time>
+							{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+						</p>
 						{% if teaser %}
-						<p class="archive-subtitle">{{ teaser | striptags }}</p>
+						<p class="archive-subtitle">{{ teaser | truncate(ARTICLE_LISTING_SUMMARY_TRUNCATE, False, '…') }}</p>
 						{% endif %}
 					</li>
 					{% endfor %}

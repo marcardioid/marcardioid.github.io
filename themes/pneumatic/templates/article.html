@@ -5,6 +5,10 @@
 {% set article_image_alt = article.image_alt | default('Cover image for ' ~ (article.title | striptags), true) %}
 {% set article_url = SITEURL ~ '/' ~ article.url %}
 {% set article_modified = article.modified if article.modified else article.date %}
+{% set article_category_name = article.category %}
+{% if article.category and article.category.name is defined %}
+{% set article_category_name = article.category.name %}
+{% endif %}
 
 {% block description %}{{ article_description }}{% endblock %}
 {% block canonical %}
@@ -60,15 +64,17 @@
 					<div id="reading-progress-fill"></div>
 				</div>
 
-				<h1 class="title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
+				<header class="entry-header">
+					<p class="entry-kicker"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a>{% if article_category_name and article_category_name != DEFAULT_CATEGORY %} / <a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article_category_name | lower }}">{{ article_category_name }}</a>{% endif %}</p>
+					<h1 class="title entry-title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
+					<p class="article-meta">
+						<time datetime="{{ article.date }}">{{ article.locale_date }}</time>
+						{% if article.modified and not article.modified == article.date %}<span class="archive-dot" aria-hidden="true">&bull;</span> updated <time datetime="{{ article.modified }}">{{ article.modified|strftime('%B %d, %Y') }}</time>{% endif %}
+						{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+					</p>
+				</header>
 
-				<p class="article-meta">
-					<span><time datetime="{{ article.date }}">{{ article.locale_date }}</time></span>
-					{% if article.modified and not article.modified == article.date %} (updated <time datetime="{{ article.modified }}">{{article.modified|strftime('%B %d, %Y') }}</time>){% endif %}
-					<span>{% if article.readtime %}&thinsp; &bull; &thinsp; {{article.readtime}} min read{% endif %}</span>
-				</p>
-
-				<div class="content">
+				<div class="content entry-content">
 					{{ article.content }}
 				</div>
 				{% if article.series %}
@@ -86,12 +92,16 @@
 				{% if article.next_article or article.prev_article %}
 				<div id="related-articles">
 					{% if article.prev_article %}
-					<a href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">&laquo; {{ article.prev_article.title |
-						striptags }}</a>
+					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">
+						<span class="neighbour-label">Previous</span>
+						<span class="neighbour-title">{{ article.prev_article.title | striptags }}</span>
+					</a>
 					{% endif %}
 					{% if article.next_article %}
-					<a href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">{{ article.next_article.title | striptags
-						}} &raquo;</a>
+					<a class="neighbour-link neighbour-link--next" href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">
+						<span class="neighbour-label">Next</span>
+						<span class="neighbour-title">{{ article.next_article.title | striptags }}</span>
+					</a>
 					{% endif %}
 				</div>
 				{% endif %}
@@ -104,12 +114,15 @@
 					var disqus_shortname = '{{ DISQUS_SITENAME }}';
 					(function () {
 						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-						dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+						dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
 						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 					})();
 					</script>
 				{% endif %}
 				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/reading-progress.js" %}
+				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
+				{% endassets %}
+				{% assets filters="rjsmin", output="js/toc-toggle.min.js", "js/toc-toggle.js" %}
 				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}
 {% endblock %}

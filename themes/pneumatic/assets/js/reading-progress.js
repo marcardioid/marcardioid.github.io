@@ -45,6 +45,7 @@
 	window.addEventListener('scroll', queueUpdate, { passive: true });
 	window.addEventListener('resize', queueUpdate);
 	window.addEventListener('load', queueUpdate);
+	window.addEventListener('reading-progress:refresh', queueUpdate);
 
 	queueUpdate();
 })();
