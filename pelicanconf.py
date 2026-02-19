@@ -96,7 +96,7 @@ CATEGORY_URL = BLOG_URL + "categories/{slug}/"
 CATEGORY_SAVE_AS = BLOG_URL + "categories/{slug}/index.html"
 CATEGORIES_URL = BLOG_URL + "categories/"
 CATEGORIES_SAVE_AS = BLOG_URL + "categories/index.html"
-USE_FOLDER_AS_CATEGORY = True
+USE_FOLDER_AS_CATEGORY = False
 DEFAULT_CATEGORY = "Uncategorized"
 CATEGORY_TITLE = "Topics"
 CATEGORY_DESCRIPTIONS = {
@@ -104,7 +104,10 @@ CATEGORY_DESCRIPTIONS = {
     "leadership": "Thoughts on technical leadership, team design, and engineering culture.",
     "architecture": "Exploring software architecture, trade-offs, and platform thinking."
 }
-
+DEFAULT_METADATA = {
+    "Category": DEFAULT_CATEGORY,
+    "Status": "draft",
+}
 
 # Feed generation
 FEED_ATOM = "atom.xml"
@@ -132,6 +135,7 @@ CACHE_CONTENT = False
 DELETE_OUTPUT_DIRECTORY = False
 OUTPUT_PATH = "output/develop/"
 PATH = "content"
+ARTICLE_PATHS = ["writing"]
 
 templates = ["404.html"]
 TEMPLATE_PAGES = {page: page for page in templates}

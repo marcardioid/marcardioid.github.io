@@ -39,7 +39,7 @@ serve:
 	$(PELICAN) content --listen --autoreload
 
 seo-check:
-	$(UV) run python $(SEO_CHECK) output/publish
+	$(UV) run python $(SEO_CHECK) output/publish --content-dir content/writing
 
 clean:
 	rm -rf output/develop output/publish
