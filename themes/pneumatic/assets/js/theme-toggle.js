@@ -1,7 +1,7 @@
 (function () {
 	var storageKey = 'site-theme';
 	var root = document.documentElement;
-	var fallbackThemeColors = { light: '#ffffff', dark: '#121212' };
+	var fallbackThemeColors = { light: '#fafafa', dark: '#1C1C1C' };
 
 	function isThemeValue(value) {
 		return value === 'light' || value === 'dark';

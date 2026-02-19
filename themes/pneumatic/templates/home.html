@@ -41,16 +41,22 @@
 {% endblock %}
 
 {% block content %}
-				<section class="home-layout">
-						<div class="home-identity">
-							<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
-							<p class="home-name">{{ SITENAME }}</p>
-						</div>
-						<div class="home-copy">
-							<h1 class="home-heading">{{ page.title }}</h1>
-							{{ page.content }}
-						</div>
-				</section>
+					<section class="home-layout">
+							<div class="home-identity">
+								<a class="home-identity-link home-avatar-link" href="/">
+									<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
+								</a>
+								<a class="home-identity-link home-name-link" href="/">
+									<p class="home-name">{{ SITENAME }}</p>
+								</a>
+							</div>
+							<div class="home-copy">
+								<h1 class="home-heading">{{ page.title }}</h1>
+								<div class="home-body">
+									{{ page.content }}
+								</div>
+							</div>
+					</section>
 {% endblock %}
 
 {% block footer %}{% endblock %}

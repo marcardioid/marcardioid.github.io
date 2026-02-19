@@ -3,6 +3,7 @@ Slug: home
 URL:
 save_as: index.html
 Template: home
+Status: published
 
 I am a Principal Software Engineer at [Nike](https://nike.com){:target="_blank" rel="noopener noreferrer"}, building scalable data-intensive platforms that help teams turn complex data landscapes into actionable insights. I lead engineers and cross-functional initiatives from architecture through delivery.
 
