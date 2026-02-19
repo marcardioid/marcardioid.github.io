@@ -1,8 +1,9 @@
 SHELL := /bin/bash
 
+.DEFAULT_GOAL := help
+
 UV ?= uv
-PELICAN := $(UV) run --no-project pelican
-PYTHON ?= python3
+PELICAN := $(UV) run pelican
 SEO_CHECK := scripts/check_seo_output.py
 
 .PHONY: help sync sync-upgrade lock build build-prod serve check seo-check clean
@@ -38,7 +39,7 @@ serve:
 	$(PELICAN) content --listen --autoreload
 
 seo-check:
-	$(PYTHON) $(SEO_CHECK) output/publish
+	$(UV) run python $(SEO_CHECK) output/publish
 
 clean:
 	rm -rf output/develop output/publish
