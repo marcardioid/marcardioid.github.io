@@ -32,6 +32,7 @@ REQUIRED_ARTICLE_METADATA = (
     ("title", "Title"),
     ("date", "Date"),
     ("summary", "Summary"),
+    ("slug", "Slug"),
 )
 
 
@@ -76,8 +77,8 @@ def check_article_metadata(content_dir: Path, errors: list[str]) -> None:
     if not content_dir.exists():
         errors.append(f"{content_dir}: content directory does not exist")
         return
-
-    for article_path in sorted(content_dir.glob("*.md")):
+    
+    for article_path in sorted(content_dir.rglob("**.md")):
         metadata = parse_markdown_metadata(article_path)
         for key, label in REQUIRED_ARTICLE_METADATA:
             value = metadata.get(key)
@@ -202,7 +203,7 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print(f"SEO checks passed for {output_dir}")
+    print("SEO checks passed")
     return 0
 
 
