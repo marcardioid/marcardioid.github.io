@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% set active_page = 'home' %}
+{% block body_class %} class="home-page"{% endblock %}
+{% set home_url = SITEURL ~ '/' ~ page.url %}
+{% set profile_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set profile_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
+
+{% block description %}{{ INDEX_DESCRIPTION }}{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ home_url }}"/>
+{% endblock %}
+{% block title %}{{ SITENAME }}{% endblock %}
+
+{% block meta %}
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ SITENAME }}">
+	<meta name="twitter:description" content="{{ INDEX_DESCRIPTION }}">
+	<meta name="twitter:image" content="{{ profile_image }}">
+	<meta name="twitter:image:alt" content="{{ profile_image_alt }}">
+	<meta property="og:title" content="{{ SITENAME }}">
+	<meta property="og:description" content="{{ INDEX_DESCRIPTION }}">
+	<meta property="og:image" content="{{ profile_image }}">
+	<meta property="og:image:alt" content="{{ profile_image_alt }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ home_url }}">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": {{ SITE_AUTHOR | tojson }},
+		"url": {{ home_url | tojson }},
+		"jobTitle": {{ SITE_AUTHOR_TITLE | tojson }},
+		"image": {{ profile_image | tojson }},
+		"sameAs": {{ SOCIAL_PROFILE_URLS | tojson }}
+	}
+	</script>
+{% endblock %}
+
+{% block content %}
+					<section class="home-layout">
+							<div class="home-identity">
+								<a class="home-identity-link home-avatar-link" href="/">
+									<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
+								</a>
+								<a class="home-identity-link home-name-link" href="/">
+									<p class="home-name">{{ SITENAME }}</p>
+								</a>
+							</div>
+							<div class="home-copy">
+								<h1 class="home-heading">{{ page.title }}</h1>
+								<div class="home-body">
+									{{ page.content }}
+								</div>
+							</div>
+					</section>
+{% endblock %}
+
+{% block footer %}{% endblock %}

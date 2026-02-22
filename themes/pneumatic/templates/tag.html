@@ -1,50 +1,41 @@
 {% extends 'base.html' %}
 {% set active_page = 'writing' %}
-{% if dates %}
-{% if period | length > 1 %}
-{% set archive_path = BLOG_URL ~ dates[0].date.strftime('%Y/%m/') %}
-{% else %}
-{% set archive_path = BLOG_URL ~ dates[0].date.strftime('%Y/') %}
-{% endif %}
-{% else %}
-{% set archive_path = BLOG_URL %}
-{% endif %}
-{% set archive_url = SITEURL ~ '/' ~ archive_path %}
-{% set archive_title = BLOG_TITLE ~ " for " ~ (period | reverse | join(' ')) %}
-{% set archive_description = BLOG_TITLE ~ " archive for " ~ (period | reverse | join(', ')) ~ ". Read all " ~ (BLOG_TITLE | lower) ~ " by " ~ SITE_AUTHOR ~ "." %}
+{% set tag_url = SITEURL ~ '/' ~ tag.url %}
+{% set tag_description = BLOG_TITLE ~ " tagged '" ~ tag ~ "'." %}
 {% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
 {% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
-{% block description %}{{ archive_description }}{% endblock %}
+{% block description %}{{ tag_description }}{% endblock %}
 {% block canonical %}
-	<link rel="canonical" href="{{ archive_url }}"/>
+	<link rel="canonical" href="{{ tag_url }}"/>
 {% endblock %}
 {% block robots %}{{ ROBOTS_NOINDEX_DEFAULT | default('noindex,follow') }}{% endblock %}
 {% block meta %}
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
 	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
-	<meta name="twitter:title" content="{{ archive_title }} | {{ SITENAME }}">
-	<meta name="twitter:description" content="{{ archive_description }}">
+	<meta name="twitter:title" content="{{ BLOG_TITLE }} tagged '{{ tag }}' | {{ SITENAME }}">
+	<meta name="twitter:description" content="{{ tag_description }}">
 	<meta name="twitter:image" content="{{ social_image }}">
 	<meta name="twitter:image:alt" content="{{ social_image_alt }}">
-	<meta property="og:title" content="{{ archive_title }} | {{ SITENAME }}">
-	<meta property="og:description" content="{{ archive_description }}">
+	<meta property="og:title" content="{{ BLOG_TITLE }} tagged '{{ tag }}' | {{ SITENAME }}">
+	<meta property="og:description" content="{{ tag_description }}">
 	<meta property="og:image" content="{{ social_image }}">
 	<meta property="og:image:alt" content="{{ social_image_alt }}">
 	<meta property="og:site_name" content="{{ SITENAME }}">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="{{ archive_url }}">
+	<meta property="og:url" content="{{ tag_url }}">
 {% endblock %}
-{% block title %}{{ archive_title }} | {{ SITENAME }}{% endblock %}
+{% block title %}{{ BLOG_TITLE }} tagged '{{ tag }}' | {{ SITENAME }}{% endblock %}
 
 {% block content %}
 				<header class="page-intro">
-				<h1 class="title page-title">{{ archive_title }}</h1>
+				<h1 class="title page-title">{{ BLOG_TITLE }} tagged '{{ tag }}'</h1>
 				</header>
 				<div class="content content--archive">
+					{% if articles %}
 					<ul class="archive-list">
-						{% for article in dates | sort(attribute='date', reverse=True) %}
+						{% for article in articles | sort(attribute='date', reverse=True) %}
 						{% set teaser = article.summary | default('', true) | striptags | trim %}
 						<li class="archive-item">
 							<h2 class="archive-heading">
@@ -60,6 +51,12 @@
 						</li>
 						{% endfor %}
 					</ul>
+					{% else %}
+					<p>No {{ BLOG_TITLE | lower }} yet for this tag.</p>
+					{% endif %}
+				</div>
+				<div id="related-articles">
+					<a id="prev-neighbour" href="{{ SITEURL }}/{{ BLOG_URL }}">Browse all writing</a>
 				</div>
 {% endblock %}
 

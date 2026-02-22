@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
+{% set not_found_url = SITEURL ~ '/404.html' %}
 
-{% block title %}Page Not Found | {{ SITENAME }}{% endblock %}
-{% block meta %}
-	<meta name="robots" content="noindex">
+{% block description %}The requested page could not be found.{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ not_found_url }}"/>
 {% endblock %}
+{% block title %}Page Not Found | {{ SITENAME }}{% endblock %}
+{% block robots %}{{ ROBOTS_NOINDEX_DEFAULT | default('noindex,follow') }}{% endblock %}
 
 {% block content %}
-	<h1 class="title">Page Not Found</h1>
-	<div class="content">
-		<p>The requested page could not be found. Perhaps try looking through the <a href="{{ SITEURL }}/{{ BLOG_URL }}archive/">post archive</a>?</p>
-	</div>
+				<script>
+					(function () {
+						var legacyPrefix = {{ LEGACY_BLOG_PREFIX | tojson }};
+						var legacyTarget = {{ LEGACY_BLOG_TARGET | tojson }};
+						var path = window.location.pathname || "";
+						if (path === legacyPrefix || path.indexOf(legacyPrefix + "/") === 0) {
+							var targetPath = legacyTarget + path.slice(legacyPrefix.length);
+							var target = targetPath + window.location.search + window.location.hash;
+							window.location.replace(target);
+						}
+					})();
+				</script>
+				<header class="page-intro">
+				<h1 class="title page-title">Page Not Found</h1>
+				</header>
+				<div class="content">
+					<p>The requested page could not be found. Perhaps try looking through the <a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE | lower }} archive</a>?</p>
+				</div>
 {% endblock %}

@@ -1,100 +1,130 @@
 {% extends 'base.html' %}
+{% set active_page = 'writing' %}
+{% set article_description = (article.summary or INDEX_DESCRIPTION) | striptags %}
+{% set article_image = article.image if article.image else SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set article_image_alt = article.image_alt | default('Cover image for ' ~ (article.title | striptags), true) %}
+{% set article_url = SITEURL ~ '/' ~ article.url %}
+{% set article_modified = article.modified if article.modified else article.date %}
+{% set article_category_name = article.category %}
+{% if article.category and article.category.name is defined %}
+{% set article_category_name = article.category.name %}
+{% endif %}
 
-{% block description %}{{ article.summary | striptags }}{% endblock %}
-{% block keywords %}{% if article.keywords %}{{ article.keywords }}, {% endif %}{{ INDEX_KEYWORDS|join(', ') }}{%
-endblock %}
+{% block description %}{{ article_description }}{% endblock %}
 {% block canonical %}
-<link rel="canonical" href="{{ SITEURL }}/{{ article.url }}" />
+	<link rel="canonical" href="{{ article_url }}" />
 {% endblock %}
 {% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
 
 {% block meta %}
-<!-- Twitter Cards and Open Graph -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
-<meta name="twitter:domain" content="{{ DOMAIN }}">
-<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
-<meta property="og:title" content="{{ article.title|striptags }}">
-<meta property="og:description" content="{{ article.summary|striptags }}">
-<meta property="og:image"
-	content="{% if  article.image %}{{ article.image }}{% else %}{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg{% endif %}">
-<meta property="og:type" content="article">
-<meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ article.title | striptags }}">
+	<meta name="twitter:description" content="{{ article_description }}">
+	<meta name="twitter:image" content="{{ article_image }}">
+	<meta name="twitter:image:alt" content="{{ article_image_alt }}">
+	<meta property="og:title" content="{{ article.title|striptags }}">
+	<meta property="og:description" content="{{ article_description }}">
+	<meta property="og:image" content="{{ article_image }}">
+	<meta property="og:image:alt" content="{{ article_image_alt }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="{{ article_url }}">
+	<meta property="article:published_time" content="{{ article.date.isoformat() }}">
+	<meta property="article:modified_time" content="{{ article_modified.isoformat() }}">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": {{ article.title | striptags | tojson }},
+		"description": {{ article_description | tojson }},
+		"datePublished": {{ article.date.isoformat() | tojson }},
+		"dateModified": {{ article_modified.isoformat() | tojson }},
+		"author": {
+			"@type": "Person",
+			"name": {{ SITE_AUTHOR | tojson }}
+		},
+		"publisher": {
+			"@type": "Person",
+			"name": {{ SITE_AUTHOR | tojson }}
+		},
+		"image": {{ article_image | tojson }},
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": {{ article_url | tojson }}
+		}
+	}
+	</script>
 {% endblock %}
 
 {% block content %}
-<h1 class="title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{
-		article.title }}</a></h1>
+				<div id="reading-progress" aria-hidden="true">
+					<div id="reading-progress-fill"></div>
+				</div>
 
-<p class="date">
-	<span title="Published" class="icon fa fa-clock-o"></span> <time datetime="{{ article.date }}">{{
-		article.locale_date }}</time>
-</p>
-{% if article.modified and not article.modified == article.date %}
-<p class="date">
-	<span title="Modified" class="icon fa fa-pencil"></span> <time datetime="{{ article.modified }}">{{
-		article.modified|strftime('%B %d, %Y') }}</time>
-</p>
-{% endif %}
+				<header class="entry-header">
+					<p class="entry-kicker"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a>{% if article_category_name and article_category_name != DEFAULT_CATEGORY %} / <a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article_category_name | lower }}">{{ article_category_name }}</a>{% endif %}</p>
+					<h1 class="title entry-title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
+					<p class="article-meta">
+						<time datetime="{{ article.date }}">{{ article.locale_date }}</time>
+						{% if article.modified and not article.modified == article.date %}<span class="archive-dot" aria-hidden="true">&bull;</span> updated <time datetime="{{ article.modified }}">{{ article.modified|strftime('%B %d, %Y') }}</time>{% endif %}
+						{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+					</p>
+				</header>
 
-<div class="content">
-	{{ article.content }}
-</div>
-{% if article.share_post and article.status != 'draft' %}
-<div id="share">
-	<!-- <a href="{{article.share_post['facebook']}}" title="Share on Facebook" class="icon fa fa-facebook-square" target="_blank"></a> -->
-	<a href="{{article.share_post['twitter']}}" title="Share on Twitter" class="icon fa fa-twitter-square"
-		target="_blank"></a>
-	<a href="{{article.share_post['reddit']}}" title="Share on Reddit" class="icon fa fa-reddit-square"
-		target="_blank"></a>
-	<a href="{{article.share_post['hacker-news']}}" title="Share on Hacker News" class="icon fa fa-hacker-news"
-		target="_blank"></a>
-	<a href="{{article.share_post['linkedin']}}" title="Share on LinkedIn" class="icon fa fa-linkedin-square"
-		target="_blank"></a>
-	<a href="{{article.share_post['email']}}" title="Share via Email" class="icon fa fa-envelope-square"
-		target="_blank"></a>
-</div>
-{% endif %}
-{% if article.series %}
-<div id="series">
-	<p>This post is part {{ article.series.index }} of the '{{ article.series.name }}' series:</p>
-	<ol>
-		{% for part_article in article.series.all %}
-		<li {% if part_article==article %}class="active" {% endif %}>
-			<a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
-		</li>
-		{% endfor %}
-	</ol>
-</div>
-{% endif %}
-{% if article.next_article or article.prev_article %}
-<div id="related-articles">
-	{% if article.prev_article %}
-	<a href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">&laquo; {{ article.prev_article.title |
-		striptags }}</a>
-	{% endif %}
-	{% if article.next_article %}
-	<a href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">{{ article.next_article.title | striptags
-		}} &raquo;</a>
-	{% endif %}
-</div>
-{% endif %}
-{% if DISQUS_SITENAME and article.status != "draft" %}
-<hr>
+				<div class="content entry-content">
+					{{ article.content }}
+				</div>
+				{% if article.series %}
+				<div id="series">
+					<p>This post is part {{ article.series.index }} of the '{{ article.series.name }}' series:</p>
+					<ol>
+						{% for part_article in article.series.all %}
+						<li {% if part_article==article %}class="active" {% endif %}>
+							<a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
+						</li>
+						{% endfor %}
+					</ol>
+				</div>
+				{% endif %}
+				{% if article.next_article or article.prev_article %}
+				<div id="related-articles">
+					{% if article.prev_article %}
+					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">
+						<span class="neighbour-label">Previous</span>
+						<span class="neighbour-title">{{ article.prev_article.title | striptags }}</span>
+					</a>
+					{% endif %}
+					{% if article.next_article %}
+					<a class="neighbour-link neighbour-link--next" href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">
+						<span class="neighbour-label">Next</span>
+						<span class="neighbour-title">{{ article.next_article.title | striptags }}</span>
+					</a>
+					{% endif %}
+				</div>
+				{% endif %}
+				{% if DISQUS_SITENAME and article.status != "draft" %}
+				<hr>
 
-<!-- Disqus -->
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-	var disqus_shortname = '{{ DISQUS_SITENAME }}';
-	(function () {
-		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	})();
-</script>
-{% endif %}
+				<!-- Disqus -->
+				<div id="disqus_thread"></div>
+				<script type="text/javascript">
+					var disqus_shortname = '{{ DISQUS_SITENAME }}';
+					(function () {
+						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+						dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					})();
+					</script>
+				{% endif %}
+				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/reading-progress.js" %}
+				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
+				{% endassets %}
+				{% assets filters="rjsmin", output="js/toc-toggle.min.js", "js/toc-toggle.js" %}
+				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
+				{% endassets %}
 {% endblock %}
 
-{% block footer %}
-<hr>
-<p>{{ FOOTER_TEXT }}</p>{% endblock %}
+{% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}

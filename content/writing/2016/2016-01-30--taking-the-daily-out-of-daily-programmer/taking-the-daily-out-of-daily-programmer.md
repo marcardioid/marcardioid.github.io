@@ -1,6 +1,8 @@
 Title: Taking the 'Daily' out of 'Daily Programmer'
+Slug: taking-the-daily-out-of-daily-programmer
 Date: 30-01-2016 20:00
 Modified: 30-01-2016 20:00
+Status: published
 Summary: The past year, I've been actively participating in reddit's [r/dailyprogrammer](https://www.reddit.com/r/dailyprogrammer) subreddit. According to GitHub, I made 155 contributions. It is now time to reflect on what I've learned, take a small step back and take the 'Daily' out of 'Daily Programmer'.
 Keywords: Daily, Programmer, Reddit, Challenge, Solution
 
@@ -51,7 +53,7 @@ If you don't know that game, it's basically a spiced up version of the universal
 It even has similar rules: Scissors cuts Paper, Paper Covers Rock, Rock crushes Lizard, Lizard poisons Spock, Spock smashes Scissors, Scissors decapitates Lizard, Lizard eats Paper, Paper disproves Spock, Spock vaporizes Rock and - as it always has - Rock crushes Scissors.
 Alternatively, a useful flowchart:
 
-![The rules to Rock Paper Scissors Lizard Spock]({attach}/images/30.01.2016_RPSLS-flowchart.png){.img-size-medium}
+![The rules to Rock Paper Scissors Lizard Spock]({attach}images/RPSLS-flowchart.png){.img-size-medium}
 
 I went all-in with my solution: I built an interactive game in JavaScript with multiple AI-difficulties to choose from.
 You can [play it](https://marcsleegers.com/rpsls/) on my website or check out [the source code](https://github.com/marcardioid/DailyProgrammer/tree/master/solutions/159_Hard) on my GitHub.

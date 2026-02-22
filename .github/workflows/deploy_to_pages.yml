@@ -40,6 +40,9 @@ jobs:
 
       - name: Generate static output
         run: make build-prod
+
+      - name: Run SEO checks
+        run: make seo-check
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
