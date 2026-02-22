@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% set active_page = 'writing' %}
+{% set categories_url = SITEURL ~ '/' ~ CATEGORIES_URL %}
+{% set categories_description = "Browse all " ~ (CATEGORY_TITLE | lower) ~ "." %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
+
+{% block description %}{{ categories_description }}{% endblock %}
+{% block canonical %}
+	<link rel="canonical" href="{{ categories_url }}"/>
+{% endblock %}
+{% block robots %}{{ ROBOTS_NOINDEX_DEFAULT | default('noindex,follow') }}{% endblock %}
+{% block meta %}
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ CATEGORY_TITLE }} | {{ SITENAME }}">
+	<meta name="twitter:description" content="{{ categories_description }}">
+	<meta name="twitter:image" content="{{ social_image }}">
+	<meta name="twitter:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:title" content="{{ CATEGORY_TITLE }} | {{ SITENAME }}">
+	<meta property="og:description" content="{{ categories_description }}">
+	<meta property="og:image" content="{{ social_image }}">
+	<meta property="og:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ categories_url }}">
+{% endblock %}
+{% block title %}Topics | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+				<header class="page-intro">
+				<h1 class="title page-title">{{ CATEGORY_TITLE }}</h1>
+				</header>
+				<div class="content content--archive">
+					{% if categories %}
+					<ul class="archive-list">
+						{% for category, category_articles in categories | sort(attribute='0') %}
+						<li class="archive-item">
+							<h2 class="archive-heading">
+								<a class="archive-link" href="{{ SITEURL }}/{{ category.url }}" title="{{ BLOG_TITLE }} on {{ category }}">{{ category }}</a>
+							</h2>
+							<p class="archive-metadata">
+								{{ category_articles | count }} post{% if category_articles | count != 1 %}s{% endif %}
+							</p>
+						</li>
+						{% endfor %}
+					</ul>
+					{% else %}
+					<p>No {{ BLOG_TITLE | lower }} yet.</p>
+					{% endif %}
+				</div>
+				<div id="related-articles">
+					<a id="prev-neighbour" href="{{ SITEURL }}/{{ BLOG_URL }}">Browse all writing</a>
+				</div>
+{% endblock %}
+
+{% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}

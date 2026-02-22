@@ -1,6 +1,8 @@
-Title:  Hello, world! (Again.)
+Title: Hello, world! (Again.)
+Slug: hello-world-again
 Date: 23-01-2016 19:30
 Modified: 23-01-2016 19:30
+Status: published
 Summary: I'm not doing the whole introductory post thingy. Not because I think you won't like me, but because life - like the software industry - is so lively. What that even means? Let me tell you.
 Keywords: Hello, World, Introduction
 

@@ -19,8 +19,5 @@ dependencies = [
     "pelican-series",
     "pelican-render-math",
     "pelican-share-post",
+    "pelican-readtime",
 ]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"

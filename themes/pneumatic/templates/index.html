@@ -1,36 +1,63 @@
 {% extends 'base.html' %}
+{% set active_page = 'writing' %}
+{% set writing_url = SITEURL ~ '/' ~ BLOG_URL %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
-{% block description %}{{ BLOG_DESCRIPTION }}{% endblock %}
-{% block keywords %}{{ INDEX_KEYWORDS|join(', ') }}{% endblock %}
+{% block description %}{{ INDEX_DESCRIPTION }}{% endblock %}
 {% block canonical %}
-	<link rel="canonical" href="{{ SITEURL }}/{{ BLOG_URL }}"/>
+	<link rel="canonical" href="{{ writing_url }}"/>
 {% endblock %}
-{% block title %}Blog | {{ SITENAME }}{% endblock %}
+{% block title %}{{ BLOG_TITLE }} | {{ SITENAME }}{% endblock %}
 
 {% block meta %}
-	<!-- Open Graph -->
-	<meta property="og:title" content="{{ SITENAME }}">
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:site" content="{{ TWITTER_USERNAME }}">
+	<meta name="twitter:title" content="{{ BLOG_TITLE }} | {{ SITENAME }}">
+	<meta name="twitter:description" content="{{ INDEX_DESCRIPTION }}">
+	<meta name="twitter:image" content="{{ social_image }}">
+	<meta name="twitter:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:title" content="{{ BLOG_TITLE }} | {{ SITENAME }}">
 	<meta property="og:description" content="{{ INDEX_DESCRIPTION }}">
-	<meta property="og:image" content="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
+	<meta property="og:image" content="{{ social_image }}">
+	<meta property="og:image:alt" content="{{ social_image_alt }}">
+	<meta property="og:site_name" content="{{ SITENAME }}">
 	<meta property="og:type" content="website">
-	<meta property="og:url" content="{{ SITEURL }}/{{ BLOG_URL }}">
+	<meta property="og:url" content="{{ writing_url }}">
 {% endblock %}
 
 {% block content %}
-	{% for article in articles[:4] %}
-		<h1 class="title"><a href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a></h1>
-		<p class="date">
-        	<span title="Published" class="icon fa fa-clock-o"></span> <time datetime="{{ article.date }}">{{ article.locale_date }}</time>
-    	</p>
-		<div class="content summary">
-			{% if  article.image %}
-			<img src="{{ article.image }}" />
-			{% endif %}
-			<p>{{ article.summary | striptags }}</p>
-		</div>
-		{% if not loop.last %}<br>{% endif %}
-	{% endfor %}
-	<div id="view-archives"><a href="{{ SITEURL }}/{{ BLOG_URL }}archive/">All Posts &raquo;</a></div>
+				<header class="page-intro">
+				<h1 class="title page-title"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a></h1>
+				{% if BLOG_DESCRIPTION %}
+				<p class="writing-intro">{{ BLOG_DESCRIPTION }}</p>
+				{% endif %}
+				</header>
+				<div class="content content--archive">
+				{% if articles %}
+				<ul class="archive-list">
+					{% for article in articles %}
+					{% set teaser = article.summary | default('', true) | striptags | trim %}
+					<li class="archive-item">
+						<h2 class="archive-heading">
+							<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
+						</h2>
+						<p class="archive-metadata">
+							<time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time>
+							{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+						</p>
+						{% if teaser %}
+						<p class="archive-subtitle">{{ teaser | truncate(ARTICLE_LISTING_SUMMARY_TRUNCATE, False, '…') }}</p>
+						{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+				<p>No {{ BLOG_TITLE | lower }} yet.</p>
+				{% endif %}
+			</div>
 {% endblock %}
 
 {% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}
