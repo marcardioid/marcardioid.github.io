@@ -46,12 +46,16 @@
 								<a class="home-identity-link home-avatar-link" href="/">
 									<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
 								</a>
+								{% if ENABLE_HOME_IDENTITY_NAME %}
 								<a class="home-identity-link home-name-link" href="/">
 									<p class="home-name">{{ SITENAME }}</p>
 								</a>
+								{% endif %}
 							</div>
 							<div class="home-copy">
-								<h1 class="home-heading">{{ page.title }}</h1>
+								{% set has_wave_emoji = '👋' in page.title %}
+								{% set home_heading_text = page.title | replace('👋', '') | trim %}
+								<h1 class="home-heading">{{ home_heading_text }}{% if has_wave_emoji %}<span class="wave-emoji">👋</span>{% endif %}</h1>
 								<div class="home-body">
 									{{ page.content }}
 								</div>

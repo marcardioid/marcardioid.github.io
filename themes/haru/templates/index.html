@@ -30,7 +30,7 @@
 
 {% block content %}
 				<header class="page-intro">
-				<h1 class="title page-title"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a></h1>
+				<h1 class="title page-title">{{ BLOG_TITLE }}</h1>
 				{% if BLOG_DESCRIPTION %}
 				<p class="writing-intro">{{ BLOG_DESCRIPTION }}</p>
 				{% endif %}
@@ -41,6 +41,7 @@
 					{% for article in articles %}
 					{% set teaser = article.summary | default('', true) | striptags | trim %}
 					<li class="archive-item">
+						<p class="entry-kicker">{% if article.category %}<a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article.category | lower }}">{{ article.category }}</a>{% endif %}</p>
 						<h2 class="archive-heading">
 							<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
 						</h2>
@@ -60,4 +61,4 @@
 			</div>
 {% endblock %}
 
-{% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}
+{% block footer %}{% include "includes/site-footer.html" %}{% endblock %}
