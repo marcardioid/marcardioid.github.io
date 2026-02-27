@@ -10,6 +10,7 @@ FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="ht
 SITE_AUTHOR = "Marc Sleegers"
 SITE_AUTHOR_TITLE = "Principal Software Engineer"
 SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
+ENABLE_HOME_IDENTITY_NAME = False
 ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
 ROBOTS_NOINDEX_DEFAULT = "noindex,follow"
 
@@ -32,30 +33,22 @@ NAVIGATION_ITEMS = [
 ICONS_PATH = "images/icons"
 
 GOOGLE_FONTS = [
-    "Bricolage Grotesque",
-    "Manrope",
-    "Public Sans",
-    "IBM Plex Mono",
-    "Source Code Pro",
-    "Fraunces:200,300,400,500,600,700,800,900",
+    "Inter:ital,wght@0,400..900;1,400..900",
     "IBM Plex Mono:400,500,700",
 ]
 GOOGLE_FONTS_BASE_URL = "https://fonts.googleapis.com/css"
 
 SOCIAL_ICONS = [
-    # (
-    #     "mailto:mail@marcsleegers.com",
-    #     "Contact (mail@marcsleegers.com)",
-    #     "fa-envelope-square",
-    # ),
-    # ('https://twitter.com/marcardioid', 'Twitter', 'fa-twitter-square'),
-    # ("https://github.com/marcardioid", "GitHub", "fa-github-square"),
-    # ("/atom.xml", "RSS (Atom Feed)", "fa-rss-square"),
+    ("https://github.com/marcardioid", f"{SITE_AUTHOR} on GitHub", "github"),
+    # ("https://linkedin.com", f"{SITE_AUTHOR} on LinkedIn", "linkedin"),
+    ("mailto:mail@marcsleegers.com?subject=Hello", f"Send an email to {SITE_AUTHOR}", "mail"),
+    ("/atom.xml", f"Subscribe to {SITE_AUTHOR}'s RSS feed", "rss"),
 ]
 
 THEME_COLOR = "#052"
 THEME_TOGGLE_LABEL_DARK = "Switch to dark mode"
 THEME_TOGGLE_LABEL_LIGHT = "Switch to light mode"
+ENABLE_TOY = False
 
 # Pelican settings
 RELATIVE_URLS = False
@@ -67,12 +60,12 @@ DEFAULT_PAGINATION = False
 SUMMARY_MAX_LENGTH = 50
 ARTICLE_LISTING_SUMMARY_TRUNCATE = 250
 
-THEME = "themes/pneumatic"
+THEME = "themes/haru"
 THEME_STATIC_PATHS = []
 
 BLOG_URL = "writing/"
 BLOG_TITLE = "Writing"
-BLOG_DESCRIPTION = "Long-form notes on architecture, engineering leadership, and building reliable data platforms."
+BLOG_DESCRIPTION = "Long-form notes on architecture and engineering leadership."
 LEGACY_BLOG_PREFIX = "/blog"
 LEGACY_BLOG_TARGET = f"/{BLOG_URL.rstrip('/')}"
 

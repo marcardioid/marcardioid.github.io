@@ -1,4 +1,4 @@
-Title: Hiya! 👋
+Title: Hi, I'm Marc 👋
 Slug: home
 URL:
 save_as: index.html

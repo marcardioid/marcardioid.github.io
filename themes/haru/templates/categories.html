@@ -51,8 +51,11 @@
 					{% endif %}
 				</div>
 				<div id="related-articles">
-					<a id="prev-neighbour" href="{{ SITEURL }}/{{ BLOG_URL }}">Browse all writing</a>
+					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ BLOG_URL }}" id="prev-neighbour">
+						<span class="neighbour-label">More</span>
+						<span class="neighbour-title">Browse all writing</span>
+					</a>
 				</div>
 {% endblock %}
 
-{% block footer %}<hr><p>{{ FOOTER_TEXT }}</p>{% endblock %}
+{% block footer %}{% include "includes/site-footer.html" %}{% endblock %}
