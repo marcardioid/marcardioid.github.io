@@ -3,7 +3,7 @@
 So, I created a &lt;a href="https://pypi.python.org/pypi/PyZureML"&gt;Python package&lt;/a&gt; so I could start managing Azure Machine Learning endpoints&amp;nbsp;programmatically.&lt;/p&gt;
 &lt;p&gt;One of Azure&amp;#8217;s features I was - am - most excited about is the ability to easily deploy a trained machine learning model as a webservice. 
 This works great, until you programmatically want to &lt;a href=""&gt;retrain a model&lt;/a&gt; with new data. You see, in order to retrain a trained model through a webservice you need to create and update a new endpoint. 
-Unfortunately, managing endpoints through the &lt;a href="https://manage.windowsazure.com/"&gt;user interface&lt;/a&gt; is totally impossible at the moment. Additionally, the &lt;span class="caps"&gt;API&lt;/span&gt; documentation is nothing to write home&amp;nbsp;about.&lt;/p&gt;
+Unfortunately, managing endpoints through the &lt;a href="https://portal.azure.com/"&gt;user interface&lt;/a&gt; is totally impossible at the moment. Additionally, the &lt;span class="caps"&gt;API&lt;/span&gt; documentation is nothing to write home&amp;nbsp;about.&lt;/p&gt;
 &lt;p&gt;This is where the good news starts. Azure automatically generates some &lt;span class="caps"&gt;API&lt;/span&gt; documentation specific to every webservice and every endpoint you create through the machine learning portal.
 The best part about this is that Azure supplies a basic &lt;a href="https://swagger.io"&gt;Swagger&lt;/a&gt; &lt;span class="caps"&gt;JSON&lt;/span&gt; file as part of this documentation. This file basically describes most of the generated endpoint &lt;span class="caps"&gt;API&lt;/span&gt; and removes most of the guesswork.
 After some scripting I figured out all the calls you need to create, delete, get and update a webservice&amp;#8217;s endpoints without ever needing the web user&amp;nbsp;interface.&lt;/p&gt;
@@ -42,7 +42,7 @@ Browsing through my commits, I can absolutely confirm what they say about traini
 &lt;p&gt;This is in part because of the community. I skipped a day here and there, but some of the active contributors really take the &amp;#8216;Daily&amp;#8217; part of the subreddit&amp;#8217;s name super serious. And it shows. 
 They have amazed me with shiny one-liners and extremely efficient solutions. Oh, and there&amp;#8217;s always a group of people submitting their solution in some ancient or weird language. 
 Not to show off, but to showcase different coding paradigms. Okay, maybe to show off a &lt;em&gt;little&lt;/em&gt;&amp;nbsp;bit.&lt;/p&gt;
-&lt;p&gt;Take a look at this esoteric &lt;a href="https://esolangs.org/wiki/Brainfuck"&gt;brainfuck&lt;/a&gt; solution to &lt;a href="https://www.reddit.com/r/dailyprogrammer/comments/341c03/20150427_challenge_212_easy_r%C3%B6varspr%C3%A5ket/"&gt;challenge 212 (easy)&lt;/a&gt;, for&amp;nbsp;example.&lt;/p&gt;
+&lt;p&gt;Take a look at this esoteric brainfuck solution to &lt;a href="https://www.reddit.com/r/dailyprogrammer/comments/341c03/20150427_challenge_212_easy_r%C3%B6varspr%C3%A5ket/"&gt;challenge 212 (easy)&lt;/a&gt;, for&amp;nbsp;example.&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt;1&lt;/span&gt;
 &lt;span class="normal"&gt;2&lt;/span&gt;
 &lt;span class="normal"&gt;3&lt;/span&gt;
