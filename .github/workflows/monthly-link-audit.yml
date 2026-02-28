@@ -1,0 +1,90 @@
+name: 🔗 Monthly Link Audit
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+concurrency:
+  group: monthly-link-audit
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  link-audit:
+    name: Check Links & Report
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: make sync
+
+      - name: Build production output
+        run: make build-prod
+
+      - name: Verify generated output
+        run: |
+          test -f output/publish/index.html
+
+      - name: Check internal links
+        id: lychee_check
+        continue-on-error: true
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --config lychee.toml
+            --no-progress
+            --retry-wait-time 2
+            --max-retries 2
+            --timeout 20
+            --format markdown
+            --output lychee-report.md
+            --root-dir "${{ github.workspace }}/output/publish"
+            --remap '^https://(www\.)?marcsleegers\.com(/.*)?$ file://${{ github.workspace }}/output/publish\$2'
+            "${{ github.workspace }}/output/publish/**/*.html"
+            "${{ github.workspace }}/output/publish/**/*.xml"
+
+      - name: Create issue for broken links
+        id: create_issue
+        if: steps.lychee_check.outcome == 'failure'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Monthly link audit: broken links detected"
+          content-filepath: ./lychee-report.md
+
+      - name: Audit summary
+        if: always()
+        run: |
+          {
+            echo "## Monthly Link Audit Summary"
+            echo ""
+            echo "- Branch: \`${GITHUB_REF_NAME}\`"
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- Lychee outcome: \`${{ steps.lychee_check.outcome }}\`"
+            if [ "${{ steps.lychee_check.outcome }}" = "failure" ] && [ -n "${{ steps.create_issue.outputs.issue-number }}" ]; then
+              echo "- Issue created: #${{ steps.create_issue.outputs.issue-number }}"
+            elif [ "${{ steps.lychee_check.outcome }}" = "failure" ]; then
+              echo "- Issue created: failed"
+            else
+              echo "- Issue created: no (no broken links)"
+            fi
+          } >> "${GITHUB_STEP_SUMMARY}"
