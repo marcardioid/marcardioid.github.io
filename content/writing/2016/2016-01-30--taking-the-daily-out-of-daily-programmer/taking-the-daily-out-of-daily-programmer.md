@@ -19,7 +19,7 @@ This is in part because of the community. I skipped a day here and there, but so
 They have amazed me with shiny one-liners and extremely efficient solutions. Oh, and there's always a group of people submitting their solution in some ancient or weird language. 
 Not to show off, but to showcase different coding paradigms. Okay, maybe to show off a *little* bit.
 
-Take a look at this esoteric [brainfuck](https://esolangs.org/wiki/Brainfuck) solution to [challenge 212 (easy)](https://www.reddit.com/r/dailyprogrammer/comments/341c03/20150427_challenge_212_easy_r%C3%B6varspr%C3%A5ket/), for example.
+Take a look at this esoteric brainfuck solution to [challenge 212 (easy)](https://www.reddit.com/r/dailyprogrammer/comments/341c03/20150427_challenge_212_easy_r%C3%B6varspr%C3%A5ket/), for example.
 
 ```brainfuck
 >>>>>+++>>>>++>>++>>++>>>>++>>++>>++>>>>++>>++>>++>>++>>++>>>>++>>++>>++>>++>>++>

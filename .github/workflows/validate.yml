@@ -1,4 +1,4 @@
-name: ✅ Validate
+name: 🔍 Validate
 
 on:
   pull_request:
@@ -11,6 +11,7 @@ concurrency:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   validate:
@@ -19,6 +20,7 @@ jobs:
     timeout-minutes: 20
 
     steps:
+      
       - name: Checkout
         uses: actions/checkout@v6
 
@@ -38,20 +40,48 @@ jobs:
       - name: Build production output
         run: make build-prod
 
-      - name: Verify generated publish output
+      - name: Verify generated output
         run: |
           test -f output/publish/index.html
 
+      - name: Run SEO checks
+        run: make seo-check
+
       - name: Check internal links
+        id: check_internal_links
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
-            --offline --no-progress --max-retries 2 --timeout 20
-            output/publish/**/*.html
-            output/publish/**/*.xml
+            --config lychee.toml
+            --no-progress
+            --retry-wait-time 2
+            --max-retries 2
+            --timeout 20
+            --root-dir "${{ github.workspace }}/output/publish"
+            --remap '^https://(www\.)?marcsleegers\.com(/.*)?$ file://${{ github.workspace }}/output/publish\$2'
+            "${{ github.workspace }}/output/publish/**/*.html"
+            "${{ github.workspace }}/output/publish/**/*.xml"
 
-      - name: Run SEO checks
-        run: make seo-check
+      - name: Comment on PR when internal links fail
+        if: failure() && github.event_name == 'pull_request' && steps.check_internal_links.outcome == 'failure' && github.event.pull_request.head.repo.fork == false
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              "Lychee link validation failed.",
+              "",
+              `- Run: ${runUrl}`,
+              `- Attempt: ${context.runAttempt}`,
+            ].join("\n");
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
 
       - name: Validation summary
         if: always()
