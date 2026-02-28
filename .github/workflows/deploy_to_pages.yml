@@ -38,8 +38,12 @@ jobs:
       - name: Install dependencies
         run: make sync
 
-      - name: Generate static output
+      - name: Build production output
         run: make build-prod
+
+      - name: Verify generated output
+        run: |
+          test -f output/publish/index.html
 
       - name: Run SEO checks
         run: make seo-check

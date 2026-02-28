@@ -11,7 +11,7 @@ So, I created a [Python package](https://pypi.python.org/pypi/PyZureML) so I cou
 
 One of Azure's features I was - am - most excited about is the ability to easily deploy a trained machine learning model as a webservice. 
 This works great, until you programmatically want to [retrain a model]() with new data. You see, in order to retrain a trained model through a webservice you need to create and update a new endpoint. 
-Unfortunately, managing endpoints through the [user interface](https://manage.windowsazure.com/) is totally impossible at the moment. Additionally, the API documentation is nothing to write home about.
+Unfortunately, managing endpoints through the [user interface](https://portal.azure.com/) is totally impossible at the moment. Additionally, the API documentation is nothing to write home about.
 
 This is where the good news starts. Azure automatically generates some API documentation specific to every webservice and every endpoint you create through the machine learning portal.
 The best part about this is that Azure supplies a basic [Swagger](https://swagger.io) JSON file as part of this documentation. This file basically describes most of the generated endpoint API and removes most of the guesswork.
