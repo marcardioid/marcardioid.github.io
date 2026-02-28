@@ -49,14 +49,14 @@ jobs:
         continue-on-error: true
         uses: lycheeverse/lychee-action@v2
         with:
+          format: markdown
+          output: lychee-report.md
           args: >-
             --config lychee.toml
             --no-progress
             --retry-wait-time 2
             --max-retries 2
             --timeout 20
-            --format markdown
-            --output lychee-report.md
             --root-dir "${{ github.workspace }}/output/publish"
             --remap '^https://(www\.)?marcsleegers\.com(/.*)?$ file://${{ github.workspace }}/output/publish\$2'
             "${{ github.workspace }}/output/publish/**/*.html"
