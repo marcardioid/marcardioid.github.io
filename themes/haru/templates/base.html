@@ -37,6 +37,15 @@
 	{% assets filters="rjsmin", output="js/theme-toggle.min.js", "js/theme-toggle.js" %}
 	<script src="{{ SITEURL }}/{{ ASSET_URL }}"></script>
 	{% endassets %}
+	{% assets filters="rjsmin", output="js/site-header-sticky.min.js", "js/site-header-sticky.js" %}
+	<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
+	{% endassets %}
+	{% endif %}
+	{% set toy_enabled = ENABLE_TOY | default(true) %}
+	{% if toy_enabled %}
+	{% assets filters="rjsmin", output="js/meadow-toy.min.js", "js/meadow-toy.js" %}
+	<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
+	{% endassets %}
 	{% endif %}
 
 	<!-- Stylesheets and Web Fonts -->
@@ -60,12 +69,16 @@
 </head>
 
 <body{% block body_class %}{% endblock %}>
-	<a class="skip-link" href="#main-content">Skip to content</a>
-	<div class="container">
-		<header class="site-header">
-			{% if NAVIGATION_ITEMS %}
-			{% set current_page = active_page|default('') %}
-				<nav class="site-nav" aria-label="Primary">
+	{% if toy_enabled %}
+	<section class="toy-banner">
+		<canvas class="toy" tabindex="0" aria-label="Interactive toy"></canvas>
+	</section>
+	{% endif %}
+		<div class="container">
+			<header class="site-header">
+				{% if NAVIGATION_ITEMS %}
+				{% set current_page = active_page|default('') %}
+					<nav class="site-nav" aria-label="Primary">
 					<a class="site-brand" href="/"><span id="nav-name">{{ SITENAME }}</span></a>
 					<div class="site-nav-links">
 					{% for href, id, caption in NAVIGATION_ITEMS %}

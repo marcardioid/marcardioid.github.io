@@ -1,0 +1,31 @@
+(function () {
+	var header = document.querySelector('.site-header');
+	var ticking = false;
+	var raf = window.requestAnimationFrame || function (callback) {
+		return window.setTimeout(callback, 16);
+	};
+
+	if (!header) {
+		return;
+	}
+
+	function updateStickyState() {
+		ticking = false;
+		header.classList.toggle('is-sticky', window.scrollY > 0);
+	}
+
+	function queueUpdate() {
+		if (ticking) {
+			return;
+		}
+
+		ticking = true;
+		raf(updateStickyState);
+	}
+
+	window.addEventListener('scroll', queueUpdate, { passive: true });
+	window.addEventListener('load', queueUpdate);
+	window.addEventListener('pageshow', queueUpdate);
+
+	queueUpdate();
+})();
