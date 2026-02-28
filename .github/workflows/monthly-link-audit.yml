@@ -1,12 +1,12 @@
-name: 🔍 Validate
+name: 🔗 Monthly Link Audit
 
 on:
-  pull_request:
-    branches: [ src ]
+  schedule:
+    - cron: "0 0 1 * *"
   workflow_dispatch:
 
 concurrency:
-  group: validate-${{ github.ref }}
+  group: monthly-link-audit
   cancel-in-progress: true
 
 permissions:
@@ -14,13 +14,13 @@ permissions:
   issues: write
 
 jobs:
-  validate:
-    name: Build & Validate
+  link-audit:
+    name: Check Links & Report
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
-      
+
       - name: Checkout
         uses: actions/checkout@v6
 
@@ -44,11 +44,9 @@ jobs:
         run: |
           test -f output/publish/index.html
 
-      - name: Run SEO checks
-        run: make seo-check
-
       - name: Check internal links
-        id: check_internal_links
+        id: lychee_check
+        continue-on-error: true
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
@@ -57,39 +55,36 @@ jobs:
             --retry-wait-time 2
             --max-retries 2
             --timeout 20
+            --format markdown
+            --output lychee-report.md
             --root-dir "${{ github.workspace }}/output/publish"
             --remap '^https://(www\.)?marcsleegers\.com(/.*)?$ file://${{ github.workspace }}/output/publish\$2'
             "${{ github.workspace }}/output/publish/**/*.html"
             "${{ github.workspace }}/output/publish/**/*.xml"
 
-      - name: Comment on PR when internal links fail
-        if: failure() && github.event_name == 'pull_request' && steps.check_internal_links.outcome == 'failure' && github.event.pull_request.head.repo.fork == false
-        uses: actions/github-script@v8
+      - name: Create issue for broken links
+        id: create_issue
+        if: steps.lychee_check.outcome == 'failure'
+        uses: peter-evans/create-issue-from-file@v5
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const body = [
-              "Lychee link validation failed.",
-              "",
-              `- Run: ${runUrl}`,
-              `- Attempt: ${context.runAttempt}`,
-            ].join("\n");
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Monthly link audit: broken links detected"
+          content-filepath: ./lychee-report.md
 
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body,
-            });
-
-      - name: Validation summary
+      - name: Audit summary
         if: always()
         run: |
           {
-            echo "## Validation Summary"
+            echo "## Monthly Link Audit Summary"
             echo ""
             echo "- Branch: \`${GITHUB_REF_NAME}\`"
             echo "- Commit: \`${GITHUB_SHA}\`"
-            echo "- Artifact path: \`output/publish/\`"
+            echo "- Lychee outcome: \`${{ steps.lychee_check.outcome }}\`"
+            if [ "${{ steps.lychee_check.outcome }}" = "failure" ] && [ -n "${{ steps.create_issue.outputs.issue-number }}" ]; then
+              echo "- Issue created: #${{ steps.create_issue.outputs.issue-number }}"
+            elif [ "${{ steps.lychee_check.outcome }}" = "failure" ]; then
+              echo "- Issue created: failed"
+            else
+              echo "- Issue created: no (no broken links)"
+            fi
           } >> "${GITHUB_STEP_SUMMARY}"

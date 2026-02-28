@@ -16,9 +16,9 @@
 	}
 
 	function getPreferredThemeFromSystem() {
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			return 'dark';
-		}
+		// if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		// 	return 'dark';
+		// }
 		return 'light';
 	}
 
@@ -121,22 +121,22 @@
 			syncThemeFromState();
 		});
 
-		if (window.matchMedia) {
-			var mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
-			var onSystemThemeChange = function (event) {
-				if (isThemeValue(getStoredTheme())) {
-					return;
-				}
+		// if (window.matchMedia) {
+		// 	var mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+		// 	var onSystemThemeChange = function (event) {
+		// 		if (isThemeValue(getStoredTheme())) {
+		// 			return;
+		// 		}
 
-				setTheme(toggle, metaThemeColor, event.matches ? 'dark' : 'light', false);
-			};
+		// 		setTheme(toggle, metaThemeColor, event.matches ? 'dark' : 'light', false);
+		// 	};
 
-			if (mediaQueryList.addEventListener) {
-				mediaQueryList.addEventListener('change', onSystemThemeChange);
-			} else if (mediaQueryList.addListener) {
-				mediaQueryList.addListener(onSystemThemeChange);
-			}
-		}
+		// 	if (mediaQueryList.addEventListener) {
+		// 		mediaQueryList.addEventListener('change', onSystemThemeChange);
+		// 	} else if (mediaQueryList.addListener) {
+		// 		mediaQueryList.addListener(onSystemThemeChange);
+		// 	}
+		// }
 
 		syncThemeFromState();
 	}

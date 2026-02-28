@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="Isolated constellation canvas playground.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Constellation Lab | Marc Sleegers">
+  <meta name="twitter:description" content="Isolated constellation canvas playground.">
+  <meta property="og:title" content="Constellation Lab | Marc Sleegers">
+  <meta property="og:description" content="Isolated constellation canvas playground.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://marcsleegers.com/constellation/">
+  <title>Constellation Lab</title>
+  <link rel="canonical" href="https://marcsleegers.com/constellation/">
+  <link rel="stylesheet" href="/theme/style.min.css">
+  <style>
+    main {
+      width: min(94%, 80rem);
+      margin: 0 auto;
+      padding: 1.5rem 0 3rem;
+    }
+
+    .constellation-lab-title {
+      margin: 8rem 0 0.5rem;
+      font-size: clamp(1.8rem, 1.4rem + 2vw, 2.6rem);
+    }
+
+    .constellation-lab-help {
+      margin: 0;
+      max-width: 72ch;
+    }
+  </style>
+</head>
+<body>
+  <section class="toy-banner">
+		<canvas class="toy" tabindex="0" aria-label="Interactive toy"></canvas>
+	</section>
+  <main>
+    <h1 class="constellation-lab-title">Constellation Lab</h1>
+    <p class="constellation-lab-help">
+      Controls: Left click empty space to add a star. Drag stars to move them. Alt+drag from one star to another to connect.
+      Right click selects. Shift+click toggles pin. Delete/Backspace removes selected.
+    </p>
+  </main>
+  <script src="/theme/js/constellation-toy.min.js" defer></script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 This repository contains the source for a Pelican-based static site.
 
 - `content/`: Markdown pages/posts, images, and static extras copied to the site.
-- `themes/pneumatic/`: Custom theme templates and static assets.
+- `themes/haru/`: Custom theme templates and static assets.
 - `pelicanconf.py`: Development/default site settings (`output/develop/`).
 - `publishconf.py`: Production overrides (`output/publish/`).
 - `output/`: Generated static site artifacts.
@@ -34,7 +34,7 @@ Use `make sync` for reproducible local and CI parity. Use `make sync-upgrade` an
 ## Coding Style & Naming Conventions
 - Python config files follow PEP 8 style: 4-space indentation, `UPPER_CASE` config constants.
 - Content files use Pelican metadata headers (`Title`, `Date`, `Summary`, etc.) at the top of Markdown files.
-- Keep theme edits localized: templates in `themes/pneumatic/templates/`, styling in `themes/pneumatic/static/style.css`.
+- Keep theme edits localized: templates in `themes/haru/templates/`, styling in `themes/haru/static/style.css`.
 - Prefer descriptive, human-readable article filenames; keep page slugs stable once published.
 
 ## Pelican-First Rule

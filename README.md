@@ -2,7 +2,7 @@
 
 This repository contains both the static files and the source files used to generate [marcsleegers.com]. 
 It is generated with [Pelican], and tested and deployed with GitHub Actions.
-The site's theme is a heavily modified version of the beautiful [Pneumatic].
+The site's theme is a custom template.
 Dependency management is done with [uv], and local/CI commands are exposed through `make`.
 
 The repository contains two distinct branches: the [`src`] branch contains the source files that Pelican uses to generate the static files which are automatically pushed to the [`gh-pages`] branch.
@@ -31,7 +31,6 @@ make build-prod
 
 [marcsleegers.com]: https://marcsleegers.com
 [Pelican]: https://getpelican.com
-[Pneumatic]: https://github.com/iKevinY/pneumatic
 [uv]: https://docs.astral.sh/uv/
 [`src`]: https://github.com/marcardioid/marcsleegers.com/tree/src
 [`gh-pages`]: https://github.com/marcardioid/marcsleegers.com/tree/gh-pages
