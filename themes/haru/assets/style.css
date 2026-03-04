@@ -1465,25 +1465,19 @@ footer hr {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .entry-header,
-    .entry-content,
-    #series,
     .archive-item {
         animation: enter-up 340ms cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
-    .entry-header,
     .archive-item:nth-child(1) {
         animation-delay: 30ms;
     }
 
-    .entry-content,
     .archive-item:nth-child(2) {
         animation-delay: 80ms;
     }
 
-    .archive-item:nth-child(n+3),
-    #series {
+    .archive-item:nth-child(n+3) {
         animation-delay: 130ms;
     }
 }
