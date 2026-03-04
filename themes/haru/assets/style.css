@@ -592,10 +592,6 @@ article img.img-size-medium {
     z-index: 1100;
 }
 
-.site-header.is-sticky {
-    /* Scroll-state class is visual only: lift + shadow handled on .site-nav rules below. */
-}
-
 .toy-banner {
     position: relative;
     width: 100%;
@@ -826,6 +822,9 @@ article img.img-size-medium {
 
 .home-avatar {
     width: 204px;
+    height: auto;
+    max-width: 100%;
+    display: block;
     margin: 0 0 var(--space-3) 0;
     border: 3px solid var(--color-border-strong);
     border-radius: 0;
