@@ -81,6 +81,27 @@ There is no separate unit test suite in this repo. Validation is build-based:
 - Check generated pages in `output/publish/` for broken links, missing assets, and metadata issues.
 - For content changes, verify front matter fields render as expected on index/archive pages.
 
+## Lighthouse Run Profile (Performance Work)
+Use this exact profile for repeatable homepage measurements:
+
+- Build: `make build-prod`
+- Serve output: `python -m http.server --directory output/publish 8000`
+- Browser: Chrome Incognito
+- DevTools -> Lighthouse settings:
+  - Mode: `Navigation`
+  - Device: `Mobile`
+  - Categories: `Performance`
+  - Throttling: `Simulated` (default Lighthouse mobile profile)
+  - `Clear storage` enabled before each run
+- URL: `http://localhost:8000/`
+- Runs: 3 cold runs, keep median values
+- Record: FCP, LCP, CLS, TBT, transfer size
+
+GitHub Pages caching constraint:
+
+- Deployment target is GitHub Pages from `output/publish/`.
+- Cache headers are platform-managed, so custom long-lived `Cache-Control` per asset cannot be configured from this repository alone.
+
 ## Commit & Pull Request Guidelines
 - Follow the existing history style: short, imperative commit subjects (for example, `Update avatar`, `Fix dependency config`).
 - Keep commits focused on one logical change (content, theme, or config).

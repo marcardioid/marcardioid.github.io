@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% set active_page = 'writing' %}
 {% set article_description = (article.summary or INDEX_DESCRIPTION) | striptags %}
-{% set article_image = article.image if article.image else SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set article_image = article.image if article.image else SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
 {% set article_image_alt = article.image_alt | default('Cover image for ' ~ (article.title | striptags), true) %}
 {% set article_url = SITEURL ~ '/' ~ article.url %}
 {% set article_modified = article.modified if article.modified else article.date %}

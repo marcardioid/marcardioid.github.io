@@ -9,6 +9,8 @@ FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="ht
 
 SITE_AUTHOR = "Marc Sleegers"
 SITE_AUTHOR_TITLE = "Principal Software Engineer"
+ICONS_PATH = "images/icons"
+SOCIAL_IMAGE_FILENAME = "portrait.jpg"
 SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
 ENABLE_HOME_IDENTITY_NAME = False
 ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
@@ -29,8 +31,6 @@ NAVIGATION_ITEMS = [
     # ("/uses/", "uses", "Uses"),
     # ("/now/", "now", "Now"),
 ]
-
-ICONS_PATH = "images/icons"
 
 GOOGLE_FONTS = [
     "Inter:ital,wght@0,400..900;1,400..900",
@@ -153,7 +153,8 @@ EXTRA_PATH_METADATA = {
 PAGE_EXCLUDES = ["extra"]
 ARTICLE_EXCLUDES = ["extra"]
 
-PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime"]
+PLUGIN_PATHS = ["plugins"]
+PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "lazy-images"]
 
 GOOGLE_ANALYTICS = "G-16VCVC4J5J"
 

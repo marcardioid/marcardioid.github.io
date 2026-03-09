@@ -2,7 +2,7 @@
 {% set active_page = page.slug %}
 {% set page_url = SITEURL ~ '/' ~ page.url %}
 {% set page_description = INDEX_DESCRIPTION if page.slug == 'home' else (page.summary | default(INDEX_DESCRIPTION) | striptags) %}
-{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
 {% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
 {% block description %}{{ page_description }}{% endblock %}

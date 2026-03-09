@@ -8,7 +8,7 @@
 	{% set category_title = BLOG_TITLE ~ " on " ~ category %}
 {% endif %}
 {% set category_description = category_title %}
-{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
 {% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
 {% block description %}{{ category_description }}{% endblock %}
