@@ -17,13 +17,13 @@
     --radius-md: 0.5rem;
     --radius-lg: 0.9rem;
 
-    --color-bg: #fafafa;
+    --color-bg: #f6f5f1;
     --color-bg-elevated: #e7dac6;
     --color-bg-panel: var(--color-bg);
     --color-bg-panel-strong: #f1e2cd;
-    --color-ink: #17120f;
-    --color-ink-soft: #463b31;
-    --color-ink-muted: #665849;
+    --color-ink: #100f0f;
+    --color-ink-soft: #6f6e69;
+    --color-ink-muted: #6f6e69;
     --color-rule: #2c241d;
     --color-border-soft: #a1a1a1;
     --color-border-strong: #17120f;
