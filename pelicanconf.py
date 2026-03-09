@@ -10,7 +10,7 @@ FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="ht
 SITE_AUTHOR = "Marc Sleegers"
 SITE_AUTHOR_TITLE = "Principal Software Engineer"
 ICONS_PATH = "images/icons"
-SOCIAL_IMAGE_FILENAME = "portrait-204.jpg"
+SOCIAL_IMAGE_FILENAME = "portrait.jpg"
 SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
 ENABLE_HOME_IDENTITY_NAME = False
 ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
