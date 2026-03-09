@@ -50,12 +50,14 @@
 
 	<!-- Stylesheets and Web Fonts -->
 	{% assets filters="cssmin", output="style.min.css", "style.css" %}
-	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
+	{% set stylesheet_href = SITEURL ~ '/' ~ ASSET_URL %}
+	<link rel="stylesheet" href="{{ stylesheet_href }}" type="text/css">
 	{% endassets %}
 	{% if GOOGLE_FONTS %}
+	{% set google_fonts_href = GOOGLE_FONTS_BASE_URL ~ '?family=' ~ (GOOGLE_FONTS | join('|') | replace(' ', '+')) ~ '&display=swap' %}
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="{{ GOOGLE_FONTS_BASE_URL }}?family={{ GOOGLE_FONTS | join('|') | replace(' ', '+') }}&display=swap" rel="stylesheet" type="text/css">
+	<link href="{{ google_fonts_href }}" rel="stylesheet" type="text/css">
 	{% endif %}
 
 	<!-- Favicons -->

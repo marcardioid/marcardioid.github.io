@@ -2,7 +2,7 @@
 {% set active_page = 'writing' %}
 {% set categories_url = SITEURL ~ '/' ~ CATEGORIES_URL %}
 {% set categories_description = "Browse all " ~ (CATEGORY_TITLE | lower) ~ "." %}
-{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
 {% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
 {% block description %}{{ categories_description }}{% endblock %}

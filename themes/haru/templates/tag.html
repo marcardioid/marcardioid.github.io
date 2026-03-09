@@ -2,7 +2,7 @@
 {% set active_page = 'writing' %}
 {% set tag_url = SITEURL ~ '/' ~ tag.url %}
 {% set tag_description = BLOG_TITLE ~ " tagged '" ~ tag ~ "'." %}
-{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
 {% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
 {% block description %}{{ tag_description }}{% endblock %}

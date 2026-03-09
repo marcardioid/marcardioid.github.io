@@ -2,7 +2,8 @@
 {% set active_page = 'home' %}
 {% block body_class %} class="home-page"{% endblock %}
 {% set home_url = SITEURL ~ '/' ~ page.url %}
-{% set profile_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set profile_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
+{% set profile_home_image_base = SITEURL ~ '/' ~ ICONS_PATH %}
 {% set profile_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
 {% block description %}{{ INDEX_DESCRIPTION }}{% endblock %}
@@ -38,13 +39,64 @@
 		"sameAs": {{ SOCIAL_PROFILE_URLS | tojson }}
 	}
 	</script>
+	<style>
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		.home-page article {
+			max-width: 78rem;
+		}
+
+		.home-layout {
+			margin-bottom: 1.5rem;
+			padding-top: 1.5rem;
+			display: grid;
+			grid-template-columns: minmax(250px, 330px) minmax(0, 1fr);
+			gap: 3rem;
+			align-items: start;
+		}
+
+		.home-avatar {
+			width: 204px;
+			height: auto;
+			max-width: 100%;
+			display: block;
+			margin: 0 0 0.75rem 0;
+			border: 3px solid #fafafa;
+		}
+
+		.home-copy {
+			max-width: 78ch;
+		}
+
+		@media only screen and (max-width: 767px) {
+			.home-layout {
+				grid-template-columns: 1fr;
+				gap: 1.5rem;
+			}
+
+			.home-avatar {
+				width: 136px;
+			}
+		}
+	</style>
 {% endblock %}
 
 {% block content %}
 					<section class="home-layout">
 							<div class="home-identity">
 								<a class="home-identity-link home-avatar-link" href="/">
-									<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ SITEURL }}/{{ ICONS_PATH }}/avatar.jpg">
+									<picture>
+										<source
+											type="image/webp"
+											srcset="{{ profile_home_image_base }}/portrait-136.webp 136w, {{ profile_home_image_base }}/portrait-204.webp 204w, {{ profile_home_image_base }}/portrait-408.webp 408w"
+											sizes="(max-width: 767px) 136px, 204px"
+										>
+										<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ profile_home_image_base }}/{{ SOCIAL_IMAGE_FILENAME }}" width="204" height="280" fetchpriority="high" decoding="async">
+									</picture>
 								</a>
 								{% if ENABLE_HOME_IDENTITY_NAME %}
 								<a class="home-identity-link home-name-link" href="/">

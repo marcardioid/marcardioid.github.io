@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% set active_page = 'writing' %}
 {% set tags_url = SITEURL ~ '/' ~ TAGS_URL %}
-{% set tags_description = "Browse all tags in " ~ BLOG_TITLE ~ "." %}
-{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set tags_description = "Browse all tags." %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
 {% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
 {% block description %}{{ tags_description }}{% endblock %}

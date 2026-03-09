@@ -12,7 +12,7 @@
 {% set archive_url = SITEURL ~ '/' ~ archive_path %}
 {% set archive_title = BLOG_TITLE ~ " for " ~ (period | reverse | join(' ')) %}
 {% set archive_description = BLOG_TITLE ~ " archive for " ~ (period | reverse | join(', ')) ~ ". Read all " ~ (BLOG_TITLE | lower) ~ " by " ~ SITE_AUTHOR ~ "." %}
-{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/avatar.jpg' %}
+{% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
 {% set social_image_alt = SOCIAL_IMAGE_ALT | default('Portrait of ' ~ SITE_AUTHOR) %}
 
 {% block description %}{{ archive_description }}{% endblock %}
