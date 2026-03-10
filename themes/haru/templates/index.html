@@ -47,7 +47,7 @@
 						</h2>
 						<p class="archive-metadata">
 							<time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time>
-							{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+							{% if article.readtime is defined%}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ "&lt;1" if article.readtime < 1 else article.readtime }} min read{% endif %}
 						</p>
 						{% if teaser %}
 						<p class="archive-subtitle">{{ teaser | truncate(ARTICLE_LISTING_SUMMARY_TRUNCATE, False, '…') }}</p>
