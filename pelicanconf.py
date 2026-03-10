@@ -15,6 +15,8 @@ SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
 ENABLE_HOME_IDENTITY_NAME = False
 ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
 ROBOTS_NOINDEX_DEFAULT = "noindex,follow"
+ENABLE_TOC = True
+ENABLE_SIDENOTES = True
 
 TWITTER_USERNAME = "@marcardioid"
 SOCIAL_PROFILE_URLS = [
@@ -24,8 +26,8 @@ SOCIAL_PROFILE_URLS = [
 INDEX_DESCRIPTION = "Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
 
 NAVIGATION_ITEMS = [
-    # ("/", "home", "Home"),
-    # ("/writing/", "writing", "Writing"),
+    ("/", "home", "Home"),
+    ("/writing/", "writing", "Writing"),
     # ("/talks/", "talks", "Talks"),
     # ("/research/", "research", "Research"),
     # ("/uses/", "uses", "Uses"),
@@ -33,6 +35,7 @@ NAVIGATION_ITEMS = [
 ]
 
 GOOGLE_FONTS = [
+    "Fraunces:opsz,wght@9..144,600..900",
     "Inter:ital,wght@0,400..900;1,400..900",
     "IBM Plex Mono:400,500,700",
 ]
@@ -154,7 +157,7 @@ PAGE_EXCLUDES = ["extra"]
 ARTICLE_EXCLUDES = ["extra"]
 
 PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "lazy-images"]
+PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "extract_toc", "editorial_footnotes", "lazy-images"]
 
 GOOGLE_ANALYTICS = "G-16VCVC4J5J"
 

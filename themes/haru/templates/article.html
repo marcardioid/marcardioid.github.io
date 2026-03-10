@@ -15,6 +15,7 @@
 	<link rel="canonical" href="{{ article_url }}" />
 {% endblock %}
 {% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
+{% block body_class %} class="article-page"{% endblock %}
 
 {% block meta %}
 	<!-- Twitter Cards and Open Graph -->
@@ -64,19 +65,33 @@
 					<div id="reading-progress-fill"></div>
 				</div>
 
+				<div class="article-layout">
 				<header class="entry-header">
 					<p class="entry-kicker"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a>{% if article_category_name and article_category_name != DEFAULT_CATEGORY %} / <a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article_category_name | lower }}">{{ article_category_name }}</a>{% endif %}</p>
-					<h1 class="title entry-title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
+					<h1 class="title entry-title">{{ article.title }}</h1>
 					<p class="article-meta">
 						<time datetime="{{ article.date }}">{{ article.locale_date }}</time>
 						{% if article.modified and not article.modified == article.date %}<span class="archive-dot" aria-hidden="true">&bull;</span> updated <time datetime="{{ article.modified }}">{{ article.modified|strftime('%B %d, %Y') }}</time> {% endif %}
-						{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+						{% if article.readtime is defined%}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ "&lt;1" if article.readtime < 1 else article.readtime }} min read{% endif %}
 					</p>
 				</header>
 
+					{% if ENABLE_TOC and article.toc %}
+					<aside class="article-sidebar article-sidebar--toc" aria-label="Table of Contents">
+						{{ article.toc | safe }}
+					</aside>
+					{% endif %}
+
+					<div class="article-main">
 				<div class="content entry-content">
 					{{ article.content }}
 				</div>
+				{% if article.footnotes_html %}
+				<section class="article-endnotes" aria-labelledby="article-endnotes-title">
+					<h2 class="article-apparatus-title" id="article-endnotes-title">Footnotes</h2>
+					{{ article.footnotes_html | safe }}
+				</section>
+				{% endif %}
 				{% if article.series %}
 				<div id="series">
 					<p>This post is part {{ article.series.index }} of the '{{ article.series.name }}' series:</p>
@@ -119,12 +134,16 @@
 					})();
 					</script>
 				{% endif %}
+					</div>
+				</div>
 				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/reading-progress.js" %}
 				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}
-				{% assets filters="rjsmin", output="js/toc-toggle.min.js", "js/toc-toggle.js" %}
+				{% if ENABLE_TOC and article.toc %}
+				{% assets filters="rjsmin", output="js/toc-active.min.js", "js/toc-active.js" %}
 				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}
+				{% endif %}
 				{% assets filters="rjsmin", output="js/code-copy.min.js", "js/code-copy.js" %}
 				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}

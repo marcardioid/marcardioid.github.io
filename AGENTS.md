@@ -39,6 +39,8 @@ Use `make sync` for reproducible local and CI parity. Use `make sync-upgrade` an
 
 ## Pelican-First Rule
 - Prefer built-in functionality from Pelican core, Pelican plugins, Markdown, Markdown extensions, and Pelican templating logic before adding custom scripts or glue code.
+- Minimize client-side JavaScript when possible, especially for DOM manipulation; prefer solving problems during static site generation or with a Pelican plugin whenever feasible.
+- If external installs, package additions, or user-run setup commands are needed, ask the user to run them instead of writing unnecessary substitute code.
 - Use custom code only when native functionality is insufficient for the requirement.
 - Active plugin behavior is sourced from `pelicanconf.py` (`PLUGINS`) and dependency declarations in `pyproject.toml`.
 - Current plugins and purpose:
@@ -48,6 +50,7 @@ Use `make sync` for reproducible local and CI parity. Use `make sync-upgrade` an
   - `share_post`: Provides social sharing metadata/helpers.
   - `series`: Supports article series ordering and linking.
   - `readtime`: Adds estimated reading time metadata.
+  - `extract_toc`: Extracts generated Markdown TOCs into `article.toc` for template-controlled placement.
 - References:
   - https://getpelican.com/
   - https://docs.getpelican.com/en/latest/
