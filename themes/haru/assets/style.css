@@ -5,7 +5,7 @@
     --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --font-size-body: 1.08rem;
-    --reading-width: 74ch;
+    --reading-width: 68ch;
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 0.75rem;
@@ -82,7 +82,7 @@
     --article-rail-width: 15rem;
     --article-note-min-width: 14rem;
     --article-note-width: 15rem;
-    --article-layout-gap: 1rem;
+    --article-layout-gap: 3.5rem;
     --article-sticky-top: 5.4rem;
     --article-anchor-offset: 8rem;
 }
@@ -378,11 +378,16 @@ acronym,
 
 .footnote-ref {
     padding-left: 1px;
-    font-size: 0.78em;
-    line-height: 0.5em;
     vertical-align: baseline;
     position: relative;
     top: -0.42em;
+    display: inline-block;
+    margin-right: 0;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.55;
 }
 
 .footnote-ref,
@@ -1256,16 +1261,20 @@ article img.img-size-medium {
     margin-right: 0;
     color: var(--primary-theme-color);
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     line-height: 1.55;
-    vertical-align: baseline;
+    padding-left: 1px;
+    top: -0.42em;
+    position: relative;
 }
 
 .sidenote-content {
     display: block;
     min-width: 0;
+    text-justify: auto;
+    text-align-last: left;
 }
 
 #series {
@@ -1670,9 +1679,15 @@ footer hr {
     }
 }
 
+@media only screen and (max-width: 1440px) {
+    :root {
+        --article-layout-gap: var(--space-7);
+    }
+}
+
 @media only screen and (max-width: 1379px) {
     :root {
-        --article-layout-gap: var(--space-6);
+        --article-layout-gap: var(--space-5);
     }
 
     .article-layout > .entry-header,
