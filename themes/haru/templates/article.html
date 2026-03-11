@@ -60,11 +60,15 @@
 	</script>
 {% endblock %}
 
-{% block content %}
-				<div id="reading-progress" aria-hidden="true">
-					<div id="reading-progress-fill"></div>
-				</div>
+{% block nav_progress %}
+					{% if article.readtime is not defined or (article.readtime is defined and article.readtime > 0) %}
+					<div id="reading-progress" aria-hidden="true">
+						<div id="reading-progress-fill"></div>
+					</div>
+					{% endif %}
+{% endblock %}
 
+{% block content %}
 				<div class="article-layout">
 				<header class="entry-header">
 					<p class="entry-kicker"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a>{% if article_category_name and article_category_name != DEFAULT_CATEGORY %} / <a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article_category_name | lower }}">{{ article_category_name }}</a>{% endif %}</p>
