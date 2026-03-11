@@ -114,7 +114,9 @@
 			</article>
 		</main>
 
-		<footer>{% block footer %}{% endblock %}</footer>
+		{% block footer %}
+		<footer>{% include "includes/site-footer.html" %}</footer>
+		{% endblock %}
 	</div>
 </body>
 
