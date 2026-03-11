@@ -1136,6 +1136,29 @@ article img.img-size-medium {
     max-width: 70ch;
 }
 
+.article-layout .article-main {
+    grid-area: main;
+    width: 100%;
+    max-width: var(--reading-width);
+    min-width: 0;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.article-sidebar--toc {
+    grid-area: main;
+    justify-self: start;
+    align-self: start;
+    width: var(--article-rail-width);
+    margin-left: var(--space-4);
+    margin-right: var(--space-2);
+    margin-top: 0;
+    max-height: 72vh;
+    overflow: auto;
+    position: sticky;
+    top: var(--article-sticky-top);
+}
+
 .toc {
     margin: 0;
     padding: var(--space-2) 0 0 0;
@@ -1615,29 +1638,6 @@ footer hr {
 }
 
 @media only screen and (min-width: 1380px) {
-    .article-layout .article-main {
-        grid-area: main;
-        width: 100%;
-        max-width: var(--reading-width);
-        min-width: 0;
-        margin: 0 auto;
-        overflow: visible;
-    }
-
-    .article-sidebar--toc {
-        grid-area: main;
-        justify-self: start;
-        align-self: start;
-        width: var(--article-rail-width);
-        margin-left: var(--space-4);
-        margin-right: var(--space-2);
-        margin-top: 0;
-        max-height: 72vh;
-        overflow: auto;
-        position: sticky;
-        top: var(--article-sticky-top);
-    }
-
     .article-layout:has(.has-sidenote-cluster) .article-endnotes {
         display: none;
     }
@@ -1697,9 +1697,14 @@ footer hr {
         margin: 0 auto;
     }
 
-    .article-sidebar--toc,
     .sidenote-cluster,
     .sidenote {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .article-sidebar--toc {
         display: none;
     }
 }
