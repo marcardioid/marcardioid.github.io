@@ -78,6 +78,9 @@
 						{% if article.modified and not article.modified == article.date %}<span class="archive-dot" aria-hidden="true">&bull;</span> updated <time datetime="{{ article.modified }}">{{ article.modified|strftime('%B %d, %Y') }}</time> {% endif %}
 						{% if article.readtime is defined%}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ "&lt;1" if article.readtime < 1 else article.readtime }} min read{% endif %}
 					</p>
+					{% if article.image %}
+					<img class="entry-header-image" src="{{ article_image }}" alt="{{ article_image_alt }}">
+					{% endif %}
 				</header>
 
 					{% if ENABLE_TOC and article.toc %}
