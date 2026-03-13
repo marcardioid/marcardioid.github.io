@@ -49,7 +49,7 @@
     --color-surface-subtle: var(--color-bg-panel-strong);
     --color-toc-bg: var(--color-bg-panel);
     --color-note-bg: #f4ecd9;
-    --color-series-bg: var(--color-bg-panel);;
+    --color-series-bg: #f8f3ec;
     --color-warning-border: var(--color-accent);
     --color-warning-bg: #f8e5d0;
     --color-tip-border: var(--color-accent);
@@ -1345,9 +1345,11 @@ article img.img-breakout {
 #series p {
     margin: 0 0 var(--space-2) 0;
     color: var(--color-title);
-    font-family: var(--font-display);
-    font-size: 1.28rem;
-    font-weight: 800;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
 }
 
 #series ol {
