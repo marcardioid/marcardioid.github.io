@@ -24,7 +24,7 @@
     --color-bg-panel-strong: #f1e2cd;
     --color-ink: #100f0f;
     --color-ink-soft: #6f6e69;
-    --color-ink-muted: #6f6e69;
+    --color-ink-muted: #a1a1a1;
     --color-rule: #2c241d;
     --color-border-soft: #a1a1a1;
     --color-border-strong: #17120f;
@@ -44,7 +44,7 @@
     --color-link-hover: var(--color-accent);
     --color-muted: var(--color-ink-muted);
     --color-muted-soft: var(--color-ink-soft);
-    --color-muted-subtle: #7b6d5e;
+    --color-muted-subtle: var(--color-ink-subtle);
     --color-surface: var(--color-bg-panel);
     --color-surface-subtle: var(--color-bg-panel-strong);
     --color-toc-bg: var(--color-bg-panel);
@@ -74,7 +74,8 @@
 
     --space-flow-special-before: 0.85rem;
     --space-flow-special-after: 1.9rem;
-    --site-frame-width: min(94%, 84rem);
+    --site-frame-width: min(94%, 86rem);
+    --article-header-breakout-width: min(94vw, 60rem);
     --article-breakout-width: min(94vw, 60rem);
     --article-header-image-width: var(--article-breakout-width);
     --article-header-image-max-width: none;
@@ -86,8 +87,8 @@
     --article-rail-min-width: 13rem;
     --article-rail-width: 15rem;
     --article-note-min-width: 14rem;
-    --article-note-width: 12rem;
-    --article-layout-gap: 6.5rem;
+    --article-note-width: 11rem;
+    --article-layout-gap: 7.5rem;
     --article-sticky-top: 5.4rem;
     --article-anchor-offset: 8rem;
 }
@@ -210,17 +211,20 @@ h1 {
 }
 
 .entry-title {
-    margin: var(--space-2) 0 var(--space-4) -6px;
-    max-width: 16ch;
+    margin: 0.25rem 0 1.25rem 0;
+    margin-inline-start: -0.07em;
+    letter-spacing: -0.02em;
+    max-width: 100%;
     font-family: var(--font-display);
-    font-size: clamp(2.75rem, 7vw, 5rem);
+    font-size: clamp(2.75rem, 7vw, 7rem);
     line-height: 0.93;
     font-weight: 900;
+    text-wrap: balance;
 }
 
 h2,
 .admonition-title {
-    margin: var(--space-7) 0 var(--space-3) 0;
+    margin: var(--space-8) 0 var(--space-3) 0;
     font-size: clamp(1.68rem, 1.34rem + 1.2vw, 2.52rem);
     font-weight: 900;
 }
@@ -252,8 +256,8 @@ h4 {
 }
 
 article p {
-    margin: 0 0 var(--space-4) 0;
-    color: var(--color-text);
+    margin: 0 0 var(--space-3) 0;
+    color: var(--color-ink);
 }
 
 em {
@@ -291,7 +295,7 @@ a:focus-visible {
 
 ul,
 ol {
-    margin: 0 0 var(--space-flow-special-after) 1.3rem;
+    margin: 0.8em 0 var(--space-flow-special-after) 1.3rem;
     padding: 0;
 }
 
@@ -730,7 +734,6 @@ article img.img-breakout {
     padding: 1rem var(--space-4) 0.8rem;
     box-shadow: none;
     backdrop-filter: blur(0);
-    transition: background 160ms ease, backdrop-filter 160ms ease;
 }
 
 .site-nav::after {
@@ -1045,14 +1048,14 @@ article img.img-breakout {
 
 .entry-header {
     margin-bottom: var(--space-2);
-    padding-bottom: var(--space-4);
+    padding-bottom: var(--space-6);
     border-bottom: 0;
 }
 
 .article-layout > .entry-header {
     grid-area: header;
     width: 100%;
-    max-width: var(--reading-width);
+    max-width: var(--article-header-breakout-width);
     margin: 0 auto;
 }
 
@@ -1211,7 +1214,7 @@ article img.img-breakout {
 .toc .toctitle {
     display: block;
     margin: 0 0 var(--space-3) 0;
-    color: var(--color-muted);
+    color: var(--color-ink-muted);
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 600;
@@ -1234,7 +1237,7 @@ article img.img-breakout {
 
 .toc a {
     display: block;
-    color: var(--color-muted-soft);
+    color: var(--color-ink-muted);
     font-size: 0.9rem;
     text-decoration: none;
     position: relative;
@@ -1249,7 +1252,7 @@ article img.img-breakout {
 .toc ol ul,
 .toc ol ol {
     margin-top: var(--space-2);
-    padding-left: 0.95rem;
+    padding-left: 0.5rem;
     border-left: 1px solid color-mix(in srgb, var(--color-border-soft) 46%, transparent);
 }
 
@@ -1265,19 +1268,19 @@ article img.img-breakout {
 
 .toc a:hover,
 .toc a:focus-visible {
-    color: var(--color-title);
+    color: var(--color-ink-soft);
     text-decoration: underline;
     text-decoration-thickness: 1px;
 }
 
 .toc a.is-active {
-    color: var(--color-title);
+    color: var(--color-ink-soft);
     font-weight: 600;
 }
 
 .article-apparatus-title {
     margin: 0 0 var(--space-4) 0;
-    color: var(--color-muted);
+    color: var(--color-ink-muted);
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 600;
@@ -1304,6 +1307,21 @@ article img.img-breakout {
     margin: 0 0 0 1.15rem;
 }
 
+.article-endnotes .footnote ol li {
+    list-style-type: none;
+    counter-increment: list;
+    position: relative;
+}
+
+.article-endnotes .footnote ol li:after {
+    content: counter(list) ".";
+    position: absolute;
+    left: -1.2em;
+    top: 0;
+    color: var(--primary-theme-color);
+    font-weight: 600;
+}
+
 .article-endnotes .footnote li + li {
     margin-top: var(--space-3);
 }
@@ -1321,10 +1339,10 @@ article img.img-breakout {
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.08em;
-    line-height: 1.55;
-    padding-left: 1px;
-    top: -0.42em;
+    line-height: 1.65;
+    padding-left: 0.5rem;
     position: relative;
+    border-left: 1px solid color-mix(in srgb, var(--color-border-soft) 46%, transparent);
 }
 
 .sidenote-content {
@@ -1332,12 +1350,13 @@ article img.img-breakout {
     min-width: 0;
     text-justify: auto;
     text-align-last: left;
+    color: var(--color-ink-soft);
 }
 
 #series {
     margin-top: var(--space-7);
     padding: var(--space-4) var(--space-5);
-    border: 1px solid color-mix(in srgb, var(--color-border-soft) 74%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-border-soft) 70%, transparent);
     border-top: 4px solid var(--color-accent);
     background: var(--color-series-bg);
 }
@@ -1462,7 +1481,7 @@ article img.img-breakout {
 
 .neighbour-label {
     display: block;
-    color: var(--color-muted);
+    color: var(--color-ink-muted);
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 500;
@@ -1486,7 +1505,7 @@ article img.img-breakout {
     bottom: 0;
     height: 1px;
     overflow: hidden;
-    background: color-mix(in srgb, var(--color-border-soft) 48%, transparent);
+    background: color-mix(in srgb, var(--color-border-soft) 46%, transparent);
     z-index: 0;
     opacity: 0;
     pointer-events: none;
@@ -1500,7 +1519,7 @@ article img.img-breakout {
 #reading-progress-fill {
     position: absolute;
     inset: 0;
-    background: color-mix(in srgb, var(--primary-theme-color) 74%, transparent);
+    background: color-mix(in srgb, var(--primary-theme-color) 82%, transparent);
     transform: scaleX(0);
     transform-origin: left center;
     will-change: transform;
@@ -1562,7 +1581,7 @@ footer hr {
 }
 
 .site-social-icon {
-    fill: #1C1C1C;
+    fill: var(--color-ink);
     fill-rule: evenodd;
     stroke-width: 0;
     stroke-linecap: round;
@@ -1672,7 +1691,7 @@ footer hr {
     }
 }
 
-@media only screen and (min-width: 1380px) {
+@media only screen and (min-width: 1400px) {
     .article-layout:has(.has-sidenote-cluster) .article-endnotes {
         display: none;
     }
@@ -1683,15 +1702,16 @@ footer hr {
 
     .entry-content .sidenote-cluster {
         position: absolute;
-        top: 0.08rem;
         left: 100%;
         width: var(--article-note-width);
         margin-left: var(--article-layout-gap);
-        padding: 0 var(--space-2) var(--space-2) var(--space-5);
+        padding: 0 var(--space-2) var(--space-2) 0;
         background: var(--color-bg);
         display: grid;
         row-gap: var(--space-3);
         z-index: 1;
+        top: -0.36em;
+        
     }
 
     .entry-content .sidenote {
@@ -1720,7 +1740,7 @@ footer hr {
     }
 }
 
-@media only screen and (max-width: 1389px) {
+@media only screen and (max-width: 1400px) {
 
     .article-layout > .entry-header,
     .article-layout .article-main {
@@ -1735,7 +1755,7 @@ footer hr {
     }
 }
 
-@media only screen and (max-width: 1390px) {
+@media only screen and (max-width: 1399px) {
     .article-sidebar--toc {
         display: none;
     }
@@ -1821,20 +1841,20 @@ footer hr {
     }
 
     h1 {
-        margin: 0 0 var(--space-4) 0;
+        margin: 0 0 var(--space-5) 0;
     }
 
     h2,
     .admonition-title {
-        margin: var(--space-5) 0 var(--space-3) 0;
+        margin: var(--space-7) 0 var(--space-2) 0;
     }
 
     h3 {
-        margin: var(--space-4) 0 var(--space-2) 0;
+        margin: var(--space-6) 0 var(--space-2) 0;
     }
 
     h4 {
-        margin: var(--space-3) 0 var(--space-2) 0;
+        margin: var(--space-5) 0 var(--space-2) 0;
     }
 
     .codehilitetable,
