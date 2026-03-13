@@ -35,6 +35,7 @@ Use `make sync` for reproducible local and CI parity. Use `make sync-upgrade` an
 - Python config files follow PEP 8 style: 4-space indentation, `UPPER_CASE` config constants.
 - Content files use Pelican metadata headers (`Title`, `Date`, `Summary`, etc.) at the top of Markdown files.
 - Keep theme edits localized: templates in `themes/haru/templates/`, styling in `themes/haru/static/style.css`.
+- Theme CSS is minified through `webassets` with the `cssmin` filter; avoid `calc()` in theme styles unless you verify the built `style.min.css` and rendered page, because the current minifier can rewrite `calc()` incorrectly.
 - Prefer descriptive, human-readable article filenames; keep page slugs stable once published.
 
 ## Pelican-First Rule

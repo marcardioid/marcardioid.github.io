@@ -75,14 +75,15 @@
     --space-flow-special-before: 0.85rem;
     --space-flow-special-after: 1.9rem;
     --site-frame-width: min(94%, 84rem);
+    --article-breakout-width: min(94vw, 60rem);
     --toy-height: 280px;
     --site-header-top: 0;
     --site-header-container-top: 6.5rem;
     --article-rail-min-width: 13rem;
     --article-rail-width: 15rem;
     --article-note-min-width: 14rem;
-    --article-note-width: 15rem;
-    --article-layout-gap: 3.5rem;
+    --article-note-width: 12rem;
+    --article-layout-gap: 6.5rem;
     --article-sticky-top: 5.4rem;
     --article-anchor-offset: 8rem;
 }
@@ -607,8 +608,8 @@ article img {
     max-width: 100%;
     margin: var(--space-6) auto;
     display: block;
-    border: 2px solid color-mix(in srgb, var(--color-border-soft) 72%, transparent);
-    border-radius: var(--radius-sm);
+    border: 0;
+    border-radius: 0;
 }
 
 article img.img-inline {
@@ -616,14 +617,23 @@ article img.img-inline {
     width: 1.6rem;
     max-width: none;
     margin: 0 0.18rem;
-    border-radius: 0;
     border: 0;
+    border-radius: 0;
     vertical-align: text-bottom;
 }
 
 article img.img-size-medium {
     width: 100%;
     max-width: 260px;
+}
+
+article img.img-breakout {
+    width: var(--article-breakout-width);
+    max-width: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: var(--space-6) 0;
 }
 
 .site-header {
@@ -1685,14 +1695,11 @@ footer hr {
 
 @media only screen and (max-width: 1440px) {
     :root {
-        --article-layout-gap: var(--space-7);
+        --article-layout-gap: 6rem;
     }
 }
 
-@media only screen and (max-width: 1379px) {
-    :root {
-        --article-layout-gap: var(--space-5);
-    }
+@media only screen and (max-width: 1389px) {
 
     .article-layout > .entry-header,
     .article-layout .article-main {
@@ -1707,7 +1714,7 @@ footer hr {
     }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1390px) {
     .article-sidebar--toc {
         display: none;
     }
@@ -1717,6 +1724,15 @@ footer hr {
     :root {
         --site-frame-width: min(95%, 80rem);
         --site-header-container-top: 5.8rem;
+    }
+
+    article img.img-breakout {
+        width: 100%;
+        max-width: 100%;
+        position: static;
+        left: auto;
+        transform: none;
+        margin: var(--space-6) auto;
     }
 
     .home-layout {
