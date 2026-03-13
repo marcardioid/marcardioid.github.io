@@ -1157,19 +1157,19 @@ article img.img-breakout {
 }
 
 .archive-metadata {
-    margin: var(--space-2) 0 0 0;
+    margin: var(--space-1) 0 0 0;
     color: var(--color-muted-soft);
     font-family: var(--font-body);
-    font-size: 0.8em;
-    letter-spacing: 0.11em;
+    font-size: 0.86rem;
+    letter-spacing: 0.01em;
     text-transform: none;
 }
 
-.archive-subtitle {
+.archive-summary {
     margin: var(--space-2) 0 0 0;
-    color: var(--color-text);
-    font-size: 1.03em;
-    line-height: 1.68;
+    color: var(--color-ink-soft);
+    font-size: 0.94em;
+    line-height: 1.55;
     max-width: 70ch;
 }
 
