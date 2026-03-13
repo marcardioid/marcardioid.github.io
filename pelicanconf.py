@@ -157,7 +157,7 @@ PAGE_EXCLUDES = ["extra"]
 ARTICLE_EXCLUDES = ["extra"]
 
 PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "extract_toc", "editorial_footnotes", "lazy-images"]
+PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "extract_toc", "editorial_footnotes", "lazy-images", "article_image_metadata"]
 
 GOOGLE_ANALYTICS = "G-16VCVC4J5J"
 
