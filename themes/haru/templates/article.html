@@ -100,8 +100,9 @@
 				</section>
 				{% endif %}
 				{% if article.series %}
+				{% if article.series.all|length > 1 %}
 				<div id="series">
-					<p>This post is part {{ article.series.index }} of the '{{ article.series.name }}' series:</p>
+					<p>Series: {{ article.series.name }}</p>
 					<ol>
 						{% for part_article in article.series.all %}
 						<li {% if part_article==article %}class="active" {% endif %}>
@@ -110,6 +111,7 @@
 						{% endfor %}
 					</ol>
 				</div>
+				{% endif %}
 				{% endif %}
 				{% if article.next_article or article.prev_article %}
 				<div id="related-articles">
