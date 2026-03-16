@@ -37,7 +37,7 @@
 					<ul class="archive-list">
 						{% for article in articles | sort(attribute='date', reverse=True) %}
 						{% set teaser = article.summary | default('', true) | striptags | trim %}
-						<li class="archive-item">
+						<li class="archive-item archive-item--article">
 							<p class="entry-kicker">{% if article.category %}<a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article.category | lower }}">{{ article.category }}</a>{% endif %}</p>
 							<h2 class="archive-heading">
 								<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
