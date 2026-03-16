@@ -17,6 +17,7 @@ ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
 ROBOTS_NOINDEX_DEFAULT = "noindex,follow"
 ENABLE_TOC = True
 ENABLE_SIDENOTES = True
+ENABLE_EXTERNAL_LINK_STYLE = True
 
 TWITTER_USERNAME = "@marcardioid"
 SOCIAL_PROFILE_URLS = [
@@ -157,7 +158,7 @@ PAGE_EXCLUDES = ["extra"]
 ARTICLE_EXCLUDES = ["extra"]
 
 PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "extract_toc", "editorial_footnotes", "lazy-images", "article_image_metadata"]
+PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "extract_toc", "editorial_footnotes", "lazy-images", "article_image_metadata", "external_links"]
 
 GOOGLE_ANALYTICS = "G-16VCVC4J5J"
 
