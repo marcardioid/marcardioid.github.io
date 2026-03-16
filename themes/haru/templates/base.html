@@ -43,7 +43,7 @@
 	{% endif %}
 	{% set toy_enabled = ENABLE_TOY | default(true) %}
 	{% if toy_enabled %}
-	{% assets filters="rjsmin", output="js/meadow-toy.min.js", "js/meadow-toy.js" %}
+	{% assets filters="rjsmin", output="js/meadow-toy.min.js", "js/toys/meadow-toy.js" %}
 	<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 	{% endassets %}
 	{% endif %}

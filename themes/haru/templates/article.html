@@ -150,15 +150,15 @@
 				{% endif %}
 					</div>
 				</div>
-				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/reading-progress.js" %}
+				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/article/reading-progress.js" %}
 				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}
 				{% if ENABLE_TOC and article.toc %}
-				{% assets filters="rjsmin", output="js/toc-active.min.js", "js/toc-active.js" %}
+				{% assets filters="rjsmin", output="js/toc-active.min.js", "js/article/toc-active.js" %}
 				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}
 				{% endif %}
-				{% assets filters="rjsmin", output="js/code-copy.min.js", "js/code-copy.js" %}
+				{% assets filters="rjsmin", output="js/code-copy.min.js", "js/article/code-copy.js" %}
 				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}
 {% endblock %}
