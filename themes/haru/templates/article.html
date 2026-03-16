@@ -16,6 +16,11 @@
 {% endblock %}
 {% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
 {% block body_class %} class="article-page"{% endblock %}
+{% block extra_styles %}
+	{% assets filters="cssmin", output="article.min.css", "article.css" %}
+	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css">
+	{% endassets %}
+{% endblock %}
 
 {% block meta %}
 	<!-- Twitter Cards and Open Graph -->
