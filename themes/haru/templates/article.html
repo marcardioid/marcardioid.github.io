@@ -104,8 +104,16 @@
 							{{ article.footnotes_html | safe }}
 						</section>
 						{% endif %}
+						{% set article_reply_subject = ('Re: ' ~ (article.title | striptags)) | urlencode %}
+						<a class="article-reply-link" href="mailto:mail@marcsleegers.com?subject={{ article_reply_subject }}">
+							<svg class="article-reply-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<path d="M3.75 6.75h16.5a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5v-7.5a1.5 1.5 0 0 1 1.5-1.5Z" />
+								<path d="m3 7.5 9 6 9-6" />
+							</svg>
+							<span>Reply via email</span>
+						</a>
 						{% if article.series %}
-						{% if article.series.all|length > 1 %}
+						{% if article.series.all|length > 0 %}
 						<div id="series">
 							<p>Series: {{ article.series.name }}</p>
 							<ol>
