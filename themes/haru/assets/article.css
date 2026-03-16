@@ -494,24 +494,46 @@ article img.img-breakout {
     top: 0.46rem;
     right: 0.46rem;
     margin: 0;
-    padding: 0.22rem 0.5rem;
-    border: 1px solid var(--code-border);
-    background: var(--code-bg);
+    width: 2.3rem;
+    height: 2.3rem;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
+    background: transparent;
     color: var(--code-text);
-    font-family: var(--font-mono);
-    font-size: 0.67rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    line-height: 1.1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     z-index: 2;
+    transition: opacity 140ms ease, visibility 140ms ease, background 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
-.code-copy-button:hover {
-    color: var(--color-link-inverse);
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+.code-copy-button__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: none;
+}
+
+.code-copy-button[data-copy-state="copied"],
+.code-copy-button[data-copy-state="failed"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.code-copy-button[data-copy-state="copied"] {
+    color: var(--color-accent);
+}
+
+.code-copy-button[data-copy-state="failed"] {
+    color: var(--color-accent-alt);
+}
+
+.code-copy-button:hover,
+.code-copy-button:focus-visible {
+    background: var(--color-surface-muted);
+    border-color: var(--code-border);
 }
 
 .code-copy-button:focus-visible {
@@ -519,16 +541,29 @@ article img.img-breakout {
     outline-offset: 2px;
 }
 
-.code-copy-button[data-copy-state="copied"] {
-    color: var(--color-link-inverse);
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+.code-copy-button[data-copy-state="copied"]:hover,
+.code-copy-button[data-copy-state="copied"]:focus-visible {
+    color: var(--color-accent);
 }
 
-.code-copy-button[data-copy-state="failed"] {
-    color: var(--color-link-inverse);
-    background: var(--color-accent-alt);
-    border-color: var(--color-accent-alt);
+.code-copy-button[data-copy-state="failed"]:hover,
+.code-copy-button[data-copy-state="failed"]:focus-visible {
+    color: var(--color-accent-alt);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .code-copy-button {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .codehilite:hover .code-copy-button,
+    .codehilite:focus-within .code-copy-button {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
 }
 
 pre code {
@@ -626,8 +661,13 @@ pre code {
     }
 
     .code-copy-button {
-        font-size: 0.62rem;
-        padding: 0.2rem 0.45rem;
+        width: 2.05rem;
+        height: 2.05rem;
+    }
+
+    .code-copy-button__icon {
+        width: 1rem;
+        height: 1rem;
     }
 
     .footnote-ref {
