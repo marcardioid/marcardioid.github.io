@@ -785,8 +785,10 @@ article img.img-size-medium {
     transform-origin: 70% 70%;
 }
 
-.home-heading:hover .wave-emoji {
+.home-heading > .wave-emoji:hover {
+    cursor: grab;
     animation: wave-hello 760ms ease-in-out 1;
+    animation-iteration-count: infinite;
 }
 
 .home-body {
