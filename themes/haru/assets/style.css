@@ -1369,7 +1369,6 @@ footer hr {
 
 @media only print {
     footer,
-    #disqus_thread,
     #related-articles,
     #back-to-home,
     #share,

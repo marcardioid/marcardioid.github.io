@@ -95,59 +95,45 @@
 					{% endif %}
 
 					<div class="article-main">
-				<div class="content entry-content">
-					{{ article.content }}
-				</div>
-				{% if article.footnotes_html %}
-				<section class="article-endnotes" aria-labelledby="article-endnotes-title">
-					<h2 class="article-apparatus-title" id="article-endnotes-title">Footnotes</h2>
-					{{ article.footnotes_html | safe }}
-				</section>
-				{% endif %}
-				{% if article.series %}
-				{% if article.series.all|length > 1 %}
-				<div id="series">
-					<p>Series: {{ article.series.name }}</p>
-					<ol>
-						{% for part_article in article.series.all %}
-						<li {% if part_article==article %}class="active" {% endif %}>
-							<a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
-						</li>
-						{% endfor %}
-					</ol>
-				</div>
-				{% endif %}
-				{% endif %}
-				{% if article.next_article or article.prev_article %}
-				<div id="related-articles">
-					{% if article.prev_article %}
-					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">
-						<span class="neighbour-label">Previous</span>
-						<span class="neighbour-title">{{ article.prev_article.title | striptags }}</span>
-					</a>
-					{% endif %}
-					{% if article.next_article %}
-					<a class="neighbour-link neighbour-link--next" href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">
-						<span class="neighbour-label">Next</span>
-						<span class="neighbour-title">{{ article.next_article.title | striptags }}</span>
-					</a>
-					{% endif %}
-				</div>
-				{% endif %}
-				{% if DISQUS_SITENAME and article.status != "draft" %}
-				<hr>
-
-				<!-- Disqus -->
-				<div id="disqus_thread"></div>
-				<script type="text/javascript">
-					var disqus_shortname = '{{ DISQUS_SITENAME }}';
-					(function () {
-						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-						dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-					})();
-					</script>
-				{% endif %}
+						<div class="content entry-content">
+							{{ article.content }}
+						</div>
+						{% if article.footnotes_html %}
+						<section class="article-endnotes" aria-labelledby="article-endnotes-title">
+							<h2 class="article-apparatus-title" id="article-endnotes-title">Footnotes</h2>
+							{{ article.footnotes_html | safe }}
+						</section>
+						{% endif %}
+						{% if article.series %}
+						{% if article.series.all|length > 1 %}
+						<div id="series">
+							<p>Series: {{ article.series.name }}</p>
+							<ol>
+								{% for part_article in article.series.all %}
+								<li {% if part_article==article %}class="active" {% endif %}>
+									<a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
+								</li>
+								{% endfor %}
+							</ol>
+						</div>
+						{% endif %}
+						{% endif %}
+						{% if article.next_article or article.prev_article %}
+						<div id="related-articles">
+							{% if article.prev_article %}
+							<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">
+								<span class="neighbour-label">Previous</span>
+								<span class="neighbour-title">{{ article.prev_article.title | striptags }}</span>
+							</a>
+							{% endif %}
+							{% if article.next_article %}
+							<a class="neighbour-link neighbour-link--next" href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">
+								<span class="neighbour-label">Next</span>
+								<span class="neighbour-title">{{ article.next_article.title | striptags }}</span>
+							</a>
+							{% endif %}
+						</div>
+						{% endif %}
 					</div>
 				</div>
 				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/article/reading-progress.js" %}
