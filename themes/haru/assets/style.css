@@ -109,7 +109,9 @@
     --color-bg: var(--theme-color);
     --color-bg-strong: #131b22;
     --color-bg-panel: #172029;
-    --color-bg-panel-strong: #1b252f;
+    --color-bg-panel-soft: #172029;
+    --color-bg-panel-muted: #172029;
+    --color-bg-panel-strong: #172029;
     --color-ink: #f4ede2;
     --color-ink-soft: #cfbfae;
     --color-ink-muted: #aa9782;
