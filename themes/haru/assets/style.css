@@ -1784,15 +1784,17 @@ footer hr {
     .article-layout:has(.has-sidenote-cluster) .article-endnotes {
         display: block;
     }
-
-    .sidenote-cluster,
-    .sidenote {
-        display: none;
-    }
 }
 
 @media only screen and (max-width: 1399px) {
     .article-sidebar--toc {
+        display: none;
+    }
+
+    .sidenote-cluster,
+    .sidenote-number,
+    .sidenote-content,
+    .sidenote {
         display: none;
     }
 }
