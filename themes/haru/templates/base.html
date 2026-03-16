@@ -53,6 +53,7 @@
 	{% set stylesheet_href = SITEURL ~ '/' ~ ASSET_URL %}
 	<link rel="stylesheet" href="{{ stylesheet_href }}" type="text/css">
 	{% endassets %}
+	{% block extra_styles %}{% endblock %}
 	{% if GOOGLE_FONTS %}
 	{% set google_fonts_href = GOOGLE_FONTS_BASE_URL ~ '?family=' ~ (GOOGLE_FONTS | join('|') | replace(' ', '+')) ~ '&display=swap' %}
 	<link rel="preconnect" href="https://fonts.googleapis.com">
