@@ -82,6 +82,17 @@ article img.img-breakout {
     hanging-punctuation: first last;
 }
 
+.entry-content > p:first-of-type::first-letter {
+    float: left;
+    margin-right: 0.42rem;
+    padding-top: 0.08rem;
+    color: var(--color-text-soft);
+    font-family: var(--font-editorial);
+    font-size: 4.4rem;
+    font-weight: 600;
+    line-height: 0.82;
+}
+
 .entry-content ul,
 .entry-content ol {
     margin-top: var(--space-4);
@@ -674,6 +685,12 @@ pre code {
         font-size: 0.8em;
         line-height: 1.2em;
         top: -0.5em;
+    }
+
+    .entry-content > p:first-of-type::first-letter {
+        margin-right: 0.3rem;
+        padding-top: 0.04rem;
+        font-size: 3.4rem;
     }
 }
 
