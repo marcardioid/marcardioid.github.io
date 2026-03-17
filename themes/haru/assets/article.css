@@ -64,6 +64,33 @@ article img.img-breakout {
     margin: 0 auto;
 }
 
+#reading-progress {
+    position: absolute;
+    left: var(--site-nav-underline-inset);
+    right: var(--site-nav-underline-inset);
+    bottom: 0;
+    height: 1px;
+    overflow: hidden;
+    background: var(--color-border-soft);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+}
+
+#reading-progress.is-visible {
+    opacity: 1;
+}
+
+#reading-progress-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+}
+
 .article-meta {
     margin: 0;
     color: var(--color-text-soft);
