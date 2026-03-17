@@ -1,9 +1,15 @@
 (function () {
 	var storageKey = 'site-theme';
+	var delightSecretName = 'daybreak';
+	var delightSecretDurationMs = 900;
+	var delightDoubleClickWindowMs = 420;
 	var root = document.documentElement;
 	var metaThemeColor = document.getElementById('meta-theme-color');
 	var systemThemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
-	var fallbackThemeColors = { light: '#f6f5f1', dark: '#0f1419' };
+	var reducedMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+	var fallbackThemeColors = { light: '#f6f5f1', dark: '#151817' };
+	var delightTimer = 0;
+	var lastToggleAt = 0;
 
 	function isThemeValue(value) {
 		return value === 'light' || value === 'dark';
@@ -75,6 +81,25 @@
 		metaThemeColor.setAttribute('content', themeColor || fallbackThemeColors[theme] || fallbackThemeColors.light);
 	}
 
+	function clearDelightSecret() {
+		if (delightTimer) {
+			window.clearTimeout(delightTimer);
+			delightTimer = 0;
+		}
+
+		root.removeAttribute('data-delight-secret');
+	}
+
+	function triggerDelightSecret() {
+		if (reducedMotionQuery && reducedMotionQuery.matches) {
+			return;
+		}
+
+		clearDelightSecret();
+		root.setAttribute('data-delight-secret', delightSecretName);
+		delightTimer = window.setTimeout(clearDelightSecret, delightSecretDurationMs);
+	}
+
 	function setTheme(toggle, theme, persistTheme) {
 		root.setAttribute('data-theme', theme);
 		updateToggle(toggle, theme);
@@ -101,7 +126,17 @@
 		if (toggle) {
 			toggle.addEventListener('click', function () {
 				var currentTheme = getActiveTheme();
+				var now = Date.now();
+
 				setTheme(toggle, currentTheme === 'dark' ? 'light' : 'dark', true);
+
+				if (now - lastToggleAt <= delightDoubleClickWindowMs) {
+					triggerDelightSecret();
+					lastToggleAt = 0;
+					return;
+				}
+
+				lastToggleAt = now;
 			});
 		}
 
