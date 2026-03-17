@@ -41,7 +41,7 @@
 								<a class="archive-link" href="{{ SITEURL }}/{{ tag.url }}" title="{{ BLOG_TITLE }} tagged '{{ tag }}'">{{ tag }}</a>
 							</h2>
 							<p class="archive-metadata">
-								{{ tagged_articles | count }} post{% if tagged_articles | count != 1 %}s{% endif %}
+								{{ tagged_articles | count }} article{% if tagged_articles | count != 1 %}s{% endif %}
 							</p>
 						</li>
 						{% endfor %}
@@ -52,8 +52,8 @@
 				</div>
 				<div id="related-articles">
 					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ BLOG_URL }}" id="prev-neighbour">
-						<span class="neighbour-label">More</span>
-						<span class="neighbour-title">Browse all writing</span>
+						<span class="neighbour-label">Browse</span>
+						<span class="neighbour-title">All writing</span>
 					</a>
 				</div>
 {% endblock %}

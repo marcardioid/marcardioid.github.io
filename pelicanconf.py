@@ -24,7 +24,7 @@ SOCIAL_PROFILE_URLS = [
     "https://twitter.com/marcardioid",
     "https://github.com/marcardioid",
 ]
-INDEX_DESCRIPTION = "Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
+INDEX_DESCRIPTION = "Principal Software Engineer at Nike writing about architecture, engineering leadership, and data-intensive platforms."
 
 NAVIGATION_ITEMS = [
     ("/", "home", "Home"),

@@ -53,13 +53,13 @@
 						{% endfor %}
 					</ul>
 					{% else %}
-					<p>No {{ BLOG_TITLE | lower }} yet for this tag.</p>
+					<p>No articles tagged '{{ tag }}' yet.</p>
 					{% endif %}
 				</div>
 				<div id="related-articles">
 					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ BLOG_URL }}" id="prev-neighbour">
-						<span class="neighbour-label">More</span>
-						<span class="neighbour-title">Browse all writing</span>
+						<span class="neighbour-label">Browse</span>
+						<span class="neighbour-title">All writing</span>
 					</a>
 				</div>
 {% endblock %}
