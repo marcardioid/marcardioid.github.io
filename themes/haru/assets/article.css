@@ -527,10 +527,15 @@ article img.img-breakout {
     background: var(--code-bg);
 }
 
+.codehilite:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
 .code-copy-button {
     position: absolute;
-    top: 0.46rem;
-    right: 0.46rem;
+    top: 0.25rem;
+    right: 0.25rem;
     margin: 0;
     width: 2.3rem;
     height: 2.3rem;
@@ -592,14 +597,12 @@ article img.img-breakout {
 @media (hover: hover) and (pointer: fine) {
     .code-copy-button {
         opacity: 0;
-        visibility: hidden;
         pointer-events: none;
     }
 
     .codehilite:hover .code-copy-button,
     .codehilite:focus-within .code-copy-button {
         opacity: 1;
-        visibility: visible;
         pointer-events: auto;
     }
 }
