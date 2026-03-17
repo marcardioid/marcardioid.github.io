@@ -712,7 +712,7 @@ pre code {
         position: static;
         left: auto;
         transform: none;
-        margin: var(--space-6) auto;
+        margin: var(--space-1) auto;
     }
 }
 
@@ -724,8 +724,7 @@ pre code {
     }
 
     .article-sidebar--toc {
-        padding: var(--space-3);
-        margin-bottom: var(--space-4);
+        display: none;
     }
 
     .codehilitetable,
