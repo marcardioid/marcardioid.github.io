@@ -47,8 +47,9 @@
     --color-bg-panel-muted: #fafafa;
     --color-bg-panel-strong: #f1e2cd;
     --color-ink: #100f0f;
-    --color-ink-soft: #6f6e69;
+    --color-ink-soft: #474a4d;
     --color-ink-muted: #a1a1a1;
+    --color-ink-strong: #100f0f;
     --color-ink-inverse: #f8f3ec;
     --color-rule: #2c241d;
     --color-rule-soft: #a1a1a1;
@@ -61,7 +62,7 @@
     --color-accent-alt: #d14f2c;
 
     /* Semantic Colours */
-    --color-title: var(--color-ink);
+    --color-title: var(--color-ink-strong);
     --color-text: var(--color-ink);
     --color-text-soft: var(--color-ink-soft);
     --color-text-muted: var(--color-ink-muted);
@@ -115,6 +116,7 @@
     --color-ink: #f4ede2;
     --color-ink-soft: #cfbfae;
     --color-ink-muted: #aa9782;
+    --color-ink-strong: #f4ede2;
     --color-ink-inverse: #111920;
     --color-rule: #efe0ce;
     --color-rule-soft: #efe0ce;
