@@ -545,8 +545,8 @@ article img.img-size-medium {
 }
 
 .site-header.is-sticky .site-nav {
-    background: var(--color-surface);
-    backdrop-filter: blur(12px);
+    background: transparent;
+    backdrop-filter: blur(16px);
 }
 
 .site-header.is-sticky .site-nav::after {
@@ -1061,33 +1061,6 @@ a.external-link::after {
     font-weight: 700;
 }
 
-#reading-progress {
-    position: absolute;
-    left: var(--site-nav-underline-inset);
-    right: var(--site-nav-underline-inset);
-    bottom: 0;
-    height: 1px;
-    overflow: hidden;
-    background: var(--color-border-soft);
-    z-index: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 160ms ease;
-}
-
-#reading-progress.is-visible {
-    opacity: 1;
-}
-
-#reading-progress-fill {
-    position: absolute;
-    inset: 0;
-    background: var(--color-accent);
-    transform: scaleX(0);
-    transform-origin: left center;
-    will-change: transform;
-}
-
 footer p {
     margin: 0;
     padding-bottom: var(--space-3);
@@ -1322,6 +1295,7 @@ footer hr {
         gap: var(--space-2);
         padding-left: var(--space-3);
         padding-right: var(--space-3);
+        background: var(--color-surface);
     }
 
     .site-brand {
