@@ -87,11 +87,30 @@
 		button.innerHTML = BUTTON_ICONS[state] || BUTTON_ICONS.idle;
 	}
 
+	function getScrollerNode(block) {
+		var scroller = block.querySelector('.codehilite__scroller');
+
+		if (scroller && scroller.parentNode === block) {
+			return scroller;
+		}
+
+		scroller = document.createElement('div');
+		scroller.className = 'codehilite__scroller';
+
+		while (block.firstChild) {
+			scroller.appendChild(block.firstChild);
+		}
+
+		block.appendChild(scroller);
+		return scroller;
+	}
+
 	function enhanceCodeBlock(block) {
 		if (block.querySelector('.code-copy-button')) {
 			return;
 		}
 
+		var scroller = getScrollerNode(block);
 		var button = document.createElement('button');
 
 		button.type = 'button';
@@ -123,7 +142,7 @@
 		});
 
 		block.classList.add('has-copy-button');
-		block.insertBefore(button, block.firstChild);
+		block.insertBefore(button, scroller);
 	}
 
 	function setupCodeCopyButtons() {

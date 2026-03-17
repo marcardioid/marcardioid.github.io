@@ -521,10 +521,14 @@ article img.img-breakout {
 
 .codehilite {
     margin: 0 0 var(--space-flow-special-after) 0;
-    overflow-x: auto;
+    overflow: hidden;
     position: relative;
     border: 1px solid var(--code-border);
     background: var(--code-bg);
+}
+
+.codehilite__scroller {
+    overflow-x: auto;
 }
 
 .codehilite:focus-visible {
