@@ -37,6 +37,11 @@
     --article-layout-gap: 7.5rem;
     --article-sticky-top: 5.4rem;
     --article-anchor-offset: 8rem;
+    --home-layout-width: 78rem;
+    --home-identity-width: 12.75rem;
+    --home-identity-width-mobile: 8.5rem;
+    --control-target-size: 2.5rem;
+    --control-icon-size: 1.1rem;
 
     /* Base Colours */
     --theme-color: #f6f5f1;
@@ -48,7 +53,7 @@
     --color-bg-panel-strong: #f1e2cd;
     --color-ink: #100f0f;
     --color-ink-soft: #474a4d;
-    --color-ink-muted: #a1a1a1;
+    --color-ink-muted: #666a6d;
     --color-ink-strong: #100f0f;
     --color-ink-inverse: #f8f3ec;
     --color-rule: #2c241d;
@@ -56,7 +61,7 @@
     --color-border-soft: #a1a1a1;
     --color-border-strong: #17120f;
     --color-accent: #0f6b54;
-    --color-accent-soft: #388470;
+    --color-accent-soft: #2f7865;
     --color-accent-muted: #6c9f90;
     --color-accent-rule: var(--color-accent);
     --color-accent-alt: #d14f2c;
@@ -66,10 +71,12 @@
     --color-text: var(--color-ink);
     --color-text-soft: var(--color-ink-soft);
     --color-text-muted: var(--color-ink-muted);
+    --color-text-subtle: var(--color-ink-muted);
     --color-link: var(--color-ink);
     --color-link-hover: var(--color-accent);
     --color-link-inverse: var(--color-ink-inverse);
     --color-focus: var(--color-accent);
+    --color-control-quiet: var(--color-text-subtle);
     --color-surface: var(--color-bg);
     --color-surface-soft: var(--color-bg-panel-soft);
     --color-surface-muted: var(--color-bg-panel-muted);
@@ -115,7 +122,7 @@
     --color-bg-panel-strong: #172029;
     --color-ink: #f4ede2;
     --color-ink-soft: #cfbfae;
-    --color-ink-muted: #aa9782;
+    --color-ink-muted: #b5a592;
     --color-ink-strong: #f4ede2;
     --color-ink-inverse: #111920;
     --color-rule: #efe0ce;
@@ -624,7 +631,11 @@ article img.img-size-medium {
     font-weight: 500;
     letter-spacing: 0.11em;
     text-transform: uppercase;
-    padding: 0.18rem 0.42rem;
+    min-block-size: var(--control-target-size);
+    padding: 0.35rem 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: background 120ms ease, color 120ms ease;
 }
 
@@ -640,8 +651,8 @@ article img.img-size-medium {
 }
 
 #theme-toggle {
-    width: 1.85rem;
-    height: 1.85rem;
+    width: var(--control-target-size);
+    height: var(--control-target-size);
     margin-left: var(--space-3);
     padding: 0;
     display: inline-flex;
@@ -650,7 +661,7 @@ article img.img-size-medium {
     border: 0;
     border-radius: 0;
     background: transparent;
-    color: var(--color-text-muted);
+    color: var(--color-control-quiet);
     line-height: 1;
     cursor: pointer;
 }
@@ -667,8 +678,8 @@ article img.img-size-medium {
 }
 
 #theme-toggle .theme-icon {
-    width: 17px;
-    height: 17px;
+    width: var(--control-icon-size);
+    height: var(--control-icon-size);
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
@@ -699,9 +710,10 @@ article img.img-size-medium {
 }
 
 .home-page article {
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    width: min(100%, var(--home-layout-width));
+    max-width: var(--home-layout-width);
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
 }
 
 .home-layout {
@@ -732,7 +744,7 @@ article img.img-size-medium {
 }
 
 .home-avatar {
-    width: 204px;
+    width: var(--home-identity-width);
     height: auto;
     max-width: 100%;
     display: block;
@@ -766,7 +778,7 @@ article img.img-size-medium {
 }
 
 .home-name {
-    width: 204px;
+    width: var(--home-identity-width);
     margin: 0;
     display: inline-block;
     color: var(--color-link-inverse);
@@ -873,7 +885,7 @@ article img.img-size-medium {
 
 .entry-kicker {
     margin: 0 0 0 0;
-    color: var(--color-text-muted);
+    color: var(--color-text-subtle);
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 500;
@@ -1072,7 +1084,7 @@ a.external-link::after {
 
 .neighbour-label {
     display: block;
-    color: var(--color-text-muted);
+    color: var(--color-text-subtle);
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 500;
@@ -1093,7 +1105,7 @@ footer p {
     margin: 0;
     padding-bottom: var(--space-3);
     text-align: center;
-    color: var(--color-text-muted);
+    color: var(--color-text-subtle);
     font-size: 0.78rem;
     font-family: var(--font-mono);
     letter-spacing: 0.09em;
@@ -1125,42 +1137,37 @@ footer hr {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.08rem;
-    height: 2.08rem;
-    color: var(--color-text-muted);
+    width: var(--control-target-size);
+    height: var(--control-target-size);
+    color: var(--color-control-quiet);
     text-decoration: none;
     background: transparent;
     border-radius: 999px;
     transform: scale(1);
-    will-change: fill border-color transform;
-    transition: fill 100ms ease, border-color 100ms ease, transform 100ms ease;
+    will-change: color, transform;
+    transition: color 100ms ease, transform 100ms ease;
 }
 
 .site-social-link:hover,
-.site-social-link:focus-visible,
-.site-social-link:focus-visible .site-social-icon {
-    fill: var(--color-accent);
+.site-social-link:focus-visible {
     color: var(--color-accent);
-    border-color: var(--color-accent);
 }
 
 .site-social-icon {
-    fill: var(--color-text);
+    fill: currentColor;
     fill-rule: evenodd;
     stroke-width: 0;
     stroke-linecap: round;
     stroke-linejoin: round;
-    will-change: fill;
-    transition: fill 100ms ease;
+    will-change: transform;
 }
 
 .site-social-link--rss .site-social-icon {
     transform: translate(0.15rem, 0.15rem);
 }
 
-.site-social-icon:hover,
+.site-social-link:hover,
 .site-social-link:focus-visible {
-    fill: var(--color-accent);
     rotate: 5deg;
 }
 
@@ -1327,7 +1334,8 @@ footer hr {
     }
 
     .site-brand {
-        grid-column: 1 ;
+        grid-column: 1;
+        margin-left: var(--space-1);
     }
 
     .site-nav-links {
@@ -1341,7 +1349,7 @@ footer hr {
     }
 
     .home-avatar {
-        width: 136px;
+        width: var(--home-identity-width-mobile);
     }
 
     .home-heading {

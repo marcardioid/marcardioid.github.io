@@ -39,50 +39,6 @@
 		"sameAs": {{ SOCIAL_PROFILE_URLS | tojson }}
 	}
 	</script>
-	<style>
-		*,
-		*::before,
-		*::after {
-			box-sizing: border-box;
-		}
-
-		.home-page article {
-			max-width: 78rem;
-		}
-
-		.home-layout {
-			margin-bottom: 1.5rem;
-			padding-top: 1.5rem;
-			display: grid;
-			grid-template-columns: minmax(250px, 330px) minmax(0, 1fr);
-			gap: 3rem;
-			align-items: start;
-		}
-
-		.home-avatar {
-			width: 204px;
-			height: auto;
-			max-width: 100%;
-			display: block;
-			margin: 0 0 0.75rem 0;
-			border: 3px solid #fafafa;
-		}
-
-		.home-copy {
-			max-width: 78ch;
-		}
-
-		@media only screen and (max-width: 767px) {
-			.home-layout {
-				grid-template-columns: 1fr;
-				gap: 1.5rem;
-			}
-
-			.home-avatar {
-				width: 136px;
-			}
-		}
-	</style>
 {% endblock %}
 
 {% block content %}
