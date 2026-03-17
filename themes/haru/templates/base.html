@@ -22,6 +22,7 @@
 
 	<title>{% block title %}{% endblock %}</title>
 	<meta name="robots" content="{% block robots %}{{ ROBOTS_INDEXABLE_DEFAULT | default('index,follow,max-image-preview:large') }}{% endblock %}">
+	<meta id="meta-theme-color" name="theme-color" content="#f6f5f1">
 
 	{% block meta %}{% endblock %}
 	<script type="application/ld+json">
