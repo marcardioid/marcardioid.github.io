@@ -5,7 +5,7 @@
 {% if category == DEFAULT_CATEGORY %}
 	{% set category_title = category %}
 {% else %}
-	{% set category_title = BLOG_TITLE ~ " on " ~ category %}
+	{% set category_title = BLOG_TITLE ~ " about " ~ category %}
 {% endif %}
 {% set category_description = category_title %}
 {% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
@@ -64,13 +64,13 @@
 						{% endfor %}
 					</ul>
 					{% else %}
-					<p>No {{ BLOG_TITLE | lower }} yet for this category.</p>
+					<p>No articles in this topic yet.</p>
 					{% endif %}
 				</div>
 				<div id="related-articles">
 					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ BLOG_URL }}" id="prev-neighbour">
-						<span class="neighbour-label">More</span>
-						<span class="neighbour-title">Browse all writing</span>
+						<span class="neighbour-label">Browse</span>
+						<span class="neighbour-title">All writing</span>
 					</a>
 				</div>
 {% endblock %}

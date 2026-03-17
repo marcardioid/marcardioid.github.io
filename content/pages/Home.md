@@ -5,8 +5,8 @@ save_as: index.html
 Template: home
 Status: published
 
-I am a Principal Software Engineer at [Nike](https://nike.com){:target="_blank" rel="noopener noreferrer"}, building scalable data-intensive platforms that help teams turn complex data landscapes into actionable insights. I lead engineers and cross-functional initiatives from architecture through delivery.
+I’m a Principal Software Engineer at [Nike](https://nike.com){:target="_blank" rel="noopener noreferrer"}, building scalable data platforms that help teams turn complex information into actionable decisions. I lead cross-functional work from architecture through delivery.
 
-With over a decade of experience across modern analytics and data engineering stacks, I set technical direction for platform reliability and delivery while mentoring engineers and engineering managers in their career goals.
+Drawing from over a decade of experience, I enjoy mentoring engineers and engineering managers to help them grow in their career goals.
 
-Outside of work, I am a published author, [a hobbyist game developer](/splash/){:target="_blank" rel="noopener noreferrer"}, and a certified PADI Rescue Diver. To wind down I love reading fantasy novels, home automation, and long-distance running.
+Outside work, I’m a published author, [a hobbyist game developer](/splash/){:target="_blank" rel="noopener noreferrer"}, and a certified PADI Rescue Diver. To wind down I love reading fantasy novels, tinkering with home automation, and training for long-distance runs.

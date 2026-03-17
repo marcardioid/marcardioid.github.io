@@ -26,7 +26,7 @@
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="{{ categories_url }}">
 {% endblock %}
-{% block title %}Topics | {{ SITENAME }}{% endblock %}
+{% block title %}{{ CATEGORY_TITLE }} | {{ SITENAME }}{% endblock %}
 
 {% block content %}
 				<header class="page-intro">
@@ -41,19 +41,19 @@
 								<a class="archive-link" href="{{ SITEURL }}/{{ category.url }}" title="{{ BLOG_TITLE }} on {{ category }}">{{ category }}</a>
 							</h2>
 							<p class="archive-metadata">
-								{{ category_articles | count }} post{% if category_articles | count != 1 %}s{% endif %}
+								{{ category_articles | count }} article{% if category_articles | count != 1 %}s{% endif %}
 							</p>
 						</li>
 						{% endfor %}
 					</ul>
 					{% else %}
-					<p>No {{ BLOG_TITLE | lower }} yet.</p>
+					<p>No topics yet.</p>
 					{% endif %}
 				</div>
 				<div id="related-articles">
 					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ BLOG_URL }}" id="prev-neighbour">
-						<span class="neighbour-label">More</span>
-						<span class="neighbour-title">Browse all writing</span>
+						<span class="neighbour-label">Browse</span>
+						<span class="neighbour-title">All writing</span>
 					</a>
 				</div>
 {% endblock %}
