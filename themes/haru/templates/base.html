@@ -72,6 +72,7 @@
 </head>
 
 <body{% block body_class %}{% endblock %}>
+	<a class="skip-link" href="#main-content">Skip to main content</a>
 	{% if toy_enabled %}
 	<section class="toy-banner">
 		<canvas class="toy" tabindex="0" aria-label="Interactive toy"></canvas>
@@ -109,7 +110,7 @@
 			{% endif %}
 		</header>
 
-		<main id="main-content">
+		<main id="main-content" tabindex="-1">
 			<article>
 				{% block content %}{% endblock %}
 			</article>
