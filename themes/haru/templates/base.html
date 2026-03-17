@@ -50,7 +50,7 @@
 	{% endif %}
 
 	<!-- Stylesheets and Web Fonts -->
-	{% assets filters="cssmin", output="style.min.css", "style.css" %}
+	{% assets filters="rcssmin", output="style.min.css", "style.css" %}
 	{% set stylesheet_href = SITEURL ~ '/' ~ ASSET_URL %}
 	<link rel="stylesheet" href="{{ stylesheet_href }}" type="text/css">
 	{% endassets %}
