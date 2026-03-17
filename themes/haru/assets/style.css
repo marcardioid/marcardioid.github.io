@@ -172,6 +172,34 @@ body {
     overflow-x: clip;
 }
 
+.skip-link {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    padding: 0.65rem 0.9rem;
+    background: var(--color-accent);
+    color: var(--color-link-inverse);
+    text-decoration: none;
+    transform: translateY(-160%);
+    transition: transform 120ms ease;
+    z-index: 20;
+}
+
+.skip-link:focus-visible {
+    transform: translateY(0);
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+#main-content {
+    scroll-margin-top: var(--site-header-container-top);
+}
+
+#main-content:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
 main,
 article,
 aside,
@@ -467,7 +495,7 @@ article img.img-size-medium {
     width: 100%;
     margin: 0;
     background: transparent;
-    z-index: 1100;
+    z-index: 10;
 }
 
 .toy-banner {
