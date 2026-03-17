@@ -37,7 +37,7 @@ NAVIGATION_ITEMS = [
 
 GOOGLE_FONTS = [
     "Fraunces:opsz,wght@9..144,600..900",
-    "Inter:ital,wght@0,400..900;1,400..900",
+    "Source Sans 3:ital,wght@0,400..700;1,400..700",
     "IBM Plex Mono:400,500,700",
 ]
 GOOGLE_FONTS_BASE_URL = "https://fonts.googleapis.com/css"
