@@ -37,11 +37,11 @@
     --toy-height: 280px;
     --site-header-top: 0;
     --site-header-container-top: 6.5rem;
-    --article-rail-min-width: 13rem;
-    --article-rail-width: 15rem;
+    --article-rail-min-width: 11rem;
+    --article-rail-width: 11rem;
     --article-note-min-width: 14rem;
     --article-note-width: 11rem;
-    --article-layout-gap: 7.5rem;
+    --article-layout-gap: 12rem;
     --article-sticky-top: 5.4rem;
     --article-anchor-offset: 8rem;
     --home-layout-width: min(94%, 86rem);
@@ -1126,6 +1126,54 @@ footer hr {
     margin: var(--space-7) auto var(--space-5) auto;
 }
 
+.cta-reply-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: var(--space-6);
+    padding: 0.9rem 1.15rem;
+    border: 1px solid var(--color-border-soft);
+    background: var(--color-surface-muted);
+    color: var(--color-title);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    line-height: 1.2;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.home-copy .cta-reply-button {
+    margin-top: var(--space-2);
+}
+
+.cta-reply-button:hover,
+.cta-reply-button:focus-visible {
+    text-decoration: none;
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--color-link-inverse);
+}
+
+.cta-reply-button:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+}
+
+.cta-reply-button__icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.65;
+    margin-top: 1px;
+}
+
 .site-social {
     max-width: var(--reading-width);
     margin: 0 auto var(--space-2) auto;
@@ -1294,12 +1342,6 @@ footer hr {
     }
 }
 
-@media only screen and (max-width: 1440px) {
-    :root {
-        --article-layout-gap: 6rem;
-    }
-}
-
 @media only screen and (max-width: 1280px) {
     :root {
         --site-frame-width: min(94%, 82rem);
@@ -1415,7 +1457,8 @@ footer hr {
     #share,
     .toy-banner,
     .site-header,
-    #reading-progress {
+    #reading-progress,
+    .cta-reply-button {
         display: none !important;
     }
 

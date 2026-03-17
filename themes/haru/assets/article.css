@@ -379,50 +379,6 @@ article img.img-breakout {
     background: var(--color-series-bg);
 }
 
-.article-reply-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin-top: var(--space-6);
-    padding: 0.9rem 1.15rem;
-    border: 1px solid var(--color-border-soft);
-    background: var(--color-surface-muted);
-    color: var(--color-title);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.11em;
-    line-height: 1.2;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
-}
-
-.article-reply-link:hover,
-.article-reply-link:focus-visible {
-    text-decoration: none;
-    border-color: var(--color-accent);
-    background: var(--color-accent);
-    color: var(--color-link-inverse);
-}
-
-.article-reply-link:focus-visible {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 3px;
-}
-
-.article-reply-link__icon {
-    width: 1.15rem;
-    height: 1.15rem;
-    flex: none;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.65;
-    margin-top: 1px;
-}
-
 #series p {
     margin: 0 0 var(--space-2) 0;
     color: var(--color-title);
@@ -725,8 +681,7 @@ pre code {
 }
 
 @media only print {
-    .toc,
-    .article-reply-link {
+    .toc {
         display: none !important;
     }
     
