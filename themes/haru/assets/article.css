@@ -541,8 +541,8 @@ article img.img-breakout {
     top: 0.1rem;
     right: 0.1rem;
     margin: 0;
-    width: var(--control-target-size);
-    height: var(--control-target-size);
+    width: var(--control-target-size-sm);
+    height: var(--control-target-size-sm);
     padding: 0;
     border: 1px solid transparent;
     border-radius: 0.35rem;
@@ -659,8 +659,34 @@ pre code {
 }
 
 @media only screen and (max-width: 1399px) {
+    .article-layout {
+        grid-template-areas:
+            "header"
+            "toc"
+            "main";
+    }
+
     .article-sidebar--toc {
-        display: none;
+        display: block;
+        grid-area: toc;
+        justify-self: stretch;
+        position: static;
+        width: 100%;
+        max-width: var(--reading-width);
+        max-height: none;
+        margin: 0 auto var(--space-5);
+        padding: var(--space-4) var(--space-4) var(--space-3);
+        border: 1px solid var(--color-border-soft);
+        background: var(--color-surface-muted);
+    }
+
+    .article-sidebar--toc .toc {
+        max-width: none;
+        padding-top: 0;
+    }
+
+    .article-sidebar--toc .toctitle {
+        margin-bottom: var(--space-2);
     }
 
     .sidenote-cluster,
@@ -695,6 +721,11 @@ pre code {
         margin-bottom: var(--space-2);
         padding-bottom: var(--space-2);
         border-bottom: none;
+    }
+
+    .article-sidebar--toc {
+        padding: var(--space-3);
+        margin-bottom: var(--space-4);
     }
 
     .codehilitetable,

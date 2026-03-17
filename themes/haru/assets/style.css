@@ -40,7 +40,8 @@
     --home-layout-width: 78rem;
     --home-identity-width: 12.75rem;
     --home-identity-width-mobile: 8.5rem;
-    --control-target-size: 2.5rem;
+    --control-target-size: 2.75rem;
+    --control-target-size-sm: 2.5rem;
     --control-icon-size: 1.1rem;
 
     /* Base Colours */
@@ -1306,7 +1307,7 @@ footer hr {
 
     .home-layout {
         grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
-        gap: var(--space-2);
+        gap: var(--space-5);
     }
     
 }
