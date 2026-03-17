@@ -3,13 +3,20 @@
 
     /* Fonts */
     --font-editorial: "Fraunces", Georgia, serif;
-    --font-display: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Source Sans 3", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
     /* Layout */
-    --font-size-body: 1.08rem;
-    --reading-width: 68ch;
+    --font-size-caption: 0.78rem;
+    --font-size-body: 1.1rem;
+    --font-size-body-secondary: 0.92rem;
+    --font-size-title: clamp(1.5rem, 1rem + 1.5vw, 4rem);
+    --font-size-title-nav: clamp(1.25rem, 1.12rem + 0.5vw, 1.6rem);
+    --font-size-title-article: clamp(2.8rem, 2.0rem + 3.8vw, 6rem);
+    --font-size-heading: clamp(1.5rem, 1.32rem + 0.85vw, 2.05rem);
+    --font-size-subhead: clamp(1.25rem, 1.12rem + 0.5vw, 1.6rem);
+    --reading-width: 72ch;
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 0.75rem;
@@ -37,12 +44,13 @@
     --article-layout-gap: 7.5rem;
     --article-sticky-top: 5.4rem;
     --article-anchor-offset: 8rem;
-    --home-layout-width: 78rem;
+    --home-layout-width: min(94%, 86rem);
     --home-identity-width: 12.75rem;
     --home-identity-width-mobile: 8.5rem;
     --control-target-size: 2.75rem;
     --control-target-size-sm: 2.5rem;
-    --control-icon-size: 1.1rem;
+    --control-icon-size: 1.25rem;
+    --control-icon-size-md: 2rem;
 
     /* Base Colours */
     --theme-color: #f6f5f1;
@@ -173,7 +181,8 @@ body {
     margin: 0;
     background: var(--color-surface);
     color: var(--color-text);
-    font: 400 var(--font-size-body)/1.68 var(--font-body);
+    font: 400 var(--font-size-body)/1.72 var(--font-body);
+    font-kerning: normal;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     position: relative;
@@ -227,39 +236,41 @@ img {
 }
 
 h1,
+.title,
+.home-heading,
+.entry-title,
+.page-title {
+    color: var(--color-title);
+    font-family: var(--font-display);
+    line-height: 0.95;
+    letter-spacing: -0.024em;
+    text-wrap: balance;
+}
+
 h2,
 h3,
 h4,
 .admonition-title {
     color: var(--color-title);
-    font-family: var(--font-display);
-    line-height: 1.08;
-    letter-spacing: -0.018em;
+    font-family: var(--font-body);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
     text-wrap: balance;
-}
-
-h1,
-.title,
-.home-heading,
-.entry-title,
-.page-title {
-    letter-spacing: -0.022em;
 }
 
 h1 {
     margin: 0 0 var(--space-4) 0;
     font-weight: 900;
-    font-size: clamp(2.6rem, 1.7rem + 4vw, 5.8rem);
+    font-size: var(--font-size-heading);
 }
 
 .entry-title {
     margin: 0.25rem 0 1.25rem 0;
     margin-inline-start: -0.07em;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.026em;
     max-width: 100%;
-    font-family: var(--font-display);
-    font-size: clamp(2.75rem, 7vw, 7rem);
-    line-height: 0.93;
+    font-size: var(--font-size-title-article);
+    line-height: 0.92;
     font-weight: 900;
     text-wrap: balance;
 }
@@ -267,20 +278,21 @@ h1 {
 h2,
 .admonition-title {
     margin: var(--space-8) 0 var(--space-3) 0;
-    font-size: clamp(1.68rem, 1.34rem + 1.2vw, 2.52rem);
-    font-weight: 900;
+    font-size: var(--font-size-heading);
+    font-weight: 700;
 }
 
 h3 {
     margin: var(--space-6) 0 var(--space-2) 0;
-    font-size: clamp(1.35rem, 1.22rem + 0.5vw, 1.7rem);
-    font-weight: 850;
+    font-size: var(--font-size-subhead);
+    font-weight: 650;
 }
 
 h4 {
     margin: var(--space-5) 0 var(--space-2) 0;
-    font-size: 1.1rem;
-    font-weight: 800;
+    font-size: var(--font-size-subhead);
+    font-weight: 600;
+    letter-spacing: -0.01em;
 }
 
 :is(h1, h2, h3, h4, h5, h6) a {
@@ -373,9 +385,11 @@ blockquote p {
 blockquote cite {
     display: block;
     padding-top: var(--space-2);
-    font-size: 0.92rem;
+    font-size: var(--font-size-caption);
     color: var(--color-text-muted);
     font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 blockquote cite::before {
@@ -403,7 +417,7 @@ table:not(.codehilitetable) td {
 table:not(.codehilitetable) th {
     color: var(--color-title);
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: var(--font-size-caption);
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -599,10 +613,10 @@ article img.img-size-medium {
     display: inline-block;
     color: var(--color-nav-name);
     font-family: var(--font-display);
-    font-size: clamp(1.28rem, 1.15rem + 0.7vw, 1.7rem);
+    font-size: var(--font-size-title-nav);
     font-weight: 700;
     line-height: 1;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
     white-space: nowrap;
 }
 
@@ -711,8 +725,7 @@ article img.img-size-medium {
 }
 
 .home-page article {
-    width: min(100%, var(--home-layout-width));
-    max-width: var(--home-layout-width);
+    max-width: 100%;
     padding-left: var(--space-4);
     padding-right: var(--space-4);
 }
@@ -786,9 +799,9 @@ article img.img-size-medium {
     background: var(--color-accent);
     padding: 0.2rem 0.45rem;
     font-family: var(--font-display);
-    font-size: clamp(1.38rem, 1.42rem, 1.64rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
+    font-size: var(--font-size-title-nav);
+    font-weight: 800;
+    letter-spacing: -0.018em;
     text-align: center;
     transform: translateY(0);
     box-shadow: none;
@@ -813,15 +826,15 @@ article img.img-size-medium {
 }
 
 .home-copy {
-    max-width: 78ch;
+    max-width: 83ch;
 }
 
 .home-heading {
     margin: 0 0 var(--space-5) 0;
     color: var(--color-title);
-    font-size: clamp(2.7rem, 2.1rem + 3vw, 5.6rem);
+    font-size: var(--font-size-heading);
     font-weight: 900;
-    line-height: 0.94;
+    line-height: 0.93;
     padding-bottom: var(--space-4);
 }
 
@@ -837,14 +850,8 @@ article img.img-size-medium {
 }
 
 .home-body {
-    max-width: var(--reading-width);
-    font-size: 1.02em;
-}
-
-.home-body p:first-child {
-    margin-top: 0;
-    font-size: clamp(1.32rem, 1.22rem + 0.4vw, 1.62rem);
-    line-height: 1.5;
+    max-width: 100%;
+    font-size: var(--font-size-body);
 }
 
 .page-intro {
@@ -854,8 +861,8 @@ article img.img-size-medium {
 
 .page-title {
     margin: 0;
-    font-size: clamp(2.2rem, 1.65rem + 2.6vw, 4.1rem);
-    line-height: 0.97;
+    font-size: var(--font-size-title);
+    line-height: 0.94;
     font-weight: 900;
 }
 
@@ -870,10 +877,10 @@ article img.img-size-medium {
 
 .writing-intro {
     margin: var(--space-3) 0 0 0;
-    max-width: 66ch;
+    max-width: var(--reading-width);
     color: var(--color-text-soft);
-    font-size: 1.02em;
-    line-height: 1.68;
+    font-size: var(--font-size-body);
+    line-height: 1.72;
 }
 
 .content {
@@ -888,9 +895,9 @@ article img.img-size-medium {
     margin: 0 0 0 0;
     color: var(--color-text-subtle);
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--font-size-caption);
     font-weight: 500;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
@@ -967,15 +974,15 @@ a.external-link::after {
 
 .archive-heading {
     margin: 0;
-    font-size: clamp(1.58rem, 1.34rem + 0.95vw, 2.34rem);
-    line-height: 1.08;
+    font-size: var(--font-size-heading);
+    line-height: 1.02;
 }
 
 .archive-link {
     text-decoration: none;
     color: var(--color-title);
     font-family: var(--font-display);
-    font-weight: 900;
+    font-weight: 800;
 }
 
 .archive-item--article .archive-link::after {
@@ -999,7 +1006,7 @@ a.external-link::after {
     margin: var(--space-1) 0 0 0;
     color: var(--color-text-soft);
     font-family: var(--font-body);
-    font-size: 0.86rem;
+    font-size: var(--font-size-body-secondary);
     letter-spacing: 0.01em;
     text-transform: none;
 }
@@ -1007,8 +1014,8 @@ a.external-link::after {
 .archive-summary {
     margin: var(--space-2) 0 0 0;
     color: var(--color-text-soft);
-    font-size: 0.94em;
-    line-height: 1.55;
+    font-size: var(--font-size-body);
+    line-height: 1.68;
     max-width: 70ch;
 }
 
@@ -1087,7 +1094,7 @@ a.external-link::after {
     display: block;
     color: var(--color-text-subtle);
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--font-size-caption);
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -1097,8 +1104,8 @@ a.external-link::after {
     display: block;
     margin-top: var(--space-2);
     font-family: var(--font-display);
-    font-size: 1.16rem;
-    line-height: 1.2;
+    font-size: clamp(1.2rem, 1.1rem + 0.2vw, 1.34rem);
+    line-height: 1.08;
     font-weight: 700;
 }
 
@@ -1107,7 +1114,7 @@ footer p {
     padding-bottom: var(--space-3);
     text-align: center;
     color: var(--color-text-subtle);
-    font-size: 0.78rem;
+    font-size: var(--font-size-caption);
     font-family: var(--font-mono);
     letter-spacing: 0.09em;
     text-transform: uppercase;
@@ -1138,8 +1145,8 @@ footer hr {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--control-target-size);
-    height: var(--control-target-size);
+    width: var(--control-icon-size-md);
+    height: var(--control-icon-size-md);
     color: var(--color-control-quiet);
     text-decoration: none;
     background: transparent;
@@ -1314,7 +1321,6 @@ footer hr {
 
 @media only screen and (max-width: 767px) {
     :root {
-        --font-size-body: 1.02rem;
         --toy-height: 200px;
         --site-header-container-top: 6.35rem;
         --space-flow-special-before: 0rem;
@@ -1391,7 +1397,7 @@ footer hr {
 
 @media only screen and (max-width: 520px) {
     .archive-heading {
-        font-size: clamp(1.35rem, 1.15rem + 0.72vw, 1.6rem);
+        font-size: var(--font-size-heading);
     }
 
     .home-heading,

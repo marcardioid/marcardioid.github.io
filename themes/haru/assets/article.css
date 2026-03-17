@@ -37,8 +37,8 @@ article img.img-breakout {
     margin: 0 auto var(--space-6);
     color: var(--color-text-soft);
     font-family: var(--font-body);
-    font-size: 0.92em;
-    line-height: 1.5;
+    font-size: var(--font-size-body-secondary);
+    line-height: 1.55;
     text-align: center;
 }
 
@@ -95,14 +95,17 @@ article img.img-breakout {
     margin: 0;
     color: var(--color-text-soft);
     font-family: var(--font-body);
-    font-size: 0.86rem;
+    font-size: var(--font-size-body-secondary);
     letter-spacing: 0.01em;
+    line-height: 1.55;
     text-transform: none;
 }
 
 .entry-content {
     margin-top: 0;
     max-width: var(--reading-width);
+    font-size: var(--font-size-body);
+    line-height: 1.72;
 }
 
 .entry-content p {
@@ -111,13 +114,13 @@ article img.img-breakout {
 
 .entry-content > p:first-of-type::first-letter {
     float: left;
-    margin-right: 0.42rem;
-    padding-top: 0.08rem;
+    margin-right: 0.3rem;
+    padding-top: 0.4rem;
     color: var(--color-text-soft);
     font-family: var(--font-editorial);
-    font-size: 4.4rem;
+    font-size: 4rem;
     font-weight: 600;
-    line-height: 0.82;
+    line-height: 1;
 }
 
 .entry-content ul,
@@ -189,13 +192,15 @@ article img.img-breakout {
 .toc li {
     list-style: none;
     margin: 0;
-    line-height: 1.45;
+    line-height: 1.55;
 }
 
 .toc a {
     display: block;
     color: var(--color-text-subtle);
-    font-size: 0.9rem;
+    font-family: var(--font-body);
+    font-size: var(--font-size-body-secondary);
+    line-height: 1.55;
     text-decoration: none;
     position: relative;
 }
@@ -252,8 +257,8 @@ article img.img-breakout {
 }
 
 .article-endnotes .footnote {
-    font-size: 0.92rem;
-    line-height: 1.6;
+    font-size: var(--font-size-body-secondary);
+    line-height: 1.65;
 }
 
 .article-endnotes .footnote hr {
@@ -328,8 +333,8 @@ article img.img-breakout {
 .entry-content .sidenote {
     position: relative;
     color: var(--color-text-soft);
-    font-size: 0.88rem;
-    line-height: 1.55;
+    font-size: var(--font-size-body-secondary);
+    line-height: 1.6;
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     column-gap: 0.5rem;
@@ -422,7 +427,7 @@ article img.img-breakout {
     margin: 0 0 var(--space-2) 0;
     color: var(--color-title);
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--font-size-caption);
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -659,36 +664,7 @@ pre code {
 }
 
 @media only screen and (max-width: 1399px) {
-    .article-layout {
-        grid-template-areas:
-            "header"
-            "toc"
-            "main";
-    }
-
-    .article-sidebar--toc {
-        display: block;
-        grid-area: toc;
-        justify-self: stretch;
-        position: static;
-        width: 100%;
-        max-width: var(--reading-width);
-        max-height: none;
-        margin: 0 auto var(--space-5);
-        padding: var(--space-4) var(--space-4) var(--space-3);
-        border: 1px solid var(--color-border-soft);
-        background: var(--color-surface-muted);
-    }
-
-    .article-sidebar--toc .toc {
-        max-width: none;
-        padding-top: 0;
-    }
-
-    .article-sidebar--toc .toctitle {
-        margin-bottom: var(--space-2);
-    }
-
+    .article-sidebar--toc,
     .sidenote-cluster,
     .sidenote-number,
     .sidenote-content,
@@ -745,12 +721,6 @@ pre code {
         font-size: 0.8em;
         line-height: 1.2em;
         top: -0.5em;
-    }
-
-    .entry-content > p:first-of-type::first-letter {
-        margin-right: 0.3rem;
-        padding-top: 0.04rem;
-        font-size: 3.4rem;
     }
 }
 
