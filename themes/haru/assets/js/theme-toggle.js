@@ -1,7 +1,9 @@
 (function () {
 	var storageKey = 'site-theme';
 	var root = document.documentElement;
-	var fallbackThemeColors = { light: '#fafafa', dark: '#1C1C1C' };
+	var metaThemeColor = document.getElementById('meta-theme-color');
+	var systemThemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+	var fallbackThemeColors = { light: '#f6f5f1', dark: '#0f1419' };
 
 	function isThemeValue(value) {
 		return value === 'light' || value === 'dark';
@@ -16,9 +18,10 @@
 	}
 
 	function getPreferredThemeFromSystem() {
-		// if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-		// 	return 'dark';
-		// }
+		if (systemThemeQuery && systemThemeQuery.matches) {
+			return 'dark';
+		}
+
 		return 'light';
 	}
 
@@ -38,11 +41,11 @@
 		return resolveThemeFromStorageOrSystem();
 	}
 
-	// Keep first paint behavior aligned with previous inline script.
 	var storedTheme = getStoredTheme();
 	var hasStoredTheme = isThemeValue(storedTheme);
-	var preferredTheme = 'light';
+	var preferredTheme = hasStoredTheme ? storedTheme : getPreferredThemeFromSystem();
 	root.setAttribute('data-theme', hasStoredTheme ? storedTheme : preferredTheme);
+	updateThemeColor(metaThemeColor, preferredTheme);
 
 	function updateToggle(toggle, theme) {
 		if (!toggle) {
@@ -72,7 +75,7 @@
 		metaThemeColor.setAttribute('content', themeColor || fallbackThemeColors[theme] || fallbackThemeColors.light);
 	}
 
-	function setTheme(toggle, metaThemeColor, theme, persistTheme) {
+	function setTheme(toggle, theme, persistTheme) {
 		root.setAttribute('data-theme', theme);
 		updateToggle(toggle, theme);
 		updateThemeColor(metaThemeColor, theme);
@@ -90,16 +93,15 @@
 
 	function setupThemeToggle() {
 		var toggle = document.getElementById('theme-toggle');
-		var metaThemeColor = document.getElementById('meta-theme-color');
 
 		function syncThemeFromState() {
-			setTheme(toggle, metaThemeColor, resolveThemeFromStorageOrSystem(), false);
+			setTheme(toggle, resolveThemeFromStorageOrSystem(), false);
 		}
 
 		if (toggle) {
 			toggle.addEventListener('click', function () {
 				var currentTheme = getActiveTheme();
-				setTheme(toggle, metaThemeColor, currentTheme === 'dark' ? 'light' : 'dark', true);
+				setTheme(toggle, currentTheme === 'dark' ? 'light' : 'dark', true);
 			});
 		}
 
@@ -114,29 +116,28 @@
 			}
 
 			if (isThemeValue(event.newValue)) {
-				setTheme(toggle, metaThemeColor, event.newValue, false);
+				setTheme(toggle, event.newValue, false);
 				return;
 			}
 
 			syncThemeFromState();
 		});
 
-		// if (window.matchMedia) {
-		// 	var mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
-		// 	var onSystemThemeChange = function (event) {
-		// 		if (isThemeValue(getStoredTheme())) {
-		// 			return;
-		// 		}
+		if (systemThemeQuery) {
+			var onSystemThemeChange = function (event) {
+				if (isThemeValue(getStoredTheme())) {
+					return;
+				}
 
-		// 		setTheme(toggle, metaThemeColor, event.matches ? 'dark' : 'light', false);
-		// 	};
+				setTheme(toggle, event.matches ? 'dark' : 'light', false);
+			};
 
-		// 	if (mediaQueryList.addEventListener) {
-		// 		mediaQueryList.addEventListener('change', onSystemThemeChange);
-		// 	} else if (mediaQueryList.addListener) {
-		// 		mediaQueryList.addListener(onSystemThemeChange);
-		// 	}
-		// }
+			if (systemThemeQuery.addEventListener) {
+				systemThemeQuery.addEventListener('change', onSystemThemeChange);
+			} else if (systemThemeQuery.addListener) {
+				systemThemeQuery.addListener(onSystemThemeChange);
+			}
+		}
 
 		syncThemeFromState();
 	}
