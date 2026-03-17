@@ -12,7 +12,6 @@ dependencies = [
     "typogrify",
     "webassets",
     "beautifulsoup4",
-    "cssmin",
     "pelican-webassets",
     "pelican-neighbors",
     "pelican-sitemap",
@@ -20,4 +19,5 @@ dependencies = [
     "pelican-render-math",
     "pelican-share-post",
     "pelican-readtime",
+    "rcssmin>=1.2.2",
 ]
