@@ -42,17 +42,10 @@
 	<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 	{% endassets %}
 	{% endif %}
-	{% set toy_enabled = ENABLE_TOY | default(true) %}
-	{% if toy_enabled %}
-	{% assets filters="rjsmin", output="js/meadow-toy.min.js", "js/toys/meadow-toy.js" %}
-	<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
-	{% endassets %}
-	{% endif %}
 
 	<!-- Stylesheets and Web Fonts -->
 	{% assets filters="rcssmin", output="style.min.css", "style.css" %}
-	{% set stylesheet_href = SITEURL ~ '/' ~ ASSET_URL %}
-	<link rel="stylesheet" href="{{ stylesheet_href }}" type="text/css">
+	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css">
 	{% endassets %}
 	{% block extra_styles %}{% endblock %}
 	{% if GOOGLE_FONTS %}
@@ -73,12 +66,7 @@
 </head>
 
 <body{% block body_class %}{% endblock %}>
-	<a class="skip-link" href="#main-content">Skip to main content</a>
-	{% if toy_enabled %}
-	<section class="toy-banner">
-		<canvas class="toy" tabindex="0" aria-label="Interactive toy"></canvas>
-	</section>
-	{% endif %}
+	{% if NAVIGATION_ITEMS %}<a class="skip-link" href="#main-content">Skip to main content</a>{% endif %}
 		<div class="container">
 			<header class="site-header">
 				{% if NAVIGATION_ITEMS %}
@@ -92,10 +80,10 @@
 					</div>
 					{% block nav_progress %}{% endblock %}
 					<button id="theme-toggle" type="button" aria-pressed="false" aria-label="{{ THEME_TOGGLE_LABEL_DARK }}" title="{{ THEME_TOGGLE_LABEL_DARK }}" data-label-dark="{{ THEME_TOGGLE_LABEL_DARK }}" data-label-light="{{ THEME_TOGGLE_LABEL_LIGHT }}">
-						<svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<svg class="theme-icon theme-icon--moon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<path d="M20.26 14.01A8.49 8.49 0 0 1 9.99 3.74a.75.75 0 0 0-.85-.96A9.75 9.75 0 1 0 21.22 14.86a.75.75 0 0 0-.96-.85z" />
 						</svg>
-						<svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<svg class="theme-icon theme-icon--sun" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<circle cx="12" cy="12" r="4.25" />
 							<line x1="12" y1="1.5" x2="12" y2="4.25" />
 							<line x1="12" y1="19.75" x2="12" y2="22.5" />
@@ -121,6 +109,7 @@
 		<footer>{% include "includes/site-footer.html" %}</footer>
 		{% endblock %}
 	</div>
+	{% block extra_scripts %}{% endblock %}
 </body>
 
 </html>
