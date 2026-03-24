@@ -1,5 +1,12 @@
 import os
+import sys
 from datetime import datetime
+
+CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
+if CONFIG_DIR not in sys.path:
+    sys.path.insert(0, CONFIG_DIR)
+
+import webassets_filters
 
 # Theme-specific settings
 SITENAME = "Marc Sleegers"
@@ -12,12 +19,13 @@ SITE_AUTHOR_TITLE = "Principal Software Engineer"
 ICONS_PATH = "images/icons"
 SOCIAL_IMAGE_FILENAME = "portrait.jpg"
 SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
-ENABLE_HOME_IDENTITY_NAME = False
 ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
 ROBOTS_NOINDEX_DEFAULT = "noindex,follow"
+ENABLE_HOME_IDENTITY_NAME = False
 ENABLE_TOC = True
 ENABLE_SIDENOTES = True
 ENABLE_EXTERNAL_LINK_STYLE = True
+ENABLE_TOY = True
 
 TWITTER_USERNAME = "@marcardioid"
 SOCIAL_PROFILE_URLS = [
@@ -27,8 +35,8 @@ SOCIAL_PROFILE_URLS = [
 INDEX_DESCRIPTION = "Principal Software Engineer at Nike writing about architecture, engineering leadership, and data-intensive platforms."
 
 NAVIGATION_ITEMS = [
-    ("/", "home", "Home"),
-    ("/writing/", "writing", "Writing"),
+    # ("/", "home", "Home"),
+    # ("/writing/", "writing", "Writing"),
     # ("/talks/", "talks", "Talks"),
     # ("/research/", "research", "Research"),
     # ("/uses/", "uses", "Uses"),
@@ -52,7 +60,6 @@ SOCIAL_ICONS = [
 THEME_COLOR = "#052"
 THEME_TOGGLE_LABEL_DARK = "Switch to dark mode"
 THEME_TOGGLE_LABEL_LIGHT = "Switch to light mode"
-ENABLE_TOY = False
 
 # Pelican settings
 RELATIVE_URLS = False
@@ -172,6 +179,7 @@ SITEMAP = {
         r"writing/categories",
         r"^splash/$",
         r"^rpsls/$",
+        r"^toy/$",
         r"^blog/$",
     ],
     "priorities": {"articles": 0.8, "indexes": 0.5, "pages": 1.0},
