@@ -1,6 +1,6 @@
 [project]
 name = "marcsleegers.com"
-version = "1.0"
+version = "2.0"
 description = "This module contains both the static files and the source files used to generate marcsleegers.com"
 readme = "README.md"
 requires-python = "==3.14.*"
