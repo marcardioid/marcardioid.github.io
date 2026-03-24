@@ -14,3 +14,4 @@ __pycache__/
 .idea/
 .python-version
 .codex/
+node_modules/
