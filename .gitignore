@@ -13,6 +13,7 @@ node_modules/
 .vscode/
 .idea/
 .playwright/
+.playwright-cli/
 .codex/
 
 # Generated site output
