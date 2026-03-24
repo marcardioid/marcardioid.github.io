@@ -11,6 +11,8 @@ Code is licensed under the [MIT License] and articles under a [Creative Commons 
 
 ## Local development
 
+`make sync` installs both the Python dependencies from `uv.lock` and the Node dependencies from `package-lock.json`.
+
 ```bash
 make sync
 make build
@@ -27,6 +29,8 @@ make build-prod
 
 - Pull requests targeting `src` run the `✅ Validate` workflow.
 - Pushes to `src` run the `🚀 Deploy to GitHub Pages` workflow.
+- Scheduled link audits run the `🔗 Monthly Link Audit` workflow.
+- GitHub Actions installs both Python and Node dependencies through `make sync` before building.
 
 
 [marcsleegers.com]: https://marcsleegers.com

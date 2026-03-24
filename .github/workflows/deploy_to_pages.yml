@@ -30,6 +30,13 @@ jobs:
         with:
           python-version: '3.14'
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
       - name: Set up uv
         uses: astral-sh/setup-uv@v7
         with:
