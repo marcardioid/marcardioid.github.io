@@ -743,7 +743,7 @@ article img.img-size-medium {
 .toy-hint {
     position: absolute;
     left: 50%;
-    bottom: clamp(0.85rem, 3vw, 1.35rem);
+    bottom: clamp(0.85rem, 3vw, 3rem);
     z-index: 1;
     max-width: calc(100% - (var(--space-5) * 2));
     margin: 0;
@@ -751,7 +751,7 @@ article img.img-size-medium {
     transform: translate(-50%, 0.35rem);
     opacity: 0;
     pointer-events: none;
-    border: 1px solid var(--color-border-soft);
+    
     background: color-mix(in srgb, var(--color-bg) 92%, transparent);
     color: var(--color-text-soft);
     font-family: var(--font-mono);
@@ -795,9 +795,9 @@ article img.img-size-medium {
     height: auto;
     max-width: 100%;
     display: block;
-    margin: 0 0 var(--space-3) 0;
-    border: 3px solid var(--color-border-strong);
-    border-radius: 0;
+    margin: 3px 0 var(--space-3) 0;
+    border: 1px solid var(--color-border-soft);
+    border-radius: 2px;
     transform: translateY(0);
     box-shadow: none;
     will-change: transform, box-shadow;
@@ -808,7 +808,7 @@ article img.img-size-medium {
 .home-avatar:focus-visible,
 .home-avatar-link:focus-visible .home-avatar{
     transform: translateY(var(--interactive-lift));
-    box-shadow: var(--interactive-shadow-offset) var(--interactive-shadow-offset) 0 var(--color-border-strong);
+    box-shadow: var(--interactive-shadow-offset) var(--interactive-shadow-offset) 0 var(--color-border-soft);
 }
 
 .home-identity-link:focus-visible:has(.home-avatar) {

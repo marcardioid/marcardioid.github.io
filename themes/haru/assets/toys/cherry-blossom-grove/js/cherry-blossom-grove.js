@@ -9,8 +9,8 @@
 	var CANOPY_BASE_HIT_TOP_RATIO = 0.65;
 	var CANOPY_BLOOM_EMIT_START = 0.01;
 	var CANOPY_BLOOM_EMIT_STEP = 0.065;
-	var DESKTOP_MAX_WIDTH_RATIO = 1.42;
-	var DESKTOP_MAX_HEIGHT_RATIO = 0.88;
+	var DESKTOP_MAX_WIDTH_RATIO = 1.278;
+	var DESKTOP_MAX_HEIGHT_RATIO = 0.792;
 	var DESKTOP_TOP_SAFE_RATIO = 0.14;
 	var DESKTOP_BOTTOM_INSET_RATIO = 0.05;
 	var MOBILE_MAX_WIDTH_RATIO = 1;
@@ -19,8 +19,8 @@
 	var MOBILE_BOTTOM_INSET_RATIO = 0;
 	var PETAL_SIZE_REFERENCE = 360;
 	var PETAL_SIZE_MIN_SCALE = 0.4;
-	var GROVE_HINT_TOUCH_COPY = 'tap the blossoms';
-	var GROVE_HINT_POINTER_COPY = 'click the blossoms';
+	var GROVE_HINT_TOUCH_COPY = 'try tapping the blossoms';
+	var GROVE_HINT_POINTER_COPY = 'try clicking the blossoms';
 	var SHAKE_DURATION_MS = 520;
 	var SHAKE_LAYER_CONFIG = {
 		Bark_Highlights: { amplitudeX: 0.2, amplitudeY: 1.55 },
@@ -321,12 +321,15 @@
 		this.hasInteracted = false;
 		this.hintHideTimeoutId = 0;
 		this.shakeStartTime = 0;
+		this.isInteractiveCursorVisible = false;
 		this.reducedMotionMediaQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 		this.prefersReducedMotion = this.reducedMotionMediaQuery ? this.reducedMotionMediaQuery.matches : false;
 		this.rng = createRng(Date.now() ^ ((this.canvas.offsetWidth || 1) << 5));
 
 		this.onFrame = this.onFrame.bind(this);
 		this.onClick = this.onClick.bind(this);
+		this.onPointerMove = this.onPointerMove.bind(this);
+		this.onPointerLeave = this.onPointerLeave.bind(this);
 		this.onResize = this.onResize.bind(this);
 		this.onThemeOrPageShow = this.onThemeOrPageShow.bind(this);
 		this.onReducedMotionChange = this.onReducedMotionChange.bind(this);
@@ -349,6 +352,8 @@
 		this.hideHint(true);
 
 		this.canvas.addEventListener('click', this.onClick);
+		this.canvas.addEventListener('mousemove', this.onPointerMove);
+		this.canvas.addEventListener('mouseleave', this.onPointerLeave);
 		window.addEventListener('resize', this.onResize, { passive: true });
 		window.addEventListener('pageshow', this.onThemeOrPageShow);
 
@@ -371,6 +376,8 @@
 	CherryBlossomGrove.prototype.destroy = function () {
 		this.destroyed = true;
 		this.canvas.removeEventListener('click', this.onClick);
+		this.canvas.removeEventListener('mousemove', this.onPointerMove);
+		this.canvas.removeEventListener('mouseleave', this.onPointerLeave);
 		window.removeEventListener('resize', this.onResize);
 		window.removeEventListener('pageshow', this.onThemeOrPageShow);
 
@@ -392,6 +399,8 @@
 			window.clearTimeout(this.hintHideTimeoutId);
 			this.hintHideTimeoutId = 0;
 		}
+
+		this.setInteractiveCursor(false);
 	};
 
 	CherryBlossomGrove.prototype.updateHintCopy = function () {
@@ -548,6 +557,37 @@
 		this.hideHint();
 		this.startCanopyShake();
 		this.spawnPetals(clickX, clickY);
+	};
+
+	CherryBlossomGrove.prototype.onPointerMove = function (event) {
+		var rect;
+		var pointerX;
+		var pointerY;
+
+		if (!this.hasLoaded) {
+			this.setInteractiveCursor(false);
+			return;
+		}
+
+		rect = this.canvas.getBoundingClientRect();
+		pointerX = event.clientX - rect.left;
+		pointerY = event.clientY - rect.top;
+		this.setInteractiveCursor(this.isCanopyHit(pointerX, pointerY));
+	};
+
+	CherryBlossomGrove.prototype.onPointerLeave = function () {
+		this.setInteractiveCursor(false);
+	};
+
+	CherryBlossomGrove.prototype.setInteractiveCursor = function (isInteractive) {
+		var nextCursor = isInteractive ? 'pointer' : '';
+
+		if (this.isInteractiveCursorVisible === isInteractive) {
+			return;
+		}
+
+		this.canvas.style.cursor = nextCursor;
+		this.isInteractiveCursorVisible = isInteractive;
 	};
 
 	CherryBlossomGrove.prototype.resize = function () {
