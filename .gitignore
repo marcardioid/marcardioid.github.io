@@ -18,3 +18,4 @@ node_modules/
 
 # Generated site output
 output/
+.gstack/
