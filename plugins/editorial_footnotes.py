@@ -49,6 +49,7 @@ def _find_host_block(reference: Tag) -> Tag | None:
 
 
 def _build_sidenotes(article_generator) -> None:
+    sidenotes_enabled = article_generator.settings.get("ENABLE_SIDENOTES", True)
     for article in article_generator.articles:
         content_html = getattr(article, "_content", "")
         article.footnotes_html = ""
@@ -63,54 +64,55 @@ def _build_sidenotes(article_generator) -> None:
 
         article.footnotes_html = str(footnote_block)
 
-        notes_by_target: dict[str, str] = {}
-        for note in footnote_block.select("li[id]"):
-            target = note.get("id")
-            if not target:
-                continue
-            notes_by_target[f"#{target}"] = _flatten_note_html(note)
+        if sidenotes_enabled:
+            notes_by_target: dict[str, str] = {}
+            for note in footnote_block.select("li[id]"):
+                target = note.get("id")
+                if not target:
+                    continue
+                notes_by_target[f"#{target}"] = _flatten_note_html(note)
 
-        clusters_by_host: dict[int, Tag] = {}
-        for ref_link in soup.select("sup[id] > a.footnote-ref[href^='#']"):
-            target = ref_link.get("href")
-            note_html = notes_by_target.get(target)
-            if not note_html:
-                continue
+            clusters_by_host: dict[int, Tag] = {}
+            for ref_link in soup.select("sup[id] > a.footnote-ref[href^='#']"):
+                target = ref_link.get("href")
+                note_html = notes_by_target.get(target)
+                if not note_html:
+                    continue
 
-            reference = ref_link.parent
-            reference_id = reference.get("id", "")
-            sidenote_id = reference_id.replace("fnref", "sidenote", 1) or f"sidenote-{ref_link.get_text(strip=True)}"
-            ref_link["aria-describedby"] = sidenote_id
-            host_block = _find_host_block(reference)
-            if host_block is None:
-                continue
+                reference = ref_link.parent
+                reference_id = reference.get("id", "")
+                sidenote_id = reference_id.replace("fnref", "sidenote", 1) or f"sidenote-{ref_link.get_text(strip=True)}"
+                ref_link["aria-describedby"] = sidenote_id
+                host_block = _find_host_block(reference)
+                if host_block is None:
+                    continue
 
-            host_key = id(host_block)
-            cluster = clusters_by_host.get(host_key)
-            if cluster is None:
-                cluster = soup.new_tag("span", attrs={"class": "sidenote-cluster"})
-                classes = list(host_block.get("class", []))
-                if "has-sidenote-cluster" not in classes:
-                    classes.append("has-sidenote-cluster")
-                    host_block["class"] = classes
-                host_block.append(cluster)
-                clusters_by_host[host_key] = cluster
+                host_key = id(host_block)
+                cluster = clusters_by_host.get(host_key)
+                if cluster is None:
+                    cluster = soup.new_tag("span", attrs={"class": "sidenote-cluster"})
+                    classes = list(host_block.get("class", []))
+                    if "has-sidenote-cluster" not in classes:
+                        classes.append("has-sidenote-cluster")
+                        host_block["class"] = classes
+                    host_block.append(cluster)
+                    clusters_by_host[host_key] = cluster
 
-            sidenote = soup.new_tag(
-                "span",
-                attrs={"class": "sidenote", "id": sidenote_id, "role": "note"},
-            )
-            number = soup.new_tag("span", attrs={"class": "sidenote-number"})
-            number.string = ref_link.get_text(strip=True)
-            content = soup.new_tag("span", attrs={"class": "sidenote-content"})
+                sidenote = soup.new_tag(
+                    "span",
+                    attrs={"class": "sidenote", "id": sidenote_id, "role": "note"},
+                )
+                number = soup.new_tag("span", attrs={"class": "sidenote-number"})
+                number.string = ref_link.get_text(strip=True)
+                content = soup.new_tag("span", attrs={"class": "sidenote-content"})
 
-            fragment = BeautifulSoup(note_html, "html.parser")
-            for node in list(fragment.contents):
-                content.append(node)
+                fragment = BeautifulSoup(note_html, "html.parser")
+                for node in list(fragment.contents):
+                    content.append(node)
 
-            sidenote.append(number)
-            sidenote.append(content)
-            cluster.append(sidenote)
+                sidenote.append(number)
+                sidenote.append(content)
+                cluster.append(sidenote)
 
         footnote_block.extract()
         article._content = "".join(str(node) for node in soup.contents).strip()

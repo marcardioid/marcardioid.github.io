@@ -78,7 +78,7 @@ def check_article_metadata(content_dir: Path, errors: list[str]) -> None:
         errors.append(f"{content_dir}: content directory does not exist")
         return
     
-    for article_path in sorted(content_dir.rglob("**.md")):
+    for article_path in sorted(content_dir.rglob("*.md")):
         metadata = parse_markdown_metadata(article_path)
         for key, label in REQUIRED_ARTICLE_METADATA:
             value = metadata.get(key)
