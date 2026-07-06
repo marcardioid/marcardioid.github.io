@@ -32,7 +32,7 @@ SOCIAL_PROFILE_URLS = [
     "https://twitter.com/marcardioid",
     "https://github.com/marcardioid",
 ]
-INDEX_DESCRIPTION = "Principal Software Engineer at Nike writing about architecture, engineering leadership, and data-intensive platforms."
+INDEX_DESCRIPTION = "Principal Software Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms."
 
 NAVIGATION_ITEMS = [
     # ("/", "home", "Home"),
@@ -57,7 +57,6 @@ SOCIAL_ICONS = [
     ("/atom.xml", f"Subscribe to {SITE_AUTHOR}'s RSS feed", "rss"),
 ]
 
-THEME_COLOR = "#052"
 THEME_TOGGLE_LABEL_DARK = "Switch to dark mode"
 THEME_TOGGLE_LABEL_LIGHT = "Switch to light mode"
 
