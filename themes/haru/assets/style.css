@@ -58,6 +58,8 @@
     --interactive-shadow-offset: 4px;
     --transition-quick: 140ms ease;
     --transition-settle: 180ms cubic-bezier(0.22, 1, 0.36, 1);
+    --link-underline-offset: 0.17em;
+    --link-underline-thickness: 2px;
 
     /* Base Colours */
     --theme-color: #f6f5f1;
@@ -81,6 +83,8 @@
     --color-accent-muted: #6c9f90;
     --color-accent-rule: var(--color-accent);
     --color-accent-alt: #d14f2c;
+    --color-selection-bg: #c5dbd2;
+    --color-mark-bg: #f2e2ab;
 
     /* Semantic Colours */
     --color-title: var(--color-ink-strong);
@@ -150,6 +154,8 @@
     --color-accent-muted: #24342d;
     --color-accent-rule: var(--color-accent);
     --color-accent-alt: #c08d73;
+    --color-selection-bg: #31443c;
+    --color-mark-bg: #4a4126;
 
     /* Code */
     --code-bg: #111614;
@@ -312,8 +318,37 @@ h4 {
     color: var(--color-link);
     text-decoration: underline;
     text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.18em;
+    text-underline-offset: var(--link-underline-offset);
     text-decoration-color: currentColor;
+}
+
+a.headerlink {
+    margin-left: 0.35em;
+    color: var(--color-text-subtle);
+    font-size: 0.85em;
+    font-weight: 400;
+    text-decoration: none;
+    opacity: 0;
+    transition:
+        opacity var(--transition-quick),
+        color var(--transition-quick);
+}
+
+:is(h1, h2, h3, h4, h5, h6):hover a.headerlink,
+:is(h1, h2, h3, h4, h5, h6) a.headerlink:focus-visible {
+    opacity: 1;
+}
+
+:is(h1, h2, h3, h4, h5, h6) a.headerlink:hover,
+:is(h1, h2, h3, h4, h5, h6) a.headerlink:focus-visible {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+@media (hover: none) {
+    a.headerlink {
+        opacity: 0.45;
+    }
 }
 
 article p {
@@ -338,7 +373,7 @@ hr {
 a {
     color: var(--color-link);
     text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.17em;
+    text-underline-offset: var(--link-underline-offset);
     text-decoration-color: var(--color-link);
 }
 
@@ -346,12 +381,23 @@ a:hover {
     color: var(--color-link-hover);
     text-decoration-line: underline;
     text-decoration-color: currentColor;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: var(--link-underline-thickness);
 }
 
 a:focus-visible {
     outline: 2px solid var(--color-focus);
     outline-offset: 2px;
+}
+
+::selection {
+    background: var(--color-selection-bg);
+    color: var(--color-ink-strong);
+}
+
+mark {
+    background: var(--color-mark-bg);
+    color: var(--color-ink-strong);
+    padding: 0.05em 0.18em;
 }
 
 ul,
@@ -740,6 +786,17 @@ article img.img-size-medium {
     touch-action: manipulation;
 }
 
+.home-toy-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    object-fit: contain;
+    object-position: bottom center;
+}
+
 .toy-hint {
     position: absolute;
     left: 50%;
@@ -882,9 +939,15 @@ article img.img-size-medium {
     transform-origin: 70% 70%;
 }
 
-.home-heading > .wave-emoji:hover {
+.home-heading > .wave-emoji:hover,
+.home-heading > .wave-emoji:focus-visible {
     cursor: grab;
     animation: wave-hello 760ms ease-in-out 1;
+}
+
+.wave-emoji:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 4px;
 }
 
 .home-body {
@@ -904,6 +967,16 @@ article img.img-size-medium {
 .page-intro {
     margin-bottom: var(--space-5);
     padding-top: var(--space-5);
+}
+
+.not-found-cat {
+    margin: 0 0 var(--space-4) 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: clamp(1.3rem, 1.1rem + 1vw, 1.9rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    user-select: none;
 }
 
 .page-title {
@@ -957,6 +1030,8 @@ article img.img-size-medium {
 .entry-kicker a:focus-visible {
     color: var(--color-link);
     text-decoration: underline;
+    text-decoration-thickness: var(--link-underline-thickness);
+    text-underline-offset: var(--link-underline-offset);
 }
 
 .entry-kicker a:last-child {
@@ -1131,9 +1206,9 @@ a.external-link::after {
 #related-articles a:hover .neighbour-title,
 #related-articles a:focus-visible .neighbour-title {
     text-decoration: underline;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: var(--link-underline-thickness);
     text-decoration-color: currentColor;
-    text-underline-offset: 0.18em;
+    text-underline-offset: var(--link-underline-offset);
 }
 
 #related-articles a:hover .neighbour-label,
@@ -1370,7 +1445,8 @@ footer hr {
         transition-duration: 0.01ms !important;
     }
 
-    .home-heading:hover .wave-emoji {
+    .home-heading .wave-emoji:hover,
+    .home-heading .wave-emoji:focus-visible {
         animation: none !important;
         transform: none !important;
     }
@@ -1614,7 +1690,11 @@ footer hr {
     #share,
     .site-header,
     #reading-progress,
-    .cta-reply-button {
+    .cta-reply-button,
+    .skip-link,
+    .home-toy,
+    .toy-hint,
+    a.headerlink {
         display: none !important;
     }
 
@@ -1628,7 +1708,19 @@ footer hr {
         padding-top: 0;
     }
 
-    p a::after {
-        content: " [" attr(href) "]";
+    a.external-link::after {
+        width: auto;
+        height: auto;
+        background: none;
+        mask: none;
+        -webkit-mask: none;
+        vertical-align: baseline;
+    }
+
+    p a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        color: var(--color-text-muted);
+        font-size: 0.85em;
+        word-break: break-all;
     }
 }
