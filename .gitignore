@@ -15,7 +15,10 @@ node_modules/
 .playwright/
 .playwright-cli/
 .codex/
+.claude/
+.gstack/
+TODOS.md
+impeccable.md
 
 # Generated site output
 output/
-.gstack/
