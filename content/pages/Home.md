@@ -11,4 +11,4 @@ Over the past decade, I’ve focused on making large systems easier to build, un
 
 Outside of work, I’m a published author, [a hobbyist game developer](/splash/){:target="_blank" rel="noopener noreferrer"}, and a certified PADI Rescue Diver. To wind down I love reading fantasy novels, tinkering with home automation projects, and long-distance runs.
 
-The toy on this page is <abbr title="벚꽃 (beotkkot), the Korean cherry blossom symbolizing renewal">벚꽃 (beotkkot)</abbr>, celebrating the coming of Spring.
+The toy on this page is <abbr title="벚꽃 (beotkkot), the Korean cherry blossom symbolizing renewal">벚꽃 (beotkkot)</abbr>, celebrating renewal.
