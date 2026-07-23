@@ -3,18 +3,20 @@
 
 	var SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
 	var XLINK_NAMESPACE = 'http://www.w3.org/1999/xlink';
-	var MOBILE_BREAKPOINT = 720;
+	var MOBILE_MAX_WIDTH = 767;
 	var MAX_PETALS = 64;
 	var DAYBREAK_SECRET_NAME = 'daybreak';
+	var GROVE_HINT_STORAGE_KEY = 'haru-grove-hint-seen-v1';
 	var CANOPY_BASE_HIT_TOP_RATIO = 0.65;
 	var CANOPY_BLOOM_EMIT_START = 0.01;
 	var CANOPY_BLOOM_EMIT_STEP = 0.065;
-	var DESKTOP_MAX_WIDTH_RATIO = 1.278;
-	var DESKTOP_MAX_HEIGHT_RATIO = 0.792;
+	var DESKTOP_MAX_WIDTH_RATIO = 1.05;
+	var DESKTOP_MAX_HEIGHT_RATIO = 0.68;
+	var DESKTOP_ART_CENTER_RATIO = 0.50;
 	var DESKTOP_TOP_SAFE_RATIO = 0.14;
 	var DESKTOP_BOTTOM_INSET_RATIO = 0.05;
-	var MOBILE_MAX_WIDTH_RATIO = 1;
-	var MOBILE_MAX_HEIGHT_RATIO = 1;
+	var MOBILE_MAX_WIDTH_RATIO = 0.86;
+	var MOBILE_MAX_HEIGHT_RATIO = 0.84;
 	var MOBILE_TOP_SAFE_RATIO = 0.07;
 	var MOBILE_BOTTOM_INSET_RATIO = 0;
 	var PETAL_SIZE_REFERENCE = 360;
@@ -50,32 +52,34 @@
 		Canopy_Midlights: { amplitudeX: 1.05, amplitudeY: 0.65, phase: 2.8 },
 		Canopy_Highlights: { amplitudeX: 1.5, amplitudeY: 0.95, phase: 5.1 }
 	};
-	var THEME_FILL_MAPS = {
-		light: null,
-		dark: {
-			'#2F1013': '#261c1d',
-			'#3F1317': '#342627',
-			'#52161A': '#473334',
-			'#551C19': '#533d3d',
-			'#69311C': '#65514a',
-			'#A44361': '#745064',
-			'#ACB47B': '#65735f',
-			'#B55267': '#5f4153',
-			'#C3CB92': '#4c594c',
-			'#EFBAC6': '#b8a8bb',
-			'#F097AB': '#8f7287',
-			'#FAF3F5': '#eef1f6',
-			'#FDE4D2': '#d7ddea'
-		}
-	};
-	var PETAL_PALETTES = {
+	var THEME_CONFIG = {
 		light: {
-			colors: ['#f2c0d0', '#e6a5ba', '#f8d5df'],
-			stroke: 'rgba(124, 83, 91, 0.2)'
+			fillMap: null,
+			petals: {
+				colors: ['#f2c0d0', '#e6a5ba', '#f8d5df'],
+				stroke: 'rgba(124, 83, 91, 0.2)'
+			}
 		},
 		dark: {
-			colors: ['#8f7389', '#b3a7ba', '#d9dfeb'],
-			stroke: 'rgba(30, 24, 30, 0.34)'
+			fillMap: {
+				'#2F1013': '#261c1d',
+				'#3F1317': '#342627',
+				'#52161A': '#473334',
+				'#551C19': '#533d3d',
+				'#69311C': '#65514a',
+				'#A44361': '#745064',
+				'#ACB47B': '#65735f',
+				'#B55267': '#5f4153',
+				'#C3CB92': '#4c594c',
+				'#EFBAC6': '#b8a8bb',
+				'#F097AB': '#8f7287',
+				'#FAF3F5': '#eef1f6',
+				'#FDE4D2': '#d7ddea'
+			},
+			petals: {
+				colors: ['#8f7389', '#b3a7ba', '#d9dfeb'],
+				stroke: 'rgba(30, 24, 30, 0.34)'
+			}
 		}
 	};
 	var LAYER_DURATIONS = {
@@ -180,7 +184,7 @@
 	}
 
 	function applyThemeToSvg(group, theme) {
-		var fillMap = THEME_FILL_MAPS[theme];
+		var fillMap = THEME_CONFIG[theme].fillMap;
 		var currentFill;
 		var nextFill;
 
@@ -298,6 +302,22 @@
 		ctx.closePath();
 	}
 
+	function hasSeenInteractionHint() {
+		try {
+			return window.localStorage.getItem(GROVE_HINT_STORAGE_KEY) === 'true';
+		} catch (error) {
+			return false;
+		}
+	}
+
+	function rememberInteractionHint() {
+		try {
+			window.localStorage.setItem(GROVE_HINT_STORAGE_KEY, 'true');
+		} catch (error) {
+			// Ignore write errors (private mode or disabled storage).
+		}
+	}
+
 	function CherryBlossomGrove(canvas) {
 		this.canvas = canvas;
 		this.hint = document.getElementById('cherry-blossom-hint');
@@ -330,6 +350,7 @@
 		this.themeObserver = null;
 		this.canopyBloomCursor = 0;
 		this.hasInteracted = false;
+		this.hasSeenHint = hasSeenInteractionHint();
 		this.hintHideTimeoutId = 0;
 		this.shakeStartTime = 0;
 		this.isInteractiveCursorVisible = false;
@@ -443,7 +464,7 @@
 	CherryBlossomGrove.prototype.showHint = function () {
 		var self = this;
 
-		if (!this.hint || this.hasInteracted) {
+		if (!this.hint || this.hasInteracted || this.hasSeenHint) {
 			return;
 		}
 
@@ -452,6 +473,8 @@
 			this.hintHideTimeoutId = 0;
 		}
 
+		this.hasSeenHint = true;
+		rememberInteractionHint();
 		this.hint.hidden = false;
 		window.requestAnimationFrame(function () {
 			if (!self.hint || self.hasInteracted) {
@@ -634,6 +657,8 @@
 		}
 
 		this.hasInteracted = true;
+		this.hasSeenHint = true;
+		rememberInteractionHint();
 		this.hideHint();
 		this.startCanopyShake();
 		this.spawnPetals(clickX, clickY);
@@ -720,7 +745,7 @@
 		var x;
 		var y;
 
-		if (this.width < MOBILE_BREAKPOINT) {
+		if (this.width <= MOBILE_MAX_WIDTH) {
 			maxWidthRatio = MOBILE_MAX_WIDTH_RATIO;
 			maxHeightRatio = MOBILE_MAX_HEIGHT_RATIO;
 			topSafeInset = this.height * MOBILE_TOP_SAFE_RATIO;
@@ -739,7 +764,9 @@
 		);
 		drawWidth = this.viewBox.width * scale;
 		drawHeight = this.viewBox.height * scale;
-		x = (this.width - drawWidth) * 0.5;
+		x = this.width <= MOBILE_MAX_WIDTH
+			? (this.width - drawWidth) * 0.5
+			: (this.width * DESKTOP_ART_CENTER_RATIO) - (drawWidth * 0.5);
 		y = Math.max(topSafeInset, this.height - drawHeight - bottomInset);
 
 		return {
@@ -1159,7 +1186,7 @@
 	};
 
 	CherryBlossomGrove.prototype.getPetalPalette = function () {
-		return PETAL_PALETTES[getActiveTheme()] || PETAL_PALETTES.light;
+		return (THEME_CONFIG[getActiveTheme()] || THEME_CONFIG.light).petals;
 	};
 
 	CherryBlossomGrove.prototype.emitCanopyBloomPetals = function (elapsedMs) {
