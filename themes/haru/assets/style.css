@@ -884,21 +884,6 @@ article img.img-size-medium {
     font-weight: 800;
     letter-spacing: -0.018em;
     text-align: center;
-    transform: translateY(0);
-    box-shadow: none;
-    will-change: transform, box-shadow;
-    transition:
-        background var(--transition-quick),
-        transform var(--transition-settle),
-        box-shadow var(--transition-settle);
-}
-
-.home-name:hover,
-.home-name:focus-visible,
-.home-name-link:focus-visible .home-name{
-    transform: translateY(var(--interactive-lift));
-    background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface-strong));
-    box-shadow: var(--interactive-shadow-offset) var(--interactive-shadow-offset) 0 var(--color-border-strong);
 }
 
 .home-identity-link:focus-visible:has(.home-name) {
