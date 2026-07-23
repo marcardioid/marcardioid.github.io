@@ -131,8 +131,10 @@ MARKDOWN = {
         "markdown.extensions.admonition": {},
         "markdown.extensions.extra": {},
         "markdown.extensions.toc": {
-            "title": "On this page", 
-            "anchorlink": "True"},
+            "title": "On this page",
+            "permalink": "#",
+            "permalink_class": "headerlink",
+            "permalink_title": "Link to this heading"},
         "markdown.extensions.footnotes": {"SEPARATOR": "-"},
         "markdown.extensions.meta": {},
     },
