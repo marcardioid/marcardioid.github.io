@@ -21,6 +21,9 @@ SOCIAL_IMAGE_FILENAME = "portrait.jpg"
 SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
 ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
 ROBOTS_NOINDEX_DEFAULT = "noindex,follow"
+ENABLE_SITE_NAME = False
+ENABLE_NAVIGATION_ITEMS = False
+ENABLE_THEME_TOGGLE = True
 ENABLE_HOME_IDENTITY_NAME = False
 ENABLE_TOC = True
 ENABLE_SIDENOTES = True
@@ -35,12 +38,12 @@ SOCIAL_PROFILE_URLS = [
 INDEX_DESCRIPTION = "Principal Software Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms."
 
 NAVIGATION_ITEMS = [
-    # ("/", "home", "Home"),
-    # ("/writing/", "writing", "Writing"),
-    # ("/talks/", "talks", "Talks"),
-    # ("/research/", "research", "Research"),
-    # ("/uses/", "uses", "Uses"),
-    # ("/now/", "now", "Now"),
+    ("/", "home", "Home"),
+    ("/writing/", "writing", "Writing"),
+    ("/talks/", "talks", "Talks"),
+    ("/research/", "research", "Research"),
+    ("/uses/", "uses", "Uses"),
+    ("/now/", "now", "Now"),
 ]
 
 GOOGLE_FONTS = [

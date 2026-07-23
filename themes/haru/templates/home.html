@@ -47,7 +47,7 @@
 {% block content %}
 					<section class="home-layout">
 						<div class="home-identity">
-							<a class="home-identity-link home-avatar-link" href="/">
+							<a class="home-identity-link home-avatar-link" href="/" tabindex="-1">
 								<picture>
 									<source
 										type="image/webp"
@@ -58,7 +58,7 @@
 								</picture>
 							</a>
 							{% if ENABLE_HOME_IDENTITY_NAME %}
-							<a class="home-identity-link home-name-link" href="/">
+							<a class="home-identity-link home-name-link" href="/" tabindex="-1">
 								<p class="home-name">{{ SITENAME }}</p>
 							</a>
 							{% endif %}
