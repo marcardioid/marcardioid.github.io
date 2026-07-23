@@ -20,7 +20,7 @@ Primary workflow uses source content/config, not hand-editing files in `output/`
 
 ## Versioning
 - The site version lives in `pyproject.toml` (`version`). It versions the site as a product, not its content: publishing articles never bumps it.
-- **Major**: a redesign or re-architecture — new theme, structural URL changes, or a build-pipeline replacement (for example, the 2026 `design/haru` refresh ships as `3.0`).
+- **Major**: a redesign or re-architecture — new theme, structural URL changes, or a build-pipeline replacement (for example, the 2026 `design/haru` refresh ships as `2.0`).
 - **Minor**: a new site capability — a new section (Writing, Talks, Uses), search, feeds overhaul, or a new toy.
 - **Patch**: fixes and polish — styling corrections, dependency bumps, accessibility or SEO tweaks.
 - Bump the version in the PR that ships the change to `src`; leave it untouched on feature branches until then.
