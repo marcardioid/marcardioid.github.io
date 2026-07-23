@@ -22,7 +22,7 @@
 
 	<title>{% block title %}{% endblock %}</title>
 	<meta name="robots" content="{% block robots %}{{ ROBOTS_INDEXABLE_DEFAULT | default('index,follow,max-image-preview:large') }}{% endblock %}">
-	<meta id="meta-theme-color" name="theme-color" content="#f6f5f1">
+	<meta id="meta-theme-color" name="theme-color" content="">
 
 	{% block meta %}{% endblock %}
 	<script type="application/ld+json">
@@ -34,18 +34,17 @@
 		"description": {{ INDEX_DESCRIPTION | striptags | tojson }}
 	}
 	</script>
+	<!-- Stylesheets and Web Fonts -->
+	{% assets filters="rcssmin", output="style.min.css", "style.css" %}
+	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css">
+	{% endassets %}
+	{% block extra_styles %}{% endblock %}
 	{% assets filters="rjsmin", output="js/theme-toggle.min.js", "js/theme-toggle.js" %}
 	<script src="{{ SITEURL }}/{{ ASSET_URL }}"></script>
 	{% endassets %}
 	{% assets filters="rjsmin", output="js/site-header-sticky.min.js", "js/site-header-sticky.js" %}
 	<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 	{% endassets %}
-
-	<!-- Stylesheets and Web Fonts -->
-	{% assets filters="rcssmin", output="style.min.css", "style.css" %}
-	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css">
-	{% endassets %}
-	{% block extra_styles %}{% endblock %}
 	{% if GOOGLE_FONTS %}
 	{% set google_fonts_href = GOOGLE_FONTS_BASE_URL ~ '?family=' ~ (GOOGLE_FONTS | join('|') | replace(' ', '+')) ~ '&display=swap' %}
 	<link rel="preconnect" href="https://fonts.googleapis.com">
