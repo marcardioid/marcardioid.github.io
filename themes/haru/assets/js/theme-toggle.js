@@ -7,7 +7,6 @@
 	var metaThemeColor = document.getElementById('meta-theme-color');
 	var systemThemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
 	var reducedMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-	var fallbackThemeColors = { light: '#f6f5f1', dark: '#151817' };
 	var delightTimer = 0;
 	var lastToggleAt = 0;
 
@@ -51,7 +50,7 @@
 	var hasStoredTheme = isThemeValue(storedTheme);
 	var preferredTheme = hasStoredTheme ? storedTheme : getPreferredThemeFromSystem();
 	root.setAttribute('data-theme', hasStoredTheme ? storedTheme : preferredTheme);
-	updateThemeColor(metaThemeColor, preferredTheme);
+	updateThemeColor(metaThemeColor);
 
 	function updateToggle(toggle, theme) {
 		if (!toggle) {
@@ -68,7 +67,7 @@
 		toggle.setAttribute('title', nextLabel);
 	}
 
-	function updateThemeColor(metaThemeColor, theme) {
+	function updateThemeColor(metaThemeColor) {
 		if (!metaThemeColor) {
 			return;
 		}
@@ -78,7 +77,9 @@
 			themeColor = window.getComputedStyle(root).getPropertyValue('--theme-color').trim();
 		}
 
-		metaThemeColor.setAttribute('content', themeColor || fallbackThemeColors[theme] || fallbackThemeColors.light);
+		if (themeColor) {
+			metaThemeColor.setAttribute('content', themeColor);
+		}
 	}
 
 	function clearDelightSecret() {
@@ -103,7 +104,7 @@
 	function setTheme(toggle, theme, persistTheme) {
 		root.setAttribute('data-theme', theme);
 		updateToggle(toggle, theme);
-		updateThemeColor(metaThemeColor, theme);
+		updateThemeColor(metaThemeColor);
 
 		if (!persistTheme) {
 			return;
