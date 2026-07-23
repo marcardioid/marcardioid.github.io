@@ -31,12 +31,15 @@
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
-		"@type": "Person",
-		"name": {{ SITE_AUTHOR | tojson }},
-		"url": {{ home_url | tojson }},
-		"jobTitle": {{ SITE_AUTHOR_TITLE | tojson }},
-		"image": {{ profile_image | tojson }},
-		"sameAs": {{ SOCIAL_PROFILE_URLS | tojson }}
+		"@type": "ProfilePage",
+		"mainEntity": {
+			"@type": "Person",
+			"name": {{ SITE_AUTHOR | tojson }},
+			"url": {{ home_url | tojson }},
+			"jobTitle": {{ SITE_AUTHOR_TITLE | tojson }},
+			"image": {{ profile_image | tojson }},
+			"sameAs": {{ SOCIAL_PROFILE_URLS | tojson }}
+		}
 	}
 	</script>
 {% endblock %}
@@ -63,7 +66,7 @@
 						<div class="home-copy">
 							{% set has_wave_emoji = '👋' in page.title %}
 							{% set home_heading_text = page.title | replace('👋', '') | trim %}
-							<h1 class="home-heading">{{ home_heading_text }}{% if has_wave_emoji %}<span class="wave-emoji">👋</span>{% endif %}</h1>
+							<h1 class="home-heading">{{ home_heading_text }}{% if has_wave_emoji %}<span class="wave-emoji" role="img" aria-label="Waving hand" tabindex="0">👋</span>{% endif %}</h1>
 							<div class="home-body">
 								{{ page.content }}
 							</div>
@@ -79,6 +82,9 @@
 						{% assets filters="svgo", output="toys/cherry-blossom-grove/svg/cherry-blossom.min.svg", "toys/cherry-blossom-grove/svg/cherry-blossom.svg" %}
 						<div class="home-toy">
 							<canvas id="cherry-blossom-canvas" data-cherry-blossom-svg="{{ SITEURL }}/{{ ASSET_URL }}" aria-hidden="true"></canvas>
+							<noscript>
+								<img class="home-toy-fallback" src="{{ SITEURL }}/{{ ASSET_URL }}" alt="" loading="lazy">
+							</noscript>
 							<p id="cherry-blossom-hint" class="toy-hint" hidden aria-hidden="true"></p>
 						</div>
 						{% endassets %}
