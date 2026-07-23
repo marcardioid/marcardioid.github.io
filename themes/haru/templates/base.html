@@ -69,15 +69,18 @@
 			<header class="site-header">
 				{% set current_page = active_page|default('') %}
 					<nav class="site-nav" aria-label="Primary">
+					{% if ENABLE_SITE_NAME %}
 					<a class="site-brand" href="/"><span id="nav-name">{{ SITENAME }}</span></a>
+					{% endif %}
 					<div class="site-nav-links">
-					{% if NAVIGATION_ITEMS %}
+					{% if ENABLE_NAVIGATION_ITEMS and NAVIGATION_ITEMS %}
 					{% for href, id, caption in NAVIGATION_ITEMS %}
 					<a href="{{ SITEURL }}{{ href|e }}"{% if id == current_page %} class="is-active"{% endif %}>{{ caption|e }}</a>
 					{% endfor %}
 					{% endif %}
 					</div>
 					{% block nav_progress %}{% endblock %}
+					{% if ENABLE_THEME_TOGGLE %}
 					<button id="theme-toggle" type="button" aria-pressed="false" aria-label="{{ THEME_TOGGLE_LABEL_DARK }}" title="{{ THEME_TOGGLE_LABEL_DARK }}" data-label-dark="{{ THEME_TOGGLE_LABEL_DARK }}" data-label-light="{{ THEME_TOGGLE_LABEL_LIGHT }}">
 						<svg class="theme-icon theme-icon--moon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 							<path d="M20.26 14.01A8.49 8.49 0 0 1 9.99 3.74a.75.75 0 0 0-.85-.96A9.75 9.75 0 1 0 21.22 14.86a.75.75 0 0 0-.96-.85z" />
@@ -94,6 +97,7 @@
 							<line x1="17.48" y1="6.52" x2="19.43" y2="4.57" />
 						</svg>
 					</button>
+					{% endif %}
 				</nav>
 		</header>
 

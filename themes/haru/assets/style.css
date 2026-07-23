@@ -632,6 +632,7 @@ article img.img-size-medium {
 }
 
 .site-nav-links {
+    grid-column: 2;
     display: flex;
     justify-content: end;
     flex-wrap: wrap;
@@ -679,6 +680,7 @@ article img.img-size-medium {
 }
 
 #theme-toggle {
+    grid-column: 3;
     width: var(--control-target-size);
     height: var(--control-target-size);
     margin-left: var(--space-2);
@@ -834,6 +836,7 @@ article img.img-size-medium {
 
 .home-identity {
     text-align: left;
+    user-select: none;
 }
 
 .home-identity-link {
