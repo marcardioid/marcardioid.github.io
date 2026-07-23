@@ -125,17 +125,6 @@ article img.img-breakout {
     hanging-punctuation: first last;
 }
 
-.entry-content > p:first-of-type::first-letter {
-    float: left;
-    margin-right: 0.3rem;
-    padding-top: 0.4rem;
-    color: var(--color-text-soft);
-    font-family: var(--font-editorial);
-    font-size: 4rem;
-    font-weight: 600;
-    line-height: 1;
-}
-
 .entry-content ul,
 .entry-content ol {
     margin-top: var(--space-4);
@@ -403,6 +392,24 @@ article img.img-breakout {
 
 #series li.active::marker {
     font-weight: 400;
+}
+
+.article-footer-nav {
+    margin-top: var(--space-6);
+}
+
+.article-back-link {
+    min-height: var(--control-target-size);
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-link);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-caption);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-underline-offset: var(--link-underline-offset);
+    text-decoration-thickness: var(--link-underline-thickness);
+    text-transform: uppercase;
 }
 
 .codehilitetable {
@@ -714,7 +721,8 @@ pre code {
     .toc,
     .article-sidebar--toc,
     .sidenote,
-    .code-copy-button {
+    .code-copy-button,
+    .article-footer-nav {
         display: none !important;
     }
 
