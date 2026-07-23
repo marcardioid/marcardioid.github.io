@@ -146,6 +146,10 @@ article img.img-breakout {
     scroll-margin-top: var(--article-anchor-offset);
 }
 
+.entry-content sup[id^="fnref"] {
+    scroll-margin-top: calc(var(--article-anchor-offset) + var(--space-4));
+}
+
 .article-layout .article-main {
     grid-area: main;
     width: 100%;
@@ -244,6 +248,7 @@ article img.img-breakout {
     color: var(--color-text-soft);
     text-decoration: underline;
     text-decoration-thickness: 1px;
+    text-underline-offset: var(--link-underline-offset);
 }
 
 .toc a.is-active {
@@ -299,7 +304,7 @@ article img.img-breakout {
     margin-top: var(--space-3);
 }
 
-.article-layout:has(.has-sidenote-cluster) .article-endnotes {
+.article-layout:has(.sidenote) .article-endnotes {
     display: none;
 }
 
@@ -324,25 +329,13 @@ article img.img-breakout {
     text-decoration: none;
 }
 
-.entry-content .has-sidenote-cluster {
-    position: relative;
-}
-
-.entry-content .sidenote-cluster {
-    position: absolute;
-    left: 100%;
-    width: var(--article-note-width);
-    margin-left: var(--article-layout-gap);
-    padding: 0 var(--space-2) var(--space-2) 0;
-    background: var(--color-surface);
-    display: grid;
-    row-gap: var(--space-3);
-    z-index: 1;
-    top: -0.36em;
-}
-
 .entry-content .sidenote {
-    position: relative;
+    float: right;
+    clear: right;
+    width: var(--article-note-width);
+    margin-right: calc(-1 * (var(--article-note-width) + var(--article-layout-gap)));
+    margin-top: 0.2em;
+    margin-bottom: var(--space-3);
     color: var(--color-text-soft);
     font-size: var(--font-size-body-secondary);
     line-height: 1.6;
@@ -633,18 +626,15 @@ pre code {
     margin: 0;
 }
 
-@media only screen and (max-width: 1400px) {
-    .article-layout:has(.has-sidenote-cluster) .article-endnotes {
+@media only screen and (max-width: 1399px) {
+    .article-layout:has(.sidenote) .article-endnotes {
         display: block;
     }
-}
 
-@media only screen and (max-width: 1399px) {
     .article-sidebar--toc,
-    .sidenote-cluster,
     .sidenote-number,
     .sidenote-content,
-    .sidenote {
+    .entry-content .sidenote {
         display: none;
     }
 }
@@ -714,13 +704,23 @@ pre code {
         line-height: 1.2em;
         top: -0.5em;
     }
+
+    .entry-content sup[id^="fnref"] {
+        scroll-margin-top: calc(var(--article-anchor-offset) + var(--space-6));
+    }
 }
 
 @media only print {
-    .toc {
+    .toc,
+    .article-sidebar--toc,
+    .sidenote,
+    .code-copy-button {
         display: none !important;
     }
-    
+
+    .article-layout:has(.sidenote) .article-endnotes {
+        display: block !important;
+    }
 
     .linenos {
         border-right: none;

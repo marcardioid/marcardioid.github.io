@@ -10,8 +10,6 @@ from __future__ import annotations
 from bs4 import BeautifulSoup, NavigableString, Tag
 from pelican import signals
 
-HOST_BLOCK_TAGS = {"p", "li", "blockquote", "td", "th", "dd"}
-
 
 def _flatten_note_html(note: Tag) -> str:
     fragments: list[str] = []
@@ -35,17 +33,6 @@ def _flatten_note_html(note: Tag) -> str:
             fragments.append(html)
 
     return "<br><br>".join(fragments)
-
-
-def _find_host_block(reference: Tag) -> Tag | None:
-    current = reference.parent
-
-    while current is not None:
-        if isinstance(current, Tag) and current.name in HOST_BLOCK_TAGS:
-            return current
-        current = current.parent
-
-    return None
 
 
 def _build_sidenotes(article_generator) -> None:
@@ -72,7 +59,9 @@ def _build_sidenotes(article_generator) -> None:
                     continue
                 notes_by_target[f"#{target}"] = _flatten_note_html(note)
 
-            clusters_by_host: dict[int, Tag] = {}
+            # Each sidenote is inserted directly after its reference so the
+            # floated note aligns with the line it annotates; `clear: right`
+            # in CSS stacks consecutive notes without overlap.
             for ref_link in soup.select("sup[id] > a.footnote-ref[href^='#']"):
                 target = ref_link.get("href")
                 note_html = notes_by_target.get(target)
@@ -83,20 +72,6 @@ def _build_sidenotes(article_generator) -> None:
                 reference_id = reference.get("id", "")
                 sidenote_id = reference_id.replace("fnref", "sidenote", 1) or f"sidenote-{ref_link.get_text(strip=True)}"
                 ref_link["aria-describedby"] = sidenote_id
-                host_block = _find_host_block(reference)
-                if host_block is None:
-                    continue
-
-                host_key = id(host_block)
-                cluster = clusters_by_host.get(host_key)
-                if cluster is None:
-                    cluster = soup.new_tag("span", attrs={"class": "sidenote-cluster"})
-                    classes = list(host_block.get("class", []))
-                    if "has-sidenote-cluster" not in classes:
-                        classes.append("has-sidenote-cluster")
-                        host_block["class"] = classes
-                    host_block.append(cluster)
-                    clusters_by_host[host_key] = cluster
 
                 sidenote = soup.new_tag(
                     "span",
@@ -112,7 +87,7 @@ def _build_sidenotes(article_generator) -> None:
 
                 sidenote.append(number)
                 sidenote.append(content)
-                cluster.append(sidenote)
+                reference.insert_after(sidenote)
 
         footnote_block.extract()
         article._content = "".join(str(node) for node in soup.contents).strip()
