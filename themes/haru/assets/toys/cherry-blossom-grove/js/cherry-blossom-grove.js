@@ -39,6 +39,17 @@
 		'Canopy_Midlights',
 		'Canopy_Highlights'
 	];
+	var HOVER_PETAL_INTERVAL_MS = 340;
+	// Amplitudes stay under ~1.5px so the idle sway reads as breathing, not wind.
+	var IDLE_SWAY_SPEED_X = 0.00052;
+	var IDLE_SWAY_SPEED_Y = 0.00037;
+	var IDLE_SWAY_LAYER_CONFIG = {
+		Canopy_Base_2: { amplitudeX: 0.5, amplitudeY: 0.3, phase: 1.7 },
+		Canopy_Base_3: { amplitudeX: 0.8, amplitudeY: 0.5, phase: 3.9 },
+		Canopy_Lowlights: { amplitudeX: 0.45, amplitudeY: 0.28, phase: 0.6 },
+		Canopy_Midlights: { amplitudeX: 1.05, amplitudeY: 0.65, phase: 2.8 },
+		Canopy_Highlights: { amplitudeX: 1.5, amplitudeY: 0.95, phase: 5.1 }
+	};
 	var THEME_FILL_MAPS = {
 		light: null,
 		dark: {
@@ -322,6 +333,10 @@
 		this.hintHideTimeoutId = 0;
 		this.shakeStartTime = 0;
 		this.isInteractiveCursorVisible = false;
+		this.lastHoverPetalTime = 0;
+		this.isPageVisible = !document.hidden;
+		this.isInViewport = true;
+		this.viewportObserver = null;
 		this.reducedMotionMediaQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 		this.prefersReducedMotion = this.reducedMotionMediaQuery ? this.reducedMotionMediaQuery.matches : false;
 		this.rng = createRng(Date.now() ^ ((this.canvas.offsetWidth || 1) << 5));
@@ -334,6 +349,8 @@
 		this.onThemeOrPageShow = this.onThemeOrPageShow.bind(this);
 		this.onReducedMotionChange = this.onReducedMotionChange.bind(this);
 		this.onThemeMutation = this.onThemeMutation.bind(this);
+		this.onVisibilityChange = this.onVisibilityChange.bind(this);
+		this.onViewportChange = this.onViewportChange.bind(this);
 	}
 
 	function getInteractionHintCopy() {
@@ -356,6 +373,12 @@
 		this.canvas.addEventListener('mouseleave', this.onPointerLeave);
 		window.addEventListener('resize', this.onResize, { passive: true });
 		window.addEventListener('pageshow', this.onThemeOrPageShow);
+		document.addEventListener('visibilitychange', this.onVisibilityChange);
+
+		if (window.IntersectionObserver) {
+			this.viewportObserver = new IntersectionObserver(this.onViewportChange);
+			this.viewportObserver.observe(this.canvas);
+		}
 
 		if (this.reducedMotionMediaQuery) {
 			this.reducedMotionMediaQuery.addEventListener('change', this.onReducedMotionChange);
@@ -380,6 +403,12 @@
 		this.canvas.removeEventListener('mouseleave', this.onPointerLeave);
 		window.removeEventListener('resize', this.onResize);
 		window.removeEventListener('pageshow', this.onThemeOrPageShow);
+		document.removeEventListener('visibilitychange', this.onVisibilityChange);
+
+		if (this.viewportObserver) {
+			this.viewportObserver.disconnect();
+			this.viewportObserver = null;
+		}
 
 		if (this.reducedMotionMediaQuery) {
 			this.reducedMotionMediaQuery.removeEventListener('change', this.onReducedMotionChange);
@@ -534,6 +563,57 @@
 
 		this.renderAt(this.getRenderElapsed());
 		this.updateHintVisibility();
+
+		if (this.shouldIdleSway()) {
+			this.lastFrameTime = 0;
+			this.ensureAnimationLoop();
+		}
+	};
+
+	CherryBlossomGrove.prototype.onVisibilityChange = function () {
+		this.isPageVisible = !document.hidden;
+
+		if (this.shouldIdleSway()) {
+			this.lastFrameTime = 0;
+			this.ensureAnimationLoop();
+		}
+	};
+
+	CherryBlossomGrove.prototype.onViewportChange = function (entries) {
+		var entry = entries[entries.length - 1];
+
+		this.isInViewport = !!(entry && entry.isIntersecting);
+
+		if (this.shouldIdleSway()) {
+			this.lastFrameTime = 0;
+			this.ensureAnimationLoop();
+		}
+	};
+
+	CherryBlossomGrove.prototype.shouldIdleSway = function () {
+		return (
+			this.hasLoaded &&
+			!this.destroyed &&
+			!this.introActive &&
+			!this.prefersReducedMotion &&
+			this.isPageVisible &&
+			this.isInViewport
+		);
+	};
+
+	CherryBlossomGrove.prototype.getLayerIdleOffset = function (layerId) {
+		var config = IDLE_SWAY_LAYER_CONFIG[layerId];
+		var now;
+
+		if (!config || !this.shouldIdleSway()) {
+			return null;
+		}
+
+		now = window.performance && window.performance.now ? window.performance.now() : Date.now();
+		return {
+			x: Math.sin((now * IDLE_SWAY_SPEED_X) + config.phase) * config.amplitudeX,
+			y: Math.sin((now * IDLE_SWAY_SPEED_Y) + (config.phase * 1.6)) * config.amplitudeY
+		};
 	};
 
 	CherryBlossomGrove.prototype.onClick = function (event) {
@@ -563,6 +643,8 @@
 		var rect;
 		var pointerX;
 		var pointerY;
+		var isCanopyHit;
+		var now;
 
 		if (!this.hasLoaded) {
 			this.setInteractiveCursor(false);
@@ -572,7 +654,17 @@
 		rect = this.canvas.getBoundingClientRect();
 		pointerX = event.clientX - rect.left;
 		pointerY = event.clientY - rect.top;
-		this.setInteractiveCursor(this.isCanopyHit(pointerX, pointerY));
+		isCanopyHit = this.isCanopyHit(pointerX, pointerY);
+		this.setInteractiveCursor(isCanopyHit);
+
+		if (isCanopyHit && !this.prefersReducedMotion && !this.introActive) {
+			now = window.performance && window.performance.now ? window.performance.now() : Date.now();
+
+			if (now - this.lastHoverPetalTime >= HOVER_PETAL_INTERVAL_MS) {
+				this.lastHoverPetalTime = now;
+				this.spawnHoverPetals(pointerX, pointerY);
+			}
+		}
 	};
 
 	CherryBlossomGrove.prototype.onPointerLeave = function () {
@@ -855,7 +947,7 @@
 			this.updateHintVisibility();
 		}
 
-		if ((this.introActive || this.petals.length || this.getLayerShakeOffset('Canopy_Highlights')) && !this.destroyed) {
+		if ((this.introActive || this.petals.length || this.getLayerShakeOffset('Canopy_Highlights') || this.shouldIdleSway()) && !this.destroyed) {
 			this.ensureAnimationLoop();
 		}
 	};
@@ -1135,6 +1227,7 @@
 		var heightCap = bounds.height;
 		var revealHeight;
 		var shakeOffset;
+		var idleOffset;
 		var ctx = this.ctx;
 
 		if (progress <= 0) {
@@ -1143,8 +1236,12 @@
 
 		ctx.save();
 		shakeOffset = this.getLayerShakeOffset(layer.id);
-		if (shakeOffset) {
-			ctx.translate(shakeOffset.x, shakeOffset.y);
+		idleOffset = this.getLayerIdleOffset(layer.id);
+		if (shakeOffset || idleOffset) {
+			ctx.translate(
+				(shakeOffset ? shakeOffset.x : 0) + (idleOffset ? idleOffset.x : 0),
+				(shakeOffset ? shakeOffset.y : 0) + (idleOffset ? idleOffset.y : 0)
+			);
 		}
 		ctx.beginPath();
 		ctx.rect(bounds.x, bounds.y + bounds.height - heightCap, bounds.width, heightCap);
@@ -1187,6 +1284,32 @@
 				sway: randomBetween(this.rng, 0.008, 0.018),
 				swayOffset: randomBetween(this.rng, 0, Math.PI * 2),
 				lifetimeMs: randomBetween(this.rng, 1050, 1700),
+				colorIndex: Math.floor(this.rng() * petalPalette.colors.length)
+			});
+		}
+
+		this.ensureAnimationLoop();
+	};
+
+	CherryBlossomGrove.prototype.spawnHoverPetals = function (x, y) {
+		var count = 1 + Math.floor(this.rng() * 2);
+		var index;
+		var petalSizeScale = this.getPetalSizeScale();
+		var petalPalette = this.getPetalPalette();
+
+		// Gentler than the click burst: a petal or two drifting loose under the pointer.
+		for (index = 0; index < count; index += 1) {
+			this.addPetal(x + randomBetween(this.rng, -10, 10), y + randomBetween(this.rng, -8, 8), {
+				vx: randomBetween(this.rng, -0.22, 0.22),
+				vy: randomBetween(this.rng, -0.5, -0.12),
+				gravity: randomBetween(this.rng, 0.002, 0.0034),
+				size: randomBetween(this.rng, 4.4, 7.4) * petalSizeScale,
+				rotation: randomBetween(this.rng, -Math.PI, Math.PI),
+				rotationVelocity: randomBetween(this.rng, -0.0028, 0.0028),
+				alpha: randomBetween(this.rng, 0.5, 0.78),
+				sway: randomBetween(this.rng, 0.008, 0.016),
+				swayOffset: randomBetween(this.rng, 0, Math.PI * 2),
+				lifetimeMs: randomBetween(this.rng, 850, 1350),
 				colorIndex: Math.floor(this.rng() * petalPalette.colors.length)
 			});
 		}
