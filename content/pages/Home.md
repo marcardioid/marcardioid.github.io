@@ -5,7 +5,7 @@ save_as: index.html
 Template: home
 Status: published
 
-I’m a Principal Software Engineer at [JET](https://www.justeattakeaway.com){:target="_blank" rel="noopener noreferrer"}, responsible for the Data Platform. I lead cross-functional delivery and build systems that turn complex data into actionable decisions. Previously, I was a Principal Software Engineer at [Nike](https://nike.com){:target="_blank" rel="noopener noreferrer"}.
+I’m a Principal Software Engineer at [JET](https://www.justeattakeaway.com){:target="_blank" rel="noopener noreferrer"}, responsible for the Data Platform. I lead cross-functional delivery and build systems that turn complex data into actionable decisions. Previously, I was a Principal Software Engineer at [Nike](https://nike.com){:target="_blank" rel="noopener noreferrer"} and a Machine Learning Consultant at [Avanade](https://www.avanade.com){:target="_blank" rel="noopener noreferrer"}.
 
 Over the past decade, I’ve focused on making large systems easier to build, understand, and run. I enjoy mentoring engineers and engineering managers as they grow into larger roles.
 
