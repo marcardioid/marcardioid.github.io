@@ -31,88 +31,73 @@
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
-		"@type": "Person",
-		"name": {{ SITE_AUTHOR | tojson }},
-		"url": {{ home_url | tojson }},
-		"jobTitle": {{ SITE_AUTHOR_TITLE | tojson }},
-		"image": {{ profile_image | tojson }},
-		"sameAs": {{ SOCIAL_PROFILE_URLS | tojson }}
+		"@type": "ProfilePage",
+		"mainEntity": {
+			"@type": "Person",
+			"name": {{ SITE_AUTHOR | tojson }},
+			"url": {{ home_url | tojson }},
+			"jobTitle": {{ SITE_AUTHOR_TITLE | tojson }},
+			"image": {{ profile_image | tojson }},
+			"sameAs": {{ SOCIAL_PROFILE_URLS | tojson }}
+		}
 	}
 	</script>
-	<style>
-		*,
-		*::before,
-		*::after {
-			box-sizing: border-box;
-		}
-
-		.home-page article {
-			max-width: 78rem;
-		}
-
-		.home-layout {
-			margin-bottom: 1.5rem;
-			padding-top: 1.5rem;
-			display: grid;
-			grid-template-columns: minmax(250px, 330px) minmax(0, 1fr);
-			gap: 3rem;
-			align-items: start;
-		}
-
-		.home-avatar {
-			width: 204px;
-			height: auto;
-			max-width: 100%;
-			display: block;
-			margin: 0 0 0.75rem 0;
-			border: 3px solid #fafafa;
-		}
-
-		.home-copy {
-			max-width: 78ch;
-		}
-
-		@media only screen and (max-width: 767px) {
-			.home-layout {
-				grid-template-columns: 1fr;
-				gap: 1.5rem;
-			}
-
-			.home-avatar {
-				width: 136px;
-			}
-		}
-	</style>
 {% endblock %}
 
 {% block content %}
 					<section class="home-layout">
-							<div class="home-identity">
-								<a class="home-identity-link home-avatar-link" href="/">
-									<picture>
-										<source
-											type="image/webp"
-											srcset="{{ profile_home_image_base }}/portrait-136.webp 136w, {{ profile_home_image_base }}/portrait-204.webp 204w, {{ profile_home_image_base }}/portrait-408.webp 408w"
-											sizes="(max-width: 767px) 136px, 204px"
-										>
-										<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ profile_home_image_base }}/{{ SOCIAL_IMAGE_FILENAME }}" width="204" height="280" fetchpriority="high" decoding="async">
-									</picture>
-								</a>
-								{% if ENABLE_HOME_IDENTITY_NAME %}
-								<a class="home-identity-link home-name-link" href="/">
-									<p class="home-name">{{ SITENAME }}</p>
-								</a>
-								{% endif %}
+						<div class="home-identity">
+							<a class="home-identity-link home-avatar-link" href="/" tabindex="-1">
+								<picture>
+									<source
+										type="image/webp"
+										srcset="{{ profile_home_image_base }}/portrait-136.webp 136w, {{ profile_home_image_base }}/portrait-204.webp 204w, {{ profile_home_image_base }}/portrait-408.webp 408w"
+										sizes="(max-width: 767px) 136px, 204px"
+									>
+									<img class="home-avatar" alt="Portrait of {{ SITE_AUTHOR }}" src="{{ profile_home_image_base }}/{{ SOCIAL_IMAGE_FILENAME }}" width="204" height="248" fetchpriority="high" decoding="async">
+								</picture>
+							</a>
+							{% if ENABLE_HOME_IDENTITY_NAME %}
+							<a class="home-identity-link home-name-link" href="/" tabindex="-1">
+								<p class="home-name">{{ SITENAME }}</p>
+							</a>
+							{% endif %}
+						</div>
+						<div class="home-copy">
+							{% set has_wave_emoji = '👋' in page.title %}
+							{% set home_heading_text = page.title | replace('👋', '') | trim %}
+							<h1 class="home-heading">{{ home_heading_text }}{% if has_wave_emoji %}<span class="wave-emoji" role="img" aria-label="Waving hand" tabindex="0">👋</span>{% endif %}</h1>
+							<div class="home-body">
+								{{ page.content }}
 							</div>
-							<div class="home-copy">
-								{% set has_wave_emoji = '👋' in page.title %}
-								{% set home_heading_text = page.title | replace('👋', '') | trim %}
-								<h1 class="home-heading">{{ home_heading_text }}{% if has_wave_emoji %}<span class="wave-emoji">👋</span>{% endif %}</h1>
-								<div class="home-body">
-									{{ page.content }}
-								</div>
-							</div>
+							<a class="cta-reply-button" href="mailto:mail@marcsleegers.com?subject=Hello">
+								<svg class="cta-reply-button__icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+									<path d="M3.75 6.75h16.5a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5v-7.5a1.5 1.5 0 0 1 1.5-1.5Z" />
+									<path d="m3 7.5 9 6 9-6" />
+								</svg>
+								<span>Get in touch</span>
+							</a>
+						</div>
+						{% if ENABLE_TOY %}
+						{% assets filters="svgo", output="toys/cherry-blossom-grove/svg/cherry-blossom.min.svg", "toys/cherry-blossom-grove/svg/cherry-blossom.svg" %}
+						<div class="home-toy">
+							<canvas id="cherry-blossom-canvas" data-cherry-blossom-svg="{{ SITEURL }}/{{ ASSET_URL }}" aria-hidden="true"></canvas>
+							<noscript>
+								<img class="home-toy-fallback" src="{{ SITEURL }}/{{ ASSET_URL }}" alt="" loading="lazy">
+							</noscript>
+							<p id="cherry-blossom-hint" class="toy-hint" hidden aria-hidden="true"></p>
+						</div>
+						{% endassets %}
+						{% endif %}
 					</section>
 {% endblock %}
 
 {% block footer %}{% endblock %}
+
+{% block extra_scripts %}
+	{% if ENABLE_TOY %}
+	{% assets filters="rjsmin", output="toys/cherry-blossom-grove/js/cherry-blossom-grove.min.js", "toys/cherry-blossom-grove/js/cherry-blossom-grove.js" %}
+	<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
+	{% endassets %}
+	{% endif %}
+{% endblock %}

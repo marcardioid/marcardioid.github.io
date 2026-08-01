@@ -15,6 +15,12 @@
 	<link rel="canonical" href="{{ article_url }}" />
 {% endblock %}
 {% block title %}{{ article.title | striptags }} | {{ SITENAME }}{% endblock %}
+{% block body_class %} class="article-page"{% endblock %}
+{% block extra_styles %}
+	{% assets filters="rcssmin", output="article.min.css", "article.css" %}
+	<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" type="text/css">
+	{% endassets %}
+{% endblock %}
 
 {% block meta %}
 	<!-- Twitter Cards and Open Graph -->
@@ -59,75 +65,97 @@
 	</script>
 {% endblock %}
 
-{% block content %}
-				<div id="reading-progress" aria-hidden="true">
-					<div id="reading-progress-fill"></div>
-				</div>
+{% block nav_progress %}
+					{% if article.readtime is not defined or (article.readtime is defined and article.readtime > 0) %}
+					<div id="reading-progress" aria-hidden="true">
+						<div id="reading-progress-fill"></div>
+					</div>
+					{% endif %}
+{% endblock %}
 
+{% block content %}
+				<div class="article-layout">
 				<header class="entry-header">
 					<p class="entry-kicker"><a href="{{ SITEURL }}/{{ BLOG_URL }}">{{ BLOG_TITLE }}</a>{% if article_category_name and article_category_name != DEFAULT_CATEGORY %} / <a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article_category_name | lower }}">{{ article_category_name }}</a>{% endif %}</p>
-					<h1 class="title entry-title"><a href="{{ SITEURL }}/{{ article.url }}" title="Permalink to {{ article.title | striptags }}">{{ article.title }}</a></h1>
+					<h1 class="title entry-title">{{ article.title }}</h1>
 					<p class="article-meta">
 						<time datetime="{{ article.date }}">{{ article.locale_date }}</time>
 						{% if article.modified and not article.modified == article.date %}<span class="archive-dot" aria-hidden="true">&bull;</span> updated <time datetime="{{ article.modified }}">{{ article.modified|strftime('%B %d, %Y') }}</time> {% endif %}
-						{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+						{% if article.readtime is defined%}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ "&lt;1" if article.readtime < 1 else article.readtime }} min read{% endif %}
 					</p>
+					{% if article.image %}
+					<img class="entry-header-image" src="{{ article_image }}" alt="{{ article_image_alt }}">
+					{% endif %}
 				</header>
 
-				<div class="content entry-content">
-					{{ article.content }}
-				</div>
-				{% if article.series %}
-				<div id="series">
-					<p>This post is part {{ article.series.index }} of the '{{ article.series.name }}' series:</p>
-					<ol>
-						{% for part_article in article.series.all %}
-						<li {% if part_article==article %}class="active" {% endif %}>
-							<a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
-						</li>
-						{% endfor %}
-					</ol>
-				</div>
-				{% endif %}
-				{% if article.next_article or article.prev_article %}
-				<div id="related-articles">
-					{% if article.prev_article %}
-					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">
-						<span class="neighbour-label">Previous</span>
-						<span class="neighbour-title">{{ article.prev_article.title | striptags }}</span>
-					</a>
+					{% if ENABLE_TOC and article.toc %}
+					<aside class="article-sidebar article-sidebar--toc" aria-label="Table of Contents">
+						{{ article.toc | safe }}
+					</aside>
 					{% endif %}
-					{% if article.next_article %}
-					<a class="neighbour-link neighbour-link--next" href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">
-						<span class="neighbour-label">Next</span>
-						<span class="neighbour-title">{{ article.next_article.title | striptags }}</span>
-					</a>
-					{% endif %}
-				</div>
-				{% endif %}
-				{% if DISQUS_SITENAME and article.status != "draft" %}
-				<hr>
 
-				<!-- Disqus -->
-				<div id="disqus_thread"></div>
-				<script type="text/javascript">
-					var disqus_shortname = '{{ DISQUS_SITENAME }}';
-					(function () {
-						var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-						dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-						(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-					})();
-					</script>
+					<div class="article-main">
+						<div class="content entry-content">
+							{{ article.content }}
+						</div>
+						{% if article.footnotes_html %}
+						<section class="article-endnotes" aria-labelledby="article-endnotes-title">
+							<h2 class="article-apparatus-title" id="article-endnotes-title">Footnotes</h2>
+							{{ article.footnotes_html | safe }}
+						</section>
+						{% endif %}
+						{% set article_reply_subject = ('Re: ' ~ (article.title | striptags)) | urlencode %}
+						<a class="cta-reply-button" href="mailto:mail@marcsleegers.com?subject={{ article_reply_subject }}">
+							<svg class="cta-reply-button__icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+								<path d="M3.75 6.75h16.5a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5v-7.5a1.5 1.5 0 0 1 1.5-1.5Z" />
+								<path d="m3 7.5 9 6 9-6" />
+							</svg>
+							<span>Reply by email</span>
+						</a>
+						{% if article.series %}
+						{% if article.series.all|length > 0 %}
+						<div id="series">
+							<p>Series: {{ article.series.name }}</p>
+							<ol>
+								{% for part_article in article.series.all %}
+								<li {% if part_article==article %}class="active" {% endif %}>
+									<a href='{{ SITEURL }}/{{ part_article.url }}'>{{ part_article.title }}</a>
+								</li>
+								{% endfor %}
+							</ol>
+						</div>
+						{% endif %}
+						{% endif %}
+						{% if article.next_article or article.prev_article %}
+						<div id="related-articles">
+							{% if article.prev_article %}
+							<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ article.prev_article.url}}" id="prev-neighbour">
+								<span class="neighbour-label">Previous</span>
+								<span class="neighbour-title">{{ article.prev_article.title | striptags }}</span>
+							</a>
+							{% endif %}
+							{% if article.next_article %}
+							<a class="neighbour-link neighbour-link--next" href="{{ SITEURL }}/{{ article.next_article.url}}" id="next-neighbour">
+								<span class="neighbour-label">Next</span>
+								<span class="neighbour-title">{{ article.next_article.title | striptags }}</span>
+							</a>
+							{% endif %}
+						</div>
+						{% endif %}
+						<nav class="article-footer-nav" aria-label="Writing navigation">
+							<a class="article-back-link" href="{{ SITEURL }}/{{ BLOG_URL }}"><span aria-hidden="true">&larr;&nbsp;</span>Back to Writing</a>
+						</nav>
+					</div>
+				</div>
+				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/article/reading-progress.js" %}
+				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
+				{% endassets %}
+				{% if ENABLE_TOC and article.toc %}
+				{% assets filters="rjsmin", output="js/toc-active.min.js", "js/article/toc-active.js" %}
+				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
+				{% endassets %}
 				{% endif %}
-				{% assets filters="rjsmin", output="js/reading-progress.min.js", "js/reading-progress.js" %}
-				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
-				{% endassets %}
-				{% assets filters="rjsmin", output="js/toc-toggle.min.js", "js/toc-toggle.js" %}
-				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
-				{% endassets %}
-				{% assets filters="rjsmin", output="js/code-copy.min.js", "js/code-copy.js" %}
+				{% assets filters="rjsmin", output="js/code-copy.min.js", "js/article/code-copy.js" %}
 				<script src="{{ SITEURL }}/{{ ASSET_URL }}" defer></script>
 				{% endassets %}
 {% endblock %}
-
-{% block footer %}{% include "includes/site-footer.html" %}{% endblock %}

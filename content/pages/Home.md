@@ -5,10 +5,10 @@ save_as: index.html
 Template: home
 Status: published
 
-I am a Principal Software Engineer at [Nike](https://nike.com){:target="_blank" rel="noopener noreferrer"}, building scalable data-intensive platforms that help teams turn complex data landscapes into actionable insights. I lead engineers and cross-functional initiatives from architecture through delivery.
+I’m a Principal Software Engineer at [JET](https://www.justeattakeaway.com){:target="_blank" rel="noopener noreferrer"}, responsible for the Data Platform. I lead cross-functional delivery and build systems that turn complex data into actionable decisions. Previously, I was a Principal Software Engineer at [Nike](https://nike.com){:target="_blank" rel="noopener noreferrer"} and a Machine Learning Consultant at [Avanade](https://www.avanade.com){:target="_blank" rel="noopener noreferrer"}.
 
-With over a decade of experience across modern analytics and data engineering stacks, I set technical direction for platform reliability and delivery while mentoring engineers and engineering managers in their career goals.
+Over the past decade, I’ve focused on making large systems easier to build, understand, and run. I enjoy mentoring engineers and engineering managers as they grow into larger roles.
 
-Outside of work, I am a published author, [a hobbyist game developer](/splash/){:target="_blank" rel="noopener noreferrer"}, and a certified PADI Rescue Diver. To wind down I love reading fantasy novels, home automation, and long-distance running.
+Outside of work, I’m a published author, [a hobbyist game developer](/splash/){:target="_blank" rel="noopener noreferrer"}, and a certified PADI Rescue Diver. To wind down I love reading fantasy novels, tinkering with home automation projects, and long-distance runs.
 
-If you'd like to chat, let's [get in touch](mailto:mail@marcsleegers.com?subject=Hello).
+The toy on this page is <abbr title="벚꽃 (beotkkot), the Korean cherry blossom symbolizing renewal">벚꽃 (beotkkot)</abbr>, celebrating renewal.

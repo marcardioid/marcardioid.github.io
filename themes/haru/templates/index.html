@@ -40,17 +40,20 @@
 				<ul class="archive-list">
 					{% for article in articles %}
 					{% set teaser = article.summary | default('', true) | striptags | trim %}
-					<li class="archive-item">
-						<p class="entry-kicker">{% if article.category %}<a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article.category | lower }}">{{ article.category }}</a>{% endif %}</p>
+					<li class="archive-item archive-item--article">
+						{% set category_name = article.category.name if article.category and article.category.name is defined else article.category %}
+						{% if category_name and category_name != DEFAULT_CATEGORY %}
+						<p class="entry-kicker"><a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article.category | lower }}">{{ article.category }}</a></p>
+						{% endif %}
 						<h2 class="archive-heading">
 							<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
 						</h2>
 						<p class="archive-metadata">
 							<time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time>
-							{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+							{% if article.readtime is defined%}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ "&lt;1" if article.readtime < 1 else article.readtime }} min read{% endif %}
 						</p>
 						{% if teaser %}
-						<p class="archive-subtitle">{{ teaser | truncate(ARTICLE_LISTING_SUMMARY_TRUNCATE, False, '…') }}</p>
+						<p class="archive-summary">{{ teaser | truncate(ARTICLE_LISTING_SUMMARY_TRUNCATE, False, '…') }}</p>
 						{% endif %}
 					</li>
 					{% endfor %}
@@ -60,5 +63,3 @@
 				{% endif %}
 			</div>
 {% endblock %}
-
-{% block footer %}{% include "includes/site-footer.html" %}{% endblock %}

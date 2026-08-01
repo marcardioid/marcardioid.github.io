@@ -1,4 +1,10 @@
 (function () {
+	var BUTTON_ICONS = {
+		idle: '<svg class="code-copy-button__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>',
+		copied: '<svg class="code-copy-button__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>',
+		failed: '<svg class="code-copy-button__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 6-12 12"></path><path d="m6 6 12 12"></path></svg>'
+	};
+
 	function getCodeNode(block) {
 		var codeNode = block.querySelector('td.code code');
 		if (codeNode) {
@@ -66,19 +72,37 @@
 	}
 
 	function setButtonState(button, state) {
+		var label = 'Copy code to clipboard';
+
 		button.setAttribute('data-copy-state', state);
 
 		if (state === 'copied') {
-			button.textContent = 'Copied';
-			return;
+			label = 'Copied to clipboard';
+		} else if (state === 'failed') {
+			label = 'Copy failed';
 		}
 
-		if (state === 'failed') {
-			button.textContent = 'Copy failed';
-			return;
+		button.setAttribute('aria-label', label);
+		button.setAttribute('title', label);
+		button.innerHTML = BUTTON_ICONS[state] || BUTTON_ICONS.idle;
+	}
+
+	function getScrollerNode(block) {
+		var scroller = block.querySelector('.codehilite__scroller');
+
+		if (scroller && scroller.parentNode === block) {
+			return scroller;
 		}
 
-		button.textContent = 'Copy';
+		scroller = document.createElement('div');
+		scroller.className = 'codehilite__scroller';
+
+		while (block.firstChild) {
+			scroller.appendChild(block.firstChild);
+		}
+
+		block.appendChild(scroller);
+		return scroller;
 	}
 
 	function enhanceCodeBlock(block) {
@@ -86,11 +110,11 @@
 			return;
 		}
 
+		var scroller = getScrollerNode(block);
 		var button = document.createElement('button');
 
 		button.type = 'button';
 		button.className = 'code-copy-button';
-		button.setAttribute('aria-label', 'Copy code to clipboard');
 		setButtonState(button, 'idle');
 
 		button.addEventListener('click', function () {
@@ -118,7 +142,7 @@
 		});
 
 		block.classList.add('has-copy-button');
-		block.insertBefore(button, block.firstChild);
+		block.insertBefore(button, scroller);
 	}
 
 	function setupCodeCopyButtons() {

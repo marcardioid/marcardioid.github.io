@@ -10,7 +10,7 @@ The past year, I've been actively participating in reddit's [r/dailyprogrammer](
 It is now time to reflect on what I've learned, take a small step back and take the 'Daily' out of 'Daily Programmer'.
 
 Being a part of the r/dailyprogrammer community has been a blast. I submitted some pretty sweet solutions, inspired others to step up their programming game and learned A LOT.
-I started submitting solutions to challenges, because I though it was a great - and fun - way to keep my problem solving brain ticking. I also wanted to step up my Python game and learn some algorithms by heart.
+I started submitting solutions to challenges, because I thought it was a great - and fun - way to keep my problem solving brain ticking. I also wanted to step up my Python game and learn some algorithms by heart.
 Browsing through my commits, I can absolutely confirm what they say about training and flexing your programming muscles. If only it gave me abs, as well.
 
 > "You know you have really made progress as a software engineer when you look back at your code from a year ago, sigh, and think: How could I have written this MESS?!" <cite>They</cite>

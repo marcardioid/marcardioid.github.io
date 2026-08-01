@@ -1,0 +1,7 @@
+{
+  "name": "marcsleegers-com",
+  "private": true,
+  "devDependencies": {
+    "svgo": "^4.0.1"
+  }
+}

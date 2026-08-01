@@ -18,10 +18,17 @@ Primary workflow uses source content/config, not hand-editing files in `output/`
 - Always change source files in this repository (`content/`, `themes/`, config) and never hand-edit deployed artifacts.
 - Deployment behavior is defined in `.github/workflows/deploy_to_pages.yml`.
 
+## Versioning
+- The site version lives in `pyproject.toml` (`version`). It versions the site as a product, not its content: publishing articles never bumps it.
+- **Major**: a redesign or re-architecture — new theme, structural URL changes, or a build-pipeline replacement (for example, the 2026 `design/haru` refresh ships as `2.0`).
+- **Minor**: a new site capability — a new section (Writing, Talks, Uses), search, feeds overhaul, or a new toy.
+- **Patch**: fixes and polish — styling corrections, dependency bumps, accessibility or SEO tweaks.
+- Bump the version in the PR that ships the change to `src`; leave it untouched on feature branches until then.
+
 ## Build, Test, and Development Commands
-- `make sync`: Install dependencies from `pyproject.toml`/`uv.lock`.
-- `make sync-upgrade`: Upgrade dependencies and sync the local environment.
-- `make lock`: Refresh `uv.lock`.
+- `make sync`: Install dependencies from `uv.lock` and `package-lock.json`.
+- `make sync-upgrade`: Upgrade dependencies and sync the local environment for both Python and Node tooling.
+- `make lock`: Refresh `uv.lock` and `package-lock.json`.
 - `make build`: Build a development site into `output/develop/`.
 - `make build-prod`: Build production output into `output/publish/` (same command CI uses).
 - `make serve`: Run local dev server with live rebuilds.
@@ -29,16 +36,19 @@ Primary workflow uses source content/config, not hand-editing files in `output/`
 - `make check`: Run the local pre-PR validation flow.
 - `make clean`: Clean the local output/ directory.
 
-Use `make sync` for reproducible local and CI parity. Use `make sync-upgrade` and `make lock` only when intentionally updating dependency versions.
+Use `make sync` for reproducible local and CI parity across Python and Node dependencies. Use `make sync-upgrade` and `make lock` only when intentionally updating dependency versions.
 
 ## Coding Style & Naming Conventions
 - Python config files follow PEP 8 style: 4-space indentation, `UPPER_CASE` config constants.
 - Content files use Pelican metadata headers (`Title`, `Date`, `Summary`, etc.) at the top of Markdown files.
 - Keep theme edits localized: templates in `themes/haru/templates/`, styling in `themes/haru/static/style.css`.
+- Theme CSS is minified through `webassets` with the `rcssmin` filter.
 - Prefer descriptive, human-readable article filenames; keep page slugs stable once published.
 
 ## Pelican-First Rule
 - Prefer built-in functionality from Pelican core, Pelican plugins, Markdown, Markdown extensions, and Pelican templating logic before adding custom scripts or glue code.
+- Minimize client-side JavaScript when possible, especially for DOM manipulation; prefer solving problems during static site generation or with a Pelican plugin whenever feasible.
+- If external installs, package additions, or user-run setup commands are needed, ask the user to run them instead of writing unnecessary substitute code.
 - Use custom code only when native functionality is insufficient for the requirement.
 - Active plugin behavior is sourced from `pelicanconf.py` (`PLUGINS`) and dependency declarations in `pyproject.toml`.
 - Current plugins and purpose:
@@ -48,6 +58,7 @@ Use `make sync` for reproducible local and CI parity. Use `make sync-upgrade` an
   - `share_post`: Provides social sharing metadata/helpers.
   - `series`: Supports article series ordering and linking.
   - `readtime`: Adds estimated reading time metadata.
+  - `extract_toc`: Extracts generated Markdown TOCs into `article.toc` for template-controlled placement.
 - References:
   - https://getpelican.com/
   - https://docs.getpelican.com/en/latest/
@@ -78,14 +89,38 @@ Use `make sync` for reproducible local and CI parity. Use `make sync-upgrade` an
 There is no separate unit test suite in this repo. Validation is build-based:
 
 - Run `make check` before opening a PR.
-- Check generated pages in `output/publish/` for broken links, missing assets, and metadata issues.
+- Check generated pages in `output/develop/` for broken links, missing assets, and metadata issues.
 - For content changes, verify front matter fields render as expected on index/archive pages.
+
+## Local Browser Checks
+- Build the same output CI deploys with `make build`.
+- Prefer `make build` over `make build-prod` as the prod target includes live links, content that may not load in the sandbox.
+- Serve the generated site with `python -m http.server --directory output/develop 8000`.
+- Prefer `http://localhost:...` over `http://127.0.0.1:...` for local browsing to avoid CORS issues with the default `SITEURL = "http://localhost:8000"` in `pelicanconf.py`.
+- If the port is already in use, switch to another free port such as `8001`, rebuild with a matching `SITEURL` override, and use the matching localhost URL.
+- Do not edit `pelicanconf.py` just to change the port; pass a Pelican override instead, for example: `UV_CACHE_DIR=/tmp/uv-cache uv run pelican content -e SITEURL='"http://localhost:8001"'`.
+- For manual browser validation, prefer testing the served output rather than opening files directly from `output/develop/`.
+
+## Playwright And `playwright-cli`
+- Prefer Playwright-managed Chromium over system Chrome. Install it with `npx playwright install chromium`.
+- In sandboxed sessions, set `HOME=/tmp/pw-home` and `XDG_CACHE_HOME=/tmp/pw-cache` before Playwright commands so browser binaries and cache files are writable.
+- When setting up a local HTTP server or browsing the local site with Playwright, prefer `localhost` over `127.0.0.1` to avoid CORS issues with Pelican's default `SITEURL`.
+- When taking screenshots of the homepage or `/toys`, wait `3000ms` before capturing so deferred JS has loaded and toy intro animations have completed.
+- When capturing animation state, take screenshots in small increments rather than only at the start and end. Use roughly `250ms` steps unless the specific animation calls for something tighter.
+- Verified on March 17, 2026: `playwright-cli --version` reports `1.59.0-alpha-1771104257000`, `npx playwright --version` reports `1.58.2`, and `npx playwright install chromium` downloaded Playwright Chromium `chromium-1208`.
+- `playwright-cli` is useful for interactive inspection and element-driven actions. Typical flow:
+  - `HOME=/tmp/pw-home XDG_CACHE_HOME=/tmp/pw-cache playwright-cli open --browser=chromium http://localhost:8000/`
+  - `HOME=/tmp/pw-home XDG_CACHE_HOME=/tmp/pw-cache playwright-cli snapshot`
+  - `HOME=/tmp/pw-home XDG_CACHE_HOME=/tmp/pw-cache playwright-cli click e3`
+  - `HOME=/tmp/pw-home XDG_CACHE_HOME=/tmp/pw-cache playwright-cli screenshot --filename=/tmp/homepage.png`
+  - `HOME=/tmp/pw-home XDG_CACHE_HOME=/tmp/pw-cache playwright-cli close`
+- If `playwright-cli` cannot resolve its browser install and falls back to missing system Chrome, use `npx playwright` for one-shot captures, for example `HOME=/tmp/pw-home XDG_CACHE_HOME=/tmp/pw-cache npx playwright screenshot --browser=chromium http://localhost:8000/ /tmp/homepage.png`.
 
 ## Lighthouse Run Profile (Performance Work)
 Use this exact profile for repeatable homepage measurements:
 
-- Build: `make build-prod`
-- Serve output: `python -m http.server --directory output/publish 8000`
+- Build: `make build`
+- Serve output: `python -m http.server --directory output/develop 8000`
 - Browser: Chrome Incognito
 - DevTools -> Lighthouse settings:
   - Mode: `Navigation`
@@ -99,7 +134,7 @@ Use this exact profile for repeatable homepage measurements:
 
 GitHub Pages caching constraint:
 
-- Deployment target is GitHub Pages from `output/publish/`.
+- Deployment target is GitHub Pages from `output/publish/` for Production, `output/develop/` for testing with localhost.
 - Cache headers are platform-managed, so custom long-lived `Cache-Control` per asset cannot be configured from this repository alone.
 
 ## Commit & Pull Request Guidelines
