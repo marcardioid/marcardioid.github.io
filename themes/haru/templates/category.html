@@ -5,7 +5,7 @@
 {% if category == DEFAULT_CATEGORY %}
 	{% set category_title = category %}
 {% else %}
-	{% set category_title = BLOG_TITLE ~ " on " ~ category %}
+	{% set category_title = BLOG_TITLE ~ " about " ~ category %}
 {% endif %}
 {% set category_description = category_title %}
 {% set social_image = SITEURL ~ '/' ~ ICONS_PATH ~ '/' ~ SOCIAL_IMAGE_FILENAME %}
@@ -48,31 +48,29 @@
 					<ul class="archive-list">
 						{% for article in articles | sort(attribute='date', reverse=True) %}
 						{% set teaser = article.summary | default('', true) | striptags | trim %}
-						<li class="archive-item">
+						<li class="archive-item archive-item--article">
 							<p class="entry-kicker">{% if article.category %}<a href="{{ SITEURL }}/{{ BLOG_URL }}categories/{{ article.category | lower }}">{{ article.category }}</a>{% endif %}</p>
 							<h2 class="archive-heading">
 								<a class="archive-link" href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title | striptags }}">{{ article.title }}</a>
 							</h2>
 							<p class="archive-metadata">
 								<time datetime="{{ article.date }}">{{ article.date | strftime('%B %d, %Y') }}</time>
-								{% if article.readtime %}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ article.readtime }} min read{% endif %}
+								{% if article.readtime is defined%}<span class="archive-dot" aria-hidden="true">&bull;</span> {{ "&lt;1" if article.readtime < 1 else article.readtime }} min read{% endif %}
 							</p>
 							{% if teaser %}
-							<p class="archive-subtitle">{{ teaser | truncate(ARTICLE_LISTING_SUMMARY_TRUNCATE, False, '…') }}</p>
+							<p class="archive-summary">{{ teaser | truncate(ARTICLE_LISTING_SUMMARY_TRUNCATE, False, '…') }}</p>
 							{% endif %}
 						</li>
 						{% endfor %}
 					</ul>
 					{% else %}
-					<p>No {{ BLOG_TITLE | lower }} yet for this category.</p>
+					<p>No articles in this topic yet.</p>
 					{% endif %}
 				</div>
 				<div id="related-articles">
 					<a class="neighbour-link neighbour-link--prev" href="{{ SITEURL }}/{{ BLOG_URL }}" id="prev-neighbour">
-						<span class="neighbour-label">More</span>
-						<span class="neighbour-title">Browse all writing</span>
+						<span class="neighbour-label">Browse</span>
+						<span class="neighbour-title">All writing</span>
 					</a>
 				</div>
 {% endblock %}
-
-{% block footer %}{% include "includes/site-footer.html" %}{% endblock %}

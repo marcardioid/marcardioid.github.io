@@ -2,6 +2,8 @@
 	var progressBar = document.getElementById('reading-progress');
 	var progressFill = document.getElementById('reading-progress-fill');
 	var root = document.documentElement;
+	var completedOnce = false;
+	var completeTimer = 0;
 
 	if (!progressBar || !progressFill || !root) {
 		return;
@@ -16,12 +18,37 @@
 		return root.scrollHeight - window.innerHeight;
 	}
 
+	function clearCompleteState() {
+		if (completeTimer) {
+			window.clearTimeout(completeTimer);
+			completeTimer = 0;
+		}
+		progressFill.classList.remove('is-complete');
+	}
+
+	function celebrateCompletion() {
+		if (completedOnce) {
+			return;
+		}
+
+		completedOnce = true;
+		progressFill.classList.remove('is-complete');
+		progressFill.offsetWidth;
+		progressFill.classList.add('is-complete');
+
+		completeTimer = window.setTimeout(function () {
+			progressFill.classList.remove('is-complete');
+			completeTimer = 0;
+		}, 700);
+	}
+
 	function updateProgress() {
 		ticking = false;
 
 		var maxScroll = getMaxScroll();
 		if (maxScroll <= 0) {
 			progressFill.style.transform = 'scaleX(0)';
+			clearCompleteState();
 			progressBar.classList.remove('is-visible');
 			return;
 		}
@@ -31,6 +58,10 @@
 
 		progressFill.style.transform = 'scaleX(' + clampedProgress + ')';
 		progressBar.classList.toggle('is-visible', clampedProgress > 0);
+
+		if (clampedProgress >= 1) {
+			celebrateCompletion();
+		}
 	}
 
 	function queueUpdate() {

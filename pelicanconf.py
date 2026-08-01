@@ -1,5 +1,12 @@
 import os
+import sys
 from datetime import datetime
+
+CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
+if CONFIG_DIR not in sys.path:
+    sys.path.insert(0, CONFIG_DIR)
+
+import webassets_filters
 
 # Theme-specific settings
 SITENAME = "Marc Sleegers"
@@ -12,28 +19,36 @@ SITE_AUTHOR_TITLE = "Principal Software Engineer"
 ICONS_PATH = "images/icons"
 SOCIAL_IMAGE_FILENAME = "portrait.jpg"
 SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
-ENABLE_HOME_IDENTITY_NAME = False
 ROBOTS_INDEXABLE_DEFAULT = "index,follow,max-image-preview:large"
 ROBOTS_NOINDEX_DEFAULT = "noindex,follow"
+ENABLE_SITE_NAME = False
+ENABLE_NAVIGATION_ITEMS = False
+ENABLE_THEME_TOGGLE = True
+ENABLE_HOME_IDENTITY_NAME = False
+ENABLE_TOC = True
+ENABLE_SIDENOTES = True
+ENABLE_EXTERNAL_LINK_STYLE = True
+ENABLE_TOY = True
 
 TWITTER_USERNAME = "@marcardioid"
 SOCIAL_PROFILE_URLS = [
     "https://twitter.com/marcardioid",
     "https://github.com/marcardioid",
 ]
-INDEX_DESCRIPTION = "Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings."
+INDEX_DESCRIPTION = "Principal Software Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms."
 
 NAVIGATION_ITEMS = [
-    # ("/", "home", "Home"),
-    # ("/writing/", "writing", "Writing"),
-    # ("/talks/", "talks", "Talks"),
-    # ("/research/", "research", "Research"),
-    # ("/uses/", "uses", "Uses"),
-    # ("/now/", "now", "Now"),
+    ("/", "home", "Home"),
+    ("/writing/", "writing", "Writing"),
+    ("/talks/", "talks", "Talks"),
+    ("/research/", "research", "Research"),
+    ("/uses/", "uses", "Uses"),
+    ("/now/", "now", "Now"),
 ]
 
 GOOGLE_FONTS = [
-    "Inter:ital,wght@0,400..900;1,400..900",
+    "Lora:600,700",
+    "Source Sans 3:ital,wght@0,400..700;1,400..700",
     "IBM Plex Mono:400,500,700",
 ]
 GOOGLE_FONTS_BASE_URL = "https://fonts.googleapis.com/css"
@@ -45,10 +60,8 @@ SOCIAL_ICONS = [
     ("/atom.xml", f"Subscribe to {SITE_AUTHOR}'s RSS feed", "rss"),
 ]
 
-THEME_COLOR = "#052"
 THEME_TOGGLE_LABEL_DARK = "Switch to dark mode"
 THEME_TOGGLE_LABEL_LIGHT = "Switch to light mode"
-ENABLE_TOY = False
 
 # Pelican settings
 RELATIVE_URLS = False
@@ -121,8 +134,10 @@ MARKDOWN = {
         "markdown.extensions.admonition": {},
         "markdown.extensions.extra": {},
         "markdown.extensions.toc": {
-            "title": "On this page", 
-            "anchorlink": "True"},
+            "title": "On this page",
+            "permalink": "#",
+            "permalink_class": "headerlink",
+            "permalink_title": "Link to this heading"},
         "markdown.extensions.footnotes": {"SEPARATOR": "-"},
         "markdown.extensions.meta": {},
     },
@@ -154,7 +169,7 @@ PAGE_EXCLUDES = ["extra"]
 ARTICLE_EXCLUDES = ["extra"]
 
 PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "lazy-images"]
+PLUGINS = ["neighbors", "sitemap", "webassets", "share_post", "series", "readtime", "extract_toc", "editorial_footnotes", "lazy-images", "article_image_metadata", "external_links"]
 
 GOOGLE_ANALYTICS = "G-16VCVC4J5J"
 
@@ -168,6 +183,7 @@ SITEMAP = {
         r"writing/categories",
         r"^splash/$",
         r"^rpsls/$",
+        r"^toy/$",
         r"^blog/$",
     ],
     "priorities": {"articles": 0.8, "indexes": 0.5, "pages": 1.0},

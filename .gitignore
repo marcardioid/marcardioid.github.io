@@ -1,6 +1,3 @@
-# Generated site output
-output/
-
 # Python environment and caches
 .venv/
 __pycache__/
@@ -9,8 +6,19 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
+# Node environment and caches
+node_modules/
+
 # Local editor/tooling state
 .vscode/
 .idea/
-.python-version
+.playwright/
+.playwright-cli/
 .codex/
+.claude/
+.gstack/
+TODOS.md
+impeccable.md
+
+# Generated site output
+output/

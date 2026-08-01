@@ -3,10 +3,10 @@ Slug: managing-azure-machine-learning-endpoints
 Date: 25-02-2016 20:30
 Modified: 25-02-2016 20:30
 Status: published
-Summary: Recently, I've been working with Azure Machine Learning a lot. It's fantastic! When the interface works. Unfortunately, It doesn't always. So, I created a [Python package](https://pypi.python.org/pypi/PyZureML) so I could start managing Azure Machine Learning endpoints programmatically.
+Summary: Recently, I've been working with Azure Machine Learning a lot. It's fantastic! When the interface works. Unfortunately, it doesn't always. So, I created a [Python package](https://pypi.python.org/pypi/PyZureML) so I could start managing Azure Machine Learning endpoints programmatically.
 Keywords: Microsoft, Azure, Machine, Learning, Python, Webservice, Endpoint, API, Wrapper, Binding, Fix
 
-Recently, I've been working with Azure Machine Learning a lot. It's fantastic! When the interface works. Unfortunately, It doesn't always.
+Recently, I've been working with Azure Machine Learning a lot. It's fantastic! When the interface works. Unfortunately, it doesn't always.
 So, I created a [Python package](https://pypi.python.org/pypi/PyZureML) so I could start managing Azure Machine Learning endpoints programmatically.
 
 One of Azure's features I was - am - most excited about is the ability to easily deploy a trained machine learning model as a webservice. 
