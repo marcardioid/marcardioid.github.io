@@ -2,8 +2,8 @@
     color-scheme: light;
 
     /* Fonts */
-    --font-editorial: "Fraunces", Georgia, serif;
-    --font-display: "Fraunces", Georgia, serif;
+    --font-editorial: "Lora", Georgia, serif;
+    --font-display: "Lora", Georgia, serif;
     --font-body: "Source Sans 3", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -273,7 +273,7 @@ h4,
 
 h1 {
     margin: 0 0 var(--space-4) 0;
-    font-weight: 900;
+    font-weight: 700;
     font-size: var(--font-size-heading);
 }
 
@@ -284,7 +284,7 @@ h1 {
     max-width: 100%;
     font-size: var(--font-size-title-article);
     line-height: 0.92;
-    font-weight: 900;
+    font-weight: 700;
     text-wrap: balance;
 }
 
@@ -884,7 +884,7 @@ article img.img-size-medium {
     padding: 0.32rem 0.5rem 0.3rem;
     font-family: var(--font-display);
     font-size: var(--font-size-title-nav);
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -0.018em;
     text-align: center;
 }
@@ -906,7 +906,7 @@ article img.img-size-medium {
     margin: 0 0 1.15rem 0;
     color: var(--color-title);
     font-size: var(--font-size-heading);
-    font-weight: 900;
+    font-weight: 700;
     line-height: 0.9;
     letter-spacing: -0.03em;
     padding-bottom: 0;
@@ -962,7 +962,7 @@ article img.img-size-medium {
     margin: 0;
     font-size: clamp(2rem, 1.5rem + 2vw, 4rem);
     line-height: 0.94;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .title a {
@@ -1083,7 +1083,7 @@ a.external-link::after {
     text-decoration: none;
     color: var(--color-title);
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: 700;
     text-wrap: balance;
     background-image: linear-gradient(
         color-mix(in srgb, var(--color-accent) 50%, transparent),
@@ -1219,7 +1219,7 @@ a.external-link::after {
     font-family: var(--font-display);
     font-size: clamp(1.2rem, 1.1rem + 0.2vw, 1.34rem);
     line-height: 1.08;
-    font-weight: 750;
+    font-weight: 700;
 }
 
 footer p {
