@@ -14,23 +14,24 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings.">
+	<meta name="description" content="Principal Software Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms.">
 	<meta name="author" content="Marc Sleegers">
 	<link rel="canonical" href="https://marcsleegers.com/"/>
 
 	<title>Marc Sleegers</title>
 	<meta name="robots" content="index,follow,max-image-preview:large">
+	<meta id="meta-theme-color" name="theme-color" content="">
 
 	<!-- Twitter Cards and Open Graph -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:creator" content="@marcardioid">
 	<meta name="twitter:site" content="@marcardioid">
 	<meta name="twitter:title" content="Marc Sleegers">
-	<meta name="twitter:description" content="Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings.">
+	<meta name="twitter:description" content="Principal Software Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms.">
 	<meta name="twitter:image" content="https://marcsleegers.com/images/icons/portrait.jpg">
 	<meta name="twitter:image:alt" content="Portrait of Marc Sleegers">
 	<meta property="og:title" content="Marc Sleegers">
-	<meta property="og:description" content="Principal Engineer at Nike, especially interested in driving growth through insights – not just metrics. These are my infrequent ramblings.">
+	<meta property="og:description" content="Principal Software Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms.">
 	<meta property="og:image" content="https://marcsleegers.com/images/icons/portrait.jpg">
 	<meta property="og:image:alt" content="Portrait of Marc Sleegers">
 	<meta property="og:site_name" content="Marc Sleegers">
@@ -39,118 +40,114 @@
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
-		"@type": "Person",
-		"name": "Marc Sleegers",
-		"url": "https://marcsleegers.com/",
-		"jobTitle": "Principal Software Engineer",
-		"image": "https://marcsleegers.com/images/icons/portrait.jpg",
-		"sameAs": ["https://twitter.com/marcardioid", "https://github.com/marcardioid"]
+		"@type": "ProfilePage",
+		"mainEntity": {
+			"@type": "Person",
+			"name": "Marc Sleegers",
+			"url": "https://marcsleegers.com/",
+			"jobTitle": "Principal Software Engineer",
+			"image": "https://marcsleegers.com/images/icons/portrait.jpg",
+			"sameAs": ["https://twitter.com/marcardioid", "https://github.com/marcardioid"]
+		}
 	}
 	</script>
-	<style>
-		*,
-		*::before,
-		*::after {
-			box-sizing: border-box;
-		}
-
-		.home-page article {
-			max-width: 78rem;
-		}
-
-		.home-layout {
-			margin-bottom: 1.5rem;
-			padding-top: 1.5rem;
-			display: grid;
-			grid-template-columns: minmax(250px, 330px) minmax(0, 1fr);
-			gap: 3rem;
-			align-items: start;
-		}
-
-		.home-avatar {
-			width: 204px;
-			height: auto;
-			max-width: 100%;
-			display: block;
-			margin: 0 0 0.75rem 0;
-			border: 3px solid #fafafa;
-		}
-
-		.home-copy {
-			max-width: 78ch;
-		}
-
-		@media only screen and (max-width: 767px) {
-			.home-layout {
-				grid-template-columns: 1fr;
-				gap: 1.5rem;
-			}
-
-			.home-avatar {
-				width: 136px;
-			}
-		}
-	</style>
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
 		"@type": "WebSite",
 		"name": "Marc Sleegers",
 		"url": "https://marcsleegers.com/",
-		"description": "Principal Engineer at Nike, especially interested in driving growth through insights \u2013 not just metrics. These are my infrequent ramblings."
+		"description": "Principal Software Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms."
 	}
 	</script>
-
 	<!-- Stylesheets and Web Fonts -->
 	<link rel="stylesheet" href="https://marcsleegers.com/theme/style.min.css" type="text/css">
+	<script src="https://marcsleegers.com/theme/js/theme-toggle.min.js"></script>
+	<script src="https://marcsleegers.com/theme/js/site-header-sticky.min.js" defer></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css?family=Inter:ital,wght@0,400..900;1,400..900|IBM+Plex+Mono:400,500,700&display=swap" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Lora:600,700|Source+Sans+3:ital,wght@0,400..700;1,400..700|IBM+Plex+Mono:400,500,700&display=swap" rel="stylesheet" type="text/css">
 
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" href="https://marcsleegers.com/images/icons/apple-touch-icon.png">
 
 	<link rel="icon" type="image/png" href="https://marcsleegers.com/images/icons/favicon-16x16.png" sizes="16x16">
 	<link rel="icon" type="image/png" href="https://marcsleegers.com/images/icons/favicon-32x32.png" sizes="32x32">
+	<link rel="manifest" href="https://marcsleegers.com/images/icons/site.webmanifest">
 
 	<meta name="color-scheme" content="light dark">
 </head>
 
 <body class="home-page">
+	<a class="skip-link" href="#main-content">Skip to main content</a>
 		<div class="container">
 			<header class="site-header">
+					<nav class="site-nav" aria-label="Primary">
+					<div class="site-nav-links">
+					</div>
+					<button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode" data-label-dark="Switch to dark mode" data-label-light="Switch to light mode">
+						<svg class="theme-icon theme-icon--moon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path d="M20.26 14.01A8.49 8.49 0 0 1 9.99 3.74a.75.75 0 0 0-.85-.96A9.75 9.75 0 1 0 21.22 14.86a.75.75 0 0 0-.96-.85z" />
+						</svg>
+						<svg class="theme-icon theme-icon--sun" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<circle cx="12" cy="12" r="4.25" />
+							<line x1="12" y1="1.5" x2="12" y2="4.25" />
+							<line x1="12" y1="19.75" x2="12" y2="22.5" />
+							<line x1="1.5" y1="12" x2="4.25" y2="12" />
+							<line x1="19.75" y1="12" x2="22.5" y2="12" />
+							<line x1="4.57" y1="4.57" x2="6.52" y2="6.52" />
+							<line x1="17.48" y1="17.48" x2="19.43" y2="19.43" />
+							<line x1="4.57" y1="19.43" x2="6.52" y2="17.48" />
+							<line x1="17.48" y1="6.52" x2="19.43" y2="4.57" />
+						</svg>
+					</button>
+				</nav>
 		</header>
 
-		<main id="main-content">
+		<main id="main-content" tabindex="-1">
 			<article>
 					<section class="home-layout">
-							<div class="home-identity">
-								<a class="home-identity-link home-avatar-link" href="/">
-									<picture>
-										<source
-											type="image/webp"
-											srcset="https://marcsleegers.com/images/icons/portrait-136.webp 136w, https://marcsleegers.com/images/icons/portrait-204.webp 204w, https://marcsleegers.com/images/icons/portrait-408.webp 408w"
-											sizes="(max-width: 767px) 136px, 204px"
-										>
-										<img class="home-avatar" alt="Portrait of Marc Sleegers" src="https://marcsleegers.com/images/icons/portrait.jpg" width="204" height="280" fetchpriority="high" decoding="async">
-									</picture>
-								</a>
+						<div class="home-identity">
+							<a class="home-identity-link home-avatar-link" href="/" tabindex="-1">
+								<picture>
+									<source
+										type="image/webp"
+										srcset="https://marcsleegers.com/images/icons/portrait-136.webp 136w, https://marcsleegers.com/images/icons/portrait-204.webp 204w, https://marcsleegers.com/images/icons/portrait-408.webp 408w"
+										sizes="(max-width: 767px) 136px, 204px"
+									>
+									<img class="home-avatar" alt="Portrait of Marc Sleegers" src="https://marcsleegers.com/images/icons/portrait.jpg" width="204" height="248" fetchpriority="high" decoding="async">
+								</picture>
+							</a>
+						</div>
+						<div class="home-copy">
+							<h1 class="home-heading">Hi, I&#8217;m Marc&nbsp;<span class="wave-emoji" role="img" aria-label="Waving hand" tabindex="0">👋</span></h1>
+							<div class="home-body">
+								<p>I’m a Principal Software Engineer at <a class="external-link" href="https://www.justeattakeaway.com" rel="noopener noreferrer" target="_blank"><span class="caps">JET</span></a>, responsible for the Data Platform. I lead cross-functional delivery and build systems that turn complex data into actionable decisions. Previously, I was a Principal Software Engineer at <a class="external-link" href="https://nike.com" rel="noopener noreferrer" target="_blank">Nike</a> and a Machine Learning Consultant at <a class="external-link" href="https://www.avanade.com" rel="noopener noreferrer" target="_blank">Avanade</a>.</p>
+<p>Over the past decade, I’ve focused on making large systems easier to build, understand, and run. I enjoy mentoring engineers and engineering managers as they grow into larger roles.</p>
+<p>Outside of work, I’m a published author, <a href="/splash/" rel="noopener noreferrer" target="_blank">a hobbyist game developer</a>, and a certified <span class="caps">PADI</span> Rescue Diver. To wind down I love reading fantasy novels, tinkering with home automation projects, and long-distance runs.</p>
+<p>The toy on this page is <abbr title="벚꽃 (beotkkot), the Korean cherry blossom symbolizing renewal">벚꽃 (beotkkot)</abbr>, celebrating renewal.</p>
 							</div>
-							<div class="home-copy">
-								<h1 class="home-heading">Hi, I&#8217;m Marc&nbsp;<span class="wave-emoji">👋</span></h1>
-								<div class="home-body">
-									<p>I am a Principal Software Engineer at <a href="https://nike.com" rel="noopener noreferrer" target="_blank">Nike</a>, building scalable data-intensive platforms that help teams turn complex data landscapes into actionable insights. I lead engineers and cross-functional initiatives from architecture through&nbsp;delivery.</p>
-<p>With over a decade of experience across modern analytics and data engineering stacks, I set technical direction for platform reliability and delivery while mentoring engineers and engineering managers in their career&nbsp;goals.</p>
-<p>Outside of work, I am a published author, <a href="/splash/" rel="noopener noreferrer" target="_blank">a hobbyist game developer</a>, and a certified <span class="caps">PADI</span> Rescue Diver. To wind down I love reading fantasy novels, home automation, and long-distance&nbsp;running.</p>
-<p>If you&#8217;d like to chat, let&#8217;s <a href="mailto:mail@marcsleegers.com?subject=Hello">get in touch</a>.</p>
-								</div>
-							</div>
+							<a class="cta-reply-button" href="mailto:mail@marcsleegers.com?subject=Hello">
+								<svg class="cta-reply-button__icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+									<path d="M3.75 6.75h16.5a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5v-7.5a1.5 1.5 0 0 1 1.5-1.5Z" />
+									<path d="m3 7.5 9 6 9-6" />
+								</svg>
+								<span>Get in touch</span>
+							</a>
+						</div>
+						<div class="home-toy">
+							<canvas id="cherry-blossom-canvas" data-cherry-blossom-svg="https://marcsleegers.com/theme/toys/cherry-blossom-grove/svg/cherry-blossom.min.svg" aria-hidden="true"></canvas>
+							<noscript>
+								<img class="home-toy-fallback" src="https://marcsleegers.com/theme/toys/cherry-blossom-grove/svg/cherry-blossom.min.svg" alt="" loading="lazy">
+							</noscript>
+							<p id="cherry-blossom-hint" class="toy-hint" hidden aria-hidden="true"></p>
+						</div>
 					</section>
 			</article>
 		</main>
 
-		<footer></footer>
 	</div>
+	<script src="https://marcsleegers.com/theme/toys/cherry-blossom-grove/js/cherry-blossom-grove.min.js" defer></script>
 </body>
 
 </html>

@@ -30,17 +30,12 @@
 </head>
 
 <body>
-    <!--[if lt IE 9]>
-        <script>
-            document.createElement('video');
-        </script>
-        <![endif]-->
-    <video autoplay loop muted preload="auto" poster="/splash/assets/img/splash.jpg" id="bgvid">
+    <video autoplay loop muted playsinline preload="metadata" poster="/splash/assets/img/splash.jpg" id="bgvid">
         <source src="/splash/assets/vid/splash.webm" type="video/webm">
         <source src="/splash/assets/vid/splash.mp4" type="video/mp4">
     </video>
-    <button id="bgvid-button-toggle">
-        Play
+    <button id="bgvid-button-toggle" type="button" hidden>
+        Pause
     </button>
     <script type="text/javascript" src="/splash/assets/js/iosvideocontroller.js"></script>
 </body>

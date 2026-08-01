@@ -14,14 +14,28 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="The requested page could not be found.">
+	<meta name="description" content="A hidden page for the current interactive homepage toy.">
 	<meta name="author" content="Marc Sleegers">
-	<link rel="canonical" href="https://marcsleegers.com/404.html"/>
+	<link rel="canonical" href="https://marcsleegers.com/toy/"/>
 
-	<title>Page Not Found | Marc Sleegers</title>
+	<title>벚꽃 | Marc Sleegers</title>
 	<meta name="robots" content="noindex,follow">
 	<meta id="meta-theme-color" name="theme-color" content="">
 
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@marcardioid">
+	<meta name="twitter:site" content="@marcardioid">
+	<meta name="twitter:title" content="벚꽃">
+	<meta name="twitter:description" content="A hidden page for the current interactive homepage toy.">
+	<meta name="twitter:image" content="https://marcsleegers.com/theme/toys/cherry-blossom-grove/svg/cherry-blossom.min.svg">
+	<meta name="twitter:image:alt" content="Cover image for 벚꽃">
+	<meta property="og:title" content="벚꽃">
+	<meta property="og:description" content="A hidden page for the current interactive homepage toy.">
+	<meta property="og:image" content="https://marcsleegers.com/theme/toys/cherry-blossom-grove/svg/cherry-blossom.min.svg">
+	<meta property="og:image:alt" content="Cover image for 벚꽃">
+	<meta property="og:site_name" content="Marc Sleegers">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://marcsleegers.com/toy/">
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
@@ -33,6 +47,61 @@
 	</script>
 	<!-- Stylesheets and Web Fonts -->
 	<link rel="stylesheet" href="https://marcsleegers.com/theme/style.min.css" type="text/css">
+	<style>
+		.toy-page {
+			--toy-stage-height: clamp(24rem, 55vh, 42rem);
+			--toy-stage-overhang: clamp(3.5rem, 9vw, 6rem);
+		}
+
+		.toy-page article {
+			max-width: 100%;
+		}
+
+		.toy-layout {
+			width: min(94%, 72rem);
+			margin: 0 auto;
+			padding: var(--space-5) var(--space-4) var(--space-7);
+		}
+
+		.toy-layout .page-intro {
+			margin-bottom: var(--space-5);
+		}
+
+		.toy-layout .content {
+			position: relative;
+			z-index: 1;
+			max-width: 64ch;
+			margin-bottom: var(--space-6);
+		}
+
+		.toy-stage {
+			position: relative;
+			z-index: 0;
+			width: 100%;
+			height: calc(var(--toy-stage-height) + var(--toy-stage-overhang));
+			margin-top: calc(var(--toy-stage-overhang) * -1);
+			overflow: visible;
+		}
+
+		.toy-stage #cherry-blossom-canvas {
+			display: block;
+			width: 100%;
+			height: 100%;
+			min-width: 0;
+			min-height: 0;
+		}
+
+		@media only screen and (max-width: 767px) {
+			.toy-page {
+				--toy-stage-height: clamp(17rem, 44vh, 20rem);
+				--toy-stage-overhang: clamp(2.5rem, 12vw, 4rem);
+			}
+
+			.toy-layout .content {
+				margin-bottom: var(--space-5);
+			}
+		}
+	</style>
 	<script src="https://marcsleegers.com/theme/js/theme-toggle.min.js"></script>
 	<script src="https://marcsleegers.com/theme/js/site-header-sticky.min.js" defer></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +118,7 @@
 	<meta name="color-scheme" content="light dark">
 </head>
 
-<body>
+<body class="toy-page">
 	<a class="skip-link" href="#main-content">Skip to main content</a>
 		<div class="container">
 			<header class="site-header">
@@ -77,29 +146,24 @@
 
 		<main id="main-content" tabindex="-1">
 			<article>
-				<script>
-					(function () {
-						var legacyPrefix = "/blog";
-						var legacyTarget = "/writing";
-						var path = window.location.pathname || "";
-						if (path === legacyPrefix || path.indexOf(legacyPrefix + "/") === 0) {
-							var targetPath = legacyTarget + path.slice(legacyPrefix.length);
-							var target = targetPath + window.location.search + window.location.hash;
-							window.location.replace(target);
-						}
-					})();
-				</script>
-				<header class="page-intro">
-				<p class="not-found-cat" aria-hidden="true">(=ＴェＴ=)</p>
-				<h1 class="title page-title">Page Not Found</h1>
-				</header>
-				<div class="content">
-					<p>That page may have moved or no longer exists. Browse <a href="https://marcsleegers.com/writing/">all writing</a> instead.</p>
-				</div>
+				<section class="toy-layout">
+					<header class="page-intro">
+						<h1 class="title page-title">벚꽃</h1>
+					</header>
+					<div class="content">
+						<p>The current toy is <abbr title="벚꽃 (beotkkot), the Korean cherry blossom symbolizing renewal">벚꽃 (beotkkot)</abbr>, marking the arrival of&nbsp;Spring.</p>
+<p>You can click/tap the canopy to shake off loose petals. The colour scheme follows the site theme toggle so the grove shifts with light (sun) and dark (moon) mode. If you know the <abbr title="daybreak">easter egg</abbr>, it nudges the tree&nbsp;here.</p>
+					</div>
+					<div class="toy-stage">
+						<canvas id="cherry-blossom-canvas" data-cherry-blossom-svg="https://marcsleegers.com/theme/toys/cherry-blossom-grove/svg/cherry-blossom.min.svg" aria-hidden="true"></canvas>
+            <p id="cherry-blossom-hint" class="toy-hint" hidden aria-hidden="true"></p>
+          </div>
+				</section>
 			</article>
 		</main>
 
 	</div>
+	<script src="https://marcsleegers.com/theme/toys/cherry-blossom-grove/js/cherry-blossom-grove.min.js" defer></script>
 </body>
 
 </html>
