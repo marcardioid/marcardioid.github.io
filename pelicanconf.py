@@ -47,7 +47,7 @@ NAVIGATION_ITEMS = [
 ]
 
 GOOGLE_FONTS = [
-    "Fraunces:opsz,wght@9..144,600..900",
+    "Lora:600,700",
     "Source Sans 3:ital,wght@0,400..700;1,400..700",
     "IBM Plex Mono:400,500,700",
 ]
