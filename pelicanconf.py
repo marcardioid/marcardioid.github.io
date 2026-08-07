@@ -15,7 +15,7 @@ DOMAIN = "marcsleegers.com"
 FOOTER_TEXT = f'&copy; {datetime.now().year} Marc Sleegers. Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 SITE_AUTHOR = "Marc Sleegers"
-SITE_AUTHOR_TITLE = "Principal Software Engineer"
+SITE_AUTHOR_TITLE = "Principal Engineer"
 ICONS_PATH = "images/icons"
 SOCIAL_IMAGE_FILENAME = "portrait.jpg"
 SOCIAL_IMAGE_ALT = "Portrait of Marc Sleegers"
@@ -35,7 +35,7 @@ SOCIAL_PROFILE_URLS = [
     "https://twitter.com/marcardioid",
     "https://github.com/marcardioid",
 ]
-INDEX_DESCRIPTION = "Principal Software Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms."
+INDEX_DESCRIPTION = "Principal Engineer at JET writing about architecture, engineering leadership, and data-intensive platforms."
 
 NAVIGATION_ITEMS = [
     ("/", "home", "Home"),
